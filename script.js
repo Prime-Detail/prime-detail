@@ -154,69 +154,71 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ============================================
-// AVANT/APRÈS SLIDER - VERSION SIMPLIFIÉE
+// AVANT/APRÈS SLIDER - VERSION ULTRA SIMPLE
 // ============================================
-function initBeforeAfterSliders() {
-  const sliders = document.querySelectorAll('.before-after-slider');
+(function() {
+  'use strict';
   
-  sliders.forEach((slider) => {
-    const beforeImage = slider.querySelector('.before-image');
-    const handle = slider.querySelector('.before-after-handle');
+  function initSliders() {
+    const sliders = document.querySelectorAll('.before-after-slider');
     
-    if (!beforeImage || !handle) return;
-    
-    let isDragging = false;
-
-    function moveSlider(x) {
-      const rect = slider.getBoundingClientRect();
-      const position = Math.max(0, Math.min(x - rect.left, rect.width));
-      const percentage = (position / rect.width) * 100;
+    sliders.forEach(function(slider) {
+      const beforeImg = slider.querySelector('.before-image');
+      const handle = slider.querySelector('.before-after-handle');
       
-      beforeImage.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
-      handle.style.left = percentage + '%';
-    }
+      if (!beforeImg || !handle) return;
+      
+      let active = false;
 
-    // Souris
-    handle.onmousedown = (e) => {
-      isDragging = true;
-      e.preventDefault();
-    };
-
-    window.onmousemove = (e) => {
-      if (isDragging) {
-        moveSlider(e.pageX);
+      function slide(pageX) {
+        const rect = slider.getBoundingClientRect();
+        let x = pageX - rect.left;
+        if (x < 0) x = 0;
+        if (x > rect.width) x = rect.width;
+        const percent = (x / rect.width) * 100;
+        beforeImg.style.clipPath = 'inset(0 ' + (100 - percent) + '% 0 0)';
+        handle.style.left = percent + '%';
       }
-    };
 
-    window.onmouseup = () => {
-      isDragging = false;
-    };
+      // Mouse
+      handle.addEventListener('mousedown', function(e) {
+        active = true;
+        slide(e.pageX);
+        e.preventDefault();
+      });
 
-    // Tactile
-    handle.ontouchstart = (e) => {
-      isDragging = true;
-      e.preventDefault();
-    };
+      document.addEventListener('mousemove', function(e) {
+        if (active) slide(e.pageX);
+      });
 
-    window.ontouchmove = (e) => {
-      if (isDragging) {
-        moveSlider(e.touches[0].pageX);
-      }
-    };
+      document.addEventListener('mouseup', function() {
+        active = false;
+      });
 
-    window.ontouchend = () => {
-      isDragging = false;
-    };
+      // Touch
+      handle.addEventListener('touchstart', function(e) {
+        active = true;
+        slide(e.touches[0].pageX);
+        e.preventDefault();
+      });
 
-    // Clic sur l'image
-    slider.onclick = (e) => {
-      moveSlider(e.pageX);
-    };
-  });
-}
+      document.addEventListener('touchmove', function(e) {
+        if (active) slide(e.touches[0].pageX);
+      });
 
-// Init
-setTimeout(initBeforeAfterSliders, 100);
+      document.addEventListener('touchend', function() {
+        active = false;
+      });
+    });
+  }
+
+  // Attendre que tout soit chargé
+  if (document.readyState === 'complete') {
+    initSliders();
+  } else {
+    window.addEventListener('load', initSliders);
+  }
+})();
 
 // Form validation and submission
 const reservationForm = document.getElementById('reservationForm');
