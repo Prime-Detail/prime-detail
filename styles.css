@@ -1089,6 +1089,48 @@ body.has-promo {
 	pointer-events: none;
 }
 
+.google-rating-badge {
+	background: white;
+	padding: 2rem;
+	border-radius: 15px;
+	text-align: center;
+	margin: 2rem auto;
+	max-width: 500px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+	border: 2px solid #4285F4;
+}
+
+.rating-stars {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+	margin-bottom: 0.8rem;
+}
+
+.rating-stars .fab.fa-google {
+	font-size: 2.5rem;
+	color: #4285F4;
+}
+
+.rating-number {
+	font-size: 3rem;
+	font-weight: 700;
+	color: #4285F4;
+}
+
+.stars-display {
+	font-size: 2rem;
+	color: #FFD700;
+	letter-spacing: 3px;
+}
+
+.rating-text {
+	color: #666;
+	font-size: 1rem;
+	margin: 0;
+}
+
 .testimonials-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
