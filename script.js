@@ -154,114 +154,69 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ============================================
-// AVANT/APRÈS SLIDER
+// AVANT/APRÈS SLIDER - VERSION SIMPLIFIÉE
 // ============================================
 function initBeforeAfterSliders() {
   const sliders = document.querySelectorAll('.before-after-slider');
-  console.log('Sliders trouvés:', sliders.length);
   
-  sliders.forEach((slider, index) => {
+  sliders.forEach((slider) => {
     const beforeImage = slider.querySelector('.before-image');
     const handle = slider.querySelector('.before-after-handle');
     
-    console.log(`Slider ${index}:`, { beforeImage, handle });
+    if (!beforeImage || !handle) return;
     
-    if (!beforeImage || !handle) {
-      console.warn(`Slider ${index} manque beforeImage ou handle`);
-      return;
-    }
-    
-    let isActive = false;
+    let isDragging = false;
 
-    function updateSlider(e) {
+    function moveSlider(x) {
       const rect = slider.getBoundingClientRect();
-      let x;
-      
-      if (e.touches && e.touches[0]) {
-        x = e.touches[0].clientX - rect.left;
-      } else if (e.clientX !== undefined) {
-        x = e.clientX - rect.left;
-      } else {
-        return;
-      }
-      
-      if (x < 0) x = 0;
-      if (x > rect.width) x = rect.width;
-      
-      const percentage = (x / rect.width) * 100;
+      const position = Math.max(0, Math.min(x - rect.left, rect.width));
+      const percentage = (position / rect.width) * 100;
       
       beforeImage.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
       handle.style.left = percentage + '%';
-      
-      console.log(`Update slider ${index}:`, percentage);
     }
 
-    // Mouse events
-    handle.addEventListener('mousedown', (e) => {
+    // Souris
+    handle.onmousedown = (e) => {
+      isDragging = true;
       e.preventDefault();
-      e.stopPropagation();
-      isActive = true;
-      console.log('Mousedown sur handle');
-      updateSlider(e);
-    });
+    };
 
-    document.addEventListener('mousemove', (e) => {
-      if (isActive) {
-        e.preventDefault();
-        updateSlider(e);
+    window.onmousemove = (e) => {
+      if (isDragging) {
+        moveSlider(e.pageX);
       }
-    });
+    };
 
-    document.addEventListener('mouseup', () => {
-      if (isActive) {
-        console.log('Mouseup - fin drag');
-      }
-      isActive = false;
-    });
+    window.onmouseup = () => {
+      isDragging = false;
+    };
 
-    // Touch events
-    handle.addEventListener('touchstart', (e) => {
+    // Tactile
+    handle.ontouchstart = (e) => {
+      isDragging = true;
       e.preventDefault();
-      e.stopPropagation();
-      isActive = true;
-      console.log('Touchstart sur handle');
-      updateSlider(e);
-    }, { passive: false });
+    };
 
-    document.addEventListener('touchmove', (e) => {
-      if (isActive) {
-        e.preventDefault();
-        updateSlider(e);
+    window.ontouchmove = (e) => {
+      if (isDragging) {
+        moveSlider(e.touches[0].pageX);
       }
-    }, { passive: false });
+    };
 
-    document.addEventListener('touchend', () => {
-      if (isActive) {
-        console.log('Touchend - fin drag');
-      }
-      isActive = false;
-    });
+    window.ontouchend = () => {
+      isDragging = false;
+    };
 
-    // Click to slide
-    slider.addEventListener('click', (e) => {
-      console.log('Click sur slider');
-      updateSlider(e);
-    });
-    
-    console.log(`Slider ${index} initialisé avec succès`);
+    // Clic sur l'image
+    slider.onclick = (e) => {
+      moveSlider(e.pageX);
+    };
   });
 }
 
-// Initialiser les sliders après le chargement complet
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM chargé, init sliders');
-    initBeforeAfterSliders();
-  });
-} else {
-  console.log('DOM déjà chargé, init sliders immédiate');
-  initBeforeAfterSliders();
-}
+// Init
+setTimeout(initBeforeAfterSliders, 100);
 
 // Form validation and submission
 const reservationForm = document.getElementById('reservationForm');
