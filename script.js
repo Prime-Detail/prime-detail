@@ -153,25 +153,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// ============================================
-// AVANT/APRÈS SLIDER - VERSION INPUT RANGE
-// ============================================
-document.addEventListener('DOMContentLoaded', function() {
-  const sliders = document.querySelectorAll('.before-after-slider');
-  
-  sliders.forEach(function(slider) {
-    const beforeImg = slider.querySelector('.before-image');
-    const rangeInput = slider.querySelector('.slider-range');
-    
-    if (!beforeImg || !rangeInput) return;
-    
-    rangeInput.addEventListener('input', function() {
-      const value = this.value;
-      beforeImg.style.clipPath = 'inset(0 ' + (100 - value) + '% 0 0)';
-    });
-  });
-});
-
 
 // Form validation and submission
 const reservationForm = document.getElementById('reservationForm');
