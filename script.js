@@ -6,9 +6,17 @@ window.addEventListener('load', () => {
   if (loader) {
     setTimeout(() => {
       loader.classList.add('hidden');
-    }, 800);
+    }, 300);
   }
 });
+
+// Sécurité : retirer le loader après 3 secondes max
+setTimeout(() => {
+  const loader = document.getElementById('pageLoader');
+  if (loader && !loader.classList.contains('hidden')) {
+    loader.classList.add('hidden');
+  }
+}, 3000);
 
 // ============================================
 // BARRE DE PROGRESSION DU SCROLL
