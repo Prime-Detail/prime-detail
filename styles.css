@@ -234,38 +234,14 @@ body.dark-mode .theme-toggle i::before {
 }
 /* Hero Section */
 .hero {
-	position: relative;
+	background: linear-gradient(135deg, rgba(33, 133, 160, 0.95), rgba(26, 111, 127, 0.95)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%232185a0" width="1200" height="600"/><circle cx="10%" cy="20%" r="200" fill="%23ff6b35" opacity="0.1"/><circle cx="85%" cy="80%" r="150" fill="%23ffffff" opacity="0.05"/></svg>');
+	background-size: cover;
+	background-position: center;
 	color: var(--text-light);
 	padding: 5rem 0 3rem;
 	text-align: center;
+	position: relative;
 	overflow: hidden;
-	min-height: 600px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.hero-video {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	min-width: 100%;
-	min-height: 100%;
-	width: auto;
-	height: auto;
-	transform: translate(-50%, -50%);
-	object-fit: cover;
-	z-index: 0;
-}
-
-.hero-overlay {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background: linear-gradient(135deg, rgba(33, 133, 160, 0.85), rgba(26, 111, 127, 0.75));
-	z-index: 1;
 }
 
 .hero::before {
@@ -282,7 +258,7 @@ body.dark-mode .theme-toggle i::before {
 
 .hero .container {
 	position: relative;
-	z-index: 3;
+	z-index: 1;
 }
 
 .hero h2 {
