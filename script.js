@@ -451,21 +451,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // FAQ Accordéon
 document.addEventListener('DOMContentLoaded', function() {
+  console.log('FAQ script chargé');
   const faqItems = document.querySelectorAll('.faq-item');
+  console.log('Nombre de FAQ items trouvés:', faqItems.length);
   
   faqItems.forEach(item => {
     const question = item.querySelector('.faq-question');
     
-    question.addEventListener('click', () => {
-      // Fermer tous les autres items
-      faqItems.forEach(otherItem => {
-        if (otherItem !== item && otherItem.classList.contains('active')) {
-          otherItem.classList.remove('active');
-        }
+    if (question) {
+      question.addEventListener('click', function(e) {
+        e.preventDefault();
+        console.log('FAQ cliqué');
+        
+        // Fermer tous les autres items
+        faqItems.forEach(otherItem => {
+          if (otherItem !== item && otherItem.classList.contains('active')) {
+            otherItem.classList.remove('active');
+          }
+        });
+        
+        // Toggle l'item actuel
+        item.classList.toggle('active');
       });
-      
-      // Toggle l'item actuel
-      item.classList.toggle('active');
-    });
+    }
   });
 });
