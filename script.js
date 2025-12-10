@@ -449,30 +449,32 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// FAQ Accordéon
-document.addEventListener('DOMContentLoaded', function() {
-  console.log('FAQ script chargé');
-  const faqItems = document.querySelectorAll('.faq-item');
-  console.log('Nombre de FAQ items trouvés:', faqItems.length);
-  
-  faqItems.forEach(item => {
-    const question = item.querySelector('.faq-question');
+// FAQ Accordéon - Version ultra simplifiée
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    const faqItems = document.querySelectorAll('.faq-item');
     
-    if (question) {
-      question.addEventListener('click', function(e) {
-        e.preventDefault();
-        console.log('FAQ cliqué');
-        
-        // Fermer tous les autres items
-        faqItems.forEach(otherItem => {
-          if (otherItem !== item && otherItem.classList.contains('active')) {
-            otherItem.classList.remove('active');
-          }
-        });
-        
-        // Toggle l'item actuel
-        item.classList.toggle('active');
-      });
-    }
-  });
+    faqItems.forEach(function(item) {
+      const question = item.querySelector('.faq-question');
+      
+      if (question) {
+        question.onclick = function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          // Fermer tous les autres
+          faqItems.forEach(function(otherItem) {
+            if (otherItem !== item) {
+              otherItem.classList.remove('active');
+            }
+          });
+          
+          // Toggle actuel
+          item.classList.toggle('active');
+          
+          return false;
+        };
+      }
+    });
+  }, 500);
 });
