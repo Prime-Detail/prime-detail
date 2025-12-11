@@ -187,6 +187,26 @@ body.dark-mode .theme-toggle i::before {
 	box-shadow: var(--shadow);
 }
 
+/* Logo image: responsive and contained */
+.logo-img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+	object-fit: contain;
+}
+
+header .logo-img {
+	max-height: 60px; /* adapter selon design de la barre */
+}
+
+/* Variante dark optionnelle si disponible */
+/* Décommentez si vous avez généré prime-detail-logo-dark.png */
+/*
+body.dark-mode .logo-img {
+	content: url('assets/images/logo/prime-detail-logo-dark.png');
+}
+*/
+
 .header .container {
 	display: flex;
 	justify-content: space-between;
