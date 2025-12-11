@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+  <!-- Background -->
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2185a0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a6b80;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Icon Circle with PD -->
+  <circle cx="30" cy="30" r="24" fill="url(#logoGradient)"/>
+  <text x="30" y="40" font-family="Arial, sans-serif" font-size="22" font-weight="bold" text-anchor="middle" fill="white">PD</text>
+  
+  <!-- Prime Detail Text -->
+  <text x="65" y="27" font-family="Montserrat, Arial, sans-serif" font-size="20" font-weight="700" fill="#2185a0">Prime Detail</text>
+  <text x="65" y="45" font-family="Roboto, Arial, sans-serif" font-size="10" font-weight="400" fill="#666" letter-spacing="1">NETTOYAGE AUTOMOBILE</text>
+</svg>
