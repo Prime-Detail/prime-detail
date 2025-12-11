@@ -3,6 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  
+  <!-- FORCER MODE CLAIR -->
+  <script>
+    localStorage.removeItem('theme');
+    document.documentElement.classList.remove('dark-mode');
+    if (document.body) document.body.classList.remove('dark-mode');
+  </script>
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
