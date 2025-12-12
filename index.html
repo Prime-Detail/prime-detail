@@ -105,14 +105,18 @@
   <header class="header">
     <div class="container">
       <div class="logo">
-          <img
-            src="/prime-detail/assets/images/logo/logo.png?v=3"
-            class="logo-img"
-            alt="Prime Detail - Nettoyage Auto"
-            width="240"
-            height="80"
-            onerror="if(this.src.indexOf('prime-detail')!==-1){this.src='assets/images/logo/logo.png?v=3';}else{this.onerror=null;this.src='https://raw.githubusercontent.com/Prime-Detail/prime-detail/main/assets/images/logo/logo.png';}"
-          >
+          <picture>
+            <source srcset="/prime-detail/assets/images/logo/logo.webp?v=4" type="image/webp">
+            <source srcset="assets/images/logo/logo.webp?v=4" type="image/webp">
+            <img
+              src="/prime-detail/assets/images/logo/logo.png?v=4"
+              class="logo-img"
+              alt="Prime Detail - Nettoyage Auto"
+              width="240"
+              height="80"
+              onerror="if(this.src.indexOf('prime-detail')!==-1){this.src='assets/images/logo/logo.png?v=4';}else{this.onerror=null;this.src='https://raw.githubusercontent.com/Prime-Detail/prime-detail/main/assets/images/logo/logo.png';}"
+            >
+          </picture>
         <div class="logo-text">
           <h1>Prime Detail</h1>
           <p class="tagline">Nettoyage Automobile Premium</p>
