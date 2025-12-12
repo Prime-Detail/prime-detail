@@ -229,7 +229,8 @@ body.dark-mode .theme-toggle i::before {
 }
 /* Hero Section */
 .hero {
-	background: linear-gradient(135deg, rgba(33, 90, 110, 0.96), rgba(15, 45, 60, 0.96));
+	/* Dégradé plus contrasté, sombre vers le bas */
+	background: linear-gradient(180deg, rgba(36, 96, 118, 0.96) 0%, rgba(18, 54, 72, 0.98) 65%, rgba(10, 32, 46, 1) 100%);
 	background-size: cover;
 	background-position: center;
 	color: var(--text-light);
@@ -267,6 +268,15 @@ body.dark-mode .theme-toggle i::before {
 	text-transform: none;
 }
 
+/* Desktop: accentuer l'impact du titre */
+@media (min-width: 992px) {
+	.hero h2 {
+		font-size: 4rem;
+		letter-spacing: -0.6px;
+	}
+	.hero p { font-size: 1.25rem; }
+}
+
 .hero p {
 	font-size: 1.2rem;
 	margin-bottom: 2.5rem;
@@ -299,6 +309,8 @@ body.dark-mode .theme-toggle i::before {
 	cursor: pointer;
 	border: none;
 	font-size: 1rem;
+	text-transform: uppercase;
+	letter-spacing: 0.6px;
 	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
