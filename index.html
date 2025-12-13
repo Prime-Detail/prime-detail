@@ -41,8 +41,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" onload="this.rel='stylesheet'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet" /></noscript>
+  <!-- Font Awesome non-bloquant avec fallback noscript -->
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" onload="this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" /></noscript>
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" onload="this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" /></noscript>
   <link rel="stylesheet" href="styles.css" />
   <script defer src="script.js"></script>
   
@@ -146,29 +151,29 @@
     <div class="container">
       <h2>Nos résultats avant / après</h2>
       <p class="section-subtitle">Chaque véhicule reçoit un soin complet, adapté à son état et à votre usage.</p>
-      <div class="before-after-grid">
-        <div class="before-after-pair">
-          <h3>Sièges Avant</h3>
-          <div class="comparison-wrapper">
-            <div class="comparison-item">
-              <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/d373fb00-93f2-4d70-ad55-64a5104b667f" alt="Sièges Avant - Avant">
-              <span class="comparison-label avant">Avant</span>
-            </div>
-            <div class="comparison-item">
-              <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/3861b9a9-9037-4b52-b909-adcd720c6254" alt="Sièges Avant - Après">
-              <span class="comparison-label apres">Après</span>
+        <div class="before-after-grid">
+          <div class="before-after-pair">
+            <h3>Sièges Avant</h3>
+            <div class="comparison-wrapper">
+              <div class="comparison-item">
+                <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/d373fb00-93f2-4d70-ad55-64a5104b667f" alt="Sièges Avant - Avant" width="1200" height="800">
+                <span class="comparison-label avant">Avant</span>
+              </div>
+              <div class="comparison-item">
+                <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/3861b9a9-9037-4b52-b909-adcd720c6254" alt="Sièges Avant - Après" width="1200" height="800">
+                <span class="comparison-label apres">Après</span>
+              </div>
             </div>
           </div>
-        </div>
         <div class="before-after-pair">
           <h3>Tableau de bord</h3>
           <div class="comparison-wrapper">
             <div class="comparison-item">
-              <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/5bcc0e9b-450c-46e0-a6cc-96b5bc234d4a" alt="Tableau de bord - Avant">
+              <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/5bcc0e9b-450c-46e0-a6cc-96b5bc234d4a" alt="Tableau de bord - Avant" width="1200" height="800">
               <span class="comparison-label avant">Avant</span>
             </div>
             <div class="comparison-item">
-              <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/7341598c-e4e4-469c-a367-ae14d0cb0aae" alt="Tableau de bord - Après">
+              <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/7341598c-e4e4-469c-a367-ae14d0cb0aae" alt="Tableau de bord - Après" width="1200" height="800">
               <span class="comparison-label apres">Après</span>
             </div>
           </div>
@@ -177,11 +182,11 @@
           <h3>Banquettes Arrière</h3>
           <div class="comparison-wrapper">
             <div class="comparison-item">
-              <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/850a0e21-8efd-4ad5-8950-d8bda796bc2e" alt="Banquettes Arrière - Avant">
+              <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/850a0e21-8efd-4ad5-8950-d8bda796bc2e" alt="Banquettes Arrière - Avant" width="1200" height="800">
               <span class="comparison-label avant">Avant</span>
             </div>
             <div class="comparison-item">
-              <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/5ff07a1c-0370-49d8-88c1-993603327141" alt="Banquettes Arrière - Après">
+              <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/5ff07a1c-0370-49d8-88c1-993603327141" alt="Banquettes Arrière - Après" width="1200" height="800">
               <span class="comparison-label apres">Après</span>
             </div>
           </div>
@@ -190,11 +195,11 @@
           <h3>Coffre</h3>
           <div class="comparison-wrapper">
             <div class="comparison-item">
-              <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/c0270691-bcf2-4f4e-8a57-529e36de7adf" alt="Coffre - Avant">
+              <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/c0270691-bcf2-4f4e-8a57-529e36de7adf" alt="Coffre - Avant" width="1200" height="800">
               <span class="comparison-label avant">Avant</span>
             </div>
             <div class="comparison-item">
-              <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/c326487e-2240-4627-a5f0-61803b7eb380" alt="Coffre - Après">
+              <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/c326487e-2240-4627-a5f0-61803b7eb380" alt="Coffre - Après" width="1200" height="800">
               <span class="comparison-label apres">Après</span>
             </div>
           </div>
