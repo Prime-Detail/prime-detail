@@ -499,8 +499,8 @@ section h2 {
 
 .service-card {
 	background-color: var(--bg-light);
-	padding: 2rem;
-	border-radius: 15px;
+	padding: 1.6rem;
+	border-radius: 14px;
 	text-align: center;
 	transition: var(--transition);
 	box-shadow: var(--shadow);
@@ -515,9 +515,10 @@ section h2 {
 
 .service-card h3 {
 	color: var(--primary-color);
-	margin-bottom: 1rem;
+	margin: 0.4rem 0 0.6rem;
 	font-size: 1.5rem;
-	font-weight: 600;
+	font-weight: 700;
+	font-family: 'Montserrat', 'Raleway', sans-serif;
 }
 
 .service-card .icon {
@@ -535,6 +536,7 @@ section h2 {
 	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 	gap: 2rem;
 	margin-top: 3rem;
+	align-items: stretch;
 }
 
 .pricing-card {
@@ -548,6 +550,7 @@ section h2 {
 	display: flex;
 	flex-direction: column;
 	text-align: center;
+	gap: 0.4rem;
 }
 
 .pricing-card:hover {
@@ -606,7 +609,7 @@ section h2 {
 	font-weight: 700;
 	/* Uniformiser la hauteur du titre pour aligner les prix */
 	line-height: 1.2;
-	min-height: 4.4rem; /* couvre jusqu'à ~3 lignes courtes */
+	min-height: 4.2rem; /* compacte légèrement mais garde l'alignement */
 	display: flex;
 	align-items: flex-end;
 	justify-content: center;
@@ -614,7 +617,7 @@ section h2 {
 }
 
 .price {
-	font-size: 3rem;
+	font-size: 2.8rem;
 	color: var(--accent-color);
 	font-weight: 700;
 	margin-bottom: 0.5rem;
@@ -627,6 +630,7 @@ section h2 {
 	font-style: italic;
 	/* Uniformiser la hauteur de la ligne durée */
 	min-height: 1.2rem;
+	line-height: 1.2;
 }
 
 /* Harmoniser l'alignement vertical des cartes tarifs */
@@ -643,13 +647,17 @@ section h2 {
 	margin: 1.5rem 0;
 	flex-grow: 1;
 	text-align: left;
+	display: grid;
+	grid-template-columns: 1fr;
+	row-gap: 0.4rem;
 }
 
 .pricing-card li {
-	padding: 0.7rem 0;
-	border-bottom: 1px solid #f0f0f0;
+	padding: 0.4rem 0;
+	border-bottom: 1px dashed #f0f0f0;
 	color: #333;
 	font-size: 0.95rem;
+	line-height: 1.55;
 }
 
 .pricing-card li:last-child {
@@ -682,9 +690,9 @@ section h2 {
 	border-radius: 25px;
 	font-size: 0.85rem;
 	font-weight: 700;
-	margin-bottom: 1rem;
+	margin-bottom: 0.8rem;
 	position: absolute;
-	top: -12px;
+	top: -14px;
 	right: 20px;
 	box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
 }
