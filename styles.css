@@ -604,6 +604,13 @@ section h2 {
 	font-size: 1.6rem;
 	margin-bottom: 1rem;
 	font-weight: 700;
+	/* Uniformiser la hauteur du titre pour aligner les prix */
+	line-height: 1.2;
+	min-height: 3.6rem; /* ~2 lignes max à 1.6rem */
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+	text-align: center;
 }
 
 .price {
