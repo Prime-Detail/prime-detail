@@ -559,11 +559,10 @@ section h2 {
 .pricing-card.featured {
 	border-color: var(--accent-color);
 	background: linear-gradient(135deg, #fff 0%, #fff8f5 100%);
-	transform: scale(1.05);
 }
 
 .pricing-card.featured:hover {
-	transform: scale(1.08) translateY(-8px);
+	transform: translateY(-8px);
 }
 
 .pricing-card.premium {
@@ -619,6 +618,14 @@ section h2 {
 	font-size: 0.95rem;
 	margin-bottom: 1.5rem;
 	font-style: italic;
+}
+
+/* Harmoniser l'alignement vertical des cartes tarifs */
+.pricing-card {
+	min-height: 100%;
+}
+.pricing-grid {
+	align-items: stretch;
 }
 
 .pricing-card ul {
