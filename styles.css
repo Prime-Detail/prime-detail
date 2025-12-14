@@ -180,7 +180,7 @@ body.dark-mode .theme-toggle i::before {
 .header {
 	background-color: var(--primary-color);
 	color: var(--text-light);
-	padding: 1rem 0;
+	padding: 0.5rem 0; /* réduit pour éviter bandeau blanc */
 	position: sticky;
 	top: 0;
 	z-index: 1000;
@@ -340,10 +340,11 @@ body.dark-mode .theme-toggle i::before {
 	box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
 }
 
+/* Harmonisation: rendre "Appeler" en style primaire (orange) */
 .btn-secondary {
-	background-color: transparent;
+	background-color: var(--highlight-color);
 	color: var(--text-light);
-	border: 2px solid var(--text-light);
+	border: none;
 }
 
 .btn-secondary:hover {
@@ -500,6 +501,7 @@ section h2 {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 	gap: 2rem;
+    justify-content: center; /* centre les éléments sur la dernière ligne */
 }
 
 .service-card {
