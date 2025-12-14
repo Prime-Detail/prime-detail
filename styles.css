@@ -276,7 +276,7 @@ body.dark-mode .theme-toggle i::before {
 	font-family: 'Montserrat', 'Raleway', sans-serif;
 	font-size: 3.6rem;
 	margin-bottom: 1.5rem;
-	font-weight: 900;
+	font-weight: 800; /* titres Montserrat: cohérence */
 	letter-spacing: -1px;
 	text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 2px 10px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 255, 255, 0.2);
 	line-height: 1.1;
@@ -397,7 +397,7 @@ section h2 {
 	color: #666;
 	font-size: 1rem;
 	margin-bottom: 3rem;
-	font-weight: 300;
+	font-weight: 400; /* sous-titres plus lisibles */
 }
 /* Avant/Après */
 .avant-apres {
@@ -617,7 +617,7 @@ section h2 {
 	color: var(--primary-color);
 	font-size: 1.6rem;
 	margin-bottom: 1rem;
-	font-weight: 700;
+	font-weight: 700; /* garde Montserrat 700 pour titres tarifs */
 	/* Uniformiser la hauteur du titre pour aligner les prix */
 	line-height: 1.2;
 	min-height: 4.2rem; /* compacte légèrement mais garde l'alignement */
