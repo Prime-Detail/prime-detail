@@ -17,6 +17,12 @@ window.addEventListener('load', () => {
       setTimeout(() => reserveSticky.classList.remove('attention'), 5200);
     }, 3000);
   }
+
+  // Pulse discret sur le CTA de nav après 6s
+  const navCta = document.querySelector('.nav .nav-cta');
+  if (navCta) {
+    setTimeout(() => navCta.classList.add('pulse-once'), 6000);
+  }
 });
 
 // Sécurité : retirer le loader après 3 secondes max
@@ -140,6 +146,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Boutons "Nos avis Google" (section témoignages et footer)
     const googleReviewButtons = document.querySelectorAll('a.btn.btn-google[href*="share.google"], .footer a[href*="share.google"]');
     googleReviewButtons.forEach(btn => btn.addEventListener('click', () => trackEvent('google_reviews_click', 'reviews')));
+
+    // Choisir cette formule (cartes tarifs)
+    document.querySelectorAll('.choose-plan[data-plan]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const plan = btn.getAttribute('data-plan') || 'plan';
+        trackEvent('reserve_click', 'pricing:' + plan);
+      });
+    });
 
     // Navigation (ancres) - suivi du menu
     document.querySelectorAll('.nav a[href^="#"]').forEach(a => {

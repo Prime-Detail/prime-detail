@@ -239,6 +239,15 @@ body.dark-mode .theme-toggle i::before {
 	background-color: var(--text-light);
 	color: var(--primary-color);
 }
+/* Pulse discret de la nav-cta après un délai */
+.nav .nav-cta.pulse-once {
+	animation: pulseOnce 1.2s ease-out 1;
+}
+@keyframes pulseOnce {
+	0% { transform: scale(1); box-shadow: 0 0 0 rgba(255,107,53,0.0); }
+	50% { transform: scale(1.06); box-shadow: 0 10px 30px rgba(255,107,53,0.35); }
+	100% { transform: scale(1); box-shadow: 0 0 0 rgba(255,107,53,0.0); }
+}
 /* Hero Section */
 .hero {
 	/* Dégradé plus contrasté, sombre vers le bas */
@@ -376,6 +385,12 @@ body.dark-mode .theme-toggle i::before {
 	transform: translateY(-3px);
 	box-shadow: 0 8px 25px rgba(66, 133, 244, 0.4);
 	opacity: 0.95;
+}
+/* Note d'urgence sous le hero */
+.cta-note {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+  opacity: 0.9;
 }
 /* Sections */
 section {
@@ -562,6 +577,10 @@ section h2 {
 	gap: 0.4rem;
 	max-width: 520px;
 	margin: 0 auto;
+}
+
+.pricing-card .btn {
+  margin-top: auto;
 }
 
 .pricing-card:hover {
