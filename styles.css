@@ -757,6 +757,14 @@ section h2 {
 	background: #f8f9fa;
 	border-radius: 8px;
 }
+/* CTA en haut de la section Tarifs */
+.section-cta {
+  text-align: center;
+  margin: -0.5rem 0 1rem;
+}
+.section-cta .btn {
+  min-width: 260px;
+}
 /* Réservation */
 .reservation {
 	background-color: white;

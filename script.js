@@ -155,6 +155,10 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
+    // CTA en haut de la section Tarifs
+    const topTarifCta = document.querySelector('.tarifs .tarifs-cta');
+    if (topTarifCta) topTarifCta.addEventListener('click', () => trackEvent('reserve_click', 'tarifs_top'));
+
     // Navigation (ancres) - suivi du menu
     document.querySelectorAll('.nav a[href^="#"]').forEach(a => {
       a.addEventListener('click', () => trackEvent('nav_click', a.getAttribute('href')));
