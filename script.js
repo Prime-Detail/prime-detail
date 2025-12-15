@@ -98,6 +98,45 @@ const observer = new IntersectionObserver((entries) => {
 
 // Appliquer l'animation aux sections
 document.addEventListener('DOMContentLoaded', () => {
+    // Tracking Google Analytics des CTAs (si gtag disponible)
+    const trackEvent = (action, label) => {
+      try {
+        if (typeof gtag === 'function') {
+          gtag('event', action, {
+            event_category: 'CTA',
+            event_label: label,
+          });
+        }
+      } catch (e) {}
+    };
+
+    // Hero CTAs
+    const heroReserve = document.querySelector('.hero .btn.btn-primary[href^="https://www.sumupbookings.com"]');
+    if (heroReserve) heroReserve.addEventListener('click', () => trackEvent('reserve_click', 'hero'));
+    const heroCall = document.querySelector('.hero .btn.btn-secondary[href^="tel:"]');
+    if (heroCall) heroCall.addEventListener('click', () => trackEvent('call_click', 'hero'));
+    const heroWhats = document.querySelector('.hero .btn.btn-whatsapp[href*="wa.me"]');
+    if (heroWhats) heroWhats.addEventListener('click', () => trackEvent('whatsapp_click', 'hero'));
+
+    // Nav Réservation
+    const navReserve = document.querySelector('.nav .nav-cta[href^="https://www.sumupbookings.com"]');
+    if (navReserve) navReserve.addEventListener('click', () => trackEvent('reserve_click', 'nav'));
+
+    // Sticky Réserver (mobile)
+    const stickyReserve = document.querySelector('.reserve-sticky[href^="https://www.sumupbookings.com"]');
+    if (stickyReserve) stickyReserve.addEventListener('click', () => trackEvent('reserve_click', 'sticky'));
+
+    // Bouton WhatsApp flottant
+    const whatsappFloat = document.querySelector('.whatsapp-float[href*="wa.me"]');
+    if (whatsappFloat) whatsappFloat.addEventListener('click', () => trackEvent('whatsapp_click', 'float'));
+
+    // CTA À propos
+    const aboutReserve = document.querySelector('.apropos .btn.btn-primary[href^="#reservation"]');
+    if (aboutReserve) aboutReserve.addEventListener('click', () => trackEvent('reserve_click', 'apropos'));
+
+    // Boutons "Nos avis Google" (section témoignages et footer)
+    const googleReviewButtons = document.querySelectorAll('a.btn.btn-google[href*="share.google"], .footer a[href*="share.google"]');
+    googleReviewButtons.forEach(btn => btn.addEventListener('click', () => trackEvent('google_reviews_click', 'reviews')));
   const sections = document.querySelectorAll('section');
   sections.forEach(section => {
     section.classList.add('fade-in');
