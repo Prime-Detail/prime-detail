@@ -542,7 +542,12 @@
             <option value="suv">SUV</option>
             <option value="monospace">Monospace</option>
             <option value="utilitaire">Utilitaire</option>
+            <option value="autre">Autre</option>
           </select>
+          <div id="vehicule-autre" style="display: none; margin-top: 10px;">
+            <label for="vehicule-detail">Précisez le type de véhicule:</label>
+            <input type="text" id="vehicule-detail" name="vehicule-detail" placeholder="Ex: Camping-car, Utilitaire...">
+          </div>
         </div>
         <div class="form-group">
           <label for="adresse">Adresse à Caen</label>
@@ -553,7 +558,7 @@
           <textarea id="commentaire" name="commentaire" rows="4"></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Envoyer ma demande</button>
-        <p class="form-note">* Champs obligatoires. Vous recevrez une confirmation par email ou téléphone.</p>
+        <p class="form-note">* Champs obligatoires. Confirmation envoyée par email ET SMS.</p>
       </form>
     </div>
   </section>
@@ -645,6 +650,11 @@
           <i class="fab fa-google"></i> Nos avis Google ★★★★★
         </a>
       </p>
+      <div class="social-links">
+        <a href="https://www.facebook.com/prime-detail-caen" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-facebook-f" aria-hidden="true"></i>
+        </a>
+      </div>
     </div>
   </footer>
 

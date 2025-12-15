@@ -348,6 +348,15 @@ if (reservationForm) {
     const el = reservationForm.querySelector('#' + id);
     if (el) el.addEventListener('change', () => pdTrack('form_change', id));
   });
+
+  // Afficher la boîte "Autre" si le type de véhicule sélectionné est "autre"
+  const vehiculeSelect = reservationForm.querySelector('#vehicule');
+  const vehiculeAutreBox = reservationForm.querySelector('#vehicule-autre');
+  if (vehiculeSelect && vehiculeAutreBox) {
+    vehiculeSelect.addEventListener('change', function () {
+      vehiculeAutreBox.style.display = this.value === 'autre' ? 'block' : 'none';
+    });
+  }
 }
 
 // Fonction de validation

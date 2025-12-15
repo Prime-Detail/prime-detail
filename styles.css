@@ -1084,6 +1084,20 @@ button[type=submit]:hover {
 	margin-top: 1rem;
 }
 
+
+/* Social links in footer */
+.social-links {
+	text-align: right;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.social-links a {
+	color: #4267B2;
+	font-size: 24px;
+	margin-left: 10px;
+	text-decoration: none;
+}
 .footer-links a {
 	color: var(--text-light);
 	text-decoration: none;
