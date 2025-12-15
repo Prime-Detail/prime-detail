@@ -28,6 +28,17 @@ setTimeout(() => {
 }, 3000);
 
 // ============================================
+// TRACKING GLOBAL (accessible partout)
+// ============================================
+function pdTrack(action, label) {
+  try {
+    if (typeof gtag === 'function') {
+      gtag('event', action, { event_category: 'CTA', event_label: label });
+    }
+  } catch (e) {}
+}
+
+// ============================================
 // BARRE DE PROGRESSION DU SCROLL
 // ============================================
 window.addEventListener('scroll', () => {
@@ -56,6 +67,7 @@ if (themeToggle) {
     document.body.classList.toggle('dark-mode');
     const isDark = document.body.classList.contains('dark-mode');
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    pdTrack('theme_toggle', isDark ? 'dark' : 'light');
   });
 }
 
@@ -98,17 +110,8 @@ const observer = new IntersectionObserver((entries) => {
 
 // Appliquer l'animation aux sections
 document.addEventListener('DOMContentLoaded', () => {
-    // Tracking Google Analytics des CTAs (si gtag disponible)
-    const trackEvent = (action, label) => {
-      try {
-        if (typeof gtag === 'function') {
-          gtag('event', action, {
-            event_category: 'CTA',
-            event_label: label,
-          });
-        }
-      } catch (e) {}
-    };
+    // Wrapper local (utilise le tracker global)
+    const trackEvent = (action, label) => pdTrack(action, label);
 
     // Hero CTAs
     const heroReserve = document.querySelector('.hero .btn.btn-primary[href^="https://www.sumupbookings.com"]');
@@ -137,6 +140,89 @@ document.addEventListener('DOMContentLoaded', () => {
     // Boutons "Nos avis Google" (section témoignages et footer)
     const googleReviewButtons = document.querySelectorAll('a.btn.btn-google[href*="share.google"], .footer a[href*="share.google"]');
     googleReviewButtons.forEach(btn => btn.addEventListener('click', () => trackEvent('google_reviews_click', 'reviews')));
+
+    // Navigation (ancres) - suivi du menu
+    document.querySelectorAll('.nav a[href^="#"]').forEach(a => {
+      a.addEventListener('click', () => trackEvent('nav_click', a.getAttribute('href')));
+    });
+
+    // Section view (50% visible)
+    const sectionViewObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id || 'no-id';
+          trackEvent('section_view', id);
+          sectionViewObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('section[id]').forEach(sec => sectionViewObserver.observe(sec));
+
+    // Scroll depth (25/50/75/100)
+    const thresholds = [25, 50, 75, 100];
+    const fired = new Set();
+    window.addEventListener('scroll', () => {
+      const st = document.documentElement.scrollTop || document.body.scrollTop;
+      const sh = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const percent = Math.round((st / Math.max(sh, 1)) * 100);
+      thresholds.forEach(t => {
+        if (percent >= t && !fired.has(t)) {
+          fired.add(t);
+          trackEvent('scroll_depth', String(t));
+        }
+      });
+    }, { passive: true });
+
+    // Outbound links + email/tel (générique sans doublons majeurs)
+    document.addEventListener('click', (e) => {
+      const a = e.target && (e.target.closest ? e.target.closest('a') : null);
+      if (!a) return;
+      const href = a.getAttribute('href') || '';
+      if (!href) return;
+      // Email
+      if (href.startsWith('mailto:')) {
+        trackEvent('email_click', href.replace('mailto:', ''));
+        return;
+      }
+      // Téléphone (éviter doublon bouton hero)
+      if (href.startsWith('tel:')) {
+        if (!a.matches('.hero .btn.btn-secondary')) {
+          trackEvent('call_click', 'global');
+        }
+        return;
+      }
+      // WhatsApp générique (éviter doublon hero/float)
+      if (href.includes('wa.me')) {
+        if (!a.matches('.hero .btn.btn-whatsapp, .whatsapp-float')) {
+          trackEvent('whatsapp_click', 'global');
+        }
+        return;
+      }
+      // Sortant
+      if (/^https?:/i.test(href)) {
+        const dest = new URL(href, location.href);
+        if (dest.host !== location.host) {
+          // éviter doublons avec SumUp et Google reviews déjà suivis
+          if (!dest.hostname.includes('sumupbookings.com') && !dest.hostname.includes('share.google')) {
+            trackEvent('outbound_click', dest.hostname);
+          }
+        }
+      }
+    }, true);
+
+    // Map view (zone d'intervention)
+    const mapContainer = document.querySelector('.zone-intervention .map-container');
+    if (mapContainer) {
+      const mapObs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            trackEvent('map_view', 'zone-intervention');
+            mapObs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      mapObs.observe(mapContainer);
+    }
   const sections = document.querySelectorAll('section');
   sections.forEach(section => {
     section.classList.add('fade-in');
@@ -221,12 +307,28 @@ if (reservationForm) {
     
     // Simulation d'envoi (à remplacer par un vrai appel API)
     console.log('Données de réservation:', data);
+    pdTrack('reservation_submit', data.service || 'non_renseigne');
     
     // Afficher un message de confirmation
     showConfirmation();
     
     // Réinitialiser le formulaire
     this.reset();
+  });
+
+  // Form start (premier focus)
+  let formStarted = false;
+  reservationForm.addEventListener('focusin', () => {
+    if (!formStarted) {
+      formStarted = true;
+      pdTrack('form_start', 'reservation');
+    }
+  });
+
+  // Suivi des changements clés
+  ['service', 'vehicule', 'date'].forEach(id => {
+    const el = reservationForm.querySelector('#' + id);
+    if (el) el.addEventListener('change', () => pdTrack('form_change', id));
   });
 }
 
@@ -424,6 +526,7 @@ document.addEventListener('DOMContentLoaded', function() {
         top: 0,
         behavior: 'smooth'
       });
+      pdTrack('back_to_top', 'button');
     });
   }
 });
@@ -454,6 +557,8 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
           promoBanner.remove();
         }, 300);
+
+          pdTrack('promo_close', 'banner');
       });
     }
   } else if (promoBanner) {
