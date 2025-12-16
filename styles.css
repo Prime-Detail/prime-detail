@@ -1302,47 +1302,31 @@ button[type=submit]:hover {
 }
 
 /* Bouton WhatsApp Flottant */
-.whatsapp-float {
+/* WhatsApp flottant retiré */
+
+/* Bouton sticky Réserver (mobile) */
+/* Bulle principale Réserver */
+.reserve-sticky {
 	position: fixed;
-	bottom: 30px;
-	right: 30px;
-	width: 65px;
-	height: 65px;
-	background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-	color: white;
+	right: 20px;
+	bottom: 75px; /* au-dessus de Remonter (40px + 15px) */
+	width: 56px;
+	height: 56px;
+	background: var(--highlight-color);
+	color: #fff;
 	border-radius: 50%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	font-size: 2rem;
-	box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
-	z-index: 1000;
-	transition: all 0.3s ease;
-	text-decoration: none;
-	animation: pulse-whatsapp 2s infinite;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+	z-index: 1100;
+	transition: transform 0.2s ease;
 }
-
-/* Bouton sticky Réserver (mobile) */
-.reserve-sticky {
-	position: fixed;
-	bottom: 90px; /* au-dessus du bouton WhatsApp */
-	right: 24px;
-	background: var(--highlight-color);
-	color: #fff;
-	padding: 0.9rem 1.2rem;
-	border-radius: 999px;
-	box-shadow: 0 8px 25px rgba(255, 107, 53, 0.35);
-	font-weight: 800;
-	display: none;
-	align-items: center;
-	gap: 0.6rem;
-	z-index: 999;
-}
-.reserve-sticky i { font-size: 1.1rem; }
-.reserve-sticky:hover { filter: brightness(0.95); }
+.reserve-sticky:hover { transform: scale(1.1); }
+.reserve-sticky i { font-size: 1.3rem; }
 
 @media (max-width: 768px) {
-	.reserve-sticky { display: inline-flex; }
+	.reserve-sticky { display: flex; }
 }
 
 /* Animation discrète d'attention */
@@ -1354,10 +1338,7 @@ button[type=submit]:hover {
 	animation: gentlePulse 1.6s ease-in-out 3; /* 3 cycles puis stop */
 }
 
-.whatsapp-float:hover {
-	transform: scale(1.15);
-	box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
-}
+/* WhatsApp flottant retiré */
 
 @keyframes pulse-whatsapp {
 	0%, 100% {
@@ -1369,26 +1350,27 @@ button[type=submit]:hover {
 }
 
 /* Bouton Retour en Haut */
+/* Bulle Remonter (discrète) */
 .back-to-top {
 	position: fixed;
-	bottom: 110px;
-	right: 30px;
-	width: 50px;
-	height: 50px;
-	background: var(--primary-color);
-	color: white;
+	right: 20px;
+	bottom: 20px; /* sous Réserver */
+	width: 40px;
+	height: 40px;
+	background: #CCC;
+	color: #222;
 	border: none;
 	border-radius: 50%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	font-size: 1.3rem;
+	font-size: 1rem;
 	cursor: pointer;
-	box-shadow: 0 4px 15px rgba(33, 133, 160, 0.3);
-	z-index: 999;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+	z-index: 1000;
 	opacity: 0;
 	visibility: hidden;
-	transition: all 0.3s ease;
+	transition: transform 0.2s ease, opacity 0.2s ease, visibility 0.2s ease;
 }
 
 .back-to-top.show {
@@ -1396,10 +1378,10 @@ button[type=submit]:hover {
 	visibility: visible;
 }
 
-.back-to-top:hover {
-	background: var(--accent-color);
-	transform: translateY(-5px);
-	box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+.back-to-top:hover { transform: scale(1.1); }
+@media (max-width: 480px) {
+	.back-to-top { display: none; }
+	.reserve-sticky { bottom: 20px; }
 }
 
 /* Bandeau Offre Spéciale */
