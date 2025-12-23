@@ -549,29 +549,35 @@ document.addEventListener('DOMContentLoaded', function() {
   const isBannerClosed = localStorage.getItem('promoBannerClosed');
   
   if (!isBannerClosed && promoBanner) {
-    // Ajouter padding au body pour compenser la bannière
-    setTimeout(() => {
-      document.body.classList.add('has-promo');
-    }, 1000);
-    
+    // Ajouter le padding uniquement si la bannière est visible
+    const isVisible = window.getComputedStyle(promoBanner).display !== 'none';
+    if (isVisible) {
+      setTimeout(() => {
+        document.body.classList.add('has-promo');
+      }, 1000);
+    } else {
+      document.body.classList.remove('has-promo');
+    }
+
     if (closeBtn) {
       closeBtn.addEventListener('click', function() {
         promoBanner.classList.add('hidden');
         document.body.classList.remove('has-promo');
-        
+
         // Sauvegarder dans le localStorage
         localStorage.setItem('promoBannerClosed', 'true');
-        
+
         // Supprimer après animation
         setTimeout(() => {
           promoBanner.remove();
         }, 300);
 
-          pdTrack('promo_close', 'banner');
+        pdTrack('promo_close', 'banner');
       });
     }
   } else if (promoBanner) {
     promoBanner.remove();
+    document.body.classList.remove('has-promo');
   }
 });
 
