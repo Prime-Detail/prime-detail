@@ -57,25 +57,7 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// ============================================
-// MODE SOMBRE / CLAIR
-// ============================================
-const themeToggle = document.getElementById('themeToggle');
-
-// RESET COMPLET : forcer le mode clair
-localStorage.removeItem('theme');
-document.body.classList.remove('dark-mode');
-
-const savedTheme = localStorage.getItem('theme');
-
-if (themeToggle) {
-  themeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    const isDark = document.body.classList.contains('dark-mode');
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    pdTrack('theme_toggle', isDark ? 'dark' : 'light');
-  });
-}
+// (Supprimé) Gestion du mode sombre/clair : fond noir forcé côté CSS, aucun toggle.
 
 // ============================================
 // MENU BURGER MOBILE

@@ -1,27 +1,18 @@
 /* Variables CSS */
 :root {
-	--primary-color: #2185a0;
-	--secondary-color: #1a6f7f;
+	/* Palette par défaut en mode sombre */
+	--primary-color: #3da5c0;
+	--secondary-color: #2d8a9a;
 	--accent-color: #ff6b35;
 	--highlight-color: #ff6b35;
 	--text-light: #ffffff;
-	--text-dark: #333333;
-	--bg-light: #f8f9fa;
-	--bg-body: #ffffff;
-	--shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
-	--shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.15);
-	--transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-/* Mode Sombre */
-body.dark-mode {
 	--text-dark: #e0e0e0;
-	--bg-body: #1a1a1a;
 	--bg-light: #2a2a2a;
-	--primary-color: #3da5c0;
-	--secondary-color: #2d8a9a;
+	--bg-body: #000000; /* fond noir direct */
 	--shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 	--shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.6);
+	--transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+	color-scheme: dark;
 }
 
 /* Reset et base */
@@ -29,6 +20,10 @@ body.dark-mode {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+}
+
+html {
+	background-color: #000000; /* évite bande blanche en haut sur mobile */
 }
 
 body {
@@ -105,32 +100,7 @@ body {
 	transition: width 0.1s ease;
 }
 
-/* Toggle Mode Sombre */
-.theme-toggle {
-	position: fixed;
-	bottom: 200px;
-	right: 30px;
-	width: 50px;
-	height: 50px;
-	background: var(--primary-color);
-	color: white;
-	border: none;
-	border-radius: 50%;
-	cursor: pointer;
-	font-size: 1.2rem;
-	z-index: 999;
-	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-	transition: all 0.3s ease;
-}
-
-.theme-toggle:hover {
-	transform: scale(1.1);
-	background: var(--accent-color);
-}
-
-body.dark-mode .theme-toggle i::before {
-	content: "\f185"; /* sun icon */
-}
+/* (Supprimé) Toggle Mode Sombre : plus de bulle */
 
 /* Menu Burger */
 .menu-burger {
