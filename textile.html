@@ -4,6 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nettoyage Textile Professionnel | Prime Detail</title>
+        <!-- GA4 -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-FJBK0MCYPQ"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);} 
+            gtag('js', new Date());
+            gtag('config', 'G-FJBK0MCYPQ');
+            // Consent par défaut: analytics only
+            gtag('consent', 'default', {
+                ad_storage: 'denied',
+                ad_user_data: 'denied',
+                ad_personalization: 'denied',
+                analytics_storage: 'granted',
+                functionality_storage: 'granted',
+                security_storage: 'granted'
+            });
+        </script>
     <style>
         * {
             margin: 0;
@@ -548,7 +565,7 @@
         <div class="contact-section" id="contact">
             <h3>Prêt pour un Textile Impeccable ? 🎉</h3>
             <p>Créneaux limités cette semaine - Réservez maintenant !</p>
-            <a href="#" class="cta-button" style="background: white; color: #667eea; font-weight: bold;">📋 Remplir le Formulaire</a>
+            <a href="https://prime-detail.github.io/prime-detail/#reservation" class="cta-button" style="background: white; color: #667eea; font-weight: bold;">📋 Remplir le Formulaire</a>
             <div class="contact-info" style="margin-top: 30px;">
                 <a href="tel:+33656751197">📞 06 56 75 11 97</a>
                 <a href="https://wa.me/33656751197" target="_blank">💬 WhatsApp</a>
@@ -570,6 +587,67 @@
                 parent.classList.toggle('active');
             });
         });
+
+                // Tracking minimal (CTA + contact + nav + FAQ)
+                function pdTrack(action, label) {
+                    try {
+                        if (typeof gtag === 'function') {
+                            gtag('event', action, { event_category: 'CTA', event_label: label });
+                        }
+                    } catch(e) {}
+                }
+
+                document.addEventListener('DOMContentLoaded', () => {
+                      const heroCta = document.querySelector('.hero .cta-button');
+                      if (heroCta) heroCta.addEventListener('click', () => pdTrack('textile_cta', 'devis'));
+
+                      const formCta = document.querySelector('.contact-section .cta-button[href*="#reservation"]');
+                      if (formCta) formCta.addEventListener('click', () => pdTrack('textile_cta', 'form'));
+
+                    const telLink = document.querySelector('.contact-info a[href^="tel:"]');
+                    if (telLink) telLink.addEventListener('click', () => pdTrack('call_click', 'textile'));
+
+                    const waLink = document.querySelector('.contact-info a[href*="wa.me"]');
+                    if (waLink) waLink.addEventListener('click', () => pdTrack('whatsapp_click', 'textile'));
+
+                    const mailLink = document.querySelector('.contact-info a[href^="mailto:"]');
+                    if (mailLink) mailLink.addEventListener('click', () => pdTrack('email_click', 'textile'));
+
+                    document.querySelectorAll('nav a[href^="#"]').forEach(a => {
+                        a.addEventListener('click', () => pdTrack('nav_click', a.getAttribute('href')));
+                    });
+
+                    document.querySelectorAll('.faq-item h4').forEach(h4 => {
+                        h4.addEventListener('click', () => pdTrack('faq_toggle', h4.textContent.trim()));
+                    });
+
+                    // Section view (50% visible)
+                    const sectionViewObserver = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                const id = entry.target.id || 'no-id';
+                                pdTrack('section_view', id);
+                                sectionViewObserver.unobserve(entry.target);
+                            }
+                        });
+                    }, { threshold: 0.5 });
+                    document.querySelectorAll('section[id]').forEach(sec => sectionViewObserver.observe(sec));
+
+                    // Scroll depth (25/50/75/100)
+                    const thresholds = [25, 50, 75, 100];
+                    const fired = new Set();
+                    window.addEventListener('scroll', () => {
+                        const st = document.documentElement.scrollTop || document.body.scrollTop;
+                        const sh = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                        const percent = Math.round((st / Math.max(sh, 1)) * 100);
+                        thresholds.forEach(t => {
+                            if (percent >= t && !fired.has(t)) {
+                                fired.add(t);
+                                pdTrack('scroll_depth', String(t));
+                            }
+                        });
+                    }, { passive: true });
+                });
     </script>
 </body>
 </html>
