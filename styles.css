@@ -501,6 +501,9 @@ section h2 {
 	border-top: 4px solid var(--accent-color);
 	width: 300px; /* largeur fixe pour un alignement centré élégant */
 	margin: 0 0;
+	display: flex;
+	flex-direction: column;
+	min-height: 200px;
 }
 
 .service-card:hover {
