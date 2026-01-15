@@ -3,10 +3,12 @@
 ## Structure des dossiers
 
 ### 📁 images/
+
 Toutes les images du site
 
 
 #### images/avant-apres/
+
 Photos avant/après des prestations :
 
 - Sièges avant
