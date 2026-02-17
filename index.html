@@ -162,12 +162,32 @@
 
     .hero-rating {
       font-size: 0.95rem;
-      margin-bottom: 24px;
+      margin-bottom: 14px;
       color: rgba(255, 255, 255, 0.9);
     }
 
     .hero-rating strong {
       color: #fff;
+    }
+
+    .hero-proof-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 24px;
+      max-width: 700px;
+    }
+
+    .hero-proof-item {
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-align: center;
+      color: rgba(248, 250, 252, 0.96);
+      background: rgba(255, 255, 255, 0.11);
+      border: 1px solid rgba(229, 231, 235, 0.32);
+      border-radius: 12px;
+      padding: 8px 10px;
+      backdrop-filter: blur(4px);
     }
 
     .hero-ctas {
@@ -546,6 +566,17 @@
       font-size: 1.05rem;
     }
 
+    .pricing-side .pricing-quick-note {
+      background: rgba(33, 133, 160, 0.08);
+      color: var(--text-dark);
+      border: 1px solid rgba(33, 133, 160, 0.22);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 0.88rem;
+      margin-top: 2px;
+      margin-bottom: 10px;
+    }
+
     .pricing-side ul {
       margin-top: 8px;
       list-style: none;
@@ -554,6 +585,23 @@
 
     .pricing-side li + li {
       margin-top: 4px;
+    }
+
+    .pricing-side-cta {
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .pricing-side-cta .btn-outline {
+      border-color: rgba(33, 133, 160, 0.5);
+      background: rgba(33, 133, 160, 0.06);
+      color: var(--primary-blue);
+    }
+
+    .pricing-side-cta .btn-outline:hover {
+      background: rgba(33, 133, 160, 0.12);
     }
 
     /* PROCESS */
@@ -709,6 +757,10 @@
         margin-top: 16px;
       }
 
+      .hero-proof-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
       .grid {
         grid-template-columns: minmax(0, 1fr);
       }
@@ -754,6 +806,12 @@
         display: none;
       }
     }
+
+    @media (max-width: 520px) {
+      .hero-proof-strip {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
   </style>
 </head>
 
@@ -782,18 +840,23 @@
             <span class="badge-certif">Detailer certifié FD Formation</span>
             <h1>Detailing auto premium<br /><span>à domicile, autour de Caen</span></h1>
             <p class="hero-subtitle">
-              Nettoyage intérieur façon detailing et rénovation esthétique de la carrosserie,
-              avec méthodes sécurisées pour vos tissus, plastiques, cuirs et vernis.
+              Intérieur remis à niveau en profondeur et carrosserie ravivée avec des méthodes
+              sûres pour tissus, plastiques, cuirs et vernis.
             </p>
             <p class="hero-rating">
-              <strong>Plus de 40 avis 5★ sur Google</strong> – travail sérieux, résultat clinique et clients satisfaits.
+              <strong>40+ avis 5★ Google</strong> · résultat net, méthode pro, service à domicile.
             </p>
+            <div class="hero-proof-strip">
+              <div class="hero-proof-item">Devis clair avant intervention</div>
+              <div class="hero-proof-item">Detailer certifié FD Formation</div>
+              <div class="hero-proof-item">Intervention sur Caen et alentours</div>
+            </div>
             <div class="hero-ctas">
               <a href="#tarifs" class="btn-primary">Voir les tarifs</a>
               <a href="#contact" class="btn-outline">Demander un devis</a>
             </div>
             <p class="hero-note">
-              Intervention à domicile sur Caen et alentours. Devis personnalisé selon le véhicule et l’état initial.
+              Réponse rapide avec estimation adaptée à l’état réel du véhicule.
             </p>
           </div>
 
@@ -944,8 +1007,8 @@
       <div class="container">
         <h2>Tarifs indicatifs</h2>
         <p class="section-intro">
-          Les tarifs varient selon la taille du véhicule (citadine, berline, SUV, utilitaire) et l’état
-          initial. Voici une base pour les citadines et berlines. Un devis précis est envoyé avant chaque intervention.
+          Base tarifaire claire pour vous situer rapidement. Le prix final est confirmé sur devis selon
+          la taille du véhicule et son niveau d’encrassement.
         </p>
 
         <div class="pricing-wrapper">
@@ -1000,15 +1063,16 @@
 
           <aside class="pricing-side">
             <h3>Ce qui peut faire varier le prix</h3>
+            <p class="pricing-quick-note">Devis personnalisé envoyé avant toute prise de rendez-vous.</p>
             <ul>
               <li>État global de l’intérieur (taches anciennes, poils d’animaux, odeurs marquées).</li>
               <li>État de la peinture (micro-rayures, voile terne, contamination).</li>
               <li>Taille réelle du véhicule et temps nécessaire.</li>
             </ul>
-            <p style="margin-top:10px;">
-              Chaque devis précise clairement la prestation prévue, le temps estimé et le tarif final
-              avant la prise de rendez-vous.
-            </p>
+            <div class="pricing-side-cta">
+              <a href="#contact" class="btn-primary">Recevoir mon devis</a>
+              <a href="tel:0656751197" class="btn-outline">Appeler maintenant</a>
+            </div>
           </aside>
         </div>
       </div>
