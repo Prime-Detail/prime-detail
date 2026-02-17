@@ -384,6 +384,34 @@
       line-height: 1.35;
     }
 
+    .certif-cta-wrap {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .certif-cta {
+      display: inline-block;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #111827;
+      background: linear-gradient(135deg, #f5d060 0%, #f0c64b 100%);
+      border: 1px solid rgba(245, 208, 96, 0.75);
+      border-radius: 12px;
+      padding: 0.82rem 1.35rem;
+      box-shadow: 0 12px 30px rgba(245, 208, 96, 0.22);
+      transition: transform 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease;
+    }
+
+    .certif-cta:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.03);
+      box-shadow: 0 16px 34px rgba(245, 208, 96, 0.28);
+    }
+
     /* SERVICES GRID */
 
     .grid {
@@ -1026,6 +1054,12 @@
         width: 100%;
         max-width: 320px;
       }
+
+      .certif-cta {
+        width: 100%;
+        max-width: 320px;
+        text-align: center;
+      }
     }
   </style>
 </head>
@@ -1108,6 +1142,10 @@
             <img src="assets/images/gallery/polissage.png" alt="Certification RS7091 Polissage Automobile" />
             <span>Polissage automobile RS7091</span>
           </div>
+        </div>
+
+        <div class="certif-cta-wrap">
+          <a href="#contact" class="certif-cta">Prendre rendez-vous avec un detailer certifié</a>
         </div>
       </div>
     </section>
