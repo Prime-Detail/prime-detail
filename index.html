@@ -552,9 +552,17 @@
     }
 
     .pricing-note {
+      display: block;
       font-size: 0.88rem;
       color: var(--text-light);
       margin-top: 10px;
+      padding: 12px 14px;
+      background: #f8fafc;
+      border-top: 1px solid #e5e7eb;
+      line-height: 1.5;
+      white-space: normal;
+      overflow-wrap: anywhere;
+      word-break: normal;
     }
 
     .pricing-side {
@@ -658,6 +666,51 @@
       grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.7fr);
       gap: 26px;
       align-items: flex-start;
+    }
+
+    .quick-contact-card {
+      background: #ffffff;
+      border-radius: var(--radius-card);
+      padding: 18px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(229, 231, 235, 0.9);
+      margin-bottom: 18px;
+    }
+
+    .quick-contact-title {
+      font-size: 1.02rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .quick-contact-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin-bottom: 12px;
+    }
+
+    .quick-contact-form {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
+      gap: 10px;
+      align-items: end;
+    }
+
+    .quick-contact-form .form-group {
+      margin-bottom: 0;
+      min-width: 0;
+    }
+
+    .quick-contact-form input,
+    .quick-contact-form select {
+      width: 100%;
+    }
+
+    .quick-contact-form .btn-primary {
+      width: 100%;
+      white-space: nowrap;
+      padding: 0.78rem 1.15rem;
     }
 
     .contact-info {
@@ -816,6 +869,14 @@
 
       .contact-inner {
         grid-template-columns: minmax(0, 1fr);
+      }
+
+      .quick-contact-form {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .quick-contact-form .btn-primary {
+        margin-top: 2px;
       }
 
       header {
@@ -1193,6 +1254,30 @@
           Pour obtenir un devis précis, décrivez simplement votre véhicule et le type de prestation
           souhaitée. Une réponse est envoyée généralement sous 24h.
         </p>
+
+        <div class="quick-contact-card">
+          <div class="quick-contact-title">Devis express en 30 secondes</div>
+          <p class="quick-contact-subtitle">Laissez vos infos essentielles et nous revenons vers vous rapidement.</p>
+          <form class="quick-contact-form">
+            <div class="form-group">
+              <label for="quick-nom">Nom</label>
+              <input id="quick-nom" type="text" placeholder="Votre nom" />
+            </div>
+            <div class="form-group">
+              <label for="quick-tel">Téléphone</label>
+              <input id="quick-tel" type="tel" placeholder="06 XX XX XX XX" />
+            </div>
+            <div class="form-group">
+              <label for="quick-prestation">Prestation</label>
+              <select id="quick-prestation">
+                <option>Nettoyage intérieur</option>
+                <option>Rénovation carrosserie</option>
+                <option>Pack intérieur + extérieur</option>
+              </select>
+            </div>
+            <button type="button" class="btn-primary">Recevoir mon devis</button>
+          </form>
+        </div>
 
         <div class="contact-inner">
           <div class="contact-info">
