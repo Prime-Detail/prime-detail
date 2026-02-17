@@ -1,353 +1,180 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="theme-color" content="#2185a0" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
-  
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FJBK0MCYPQ"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);} 
-    gtag('js', new Date());
-    gtag('config', 'G-FJBK0MCYPQ');
-    // Consentement basique: analytics autorisé, publicité désactivée
-    gtag('consent', 'default', {
-      ad_storage: 'denied',
-      analytics_storage: 'granted'
-    });
-  </script>
-  
-  <!-- Title & Description -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Prime Detail – Detailing Auto Premium à Domicile | Caen</title>
-  <meta name="description" content="Detailer certifié FD Formation. Nettoyage intérieur detailing et rénovation carrosserie à domicile sur terrain privé. Caen et alentours." />
-  
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://prime-detail.github.io/prime-detail/" />
-  <meta property="og:title" content="Prime Detail – Detailing Auto Premium à Domicile | Caen" />
-  <meta property="og:description" content="Detailer certifié FD Formation. Nettoyage intérieur detailing et rénovation carrosserie à domicile sur terrain privé." />
-  <meta property="og:image" content="https://prime-detail.github.io/prime-detail/og-image.jpg" />
-  
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://prime-detail.github.io/prime-detail/" />
-  <meta property="twitter:title" content="Prime Detail – Detailing Auto Premium à Domicile | Caen" />
-  <meta property="twitter:description" content="Detailer certifié FD Formation. Nettoyage intérieur detailing et rénovation carrosserie à domicile sur terrain privé." />
-  <meta property="twitter:image" content="https://prime-detail.github.io/prime-detail/og-image.jpg" />
-  
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo/prime-detail-favicon-32.png" />
-  <link rel="icon" type="image/png" sizes="64x64" href="assets/images/logo/prime-detail-favicon-64.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/logo/prime-detail-favicon-64.png" />
-  
-  <!-- Preload critical resources -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700&display=swap" onload="this.rel='stylesheet'" />
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet" /></noscript>
+  <meta name="description" content="Detailer certifié FD Formation. Nettoyage intérieur detailing et rénovation carrosserie à domicile sur terrain privé. Caen et alentours.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-blue: #2185a0;
+      --primary-orange: #ff6b35;
+      --accent-green: #10b981;
+      --warning-orange-light: rgba(255, 107, 53, 0.1);
+      --border-light: #e5e7eb;
+      --neutral-light: #f8f9fa;
+      --shadow-light: rgba(0, 0, 0, 0.08);
+      --shadow-hover: rgba(33, 133, 160, 0.15);
+    }
 
-  <!-- Font Awesome non-bloquant avec fallback noscript -->
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" onload="this.rel='stylesheet'" />
-  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" /></noscript>
-  <link rel="stylesheet" href="styles.css" />
-  <script defer src="script.js"></script>
-  
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Prime Detail",
-    "description": "Detailing auto premium à domicile sur terrain privé. Nettoyage intérieur, rénovation carrosserie, intervention certifiée FD Formation.",
-    "image": "https://prime-detail.github.io/prime-detail/og-image.jpg",
-    "telephone": "+33656751197",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Caen",
-      "addressRegion": "Normandie",
-      "addressCountry": "FR"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": "49.1829",
-      "longitude": "-0.3707"
-    },
-    "url": "https://prime-detail.github.io/prime-detail/",
-    "priceRange": "85€ - 200€",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "5",
-      "bestRating": "5",
-      "ratingCount": "3"
-    },
-    "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-        "opens": "09:00",
-        "closes": "19:00"
-      }
-    ]
-  }
-  </script>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #333;
+      background: #fff;
+    }
+    h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
+    h1 { font-size: clamp(3rem, 6vw, 4.5rem); letter-spacing: 0.05em; }
+    h2 { font-size: clamp(2rem, 4.2vw, 2.8rem); color: var(--primary-blue); }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    section { padding: 80px 0; }
+
+    .header { position: sticky; top: 0; z-index: 20; background: var(--primary-blue); color: #fff; box-shadow: 0 20px 60px var(--shadow-light); }
+    .header .container { display: flex; justify-content: space-between; align-items: center; padding-top: 12px; padding-bottom: 12px; }
+    .brand-title { font-size: 1.5rem; font-weight: 700; }
+    .nav a { color: #fff; text-decoration: none; margin-left: 18px; font-weight: 600; }
+
+    .hero {
+      background: linear-gradient(180deg, rgba(36,96,118,0.96) 0%, rgba(18,54,72,0.98) 65%, rgba(10,32,46,1) 100%);
+      color: #fff;
+      text-align: center;
+      padding: 110px 0 90px;
+    }
+    .hero p { margin: 12px auto 0; max-width: 860px; }
+    .badge-certif {
+      display: inline-block;
+      background: var(--primary-orange);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      box-shadow: 0 8px 25px rgba(255,107,53,0.3);
+      margin-top: 18px;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 22px;
+      background: var(--primary-orange);
+      color: #fff;
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(255,107,53,0.3);
+      transition: all .3s;
+    }
+    .btn:hover { transform: scale(1.05); box-shadow: 0 15px 40px rgba(255,107,53,0.4); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+      margin-top: 28px;
+    }
+    .service-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 32px;
+      border: 1px solid rgba(255,255,255,0.3);
+      box-shadow: 0 20px 60px rgba(33,133,160,0.08);
+      transition: all .4s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .service-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 35px 100px var(--shadow-hover); }
+
+    .pricing-table {
+      margin-top: 30px;
+      overflow-x: auto;
+      border-radius: 20px;
+      border: 1px solid var(--border-light);
+      box-shadow: 0 20px 60px var(--shadow-light);
+      background: #fff;
+    }
+    table { width: 100%; border-collapse: separate; border-spacing: 0; }
+    th { background: var(--primary-blue); color: #fff; text-align: left; padding: 16px; }
+    td { padding: 14px 16px; border-top: 1px solid var(--border-light); }
+    tbody tr:nth-child(even) td { background: var(--neutral-light); }
+    tbody tr:hover td { background: #f3f4f6; }
+    .price-highlight { font-size: 1.2rem; font-weight: 700; color: var(--primary-orange); }
+
+    .badge-info {
+      background: var(--warning-orange-light);
+      border: 1px solid rgba(255,107,53,0.3);
+      color: var(--primary-orange);
+      padding: 12px 20px;
+      border-radius: 12px;
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 0.95rem;
+    }
+
+    .contact { background: var(--neutral-light); }
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 24px; margin-top: 24px; }
+    .contact-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 20px 60px var(--shadow-light);
+    }
+
+    @media (max-width: 768px) {
+      section { padding: 50px 0; }
+      .nav { display: none; }
+      .hero { padding: 90px 0 70px; }
+    }
+  </style>
 </head>
 <body>
-  <!-- Loader -->
-  <div class="page-loader" id="pageLoader">
-    <div class="loader-content">
-      <div class="spinner"></div>
-      <p>Chargement...</p>
-    </div>
-  </div>
-
-  <!-- Barre de progression du scroll -->
-  <div class="scroll-progress" id="scrollProgress"></div>
-
-  <!-- Header -->
-    <header class="header">
-      <div class="container">
-        <div class="brand">
-          <h1 class="site-title">Prime Detail</h1>
-          <p class="tagline">Nettoyage Automobile Premium</p>
-        </div>
-      <button class="menu-burger" id="menuBurger" aria-label="Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <nav class="nav" id="mainNav">
-        <ul>
-            <li><a href="#services">Services</a></li>
-          <li><a href="textile.html">Textile</a></li>
-            <li><a href="https://www.sumupbookings.com/prime-detail" class="nav-cta" target="_blank" rel="noopener">Réservation</a></li>
-            <li><a href="#tarifs">Tarifs</a></li>
-            <li><a href="#zone-intervention">Zone</a></li>
-            <li><a href="#apropos">À propos</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+  <header class="header">
+    <div class="container">
+      <div class="brand-title">Prime Detail</div>
+      <nav class="nav">
+        <a href="#services">Services</a>
+        <a href="#tarifs">Tarifs</a>
+        <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
 
-  <!-- Hero Section -->
   <section class="hero">
     <div class="container">
-      <h2>Nettoyage auto premium à domicile – Caen</h2>
-      <p>Service professionnel de nettoyage intérieur automobile, chez vous.</p>
-      <p class="hero-proof">Avis 5★ sur Google et résultat comme neuf pour votre habitacle.</p>
-      <p><span class="badge-certif"><i class="fas fa-certificate" aria-hidden="true"></i> Certifié FD</span></p>
-      <div class="cta-buttons">
-        <a href="https://www.sumupbookings.com/prime-detail" class="btn btn-primary" target="_blank" rel="noopener">Réserver en ligne</a>
-        <a href="tel:+33656751197" class="btn btn-secondary">Appeler</a>
-        <a href="https://wa.me/33656751197?text=Bonjour%20Prime%20Detail%2C%20je%20souhaite%20r%C3%A9server%20un%20nettoyage%20int%C3%A9rieur%20%F0%9F%9A%97" class="btn btn-whatsapp">WhatsApp</a>
-      </div>
-      <p class="cta-note">Créneaux limités cette semaine • Réservation en 30s via SumUp</p>
+      <h1>DETAILING AUTO PREMIUM</h1>
+      <p>Nettoyage intérieur detailing et rénovation carrosserie à domicile, sur terrain privé, à Caen et alentours.</p>
+      <span class="badge-certif">Certifié FD Formation</span><br>
+      <a class="btn" href="https://www.sumupbookings.com/prime-detail" target="_blank" rel="noopener">Réserver en ligne</a>
     </div>
   </section>
 
-  <!-- Services Section -->
-  <section id="services" class="services">
+  <section id="services">
     <div class="container">
       <h2>Services</h2>
-      <p class="section-subtitle">Prestations professionnelles orientées résultats</p>
+      <p>Prestations professionnelles avec finition premium et méthode sécurisée pour les matériaux.</p>
       <div class="services-grid">
-        <div class="service-card">
-          <div class="icon"><i class="fas fa-spray-can" aria-hidden="true"></i></div>
-          <h3>Nettoyage Intérieur</h3>
-          <p>Aspiration complète, nettoyage tableau de bord, vitres et plastiques</p>
-        </div>
-        <div class="service-card">
-          <div class="icon"><i class="fas fa-couch" aria-hidden="true"></i></div>
-          <h3>Shampoing Sièges</h3>
-          <p>Nettoyage en profondeur des sièges textile avec extraction à eau chaude</p>
-        </div>
-        <div class="service-card">
-          <div class="icon"><i class="fas fa-shield-alt" aria-hidden="true"></i></div>
-          <h3>Sécurisé pour le Vernis</h3>
-          <p>Traitement protecteur pour préserver vos sièges plus longtemps</p>
-        </div>
-        <div class="service-card">
-          <div class="icon"><i class="fas fa-star" aria-hidden="true"></i></div>
-          <h3>Nettoyage Complet</h3>
-          <p>Formule tout-en-un : intérieur + sièges + protection</p>
-        </div>
-        <div class="service-card">
-          <div class="icon"><i class="fas fa-house" aria-hidden="true"></i></div>
-          <h3>À Domicile</h3>
-          <p>Nous venons à vous partout à Caen et ses environs</p>
-        </div>
-        <div class="service-card">
-          <div class="icon"><i class="fas fa-certificate" aria-hidden="true"></i></div>
-          <h3>Certifié FD</h3>
-          <p>Interventions conformes à une méthode professionnelle premium</p>
-        </div>
+        <article class="service-card">
+          <h3>Nettoyage intérieur detailing</h3>
+          <p>Aspiration, plastiques, vitres, finitions précises et rendu clinique.</p>
+        </article>
+        <article class="service-card">
+          <h3>Rénovation carrosserie</h3>
+          <p>Correction esthétique et protection pour raviver la brillance extérieure.</p>
+        </article>
+        <article class="service-card">
+          <h3>Intervention à domicile</h3>
+          <p>Déplacement à Caen et alentours, avec organisation simple et rapide.</p>
+        </article>
       </div>
+      <span class="badge-info">Terrain privé obligatoire pour l’intervention à domicile.</span>
     </div>
   </section>
 
-  <!-- Témoignages Section -->
-  <section id="temoignages" class="testimonials">
+  <section id="tarifs" style="background:#f8f9fa;">
     <div class="container">
-      <h2>Ils Nous Font Confiance</h2>
-      <p class="section-subtitle">Découvrez les avis de nos clients satisfaits</p>
-      <div class="google-rating-badge">
-        <div class="rating-stars">
-          <i class="fab fa-google" aria-hidden="true"></i>
-          <span class="rating-number">5.0</span>
-          <div class="stars-display">★★★★★</div>
-        </div>
-        <p class="rating-text">Note Google parfaite basée sur nos avis clients</p>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"Je recommande, très professionnel et de bons conseils. Ma voiture est comme neuve. Un grand merci"</p>
-          <div class="testimonial-author">
-            <strong>Manon M.</strong>
-            <span>Novembre 2024</span>
-          </div>
-        </div>
-        <div class="testimonial-card featured">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"Merci beaucoup, l'état de ma voiture ne me laisser que très peu d'espoir, mais finalement elle a une bonne seconde vie !"</p>
-          <div class="testimonial-author">
-            <strong>Alexis M.</strong>
-            <span>Novembre 2024</span>
-          </div>
-          <div class="badge-top">Meilleur avis</div>
-        </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"Je recommande !"</p>
-          <div class="testimonial-author">
-            <strong>Amélie V.</strong>
-            <span>Décembre 2024</span>
-          </div>
-        </div>
-      </div>
-      <div class="trust-badges">
-        <div class="trust-item">
-          <i class="fas fa-award" aria-hidden="true"></i>
-          <span>Satisfaction garantie</span>
-        </div>
-        <div class="trust-item">
-          <i class="fas fa-shield-alt" aria-hidden="true"></i>
-          <span>Service assuré</span>
-        </div>
-        <div class="trust-item">
-          <i class="fas fa-clock" aria-hidden="true"></i>
-          <span>Réponse sous 2h</span>
-        </div>
-      </div>
-      <div class="google-review-cta">
-        <a href="https://share.google/BBpMBEwHULC6mfUPm" target="_blank" rel="noopener" class="btn btn-google">
-          <i class="fab fa-google" aria-hidden="true"></i> Nos avis Google ★★★★★
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- À propos Section -->
-  <section id="apropos" class="apropos">
-    <div class="container">
-      <h2>À Propos de Prime Detail</h2>
-      <p class="section-subtitle">Votre spécialiste du nettoyage automobile à Caen</p>
-      <div class="apropos-content">
-        <p>Prime Detail est un service professionnel de nettoyage automobile qui se déplace à votre domicile dans la région de Caen. Notre mission est de redonner à votre véhicule tout son éclat grâce à des techniques professionnelles et des produits de qualité.</p>
-        <p>Nous sommes spécialisés dans le nettoyage intérieur en profondeur, notamment le shampoing des sièges et l'application de traitements protecteurs anti-tâches. Chaque intervention est réalisée avec soin et attention aux détails.</p>
-        <div class="stats">
-          <div class="stat-item">
-            <div class="stat-number">100+</div>
-            <div class="stat-label">Clients satisfaits</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">5★</div>
-            <div class="stat-label">Note moyenne</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">48h</div>
-            <div class="stat-label">Délai moyen</div>
-          </div>
-        </div>
-        <div class="about-cta">
-          <a href="#reservation" class="btn btn-primary">Réserver maintenant</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Tarifs Section -->
-  <section id="tarifs" class="tarifs">
-    <div class="container">
-      <h2>Nos Tarifs</h2>
-      <p class="section-subtitle">Des formules adaptées à tous vos besoins</p>
-      <div class="section-cta">
-        <a href="https://www.sumupbookings.com/prime-detail" class="btn btn-primary tarifs-cta" target="_blank" rel="noopener">Réserver en ligne</a>
-      </div>
-      <p class="cta-reassurance">Paiement sécurisé SumUp • Annulation gratuite jusqu’à 24h</p>
-      <div class="pricing-grid">
-        <div class="pricing-card">
-          <h3>Essentiel</h3>
-          <div class="price">85€</div>
-          <p class="duration">1h30 - 2h</p>
-          <ul>
-            <li>Aspiration complète de l’habitacle</li>
-            <li>Dépoussiérage tableau de bord et plastiques</li>
-            <li>Nettoyage des vitres intérieures</li>
-            <li>Désodorisation légère</li>
-          </ul>
-          <p class="ideal-for">Idéal pour l'entretien régulier</p>
-          <a href="https://www.sumupbookings.com/prime-detail" class="btn btn-primary choose-plan" target="_blank" rel="noopener" data-plan="Essentiel">Choisir cette formule</a>
-        </div>
-        <div class="pricing-card featured">
-          <h3>Standard</h3>
-          <div class="price">135€</div>
-          <p class="duration">2h - 2h30</p>
-          <ul>
-            <li>Tout le pack Essentiel</li>
-            <li>Shampooing sièges et moquettes</li>
-            <li>Nettoyage approfondi plastiques et commandes</li>
-            <li>Désodorisation renforcée</li>
-          </ul>
-          <span class="badge">Le plus demandé</span>
-          <p class="ideal-for">Nettoyage en profondeur complet</p>
-          <a href="https://www.sumupbookings.com/prime-detail" class="btn btn-primary choose-plan" target="_blank" rel="noopener" data-plan="Standard">Choisir cette formule</a>
-        </div>
-        <div class="pricing-card premium">
-          <h3>Standard + Protection</h3>
-          <div class="price">155€</div>
-          <p class="duration">2h30 - 3h</p>
-          <ul>
-            <li>Tout le pack Standard</li>
-            <li>Protection textile hydrophobe des sièges</li>
-            <li>Traitement anti‑taches moquettes et tapis</li>
-            <li>Finition longue durée</li>
-          </ul>
-          <p class="ideal-for">Protection maximale long-terme</p>
-          <a href="https://www.sumupbookings.com/prime-detail" class="btn btn-primary choose-plan" target="_blank" rel="noopener" data-plan="Standard+Protection">Choisir cette formule</a>
-        </div>
-        <div class="pricing-card ultimate">
-          <h3>Premium Complet</h3>
-          <div class="price">200€</div>
-          <p class="duration">3h - 3h30</p>
-          <ul>
-            <li>Tout le pack Standard + Protection</li>
-            <li>Nettoyage et dégraissage complet des vitres extérieures</li>
-            <li>Traitement anti‑pluie pare‑brise (effet déperlant)</li>
-            <li>Finition haut de gamme pour une visibilité maximale</li>
-          </ul>
-          <span class="badge ultimate-badge">Top Premium</span>
-          <p class="ideal-for">Le must pour une protection totale</p>
-          <a href="https://www.sumupbookings.com/prime-detail" class="btn btn-primary choose-plan" target="_blank" rel="noopener" data-plan="Premium Complet">Choisir cette formule</a>
-        </div>
-      </div>
-      <div class="pricing-table" aria-label="Tableau comparatif des packs">
+      <h2>Tarifs</h2>
+      <p>Grille indicative. Devis précis selon le véhicule et l’état initial.</p>
+      <div class="pricing-table">
         <table>
           <thead>
             <tr>
@@ -357,287 +184,36 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="hover-row">
-              <td>Essentiel</td>
-              <td><strong class="price-highlight">85€</strong></td>
+            <tr>
+              <td>Intérieur Essentiel</td>
+              <td><span class="price-highlight">85€</span></td>
               <td>Sur devis</td>
             </tr>
-            <tr class="hover-row">
-              <td>Standard</td>
-              <td><strong class="price-highlight">135€</strong></td>
+            <tr>
+              <td>Intérieur Complet</td>
+              <td><span class="price-highlight">140€</span></td>
               <td>Sur devis</td>
             </tr>
-            <tr class="hover-row">
-              <td>Standard + Protection</td>
-              <td><strong class="price-highlight">155€</strong></td>
-              <td>Sur devis</td>
-            </tr>
-            <tr class="hover-row">
-              <td>Premium Complet</td>
-              <td><strong class="price-highlight">200€</strong></td>
+            <tr>
+              <td>Premium + Protection</td>
+              <td><span class="price-highlight">200€</span></td>
               <td>Sur devis</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <p class="pricing-note">* Tarifs indicatifs pour véhicules berline. Devis personnalisé gratuit sur demande.</p>
     </div>
   </section>
 
-  <!-- FAQ Section -->
-  <section id="faq" class="faq">
-    <div class="container">
-      <h2>Questions Fréquentes</h2>
-      <p class="section-subtitle">Toutes les réponses à vos questions</p>
-      <div class="faq-grid">
-        <div class="faq-item">
-          <button class="faq-question">
-            <span>Intervenez-vous vraiment à domicile ?</span>
-            <i class="fas fa-chevron-down"></i>
-          </button>
-          <div class="faq-answer">
-            <p>Oui, absolument ! Prime Detail vient directement chez vous partout à Caen et son agglomération. Vous n'avez qu'à nous indiquer votre adresse lors de la réservation.</p>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question">
-            <span>Combien de temps dure l'intervention ?</span>
-            <i class="fas fa-chevron-down"></i>
-          </button>
-          <div class="faq-answer">
-            <p>Cela dépend de la formule choisie : <br>
-            • Essentiel : 1h30 à 2h<br>
-            • Standard : 2h à 2h30<br>
-            • Standard + Protection : 2h30 à 3h<br>
-            • Premium Complet : 3h à 3h30</p>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question">
-            <span>Dois-je fournir l'eau et l'électricité ?</span>
-            <i class="fas fa-chevron-down"></i>
-          </button>
-          <div class="faq-answer">
-            <p>Oui, nous avons besoin d'un accès à une prise électrique et à un point d'eau. Cela nous permet d'utiliser notre équipement professionnel pour un résultat optimal.</p>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question">
-            <span>La protection anti-taches dure combien de temps ?</span>
-            <i class="fas fa-chevron-down"></i>
-          </button>
-          <div class="faq-answer">
-            <p>La protection textile hydrophobe dure entre 3 et 6 mois selon l'utilisation du véhicule. Elle protège efficacement contre les taches liquides et facilite l'entretien au quotidien.</p>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question">
-            <span>Acceptez-vous les paiements par carte bancaire ?</span>
-            <i class="fas fa-chevron-down"></i>
-          </button>
-          <div class="faq-answer">
-            <p>Oui, nous acceptons les paiements en espèces, par carte bancaire et par virement. Le paiement s'effectue après l'intervention, une fois que vous êtes satisfait du résultat.</p>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question">
-            <span>Puis-je annuler ou reporter mon rendez-vous ?</span>
-            <i class="fas fa-chevron-down"></i>
-          </button>
-          <div class="faq-answer">
-            <p>Oui, vous pouvez modifier ou annuler votre rendez-vous jusqu'à 24h avant l'intervention prévue. Contactez-nous par téléphone ou WhatsApp pour toute modification.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Réservation Section -->
-  <section id="reservation" class="reservation">
-    <div class="container">
-      <h2>Réservation en Ligne</h2>
-      <p class="section-subtitle">Remplissez le formulaire ci-dessous pour prendre rendez-vous</p>
-      <form id="reservationForm" class="reservation-form">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="nom">Nom complet *</label>
-            <input type="text" id="nom" name="nom" required>
-          </div>
-          <div class="form-group">
-            <label for="email">Email *</label>
-            <input type="email" id="email" name="email" required>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="telephone">Téléphone *</label>
-            <input type="tel" id="telephone" name="telephone" required>
-          </div>
-          <div class="form-group">
-            <label for="date">Date souhaitée</label>
-            <input type="date" id="date" name="date">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="service">Service souhaité</label>
-          <select id="service" name="service">
-            <option value="">Sélectionnez un service</option>
-            <option value="essentiel">Essentiel - 85€</option>
-            <option value="standard">Standard - 135€</option>
-            <option value="standard-protection">Standard + Protection - 155€</option>
-            <option value="premium-complet">Premium Complet - 200€</option>
-            <option value="autre">Autre (précisez en commentaire)</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="vehicule">Type de véhicule</label>
-          <select id="vehicule" name="vehicule">
-            <option value="">Sélectionnez votre véhicule</option>
-            <option value="citadine">Citadine</option>
-            <option value="berline">Berline</option>
-            <option value="suv">SUV</option>
-            <option value="monospace">Monospace</option>
-            <option value="utilitaire">Utilitaire</option>
-            <option value="autre">Autre</option>
-          </select>
-          <div id="vehicule-autre" style="display: none; margin-top: 10px;">
-            <label for="vehicule-detail">Précisez le type de véhicule:</label>
-            <input type="text" id="vehicule-detail" name="vehicule-detail" placeholder="Ex: Camping-car, Utilitaire...">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="adresse">Adresse à Caen</label>
-          <input type="text" id="adresse" name="adresse" placeholder="Votre adresse pour l'intervention">
-        </div>
-        <div class="form-group">
-          <label for="commentaire">Commentaire / Demande particulière</label>
-          <textarea id="commentaire" name="commentaire" rows="4"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">RÉSERVER MAINTENANT</button>
-        <p class="form-note">* Champs obligatoires. Confirmation envoyée par email ET SMS.</p>
-      </form>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
   <section id="contact" class="contact">
     <div class="container">
       <h2>Contact</h2>
-      <p class="section-subtitle">Plusieurs moyens de nous joindre</p>
-      <div class="contact-info">
-        <div class="contact-card">
-          <div class="icon"><i class="fas fa-phone"></i></div>
-          <h3>Téléphone</h3>
-          <p><a href="tel:+33656751197">06 56 75 11 97</a></p>
-        </div>
-        <div class="contact-card">
-          <div class="icon"><i class="fab fa-whatsapp"></i></div>
-          <h3>WhatsApp</h3>
-          <p><a href="https://wa.me/33656751197" target="_blank" rel="noopener">Discuter sur WhatsApp</a></p>
-        </div>
-        <div class="contact-card">
-          <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
-          <h3>Zone d'intervention</h3>
-          <p>Caen et agglomération</p>
-        </div>
-        <div class="contact-card">
-          <div class="icon"><i class="fas fa-clock"></i></div>
-          <h3>Horaires</h3>
-          <p>Lun - Sam : 9h - 19h<br>Dimanche sur demande</p>
-        </div>
+      <div class="contact-grid">
+        <div class="contact-card"><h3>Téléphone</h3><p><a href="tel:+33656751197">06 56 75 11 97</a></p></div>
+        <div class="contact-card"><h3>WhatsApp</h3><p><a href="https://wa.me/33656751197" target="_blank" rel="noopener">Discuter maintenant</a></p></div>
+        <div class="contact-card"><h3>Zone</h3><p>Caen et alentours</p></div>
       </div>
     </div>
   </section>
-
-  <!-- Zone d'intervention Section -->
-  <section id="zone-intervention" class="zone-intervention">
-    <div class="container">
-      <h2>Notre Zone d'Intervention</h2>
-      <p class="section-subtitle">Nous intervenons dans toute l'agglomération caennaise</p>
-      
-      <div class="intervention-content">
-        <div class="cities-list">
-          <h3><i class="fas fa-map-marked-alt"></i> Villes desservies</h3>
-          <div class="cities-grid">
-            <div class="city-item"><i class="fas fa-check-circle"></i> Caen</div>
-            <div class="city-item"><i class="fas fa-check-circle"></i> Hérouville-Saint-Clair</div>
-            <div class="city-item"><i class="fas fa-check-circle"></i> Mondeville</div>
-            <div class="city-item"><i class="fas fa-check-circle"></i> Ifs</div>
-            <div class="city-item"><i class="fas fa-check-circle"></i> Fleury-sur-Orne</div>
-            <div class="city-item"><i class="fas fa-check-circle"></i> Colombelles</div>
-            <div class="city-item"><i class="fas fa-check-circle"></i> Cormelles-le-Royal</div>
-            <div class="city-item"><i class="fas fa-check-circle"></i> Giberville</div>
-            <div class="city-item"><i class="fas fa-check-circle"></i> Démouville</div>
-            <div class="city-item"><i class="fas fa-check-circle"></i> Bretteville-sur-Odon</div>
-            <div class="city-item"><i class="fas fa-check-circle"></i> Épron</div>
-            <div class="city-item"><i class="fas fa-check-circle"></i> Authie</div>
-            <div class="city-item"><i class="fas fa-check-circle"></i> Louvigny</div>
-            <div class="city-item"><i class="fas fa-check-circle"></i> Carpiquet</div>
-            <div class="city-item"><i class="fas fa-check-circle"></i> Blainville-sur-Orne</div>
-            <div class="city-item other"><i class="fas fa-plus-circle"></i> Et bien d'autres...</div>
-          </div>
-          <p class="zone-note badge-info"><i class="fas fa-triangle-exclamation"></i> Terrain privé obligatoire pour l'intervention. Votre ville n'est pas listée ? Contactez-nous pour vérifier notre disponibilité.</p>
-        </div>
-        
-        <div class="map-container">
-          <h3><i class="fas fa-map-marker-alt"></i> Carte de la zone</h3>
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d83684.57886734419!2d-0.4413847423828125!3d49.18209405!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x480a42d2f7a968ed%3A0x40c14484fbcdbc0!2sCaen!5e0!3m2!1sfr!2sfr!4v1702134567890!5m2!1sfr!2sfr" 
-            width="100%" 
-            height="450" 
-            style="border:0; border-radius: 12px;" 
-            allowfullscreen="" 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <p>Prime Detail – Nettoyage automobile premium à Caen et alentours.</p>
-      <p class="footer-method">Produits professionnels, travail minutieux et respect des matériaux (tissu, cuir, plastiques).</p>
-      <p class="footer-links">
-        <a href="mentions-legales.html">Mentions légales</a> | 
-        <a href="https://share.google/BBpMBEwHULC6mfUPm" target="_blank" rel="noopener">
-          <i class="fab fa-google"></i> Nos avis Google ★★★★★
-        </a>
-      </p>
-      <div class="social-links">
-        <a href="https://www.facebook.com/prime-detail-caen" target="_blank" rel="noopener noreferrer">
-          <i class="fab fa-facebook-f" aria-hidden="true"></i>
-        </a>
-        <a href="https://wa.me/33656751197" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-          <i class="fab fa-whatsapp" aria-hidden="true"></i>
-        </a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Bouton Réserver Flottant principal -->
-  <a href="https://www.sumupbookings.com/prime-detail" class="reserve-sticky" target="_blank" rel="noopener" aria-label="Réserver en ligne">
-    <i class="fas fa-calendar-check" aria-hidden="true"></i>
-  </a>
-
-  <!-- Bouton Retour en Haut (discret) -->
-  <button id="backToTop" class="back-to-top" aria-label="Retour en haut">
-    <i class="fas fa-arrow-up" aria-hidden="true"></i>
-  </button>
-
-  <!-- Bandeau Offre Spéciale -->
-  <div class="promo-banner" id="promoBanner">
-    <div class="promo-content">
-      <span class="promo-text">🎉 <strong>Offre de bienvenue :</strong> -10% sur votre première réservation !</span>
-      <button class="promo-close" id="closeBanner" aria-label="Fermer">&times;</button>
-    </div>
-  </div>
 </body>
 </html>

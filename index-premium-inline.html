@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Detail – Detailing Auto Premium à Domicile | Caen</title>
+    <meta name="description" content="Detailer certifié FD Formation. Nettoyage intérieur detailing et rénovation carrosserie à domicile sur terrain privé. Caen et alentours.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #2185a0;
+            --primary-orange: #ff6b35;
+            --accent-green: #10b981;
+            --warning-orange-light: rgba(255, 107, 53, 0.1);
+            --border-light: #e5e7eb;
+            --neutral-light: #f8f9fa;
+            --shadow-light: rgba(0, 0, 0, 0.08);
+            --shadow-hover: rgba(33, 133, 160, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #333;
+            background: #fff;
+        }
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
+        h1 { font-size: clamp(3rem, 6vw, 4.5rem); letter-spacing: 0.05em; }
+        h2 { font-size: clamp(2rem, 4.2vw, 2.8rem); color: var(--primary-blue); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        section { padding: 80px 0; }
+
+        .header { position: sticky; top: 0; z-index: 20; background: var(--primary-blue); color: #fff; box-shadow: 0 20px 60px var(--shadow-light); }
+        .header .container { display: flex; justify-content: space-between; align-items: center; padding-top: 12px; padding-bottom: 12px; }
+        .brand-title { font-size: 1.5rem; font-weight: 700; }
+        .nav a { color: #fff; text-decoration: none; margin-left: 18px; font-weight: 600; }
+
+        .hero {
+            background: linear-gradient(180deg, rgba(36,96,118,0.96) 0%, rgba(18,54,72,0.98) 65%, rgba(10,32,46,1) 100%);
+            color: #fff;
+            text-align: center;
+            padding: 110px 0 90px;
+        }
+        .hero p { margin: 12px auto 0; max-width: 860px; }
+        .badge-certif {
+            display: inline-block;
+            background: var(--primary-orange);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            box-shadow: 0 8px 25px rgba(255,107,53,0.3);
+            margin-top: 18px;
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 22px;
+            background: var(--primary-orange);
+            color: #fff;
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(255,107,53,0.3);
+            transition: all .3s;
+        }
+        .btn:hover { transform: scale(1.05); box-shadow: 0 15px 40px rgba(255,107,53,0.4); }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            margin-top: 28px;
+        }
+        .service-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 32px;
+            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 20px 60px rgba(33,133,160,0.08);
+            transition: all .4s cubic-bezier(0.25,0.46,0.45,0.94);
+        }
+        .service-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 35px 100px var(--shadow-hover); }
+
+        .pricing-table {
+            margin-top: 30px;
+            overflow-x: auto;
+            border-radius: 20px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 20px 60px var(--shadow-light);
+            background: #fff;
+        }
+        table { width: 100%; border-collapse: separate; border-spacing: 0; }
+        th { background: var(--primary-blue); color: #fff; text-align: left; padding: 16px; }
+        td { padding: 14px 16px; border-top: 1px solid var(--border-light); }
+        tbody tr:nth-child(even) td { background: var(--neutral-light); }
+        tbody tr:hover td { background: #f3f4f6; }
+        .price-highlight { font-size: 1.2rem; font-weight: 700; color: var(--primary-orange); }
+
+        .badge-info {
+            background: var(--warning-orange-light);
+            border: 1px solid rgba(255,107,53,0.3);
+            color: var(--primary-orange);
+            padding: 12px 20px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-top: 14px;
+            font-size: 0.95rem;
+        }
+
+        .contact { background: var(--neutral-light); }
+        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 24px; margin-top: 24px; }
+        .contact-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 20px 60px var(--shadow-light);
+        }
+
+        @media (max-width: 768px) {
+            section { padding: 50px 0; }
+            .nav { display: none; }
+            .hero { padding: 90px 0 70px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="brand-title">Prime Detail</div>
+            <nav class="nav">
+                <a href="#services">Services</a>
+                <a href="#tarifs">Tarifs</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>DETAILING AUTO PREMIUM</h1>
+            <p>Nettoyage intérieur detailing et rénovation carrosserie à domicile, sur terrain privé, à Caen et alentours.</p>
+            <span class="badge-certif">Certifié FD Formation</span><br>
+            <a class="btn" href="https://www.sumupbookings.com/prime-detail" target="_blank" rel="noopener">Réserver en ligne</a>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <h2>Services</h2>
+            <p>Prestations professionnelles avec finition premium et méthode sécurisée pour les matériaux.</p>
+            <div class="services-grid">
+                <article class="service-card">
+                    <h3>Nettoyage intérieur detailing</h3>
+                    <p>Aspiration, plastiques, vitres, finitions précises et rendu clinique.</p>
+                </article>
+                <article class="service-card">
+                    <h3>Rénovation carrosserie</h3>
+                    <p>Correction esthétique et protection pour raviver la brillance extérieure.</p>
+                </article>
+                <article class="service-card">
+                    <h3>Intervention à domicile</h3>
+                    <p>Déplacement à Caen et alentours, avec organisation simple et rapide.</p>
+                </article>
+            </div>
+            <span class="badge-info">Terrain privé obligatoire pour l’intervention à domicile.</span>
+        </div>
+    </section>
+
+    <section id="tarifs" style="background:#f8f9fa;">
+        <div class="container">
+            <h2>Tarifs</h2>
+            <p>Grille indicative. Devis précis selon le véhicule et l’état initial.</p>
+            <div class="pricing-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pack</th>
+                            <th>Citadine / Berline</th>
+                            <th>SUV / Utilitaire</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Intérieur Essentiel</td>
+                            <td><span class="price-highlight">85€</span></td>
+                            <td>Sur devis</td>
+                        </tr>
+                        <tr>
+                            <td>Intérieur Complet</td>
+                            <td><span class="price-highlight">140€</span></td>
+                            <td>Sur devis</td>
+                        </tr>
+                        <tr>
+                            <td>Premium + Protection</td>
+                            <td><span class="price-highlight">200€</span></td>
+                            <td>Sur devis</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contact</h2>
+            <div class="contact-grid">
+                <div class="contact-card"><h3>Téléphone</h3><p><a href="tel:+33656751197">06 56 75 11 97</a></p></div>
+                <div class="contact-card"><h3>WhatsApp</h3><p><a href="https://wa.me/33656751197" target="_blank" rel="noopener">Discuter maintenant</a></p></div>
+                <div class="contact-card"><h3>Zone</h3><p>Caen et alentours</p></div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
