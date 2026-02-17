@@ -128,6 +128,17 @@
       overflow: hidden;
     }
 
+    .hero-watermark {
+      position: absolute;
+      right: 14px;
+      bottom: 12px;
+      width: min(34vw, 320px);
+      opacity: 0.18;
+      pointer-events: none;
+      z-index: 0;
+      filter: drop-shadow(0 10px 26px rgba(0, 0, 0, 0.24));
+    }
+
     .hero::before {
       content: "";
       position: absolute;
@@ -1014,6 +1025,11 @@
         margin-top: 16px;
       }
 
+      .hero-watermark {
+        width: min(44vw, 240px);
+        opacity: 0.14;
+      }
+
       .hero-proof-strip {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
@@ -1138,6 +1154,12 @@
         grid-template-columns: minmax(0, 1fr);
       }
 
+      .hero-watermark {
+        width: 170px;
+        right: 8px;
+        bottom: 8px;
+      }
+
       .hero-certifs img {
         width: 58px;
       }
@@ -1187,6 +1209,7 @@
   <main>
     <!-- HERO -->
     <section class="hero">
+      <img src="assets/logo/Logo.PNG" alt="Prime Detail" class="hero-watermark" />
       <div class="container">
         <div class="hero-inner">
           <div>
