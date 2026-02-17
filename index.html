@@ -262,6 +262,13 @@
       object-fit: contain;
     }
 
+    .hero-certifs img.certif-logo--nettoyage {
+      background: transparent;
+      border-color: rgba(248, 250, 252, 0.2);
+      padding: 3px;
+      filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.24));
+    }
+
     .hero-card {
       background: rgba(15, 32, 37, 0.9);
       border-radius: var(--radius-card);
@@ -377,6 +384,11 @@
       margin: 0 auto 10px;
       object-fit: contain;
       filter: drop-shadow(0 4px 12px rgba(15, 23, 42, 0.16));
+    }
+
+    .certif-badge img.certif-logo--nettoyage {
+      width: 122px;
+      filter: drop-shadow(0 5px 14px rgba(15, 23, 42, 0.2));
     }
 
     .certif-badge span {
@@ -1133,8 +1145,8 @@
               Réponse rapide avec estimation adaptée à l’état réel du véhicule.
             </p>
             <div class="hero-certifs">
-              <img src="assets/images/gallery/nettoyage.png" alt="Certification nettoyage automobile" />
-              <img src="assets/images/gallery/polissage.png" alt="Certification polissage automobile" />
+              <img src="assets/images/gallery/nettoyage.png" alt="Certification nettoyage automobile" class="certif-logo certif-logo--nettoyage" />
+              <img src="assets/images/gallery/polissage.png" alt="Certification polissage automobile" class="certif-logo certif-logo--polissage" />
             </div>
           </div>
 
@@ -1160,11 +1172,11 @@
 
         <div class="certifs-grid">
           <div class="certif-badge">
-            <img src="assets/images/gallery/nettoyage.png" alt="Certification RS6719 Nettoyage Automobile" />
+            <img src="assets/images/gallery/nettoyage.png" alt="Certification RS6719 Nettoyage Automobile" class="certif-logo certif-logo--nettoyage" />
             <span>Nettoyage automobile RS6719</span>
           </div>
           <div class="certif-badge">
-            <img src="assets/images/gallery/polissage.png" alt="Certification RS7091 Polissage Automobile" />
+            <img src="assets/images/gallery/polissage.png" alt="Certification RS7091 Polissage Automobile" class="certif-logo certif-logo--polissage" />
             <span>Polissage automobile RS7091</span>
           </div>
         </div>
