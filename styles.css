@@ -14,8 +14,8 @@
 	--text-dark: #333333;
 	--bg-light: #f8f9fa;
 	--bg-body: #ffffff;
-	--shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
-	--shadow-hover: 0 35px 100px rgba(33, 133, 160, 0.15);
+	--shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+	--shadow-hover: 0 16px 42px rgba(33, 133, 160, 0.13);
 	--transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 	color-scheme: light;
 }
@@ -34,8 +34,8 @@ html {
 body {
 	font-family: 'Inter', -apple-system, sans-serif;
 	font-weight: 400;
-	font-size: 1.1rem;
-	line-height: 1.7;
+	font-size: 1.05rem;
+	line-height: 1.65;
 	color: var(--text-dark);
 	background-color: var(--bg-body);
 	transition: background-color 0.3s ease, color 0.3s ease;
@@ -343,11 +343,11 @@ p {
 	font-size: 1rem;
 	text-transform: uppercase;
 	letter-spacing: 0.6px;
-	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
 }
 
 .btn:hover {
-	transform: scale(1.05);
+	transform: translateY(-1px);
 }
 
 .btn-primary {
@@ -357,8 +357,8 @@ p {
 
 .btn-primary:hover {
 	background-color: #e55a24;
-	transform: scale(1.05);
-	box-shadow: 0 15px 40px rgba(255, 107, 53, 0.45);
+	transform: translateY(-1px);
+	box-shadow: 0 12px 28px rgba(255, 107, 53, 0.35);
 }
 
 /* Harmonisation: rendre "Appeler" en style primaire (orange) */
@@ -406,7 +406,7 @@ p {
 }
 /* Sections */
 section {
-	padding: 80px 0;
+	padding: 72px 0;
 }
 
 section h2 {
@@ -538,8 +538,8 @@ section h2 {
 	border-radius: 20px;
 	text-align: center;
 	transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-	box-shadow: 0 20px 60px rgba(33, 133, 160, 0.08);
-	border: 1px solid rgba(255, 255, 255, 0.3);
+	box-shadow: var(--shadow);
+	border: 1px solid rgba(229, 231, 235, 0.9);
 	width: 300px; /* largeur fixe pour un alignement centré élégant */
 	margin: 0 0;
 	display: flex;
@@ -548,8 +548,8 @@ section h2 {
 }
 
 .service-card:hover {
-	transform: translateY(-10px) scale(1.02);
-	box-shadow: 0 35px 100px rgba(33, 133, 160, 0.15);
+	transform: translateY(-4px);
+	box-shadow: var(--shadow-hover);
 	background-color: #ffffff;
 }
 
@@ -601,7 +601,7 @@ section h2 {
 }
 
 .pricing-card:hover {
-	transform: translateY(-8px);
+	transform: translateY(-4px);
 	box-shadow: var(--shadow-hover);
 	border-color: var(--primary-color);
 }
@@ -612,7 +612,7 @@ section h2 {
 }
 
 .pricing-card.featured:hover {
-	transform: translateY(-8px);
+	transform: translateY(-4px);
 }
 
 .pricing-card.premium {
