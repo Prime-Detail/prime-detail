@@ -1,18 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap');
+
 /* Variables CSS */
 :root {
-	/* Palette par défaut en mode sombre */
-	--primary-color: #3da5c0;
+	/* Palette clinique premium */
+	--primary-color: #2185a0;
 	--secondary-color: #2d8a9a;
 	--accent-color: #ff6b35;
 	--highlight-color: #ff6b35;
+	--accent-green: #10b981;
+	--warning-orange-light: rgba(255, 107, 53, 0.1);
+	--border-light: #e5e7eb;
 	--text-light: #ffffff;
-	--text-dark: #e0e0e0;
-	--bg-light: #2a2a2a;
-	--bg-body: #000000; /* fond noir direct */
-	--shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-	--shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.6);
+	--text-dark: #333333;
+	--bg-light: #f8f9fa;
+	--bg-body: #ffffff;
+	--shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+	--shadow-hover: 0 35px 100px rgba(33, 133, 160, 0.15);
 	--transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-	color-scheme: dark;
+	color-scheme: light;
 }
 
 /* Reset et base */
@@ -23,16 +28,40 @@
 }
 
 html {
-	background-color: #000000; /* évite bande blanche en haut sur mobile */
+	background-color: #ffffff;
 }
 
 body {
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'Inter', -apple-system, sans-serif;
 	font-weight: 400;
-	line-height: 1.6;
+	font-size: 1.1rem;
+	line-height: 1.7;
 	color: var(--text-dark);
 	background-color: var(--bg-body);
 	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1,
+h2 {
+	font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+	font-weight: 700;
+	font-size: clamp(3rem, 6vw, 4.5rem);
+	letter-spacing: 0.05em;
+	line-height: 1.1;
+}
+
+h2 {
+	font-weight: 600;
+	font-size: clamp(2rem, 4.2vw, 2.8rem);
+	color: var(--primary-color);
+}
+
+p {
+	font-family: 'Inter', sans-serif;
+	margin-bottom: 1.5rem;
 }
 
 .container {
@@ -137,15 +166,23 @@ body {
 }
 
 /* Animations au scroll */
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
 .fade-in {
 	opacity: 0;
-	transform: translateY(30px);
-	transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 .fade-in.visible {
-	opacity: 1;
-	transform: translateY(0);
+	animation: fadeInUp 0.6s ease-out forwards;
 }
 /* Header */
 .header {
@@ -254,10 +291,10 @@ body {
 
 .hero h2 {
 	font-family: 'Montserrat', 'Raleway', sans-serif;
-	font-size: 3.6rem;
-	margin-bottom: 1.5rem;
+	font-size: clamp(3rem, 6vw, 4.5rem);
+	margin-bottom: 1rem;
 	font-weight: 800; /* titres Montserrat: cohérence */
-	letter-spacing: -1px;
+	letter-spacing: 0.05em;
 	text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 2px 10px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 255, 255, 0.2);
 	line-height: 1.1;
 	text-transform: none;
@@ -273,7 +310,7 @@ body {
 }
 
 .hero p {
-	font-size: 1.2rem;
+	font-size: 1.1rem;
 	margin-bottom: 2.5rem;
 	opacity: 0.95;
 	font-weight: 500;
@@ -309,6 +346,10 @@ body {
 	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
+.btn:hover {
+	transform: scale(1.05);
+}
+
 .btn-primary {
 	background-color: var(--highlight-color);
 	color: var(--text-light);
@@ -316,8 +357,8 @@ body {
 
 .btn-primary:hover {
 	background-color: #e55a24;
-	transform: translateY(-3px);
-	box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+	transform: scale(1.05);
+	box-shadow: 0 15px 40px rgba(255, 107, 53, 0.45);
 }
 
 /* Harmonisation: rendre "Appeler" en style primaire (orange) */
@@ -365,24 +406,24 @@ body {
 }
 /* Sections */
 section {
-	padding: 4rem 0;
+	padding: 80px 0;
 }
 
 section h2 {
 	text-align: center;
 	font-family: 'Montserrat', sans-serif;
-	font-size: 2.2rem;
-	margin-bottom: 3rem;
+	font-size: clamp(2rem, 4.2vw, 2.8rem);
+	margin-bottom: 0.5rem;
 	color: var(--primary-color);
-	font-weight: 700;
-	letter-spacing: -0.5px;
+	font-weight: 600;
+	letter-spacing: 0.01em;
 }
 
 .section-subtitle {
 	text-align: center;
 	color: #666;
-	font-size: 1rem;
-	margin-bottom: 3rem;
+	font-size: 1.1rem;
+	margin-bottom: 2rem;
 	font-weight: 400; /* sous-titres plus lisibles */
 }
 /* Avant/Après */
@@ -487,18 +528,18 @@ section h2 {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	gap: 20px;
+	gap: 30px;
 	align-items: flex-start;
 }
 
 .service-card {
-	background-color: var(--bg-light);
-	padding: 1.6rem;
-	border-radius: 14px;
+	background-color: #ffffff;
+	padding: 2.5rem;
+	border-radius: 20px;
 	text-align: center;
-	transition: var(--transition);
-	box-shadow: var(--shadow);
-	border-top: 4px solid var(--accent-color);
+	transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+	box-shadow: 0 20px 60px rgba(33, 133, 160, 0.08);
+	border: 1px solid rgba(255, 255, 255, 0.3);
 	width: 300px; /* largeur fixe pour un alignement centré élégant */
 	margin: 0 0;
 	display: flex;
@@ -507,8 +548,8 @@ section h2 {
 }
 
 .service-card:hover {
-	transform: translateY(-8px);
-	box-shadow: var(--shadow-hover);
+	transform: translateY(-10px) scale(1.02);
+	box-shadow: 0 35px 100px rgba(33, 133, 160, 0.15);
 	background-color: #ffffff;
 }
 
@@ -524,6 +565,7 @@ section h2 {
 	font-size: 3rem;
 	margin-bottom: 1rem;
 	display: inline-block;
+	color: var(--primary-color);
 }
 /* Tarifs */
 .tarifs {
@@ -675,7 +717,7 @@ section h2 {
 
 .pricing-card li:before {
 	content: "✓ ";
-	color: var(--highlight-color);
+	color: var(--accent-green);
 	font-weight: bold;
 	margin-right: 0.5rem;
 }
@@ -695,15 +737,94 @@ section h2 {
 	display: inline-block;
 	background-color: var(--accent-color);
 	color: white;
-	padding: 0.5rem 1.2rem;
-	border-radius: 25px;
-	font-size: 0.85rem;
-	font-weight: 700;
+	padding: 10px 20px;
+	border-radius: 30px;
+	font-size: 0.95rem;
+	font-weight: 600;
 	margin-bottom: 0.8rem;
 	position: absolute;
 	top: -14px;
 	right: 20px;
-	box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+	box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+}
+
+.badge-certif {
+	background: var(--accent-color);
+	color: #fff;
+	padding: 10px 20px;
+	border-radius: 30px;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 0.95rem;
+	font-weight: 600;
+	box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.badge-info {
+	background: var(--warning-orange-light);
+	border: 1px solid rgba(255, 107, 53, 0.3);
+	color: var(--accent-color);
+	padding: 12px 20px;
+	border-radius: 12px;
+	font-size: 0.95rem;
+	font-weight: 500;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.pricing-table {
+	overflow-x: auto;
+	background: white;
+	border-radius: 20px;
+	box-shadow: var(--shadow);
+	margin: 3rem 0;
+	border: 1px solid var(--border-light);
+}
+
+.pricing-table table {
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 0;
+}
+
+.pricing-table th {
+	background: var(--primary-color);
+	color: white;
+	padding: 1.1rem 1rem;
+	text-align: left;
+	font-weight: 600;
+	border: 1px solid var(--border-light);
+}
+
+.pricing-table th:first-child {
+	border-top-left-radius: 16px;
+}
+
+.pricing-table th:last-child {
+	border-top-right-radius: 16px;
+}
+
+.pricing-table td {
+	padding: 1rem;
+	border: 1px solid var(--border-light);
+	background: #ffffff;
+}
+
+.pricing-table tbody tr:nth-child(even) td {
+	background: #f8f9fa;
+}
+
+.pricing-table tbody tr:hover td {
+	background: #f3f4f6;
+}
+
+.price-highlight {
+	font-size: 1.3rem;
+	font-weight: 700;
+	color: var(--accent-color);
 }
 
 .ultimate-badge {
@@ -988,7 +1109,7 @@ button[type=submit]:hover {
 }
 
 .city-item i {
-	color: var(--highlight-color);
+	color: var(--accent-green);
 	font-size: 0.9rem;
 }
 
@@ -1003,10 +1124,10 @@ button[type=submit]:hover {
 }
 
 .zone-note {
-	background: #fff8e1;
-	border-left: 4px solid var(--accent-color);
-	padding: 1rem;
-	border-radius: 8px;
+	background: var(--warning-orange-light);
+	border: 1px solid rgba(255, 107, 53, 0.3);
+	padding: 12px 20px;
+	border-radius: 12px;
 	color: #666;
 	font-size: 0.95rem;
 	display: flex;
@@ -1163,6 +1284,14 @@ button[type=submit]:hover {
 
 /* Responsive */
 @media (max-width: 768px) {
+	section {
+		padding: 50px 0;
+	}
+
+	.services-grid {
+		gap: 20px;
+	}
+
 	.header .container {
 		flex-direction: row;
 		justify-content: space-between;
@@ -1208,7 +1337,7 @@ button[type=submit]:hover {
 	}
 
 	.hero h2 {
-		font-size: 2rem;
+		font-size: 2.3rem;
 	}
 
 	.hero p {
@@ -1225,6 +1354,7 @@ button[type=submit]:hover {
 
 	section h2 {
 		font-size: 2rem;
+		margin-bottom: 0.5rem;
 	}
 
 	.cta-buttons {
