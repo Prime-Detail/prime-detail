@@ -853,9 +853,13 @@
         grid-template-columns: minmax(0, 1fr);
       }
 
-      .pricing-table th:nth-child(4),
-      .pricing-table td:nth-child(4) {
-        display: none;
+      .pricing-table {
+        overflow-x: auto;
+        overflow-y: hidden;
+      }
+
+      .pricing-table table {
+        min-width: 680px;
       }
 
       .pricing-table th,
