@@ -1031,12 +1031,21 @@
         display: block;
         text-align: center;
         border-radius: 12px;
-        background: var(--primary-orange);
-        color: #ffffff;
+        background: linear-gradient(135deg, #f5d060 0%, #f0c64b 100%);
+        color: #111827;
+        border: 1px solid rgba(245, 208, 96, 0.75);
         font-weight: 700;
         font-size: 0.95rem;
         padding: 12px 14px;
-        box-shadow: 0 14px 30px rgba(255, 107, 53, 0.35);
+        box-shadow: 0 16px 34px rgba(245, 208, 96, 0.28);
+        transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+      }
+
+      .mobile-sticky-cta a:hover,
+      .mobile-sticky-cta a:focus-visible {
+        transform: translateY(-1px);
+        filter: brightness(1.03);
+        box-shadow: 0 20px 38px rgba(245, 208, 96, 0.32);
       }
     }
 
