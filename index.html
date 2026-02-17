@@ -243,6 +243,23 @@
       color: rgba(229, 231, 235, 0.9);
     }
 
+    .hero-certifs {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-top: 12px;
+    }
+
+    .hero-certifs img {
+      width: 58px;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(229, 231, 235, 0.4);
+      background: rgba(255, 255, 255, 0.08);
+      padding: 4px;
+    }
+
     .hero-card {
       background: rgba(15, 32, 37, 0.9);
       border-radius: var(--radius-card);
@@ -291,6 +308,51 @@
       font-size: 0.98rem;
       margin-bottom: 28px;
       max-width: 700px;
+    }
+
+    .certification {
+      background: #f8fafc;
+    }
+
+    .certification h2,
+    .certification .section-intro {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .certifs-grid {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .certif-badge {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 14px 16px 12px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(229, 231, 235, 0.95);
+      text-align: center;
+      min-width: 200px;
+      max-width: 240px;
+    }
+
+    .certif-badge img {
+      width: 112px;
+      height: auto;
+      display: block;
+      margin: 0 auto 8px;
+    }
+
+    .certif-badge span {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      display: block;
+      line-height: 1.35;
     }
 
     /* SERVICES GRID */
@@ -824,6 +886,10 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
+      .hero-certifs {
+        justify-content: flex-start;
+      }
+
       .grid {
         grid-template-columns: minmax(0, 1fr);
       }
@@ -921,6 +987,16 @@
       .hero-proof-strip {
         grid-template-columns: minmax(0, 1fr);
       }
+
+      .hero-certifs img {
+        width: 54px;
+      }
+
+      .certif-badge {
+        min-width: 0;
+        width: 100%;
+        max-width: 320px;
+      }
     }
   </style>
 </head>
@@ -968,6 +1044,10 @@
             <p class="hero-note">
               Réponse rapide avec estimation adaptée à l’état réel du véhicule.
             </p>
+            <div class="hero-certifs">
+              <img src="assets/images/gallery/nettoyage.png" alt="Certification nettoyage automobile" />
+              <img src="assets/images/gallery/polissage.png" alt="Certification polissage automobile" />
+            </div>
           </div>
 
           <aside class="hero-card">
@@ -979,6 +1059,26 @@
               <li>Prestation réalisée par un detailer formé et certifié</li>
             </ul>
           </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="certification">
+      <div class="container">
+        <h2>Detailer certifié FD Formation</h2>
+        <p class="section-intro">
+          Double certification professionnelle en nettoyage automobile et en polissage à l’orbitale / roto-orbitale.
+        </p>
+
+        <div class="certifs-grid">
+          <div class="certif-badge">
+            <img src="assets/images/gallery/nettoyage.png" alt="Certification RS6719 Nettoyage Automobile" />
+            <span>Nettoyage automobile RS6719</span>
+          </div>
+          <div class="certif-badge">
+            <img src="assets/images/gallery/polissage.png" alt="Certification RS7091 Polissage Automobile" />
+            <span>Polissage automobile RS7091</span>
+          </div>
         </div>
       </div>
     </section>
