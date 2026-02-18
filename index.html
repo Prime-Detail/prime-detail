@@ -69,15 +69,22 @@
     }
 
     .logo {
-      font-family: "Montserrat", sans-serif;
-      font-weight: 700;
-      font-size: 1.4rem;
-      letter-spacing: 0.05em;
-      color: var(--primary-blue);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 168px;
+      height: 58px;
+      background: #ffffff;
+      border: 1px solid rgba(229, 231, 235, 0.95);
+      border-radius: 12px;
+      box-shadow: 0 10px 24px rgba(15, 52, 67, 0.12);
+      padding: 8px 12px;
     }
 
-    .logo span {
-      color: var(--primary-orange);
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
 
     .nav-links {
@@ -674,7 +681,9 @@
   <header>
     <div class="container">
       <div class="nav">
-        <div class="logo">PRIME<span>DETAIL</span></div>
+        <a href="#" class="logo" aria-label="Prime Detail">
+          <img src="assets/images/logo/file:/Users/kollyabraham/logo2.png" alt="Logo Prime Detail" />
+        </a>
         <div class="nav-links">
           <a href="#services">Services</a>
           <a href="#tarifs">Tarifs</a>
