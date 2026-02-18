@@ -272,54 +272,41 @@
     /* CERTIFICATIONS */
 
     .certification {
-      background: linear-gradient(180deg, #f8fbfd 0%, #ffffff 100%);
-      border-top: 1px solid rgba(226, 232, 240, 0.7);
-      border-bottom: 1px solid rgba(226, 232, 240, 0.7);
+      padding: 70px 0;
+      background: #f8fafc;
     }
 
     .certifs-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 22px;
+      display: flex;
+      justify-content: center;
     }
 
-    .certif-item {
+    .certif-card {
       background: #ffffff;
-      border-radius: var(--radius-card);
-      padding: 22px;
-      box-shadow: var(--shadow-soft);
+      border-radius: 20px;
+      padding: 24px 26px;
+      max-width: 520px;
+      box-shadow: 0 22px 60px rgba(15, 52, 67, 0.16);
       border: 1px solid rgba(229, 231, 235, 0.9);
-      text-align: center;
+      display: flex;
+      gap: 20px;
+      align-items: center;
     }
 
-    .certif-item img {
-      width: 170px;
+    .certif-img img {
+      width: 140px;
       height: auto;
-      object-fit: contain;
-      margin-bottom: 14px;
+      display: block;
     }
 
-    .certif-item h3 {
-      font-size: 1.08rem;
+    .certif-text h3 {
+      font-size: 1.1rem;
       margin-bottom: 6px;
-      color: var(--primary-blue);
     }
 
-    .certif-item p {
-      font-size: 0.92rem;
-      color: var(--text-light);
-    }
-
-    .certif-highlight {
-      margin-top: 24px;
-      text-align: center;
-      font-size: 1rem;
-      color: var(--text-dark);
-      font-weight: 600;
-    }
-
-    .certif-highlight span {
-      color: var(--primary-blue);
+    .certif-text p {
+      font-size: 0.95rem;
+      color: #6b7280;
     }
 
     /* SERVICES GRID */
@@ -679,29 +666,25 @@
     <!-- CERTIFICATIONS -->
     <section class="certification">
       <div class="container">
-        <h2>🎓 Certifications professionnelles</h2>
+        <h2>Detailer certifié FD Formation</h2>
         <p class="section-intro">
-          Prime Detail est formé et certifié sur les techniques avancées de detailing intérieur et
-          de correction carrosserie. Vous bénéficiez d’un service maîtrisé et reconnu.
+          Double certification professionnelle en nettoyage automobile et en polissage à l’orbitale / roto-orbitale.
         </p>
 
         <div class="certifs-grid">
-          <div class="certif-item">
-            <img src="assets/images/gallery/nettoyage.png" alt="Certification RS6719 - Entretien automobile" />
-            <h3>Certification RS6719</h3>
-            <p>Entretien esthétique automobile – techniques de nettoyage professionnel.</p>
-          </div>
-
-          <div class="certif-item">
-            <img src="assets/images/gallery/polissage.png" alt="Certification RS7091 - Polissage automobile" />
-            <h3>Certification RS7091</h3>
-            <p>Polissage et lustrage carrosserie – correction et valorisation des peintures.</p>
+          <div class="certif-card">
+            <div class="certif-img">
+              <img src="Felicitations-pour-votre-certification-en-polissage.jpg" alt="Certifications FD Formation RS6719 et RS7091" />
+            </div>
+            <div class="certif-text">
+              <h3>Certifications reconnues</h3>
+              <p>
+                Nettoyage intérieur / extérieur et polissage automobile validés par France Compétences.
+                Travail conforme aux standards pros du detailing.
+              </p>
+            </div>
           </div>
         </div>
-
-        <p class="certif-highlight">
-          ✅ Deux certifications officielles pour garantir un résultat <span>haut de gamme et sécurisé</span>
-        </p>
       </div>
     </section>
 
