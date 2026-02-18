@@ -299,6 +299,28 @@
       display: block;
     }
 
+    .certif-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .certif-photo img {
+      width: 100%;
+      max-width: 170px;
+      border-radius: 12px;
+      display: block;
+      box-shadow: 0 10px 24px rgba(15, 52, 67, 0.14);
+    }
+
+    .certif-photo span {
+      display: block;
+      margin-top: 6px;
+      font-size: 0.78rem;
+      color: #6b7280;
+      text-align: center;
+    }
+
     .certif-text h3 {
       font-size: 1.1rem;
       margin-bottom: 6px;
@@ -674,7 +696,16 @@
         <div class="certifs-grid">
           <div class="certif-card">
             <div class="certif-img">
-              <img src="Felicitations-pour-votre-certification-en-polissage.jpg" alt="Certifications FD Formation RS6719 et RS7091" />
+              <div class="certif-gallery">
+                <div class="certif-photo">
+                  <img src="assets/images/gallery/apres.jpeg" alt="Nettoyage extérieur Porsche" />
+                  <span>Extérieur Porsche</span>
+                </div>
+                <div class="certif-photo">
+                  <img src="assets/images/gallery/siege1.jpeg" alt="Nettoyage intérieur BMW" />
+                  <span>Intérieur BMW</span>
+                </div>
+              </div>
             </div>
             <div class="certif-text">
               <h3>Certifications reconnues</h3>
