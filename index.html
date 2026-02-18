@@ -79,10 +79,10 @@
       justify-content: center;
       width: 178px;
       height: 62px;
-      background: var(--neutral-surface);
-      border: 1px solid rgba(229, 231, 235, 0.95);
+      background: linear-gradient(135deg, #1e5f71 0%, #133b47 100%);
+      border: 1px solid rgba(16, 38, 46, 0.85);
       border-radius: 14px;
-      box-shadow: 0 12px 30px rgba(15, 52, 67, 0.12);
+      box-shadow: 0 14px 34px rgba(15, 52, 67, 0.28);
       padding: 9px 13px;
     }
 
@@ -90,6 +90,7 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
+      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
     }
 
     .nav-links {
@@ -329,6 +330,22 @@
       width: 140px;
       height: auto;
       display: block;
+    }
+
+    .certif-badges {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .certif-badges img {
+      width: 100%;
+      max-width: 130px;
+      border-radius: 12px;
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      box-shadow: 0 10px 24px rgba(15, 52, 67, 0.12);
+      background: #ffffff;
+      padding: 6px;
     }
 
     .certif-text h3 {
@@ -788,6 +805,14 @@
         width: 120px;
       }
 
+      .certif-badges {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .certif-badges img {
+        max-width: 112px;
+      }
+
       .illustration-photos,
       .illustration-photos.three {
         grid-template-columns: minmax(0, 1fr);
@@ -866,7 +891,10 @@
         <div class="certifs-grid">
           <div class="certif-card">
             <div class="certif-img">
-              <img src="Felicitations-pour-votre-certification-en-polissage.jpg" alt="Certifications FD Formation RS6719 et RS7091" />
+              <div class="certif-badges">
+                <img src="assets/images/gallery/nettoyage.png" alt="Certificat nettoyage automobile" />
+                <img src="assets/images/gallery/polissage.png" alt="Certificat polissage automobile" />
+              </div>
             </div>
             <div class="certif-text">
               <h3>Certificats : Nettoyage & Polissage</h3>
