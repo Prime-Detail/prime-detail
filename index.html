@@ -1,282 +1,612 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Prime Detail – Detailing Auto Premium à Domicile | Caen</title>
-  <meta name="description" content="Detailing intérieur et rénovation carrosserie à domicile autour de Caen. Detailer certifié FD Formation. Nettoyage intérieur complet, polissage et packs premium." />
-  <link rel="canonical" href="https://prime-detail.github.io/prime-detail/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://prime-detail.github.io/prime-detail/" />
-  <meta property="og:title" content="Prime Detail – Detailing Auto Premium" />
-  <meta property="og:description" content="Service mobile de nettoyage automobile premium à Caen et alentours." />
-  <meta property="og:image" content="https://prime-detail.github.io/prime-detail/og-image.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Prime Detail – Detailing Auto Premium" />
-  <meta name="twitter:description" content="Nettoyage automobile premium à domicile à Caen." />
-  <meta name="twitter:image" content="https://prime-detail.github.io/prime-detail/og-image.jpg" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo/file:/Users/kollyabraham/logo2.png" />
-  <link rel="shortcut icon" href="assets/images/logo/file:/Users/kollyabraham/logo2.png" />
-  <link rel="apple-touch-icon" href="assets/images/logo/file:/Users/kollyabraham/logo2.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prime Detail – Detailing Auto Premium à Domicile | Caen</title>
+    <meta name="description" content="Detailer certifié FD Formation. Nettoyage intérieur detailing et rénovation carrosserie à domicile sur terrain privé. Caen et alentours." />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo/file:/Users/kollyabraham/logo2.png" />
+    <link rel="shortcut icon" href="assets/images/logo/file:/Users/kollyabraham/logo2.png" />
+    <link rel="apple-touch-icon" href="assets/images/logo/file:/Users/kollyabraham/logo2.png" />
+
+    <style>
+        :root {
+            --primary-blue: #2185a0;
+            --primary-orange: #ff6b35;
+            --neutral-light: #f8f9fa;
+            --white: #ffffff;
+            --dark: #1a3a42;
+            --text-dark: #333;
+            --text-light: #666;
+            --border: #e5e7eb;
+            --shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+            --shadow-strong: 0 18px 50px rgba(0, 0, 0, 0.13);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--neutral-light);
+        }
+
+        .container {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .topbar {
+            background: rgba(255, 255, 255, 0.96);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            backdrop-filter: blur(8px);
+        }
+
+        .topbar-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            gap: 16px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--dark);
+            font-weight: 700;
+            letter-spacing: .02em;
+        }
+
+        .brand img {
+            width: 148px;
+            height: 48px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 10px;
+            border: 1px solid rgba(26, 58, 66, .18);
+            background: linear-gradient(135deg, #1a4e5a 0%, #0f2f3a 100%);
+            box-shadow: 0 10px 24px rgba(15, 52, 67, .2);
+        }
+
+        .topbar a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #1a6b75 100%);
+            color: #fff;
+            padding: 86px 20px 92px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 15% 15%, rgba(255,255,255,.14) 0, transparent 46%), radial-gradient(circle at 85% 5%, rgba(255,255,255,.08) 0, transparent 40%);
+            opacity: .65;
+            pointer-events: none;
+        }
+
+        .hero > * { position: relative; z-index: 1; }
+
+        .hero h1 {
+            font-size: clamp(2rem, 4.8vw, 3rem);
+            margin-bottom: 14px;
+            font-weight: 800;
+            line-height: 1.15;
+        }
+
+        .hero .subtitle {
+            font-size: 1.15rem;
+            margin: 0 auto 24px;
+            max-width: 900px;
+            opacity: .97;
+            white-space: pre-line;
+        }
+
+        .hero .terrain-info {
+            background: rgba(255,255,255,.15);
+            padding: 11px 18px;
+            border-radius: 10px;
+            font-size: .95rem;
+            backdrop-filter: blur(10px);
+            margin: 0 auto 28px;
+            display: inline-block;
+            border: 1px solid rgba(255,255,255,.28);
+        }
+
+        .cta-primary {
+            background: var(--primary-orange);
+            color: white;
+            padding: 16px 34px;
+            font-size: 1.06rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all .25s;
+            display: inline-block;
+            text-decoration: none;
+            box-shadow: 0 10px 28px rgba(255,107,53,.35);
+        }
+
+        .cta-primary:hover {
+            background: #e55a24;
+            transform: translateY(-2px);
+            box-shadow: 0 14px 34px rgba(255,107,53,.42);
+        }
+
+        .section {
+            padding: 66px 0;
+        }
+
+        .section-title {
+            font-size: clamp(1.7rem, 3.4vw, 2.3rem);
+            margin-bottom: 10px;
+            color: var(--primary-blue);
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin: 0 auto 34px;
+            max-width: 760px;
+        }
+
+        .photos-section {
+            background: var(--white);
+        }
+
+        .results-certified {
+            text-align: center;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 22px;
+            letter-spacing: .02em;
+        }
+
+        .photos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .photo-card {
+            background: #fff;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .photo-caption {
+            padding: 10px 12px;
+            font-size: .9rem;
+            color: #475569;
+        }
+
+        .pricing-services {
+            background: var(--neutral-light);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+            margin-bottom: 20px;
+        }
+
+        .service-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            border-radius: 14px;
+            padding: 20px;
+        }
+
+        .service-card h3 {
+            color: var(--dark);
+            margin-bottom: 8px;
+            font-size: 1.08rem;
+        }
+
+        .service-card .price {
+            color: var(--primary-orange);
+            font-weight: 800;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .service-card ul {
+            list-style: none;
+        }
+
+        .service-card li + li {
+            margin-top: 4px;
+        }
+
+        .combo-note {
+            margin: 6px auto 0;
+            max-width: 900px;
+            text-align: center;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 14px;
+            color: #475569;
+        }
+
+        .why-section {
+            background: #fff;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+
+        .why-item {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(15, 52, 67, .07);
+        }
+
+        .why-item h4 {
+            font-size: 1rem;
+            margin-bottom: 6px;
+            color: var(--dark);
+        }
+
+        .why-item p {
+            color: #475569;
+            font-size: .92rem;
+        }
+
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .testimonial {
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            padding: 14px 16px;
+            box-shadow: var(--shadow);
+        }
+
+        .testimonial .stars {
+            color: #f59e0b;
+            margin-bottom: 4px;
+            font-weight: 700;
+        }
+
+        .reservation {
+            background: var(--neutral-light);
+        }
+
+        .reservation-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+            gap: 18px;
+            align-items: start;
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            box-shadow: var(--shadow);
+            padding: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 4px;
+            font-size: .86rem;
+            color: #4b5563;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 10px;
+            font-size: .95rem;
+            font-family: inherit;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 2px rgba(33,133,160,.16);
+        }
+
+        textarea { min-height: 100px; resize: vertical; }
+
+        .direct-number {
+            font-size: 1.28rem;
+            color: var(--primary-orange);
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .direct-card p {
+            color: #475569;
+            margin-bottom: 8px;
+        }
+
+        footer {
+            padding: 20px 0 28px;
+            text-align: center;
+            color: #6b7280;
+            font-size: .9rem;
+            background: #fff;
+            border-top: 1px solid var(--border);
+        }
+
+        @media (max-width: 980px) {
+            .photos-grid,
+            .services-grid,
+            .why-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .reservation-grid,
+            .testimonials {
+                grid-template-columns: 1fr;
+            }
+
+            .topbar-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .photos-grid,
+            .services-grid,
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .brand img {
+                width: 130px;
+                height: 42px;
+            }
+
+            .hero {
+                padding: 72px 20px;
+            }
+
+            .hero .subtitle {
+                font-size: 1.02rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header class="header">
-    <div class="container">
-      <div class="brand">
-        <img src="assets/images/logo/file:/Users/kollyabraham/logo2.png" alt="Logo Prime Detail" class="brand-logo" />
-        <h1 class="site-title">Prime Detail</h1>
-        <p class="tagline">Detailing automobile premium à domicile</p>
-      </div>
-      <nav class="nav" aria-label="Navigation principale">
-        <ul>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#tarifs">Tarifs</a></li>
-          <li><a href="#zone">Zone</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="https://www.sumupbookings.com/prime-detail" class="nav-cta" target="_blank" rel="noopener">Réservation</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <section class="hero" id="accueil">
-    <img src="assets/images/logo/file:/Users/kollyabraham/logo2.png" alt="Prime Detail" class="hero-watermark" />
-    <div class="container">
-      <span class="badge-certif"><i class="fa-solid fa-certificate"></i> Certifié RS7091</span>
-      <h2>Detailing auto premium mobile à Caen</h2>
-      <p>Intervention à domicile : intérieur, extérieur, extraction, polissage et protection.</p>
-      <p class="hero-proof"><strong>4.9/5</strong> · Service professionnel · Déplacement inclus jusqu’à 30 km</p>
-      <div class="cta-buttons">
-        <a href="#tarifs" class="btn btn-primary">Voir les tarifs</a>
-        <a href="tel:+33656751197" class="btn btn-secondary">Appeler maintenant</a>
-        <a href="https://wa.me/33656751197" class="btn btn-whatsapp" target="_blank" rel="noopener">WhatsApp</a>
-      </div>
-      <p class="cta-note">Réponse rapide sous 1h en journée.</p>
-    </div>
-  </section>
-
-  <section class="certification">
-    <div class="container">
-      <h2>Detailer certifié FD Formation</h2>
-      <p class="section-subtitle">Double certification professionnelle en nettoyage automobile et en polissage à l’orbitale / roto-orbitale.</p>
-      <div class="certifs-grid">
-        <div class="certif-badge">
-          <img src="assets/images/gallery/nettoyage.png" alt="Certification RS6719 Nettoyage Automobile" />
-          <span>Nettoyage automobile RS6719</span>
-        </div>
-        <div class="certif-badge">
-          <img src="assets/images/gallery/polissage.png" alt="Certification RS7091 Polissage Automobile" />
-          <span>Polissage automobile RS7091</span>
-        </div>
-      </div>
-      <div class="certif-cta-wrap">
-        <a href="#contact" class="certif-cta">Prendre rendez-vous avec un detailer certifié</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="services" id="services">
-    <div class="container">
-      <h2>Services</h2>
-      <p class="section-subtitle">Des prestations sur-mesure selon l’état de votre véhicule</p>
-      <div class="services-grid">
-        <article class="service-card">
-          <span class="icon"><i class="fa-solid fa-soap"></i></span>
-          <h3>Extérieur</h3>
-          <p>Lavage haute pression, jantes, décontamination, finition protection.</p>
-        </article>
-        <article class="service-card">
-          <span class="icon"><i class="fa-solid fa-couch"></i></span>
-          <h3>Intérieur</h3>
-          <p>Aspiration, extraction textile, rénovation plastiques, traitement odeurs.</p>
-        </article>
-        <article class="service-card">
-          <span class="icon"><i class="fa-solid fa-gem"></i></span>
-          <h3>Packs Full</h3>
-          <p>Combinaison intérieur + extérieur avec remises et rendu showroom.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="tarifs" id="tarifs">
-    <div class="container">
-      <h2>Tarifs 2026</h2>
-      <p class="section-subtitle">Base berline compacte · +25% SUV / monospace</p>
-
-      <div class="pricing-grid">
-        <article class="pricing-card">
-          <h3>Quick Extérieur</h3>
-          <p class="price">49€</p>
-          <p class="duration">20 min</p>
-          <ul>
-            <li>Lavage HP complet</li>
-            <li>Jantes extérieures et passages de roues</li>
-            <li>Finition pneus brillants</li>
-          </ul>
-        </article>
-
-        <article class="pricing-card featured">
-          <span class="badge">Le plus choisi</span>
-          <h3>Standard Intérieur</h3>
-          <p class="price">159€</p>
-          <p class="duration">1h45</p>
-          <ul>
-            <li>Extraction sièges et tapis</li>
-            <li>Traitement ozone habitacle</li>
-            <li>Protection surfaces intérieures</li>
-          </ul>
-        </article>
-
-        <article class="pricing-card premium">
-          <h3>Premium Full</h3>
-          <p class="price">409€</p>
-          <p class="duration">5h15</p>
-          <ul>
-            <li>Intérieur premium + extérieur full</li>
-            <li>Polish 1 à 2 passes</li>
-            <li>Protection carnauba 6 mois</li>
-          </ul>
-        </article>
-      </div>
-
-      <div class="pricing-table" aria-label="Tableau complet des tarifs">
-        <table>
-          <thead>
-            <tr><th>Pack</th><th>Fidèle</th><th>Standard</th><th>Durée</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Standard Intérieur</td><td>129€</td><td class="price-highlight">159€</td><td>1h45</td></tr>
-            <tr><td>Premium Intérieur</td><td>189€</td><td class="price-highlight">229€</td><td>2h45</td></tr>
-            <tr><td>Standard Full</td><td>199€</td><td class="price-highlight">239€</td><td>3h00</td></tr>
-            <tr><td>Premium Full</td><td>359€</td><td class="price-highlight">409€</td><td>5h15</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="pricing-note">Fidélité : remise appliquée si entretien régulier sous 3 mois.</p>
-    </div>
-  </section>
-
-  <section class="avant-apres">
-    <div class="container">
-      <h2>Avant / Après</h2>
-      <p class="section-subtitle">Exemple réel d’intervention sur cuir et habitacle</p>
-      <div class="before-after-grid">
-        <article class="before-after-pair">
-          <h3>Banquette arrière</h3>
-          <div class="comparison-wrapper">
-            <div class="comparison-item">
-              <img src="assets/images/gallery/banquette1.jpeg" alt="Banquette avant nettoyage" />
-              <span class="comparison-label avant">Avant</span>
+    <header class="topbar">
+        <div class="container topbar-inner">
+            <div class="brand">
+                <img src="assets/images/logo/file:/Users/kollyabraham/logo2.png" alt="Logo Prime Detail" />
+                <span>Prime Detail</span>
             </div>
-            <div class="comparison-item">
-              <img src="assets/images/gallery/banquette2.jpeg" alt="Banquette après nettoyage" />
-              <span class="comparison-label apres">Après</span>
+            <a href="tel:+33656751197">06 56 75 11 97</a>
+        </div>
+    </header>
+
+    <section class="hero" id="hero">
+        <div class="container">
+            <h1>Prime Detail – Detailing Auto Premium à Domicile</h1>
+            <p class="subtitle">Intérieur impeccable. Carrosserie rénovée.
+Detailer certifié FD Formation. Terrain privé uniquement.</p>
+            <div class="terrain-info">Intervention exclusivement sur terrain privé (domicile/entreprise).</div>
+            <a href="#reservation" class="cta-primary">Réservez votre devis</a>
+        </div>
+    </section>
+
+    <section class="section photos-section" id="photos">
+        <div class="container">
+            <h2 class="section-title">Photos Avant / Après</h2>
+            <p class="results-certified">Résultats certifiés</p>
+            <div class="photos-grid">
+                <article class="photo-card">
+                    <img src="assets/images/gallery/avant.jpeg" alt="Avant rénovation intérieure" />
+                    <div class="photo-caption">Avant intervention</div>
+                </article>
+                <article class="photo-card">
+                    <img src="assets/images/gallery/apres.jpeg" alt="Après rénovation intérieure" />
+                    <div class="photo-caption">Après intervention</div>
+                </article>
+                <article class="photo-card">
+                    <img src="assets/images/gallery/banquette1.jpeg" alt="Banquette cuir avant nettoyage" />
+                    <div class="photo-caption">Banquette cuir – Avant</div>
+                </article>
+                <article class="photo-card">
+                    <img src="assets/images/gallery/banquette2.jpeg" alt="Banquette cuir après nettoyage" />
+                    <div class="photo-caption">Banquette cuir – Après</div>
+                </article>
+                <article class="photo-card">
+                    <img src="assets/images/gallery/siege1.jpeg" alt="Sièges avant avant nettoyage" />
+                    <div class="photo-caption">Sièges avant – Avant</div>
+                </article>
+                <article class="photo-card">
+                    <img src="assets/images/gallery/siege2.jpeg" alt="Sièges avant après nettoyage" />
+                    <div class="photo-caption">Sièges avant – Après</div>
+                </article>
             </div>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="bmw-gallery">
-    <div class="container">
-      <h2>BMW Série 3 – Nettoyage intérieur complet cuir</h2>
-      <p class="section-subtitle">
-        Avant : intérieur cuir beige très encrassé, tapis sales, poussière partout. Après : rendu clinique, cuirs ravivés et protégés, habitacle sain.
-      </p>
-
-      <div class="gallery-grid">
-        <div class="photo avant">
-          <img src="assets/images/gallery/banquette1.jpeg" alt="BMW Série 3 avant nettoyage - banquette cuir sale et poussiéreuse" />
-          <span>AVANT</span>
         </div>
-        <div class="photo apres">
-          <img src="assets/images/gallery/banquette2.jpeg" alt="BMW Série 3 après nettoyage - banquette cuir beige impeccable" />
-          <span>APRÈS</span>
+    </section>
+
+    <section class="section pricing-services" id="services-tarifs">
+        <div class="container">
+            <h2 class="section-title">Services & Tarifs</h2>
+            <p class="section-subtitle">Formules claires, adaptées à l’état réel du véhicule. Intervention sur terrain privé uniquement.</p>
+
+            <div class="services-grid">
+                <article class="service-card">
+                    <h3>Intérieur Detailing</h3>
+                    <div class="price">À partir de 140€</div>
+                    <ul>
+                        <li>Aspiration profonde + textiles</li>
+                        <li>Nettoyage plastiques et vitres</li>
+                        <li>Forfaits entretien disponibles</li>
+                    </ul>
+                </article>
+
+                <article class="service-card">
+                    <h3>Extérieur Rénovation</h3>
+                    <div class="price">À partir de 240€</div>
+                    <ul>
+                        <li>Lavage + décontamination</li>
+                        <li>Polissage one-step</li>
+                        <li>Protection de finition</li>
+                    </ul>
+                </article>
+
+                <article class="service-card">
+                    <h3>Packages Combo</h3>
+                    <div class="price">Intérieur + Extérieur</div>
+                    <ul>
+                        <li>Pack Détail / Premium</li>
+                        <li>Tarif optimisé par combinaison</li>
+                        <li>Devis sur photos ou diagnostic</li>
+                    </ul>
+                </article>
+            </div>
+
+            <p class="combo-note">Mention terrain privé : les prestations sont réalisées uniquement sur un espace privatif sécurisé.</p>
         </div>
-      </div>
+    </section>
 
-      <div class="detail-row">
-        <div class="photo-detail">
-          <img src="assets/images/gallery/siege1.jpeg" alt="BMW Série 3 sièges avant avant nettoyage - cuir encrassé" />
+    <section class="section why-section" id="pourquoi">
+        <div class="container">
+            <h2 class="section-title">Pourquoi choisir Prime Detail</h2>
+            <div class="why-grid">
+                <article class="why-item">
+                    <h4>Certifié FD Formation</h4>
+                    <p>Méthodes professionnelles validées.</p>
+                </article>
+                <article class="why-item">
+                    <h4>Produits pro</h4>
+                    <p>Solutions adaptées à chaque surface.</p>
+                </article>
+                <article class="why-item">
+                    <h4>À domicile privé</h4>
+                    <p>Intervention sur terrain privé uniquement.</p>
+                </article>
+                <article class="why-item">
+                    <h4>Résultats durables</h4>
+                    <p>Finitions nettes et entretien optimisé.</p>
+                </article>
+            </div>
+
+            <div class="testimonials">
+                <article class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <p>"Travail ultra propre, intérieur transformé. Très pro du début à la fin."</p>
+                </article>
+                <article class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <p>"Résultat bluffant sur la carrosserie, rendu showroom. Je recommande à 100%."</p>
+                </article>
+            </div>
         </div>
-        <div class="photo-detail">
-          <img src="assets/images/gallery/siege2.jpeg" alt="BMW Série 3 sièges avant après nettoyage - cuir propre et protégé" />
+    </section>
+
+    <section class="section reservation" id="reservation">
+        <div class="container">
+            <h2 class="section-title">Réservation</h2>
+            <p class="section-subtitle">Formulaire + numéro direct pour obtenir votre devis rapidement.</p>
+
+            <div class="reservation-grid">
+                <div class="card">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="nom">Nom / Prénom</label>
+                                <input id="nom" type="text" placeholder="Votre nom" />
+                            </div>
+                            <div class="form-group">
+                                <label for="tel">Téléphone</label>
+                                <input id="tel" type="tel" placeholder="06 XX XX XX XX" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="service">Prestation souhaitée</label>
+                            <select id="service">
+                                <option>Intérieur</option>
+                                <option>Extérieur</option>
+                                <option>Package Combo</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" placeholder="État du véhicule, localisation, disponibilités..."></textarea>
+                        </div>
+
+                        <button type="button" class="cta-primary">Envoyer la demande</button>
+                    </form>
+                </div>
+
+                <aside class="card direct-card">
+                    <div class="direct-number">06 56 75 11 97</div>
+                    <p>Contact direct pour une réponse rapide.</p>
+                    <p>WhatsApp : <a href="https://wa.me/33656751197" target="_blank" rel="noopener">ouvrir la conversation</a></p>
+                    <p>Email : <a href="mailto:contact@prime-detail.fr">contact@prime-detail.fr</a></p>
+                </aside>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <div class="process-highlight">
-        <h3>Ce qui a été fait sur cette BMW</h3>
-        <p>
-          Aspiration profonde soubassements + sièges, nettoyage vapeur cuirs, shampouinage tapis/moquettes,
-          traitement plastiques avec dressing mat, vitres intérieures cristallines. Résultat showroom en 3h30.
-        </p>
-        <a href="#tarifs" class="btn btn-primary">Tarifs nettoyage intérieur</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="zone-intervention" id="zone">
-    <div class="container">
-      <h2>Zone d’intervention</h2>
-      <p class="section-subtitle">Caen et agglomération, déplacement inclus jusqu’à 30 km</p>
-      <div class="intervention-content">
-        <div class="cities-list">
-          <h3><i class="fa-solid fa-location-dot"></i> Villes principales</h3>
-          <div class="cities-grid">
-            <div class="city-item"><i class="fa-solid fa-check"></i> Caen</div>
-            <div class="city-item"><i class="fa-solid fa-check"></i> Hérouville-Saint-Clair</div>
-            <div class="city-item"><i class="fa-solid fa-check"></i> Mondeville</div>
-            <div class="city-item"><i class="fa-solid fa-check"></i> Ifs</div>
-            <div class="city-item"><i class="fa-solid fa-check"></i> Cormelles-le-Royal</div>
-            <div class="city-item other"><i class="fa-solid fa-car"></i> Autres communes : sur devis</div>
-          </div>
-          <p class="zone-note"><i class="fa-solid fa-circle-info"></i> Au-delà de 30 km, un supplément déplacement peut s’appliquer.</p>
-        </div>
-        <div class="map-container">
-          <h3><i class="fa-solid fa-map"></i> Secteur couvert</h3>
-          <iframe title="Carte zone d'intervention Prime Detail" src="https://www.google.com/maps?q=Caen&output=embed" width="100%" height="340" style="border:0;border-radius:12px;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="contact" id="contact">
-    <div class="container">
-      <h2>Contact</h2>
-      <p class="section-subtitle">Devis gratuit et réponse rapide</p>
-      <div class="contact-info">
-        <article class="contact-card">
-          <p class="icon"><i class="fa-solid fa-phone"></i></p>
-          <h3>Téléphone</h3>
-          <p><a href="tel:+33656751197">06 56 75 11 97</a></p>
-        </article>
-        <article class="contact-card">
-          <p class="icon"><i class="fa-brands fa-whatsapp"></i></p>
-          <h3>WhatsApp</h3>
-          <p><a href="https://wa.me/33656751197" target="_blank" rel="noopener">Discuter maintenant</a></p>
-        </article>
-        <article class="contact-card">
-          <p class="icon"><i class="fa-solid fa-envelope"></i></p>
-          <h3>Email</h3>
-          <p><a href="mailto:contact@prime-detail.fr">contact@prime-detail.fr</a></p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-      <p>Prime Detail – Nettoyage automobile premium à Caen et alentours.</p>
-      <p class="footer-links"><a href="mentions-legales.html">Mentions légales</a></p>
-    </div>
-  </footer>
-
-  <div class="mobile-sticky-cta" aria-label="Action rapide mobile">
-    <a href="#contact">Demander mon devis rapide</a>
-  </div>
+    <footer>
+        Prime Detail – Detailing automobile premium à domicile | Terrain privé uniquement
+    </footer>
 </body>
 </html>
