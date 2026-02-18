@@ -11,6 +11,26 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo/file:/Users/kollyabraham/logo2.png" />
 
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Prime Detail",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Caen",
+        "addressRegion": "Normandie"
+      },
+      "telephone": "0656751197",
+      "priceRange": "€€",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "reviewCount": "45"
+      }
+    }
+  </script>
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet" />
 
   <style>
@@ -97,6 +117,19 @@
       height: 100%;
       object-fit: cover;
       filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
+    }
+
+    .cert-badge {
+      width: 58px;
+      height: 58px;
+      object-fit: contain;
+      border-radius: 10px;
+      background: #ffffff;
+      border: 1px solid rgba(226, 232, 240, 0.95);
+      box-shadow: 0 10px 22px rgba(15, 52, 67, 0.16);
+      padding: 4px;
+      margin-left: 10px;
+      flex-shrink: 0;
     }
 
     .nav-links {
@@ -836,6 +869,12 @@
         height: 56px;
       }
 
+      .cert-badge {
+        width: 46px;
+        height: 46px;
+        margin-left: 8px;
+      }
+
       h1 {
         font-size: clamp(2rem, 10vw, 2.35rem);
       }
@@ -892,6 +931,7 @@
         <a href="#" class="logo" aria-label="Prime Detail">
           <img src="assets/images/logo/file:/Users/kollyabraham/logo2.png" alt="Logo Prime Detail" loading="eager" decoding="async" fetchpriority="high" />
         </a>
+        <img src="assets/images/gallery/polissage.png" alt="Certification Polissage RS7091 Prime Detail Caen" class="cert-badge" loading="lazy" decoding="async" />
         <div class="nav-links">
           <a href="#services">Services</a>
           <a href="#tarifs">Tarifs</a>
