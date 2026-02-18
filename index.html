@@ -910,7 +910,7 @@
         <div class="hero-inner">
           <div>
             <span class="badge-certif">Detailer certifié FD Formation • Nettoyage & Polissage</span>
-            <h1>Detailing auto premium<br /><span>à domicile, autour de Caen</span></h1>
+            <h1 id="hero-title">Detailing auto premium<br /><span>à domicile, autour de Caen</span></h1>
             <p class="hero-subtitle">
               Nettoyage intérieur façon detailing et rénovation esthétique de la carrosserie,
               avec méthodes sécurisées pour vos tissus, plastiques, cuirs et vernis.
@@ -919,7 +919,7 @@
               <strong>+40 avis 5★ vérifiés sur Google</strong> – qualité constante, résultat clinique et finition premium.
             </p>
             <div class="hero-ctas">
-              <a href="#contact" class="btn-primary">Obtenir mon devis en 24h</a>
+              <a href="#contact" class="btn-primary" id="hero-primary-cta">Obtenir mon devis en 24h</a>
               <a href="#tarifs" class="btn-outline">Voir les tarifs</a>
             </div>
             <p class="hero-note">
@@ -1279,5 +1279,32 @@
       Site vitrine sans collecte automatique de données. Mentions légales sur demande.
     </div>
   </footer>
+
+  <script>
+    (function () {
+      var titleEl = document.getElementById('hero-title');
+      var ctaEl = document.getElementById('hero-primary-cta');
+
+      if (!titleEl || !ctaEl) {
+        return;
+      }
+
+      var storageKey = 'prime_detail_ab_variant';
+      var variant = localStorage.getItem(storageKey);
+
+      if (variant !== 'A' && variant !== 'B') {
+        variant = Math.random() < 0.5 ? 'A' : 'B';
+        localStorage.setItem(storageKey, variant);
+      }
+
+      if (variant === 'B') {
+        titleEl.innerHTML = 'Nettoyage auto clinique premium<br /><span>à domicile, autour de Caen</span>';
+        ctaEl.textContent = 'Réserver mon diagnostic gratuit';
+      } else {
+        titleEl.innerHTML = 'Detailing auto premium<br /><span>à domicile, autour de Caen</span>';
+        ctaEl.textContent = 'Obtenir mon devis en 24h';
+      }
+    })();
+  </script>
 </body>
 </html>
