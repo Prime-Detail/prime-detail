@@ -299,28 +299,6 @@
       display: block;
     }
 
-    .certif-gallery {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    .certif-photo img {
-      width: 100%;
-      max-width: 170px;
-      border-radius: 12px;
-      display: block;
-      box-shadow: 0 10px 24px rgba(15, 52, 67, 0.14);
-    }
-
-    .certif-photo span {
-      display: block;
-      margin-top: 6px;
-      font-size: 0.78rem;
-      color: #6b7280;
-      text-align: center;
-    }
-
     .certif-text h3 {
       font-size: 1.1rem;
       margin-bottom: 6px;
@@ -329,6 +307,58 @@
     .certif-text p {
       font-size: 0.95rem;
       color: #6b7280;
+    }
+
+    /* ILLUSTRATIONS */
+
+    .illustrations {
+      background: #ffffff;
+    }
+
+    .illustration-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .illustration-card {
+      background: #ffffff;
+      border-radius: var(--radius-card);
+      padding: 20px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(229, 231, 235, 0.9);
+    }
+
+    .illustration-card h3 {
+      font-size: 1.08rem;
+      margin-bottom: 12px;
+      color: var(--primary-blue);
+    }
+
+    .illustration-photos {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .illustration-photos.three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .illustration-photo img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 12px;
+      display: block;
+    }
+
+    .illustration-photo span {
+      display: block;
+      margin-top: 6px;
+      font-size: 0.8rem;
+      color: var(--text-light);
+      text-align: center;
     }
 
     /* SERVICES GRID */
@@ -606,7 +636,15 @@
       }
 
       .certifs-grid {
+        flex-direction: column;
+      }
+
+      .illustration-grid {
         grid-template-columns: minmax(0, 1fr);
+      }
+
+      .illustration-photos.three {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .pricing-wrapper {
@@ -696,16 +734,7 @@
         <div class="certifs-grid">
           <div class="certif-card">
             <div class="certif-img">
-              <div class="certif-gallery">
-                <div class="certif-photo">
-                  <img src="assets/images/gallery/apres.jpeg" alt="Nettoyage extérieur Porsche" />
-                  <span>Extérieur Porsche</span>
-                </div>
-                <div class="certif-photo">
-                  <img src="assets/images/gallery/siege1.jpeg" alt="Nettoyage intérieur BMW" />
-                  <span>Intérieur BMW</span>
-                </div>
-              </div>
+              <img src="Felicitations-pour-votre-certification-en-polissage.jpg" alt="Certifications FD Formation RS6719 et RS7091" />
             </div>
             <div class="certif-text">
               <h3>Certifications reconnues</h3>
@@ -713,6 +742,58 @@
                 Nettoyage intérieur / extérieur et polissage automobile validés par France Compétences.
                 Travail conforme aux standards pros du detailing.
               </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ILLUSTRATIONS -->
+    <section class="illustrations">
+      <div class="container">
+        <h2>Illustrations avant / après</h2>
+        <p class="section-intro">
+          Exemples visuels de prestations réalisées sur intérieur BMW et extérieur Porsche.
+        </p>
+
+        <div class="illustration-grid">
+          <div class="illustration-card">
+            <h3>BMW intérieur (avant / après)</h3>
+            <div class="illustration-photos">
+              <div class="illustration-photo">
+                <img src="assets/images/gallery/siege1.jpeg" alt="BMW intérieur siège avant" />
+                <span>Siège avant</span>
+              </div>
+              <div class="illustration-photo">
+                <img src="assets/images/gallery/siege2.jpeg" alt="BMW intérieur siège après" />
+                <span>Siège après</span>
+              </div>
+              <div class="illustration-photo">
+                <img src="assets/images/gallery/banquette1.jpeg" alt="BMW intérieur banquette avant" />
+                <span>Banquette avant</span>
+              </div>
+              <div class="illustration-photo">
+                <img src="assets/images/gallery/banquette2.jpeg" alt="BMW intérieur banquette après" />
+                <span>Banquette après</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="illustration-card">
+            <h3>Porsche extérieur (avant / après)</h3>
+            <div class="illustration-photos three">
+              <div class="illustration-photo">
+                <img src="assets/images/gallery/avant.jpeg" alt="Porsche extérieur avant detailing" />
+                <span>Avant</span>
+              </div>
+              <div class="illustration-photo">
+                <img src="assets/images/gallery/apres.jpeg" alt="Porsche extérieur après detailing" />
+                <span>Après</span>
+              </div>
+              <div class="illustration-photo">
+                <img src="assets/images/gallery/detail.jpeg" alt="Porsche extérieur vue détail" />
+                <span>Détail</span>
+              </div>
             </div>
           </div>
         </div>
