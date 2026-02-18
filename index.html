@@ -1,82 +1,218 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prime Detail - Detailing Auto Mobile Certifié Caen</title>
-  <style>
-    body {font-family:Arial,sans-serif; max-width:800px; margin:0 auto; padding:20px; line-height:1.6; color:#333;}
-    h1,h2,h3 {color:#007bff;}
-    .certif {background:#e8f5e8; padding:15px; border-left:5px solid #28a745; margin:20px 0;}
-    table {width:100%; border-collapse:collapse; margin:20px 0;}
-    th,td {border:1px solid #ddd; padding:12px; text-align:left;}
-    th {background:#007bff; color:white;}
-    .btn {background:#28a745; color:white; padding:12px 24px; border:none; border-radius:5px; cursor:pointer; font-size:16px;}
-    .diff {background:#fff3cd; padding:15px; margin:20px 0; border-radius:5px;}
-    @media (max-width:600px) {table {font-size:14px;}}
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Prime Detail – Detailing Auto Premium à Domicile | Caen</title>
+  <meta name="description" content="Detailing automobile premium à domicile à Caen : intérieur, extérieur, polissage, extraction et protection." />
+  <link rel="canonical" href="https://prime-detail.github.io/prime-detail/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://prime-detail.github.io/prime-detail/" />
+  <meta property="og:title" content="Prime Detail – Detailing Auto Premium" />
+  <meta property="og:description" content="Service mobile de nettoyage automobile premium à Caen et alentours." />
+  <meta property="og:image" content="https://prime-detail.github.io/prime-detail/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Prime Detail – Detailing Auto Premium" />
+  <meta name="twitter:description" content="Nettoyage automobile premium à domicile à Caen." />
+  <meta name="twitter:image" content="https://prime-detail.github.io/prime-detail/og-image.jpg" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo/file:/Users/kollyabraham/logo2.png" />
+  <link rel="shortcut icon" href="assets/images/logo/file:/Users/kollyabraham/logo2.png" />
+  <link rel="apple-touch-icon" href="assets/images/logo/file:/Users/kollyabraham/logo2.png" />
 </head>
 <body>
-  <header>
-    <h1>🚗 <strong>Prime Detail</strong> - Detailing Premium Mobile Caen</h1>
-    <p><strong>Certifié RS7091 Polissage</strong> | Service à Domicile | Taux Pro 55€/h</p>
+  <header class="header">
+    <div class="container">
+      <div class="brand">
+        <h1 class="site-title">Prime Detail</h1>
+        <p class="tagline">Detailing automobile premium à domicile</p>
+      </div>
+      <nav class="nav" aria-label="Navigation principale">
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#tarifs">Tarifs</a></li>
+          <li><a href="#zone">Zone</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="https://www.sumupbookings.com/prime-detail" class="nav-cta" target="_blank" rel="noopener">Réservation</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <section class="certif">
-    <h2>Pourquoi Choisir Prime Detail ?</h2>
-    <ul>
-      <li><strong>Mobile :</strong> Chez vous, pas d'attente en file (vs fixes concurrents)</li>
-      <li><strong>Certifié RS7091 :</strong> Expertise polissage/lavage reconnue (guide certif)</li>
-      <li><strong>Detailing Pro :</strong> Extraction/polish vs lavage basique (Max Luxury, Clean KRZ)</li>
-      <li><strong>Fidélité :</strong> -20% si &lt;3 mois</li>
-    </ul>
+  <section class="hero" id="accueil">
+    <div class="container">
+      <span class="badge-certif"><i class="fa-solid fa-certificate"></i> Certifié RS7091</span>
+      <h2>Detailing auto premium mobile à Caen</h2>
+      <p>Intervention à domicile : intérieur, extérieur, extraction, polissage et protection.</p>
+      <p class="hero-proof"><strong>4.9/5</strong> · Service professionnel · Déplacement inclus jusqu’à 30 km</p>
+      <div class="cta-buttons">
+        <a href="#tarifs" class="btn btn-primary">Voir les tarifs</a>
+        <a href="tel:+33656751197" class="btn btn-secondary">Appeler maintenant</a>
+        <a href="https://wa.me/33656751197" class="btn btn-whatsapp" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+      <p class="cta-note">Réponse rapide sous 1h en journée.</p>
+    </div>
   </section>
 
-  <section class="diff">
-    <h3>Différenciation vs Concurrents Caen</h3>
-    <p><strong>Prime :</strong> Mobile certifié full detailing 55€/h | <strong>Autres :</strong> Fixes basiques 40-80€ sans polish/certif</p>
+  <section class="services" id="services">
+    <div class="container">
+      <h2>Services</h2>
+      <p class="section-subtitle">Des prestations sur-mesure selon l’état de votre véhicule</p>
+      <div class="services-grid">
+        <article class="service-card">
+          <span class="icon"><i class="fa-solid fa-soap"></i></span>
+          <h3>Extérieur</h3>
+          <p>Lavage haute pression, jantes, décontamination, finition protection.</p>
+        </article>
+        <article class="service-card">
+          <span class="icon"><i class="fa-solid fa-couch"></i></span>
+          <h3>Intérieur</h3>
+          <p>Aspiration, extraction textile, rénovation plastiques, traitement odeurs.</p>
+        </article>
+        <article class="service-card">
+          <span class="icon"><i class="fa-solid fa-gem"></i></span>
+          <h3>Packs Full</h3>
+          <p>Combinaison intérieur + extérieur avec remises et rendu showroom.</p>
+        </article>
+      </div>
+    </div>
   </section>
 
-  <section>
-    <h2>Tarifs 2026 (Berline Compacte)</h2>
-    <p>Suppl. +25% SUV/Monosp. Mobile 30km Caen inclus.</p>
+  <section class="tarifs" id="tarifs">
+    <div class="container">
+      <h2>Tarifs 2026</h2>
+      <p class="section-subtitle">Base berline compacte · +25% SUV / monospace</p>
 
-    <h3>🔧 Detailing Extérieur (Jantes/Passages Inclus)</h3>
-    <table>
-      <tr><th>Pack</th><th>Prix</th><th>Temps</th><th>Services Clés</th></tr>
-      <tr><td>Quick Ext.</td><td>49€</td><td>20min</td><td>Lavage HP, jantes ext./passages roues, pneus brillants</td></tr>
-      <tr><td>Standard Ext.</td><td>89€</td><td>45min</td><td>+ Décontam. fer, détails pinceau (joints), cire synthétique</td></tr>
-      <tr><td>Premium Ext. Full</td><td>199€</td><td>2h30</td><td>+ Clay total, polish 1-2p, protection Carnauba 6m, rénovation pneus</td></tr>
-    </table>
+      <div class="pricing-grid">
+        <article class="pricing-card">
+          <h3>Quick Extérieur</h3>
+          <p class="price">49€</p>
+          <p class="duration">20 min</p>
+          <ul>
+            <li>Lavage HP complet</li>
+            <li>Jantes extérieures et passages de roues</li>
+            <li>Finition pneus brillants</li>
+          </ul>
+        </article>
 
-    <h3>🛋️ Detailing Intérieur Premium</h3>
-    <table>
-      <tr><th>Pack</th><th>Fidèle</th><th>Std</th><th>Temps</th></tr>
-      <tr><td>Standard Int.</td><td>129€</td><td>159€</td><td>1h45 : Extraction sièges/tapis, ozone, protection</td></tr>
-      <tr><td>Premium Int.</td><td>189€</td><td>229€</td><td>2h45 : + Rénov plastiques, clim hydro</td></tr>
-    </table>
+        <article class="pricing-card featured">
+          <span class="badge">Le plus choisi</span>
+          <h3>Standard Intérieur</h3>
+          <p class="price">159€</p>
+          <p class="duration">1h45</p>
+          <ul>
+            <li>Extraction sièges et tapis</li>
+            <li>Traitement ozone habitacle</li>
+            <li>Protection surfaces intérieures</li>
+          </ul>
+        </article>
 
-    <h3>💎 Packs Full (Éco 10%)</h3>
-    <table>
-      <tr><th>Pack</th><th>Fidèle</th><th>Std</th><th>Temps</th></tr>
-      <tr><td>Standard Full</td><td>199€</td><td>239€</td><td>3h</td></tr>
-      <tr><td>Premium Full</td><td>359€</td><td>409€</td><td>5h15</td></tr>
-    </table>
+        <article class="pricing-card premium">
+          <h3>Premium Full</h3>
+          <p class="price">409€</p>
+          <p class="duration">5h15</p>
+          <ul>
+            <li>Intérieur premium + extérieur full</li>
+            <li>Polish 1 à 2 passes</li>
+            <li>Protection carnauba 6 mois</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="pricing-table" aria-label="Tableau complet des tarifs">
+        <table>
+          <thead>
+            <tr><th>Pack</th><th>Fidèle</th><th>Standard</th><th>Durée</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Standard Intérieur</td><td>129€</td><td class="price-highlight">159€</td><td>1h45</td></tr>
+            <tr><td>Premium Intérieur</td><td>189€</td><td class="price-highlight">229€</td><td>2h45</td></tr>
+            <tr><td>Standard Full</td><td>199€</td><td class="price-highlight">239€</td><td>3h00</td></tr>
+            <tr><td>Premium Full</td><td>359€</td><td class="price-highlight">409€</td><td>5h15</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="pricing-note">Fidélité : remise appliquée si entretien régulier sous 3 mois.</p>
+    </div>
   </section>
 
-  <section>
-    <button class="btn" onclick="contact()">📱 Devis Gratuit Messenger / 06...</button>
-    <p><em>Exemples avant/après sur FB @PrimeDetailCaen</em></p>
+  <section class="avant-apres">
+    <div class="container">
+      <h2>Avant / Après</h2>
+      <p class="section-subtitle">Exemple réel d’intervention sur cuir et habitacle</p>
+      <div class="before-after-grid">
+        <article class="before-after-pair">
+          <h3>Banquette arrière</h3>
+          <div class="comparison-wrapper">
+            <div class="comparison-item">
+              <img src="assets/images/gallery/banquette1.jpeg" alt="Banquette avant nettoyage" />
+              <span class="comparison-label avant">Avant</span>
+            </div>
+            <div class="comparison-item">
+              <img src="assets/images/gallery/banquette2.jpeg" alt="Banquette après nettoyage" />
+              <span class="comparison-label apres">Après</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
   </section>
 
-  <footer>
-    <p>Prime Detail ©2026 | Certifié RS7091 | Caen, Normandie</p>
+  <section class="zone-intervention" id="zone">
+    <div class="container">
+      <h2>Zone d’intervention</h2>
+      <p class="section-subtitle">Caen et agglomération, déplacement inclus jusqu’à 30 km</p>
+      <div class="intervention-content">
+        <div class="cities-list">
+          <h3><i class="fa-solid fa-location-dot"></i> Villes principales</h3>
+          <div class="cities-grid">
+            <div class="city-item"><i class="fa-solid fa-check"></i> Caen</div>
+            <div class="city-item"><i class="fa-solid fa-check"></i> Hérouville-Saint-Clair</div>
+            <div class="city-item"><i class="fa-solid fa-check"></i> Mondeville</div>
+            <div class="city-item"><i class="fa-solid fa-check"></i> Ifs</div>
+            <div class="city-item"><i class="fa-solid fa-check"></i> Cormelles-le-Royal</div>
+            <div class="city-item other"><i class="fa-solid fa-car"></i> Autres communes : sur devis</div>
+          </div>
+          <p class="zone-note"><i class="fa-solid fa-circle-info"></i> Au-delà de 30 km, un supplément déplacement peut s’appliquer.</p>
+        </div>
+        <div class="map-container">
+          <h3><i class="fa-solid fa-map"></i> Secteur couvert</h3>
+          <iframe title="Carte zone d'intervention Prime Detail" src="https://www.google.com/maps?q=Caen&output=embed" width="100%" height="340" style="border:0;border-radius:12px;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2>Contact</h2>
+      <p class="section-subtitle">Devis gratuit et réponse rapide</p>
+      <div class="contact-info">
+        <article class="contact-card">
+          <p class="icon"><i class="fa-solid fa-phone"></i></p>
+          <h3>Téléphone</h3>
+          <p><a href="tel:+33656751197">06 56 75 11 97</a></p>
+        </article>
+        <article class="contact-card">
+          <p class="icon"><i class="fa-brands fa-whatsapp"></i></p>
+          <h3>WhatsApp</h3>
+          <p><a href="https://wa.me/33656751197" target="_blank" rel="noopener">Discuter maintenant</a></p>
+        </article>
+        <article class="contact-card">
+          <p class="icon"><i class="fa-solid fa-envelope"></i></p>
+          <h3>Email</h3>
+          <p><a href="mailto:contact@prime-detail.fr">contact@prime-detail.fr</a></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Prime Detail – Nettoyage automobile premium à Caen et alentours.</p>
+      <p class="footer-links"><a href="mentions-legales.html">Mentions légales</a></p>
+    </div>
   </footer>
-
-  <script>
-    function contact() {
-      window.open('https://m.me/votrepagefb', '_blank');
-    }
-  </script>
 </body>
 </html>
