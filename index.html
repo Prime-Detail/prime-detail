@@ -269,6 +269,59 @@
       max-width: 640px;
     }
 
+    /* CERTIFICATIONS */
+
+    .certification {
+      background: linear-gradient(180deg, #f8fbfd 0%, #ffffff 100%);
+      border-top: 1px solid rgba(226, 232, 240, 0.7);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.7);
+    }
+
+    .certifs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .certif-item {
+      background: #ffffff;
+      border-radius: var(--radius-card);
+      padding: 22px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(229, 231, 235, 0.9);
+      text-align: center;
+    }
+
+    .certif-item img {
+      width: 170px;
+      height: auto;
+      object-fit: contain;
+      margin-bottom: 14px;
+    }
+
+    .certif-item h3 {
+      font-size: 1.08rem;
+      margin-bottom: 6px;
+      color: var(--primary-blue);
+    }
+
+    .certif-item p {
+      font-size: 0.92rem;
+      color: var(--text-light);
+    }
+
+    .certif-highlight {
+      margin-top: 24px;
+      text-align: center;
+      font-size: 1rem;
+      color: var(--text-dark);
+      font-weight: 600;
+    }
+
+    .certif-highlight span {
+      color: var(--primary-blue);
+    }
+
     /* SERVICES GRID */
 
     .grid {
@@ -543,6 +596,10 @@
         grid-template-columns: minmax(0, 1fr);
       }
 
+      .certifs-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
       .pricing-wrapper {
         grid-template-columns: minmax(0, 1fr);
       }
@@ -616,6 +673,35 @@
             </ul>
           </aside>
         </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section class="certification">
+      <div class="container">
+        <h2>🎓 Certifications professionnelles</h2>
+        <p class="section-intro">
+          Prime Detail est formé et certifié sur les techniques avancées de detailing intérieur et
+          de correction carrosserie. Vous bénéficiez d’un service maîtrisé et reconnu.
+        </p>
+
+        <div class="certifs-grid">
+          <div class="certif-item">
+            <img src="assets/images/gallery/nettoyage.png" alt="Certification RS6719 - Entretien automobile" />
+            <h3>Certification RS6719</h3>
+            <p>Entretien esthétique automobile – techniques de nettoyage professionnel.</p>
+          </div>
+
+          <div class="certif-item">
+            <img src="assets/images/gallery/polissage.png" alt="Certification RS7091 - Polissage automobile" />
+            <h3>Certification RS7091</h3>
+            <p>Polissage et lustrage carrosserie – correction et valorisation des peintures.</p>
+          </div>
+        </div>
+
+        <p class="certif-highlight">
+          ✅ Deux certifications officielles pour garantir un résultat <span>haut de gamme et sécurisé</span>
+        </p>
       </div>
     </section>
 
