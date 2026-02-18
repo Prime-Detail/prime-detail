@@ -485,6 +485,39 @@
       backdrop-filter: blur(4px);
     }
 
+    /* VIDEO */
+
+    .video-showcase {
+      background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+      border-top: 1px solid rgba(226, 232, 240, 0.75);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.75);
+    }
+
+    .video-frame {
+      background: #0f2530;
+      border-radius: 18px;
+      padding: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: 0 20px 48px rgba(15, 52, 67, 0.24);
+      overflow: hidden;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .video-frame video {
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+      background: #020617;
+    }
+
+    .video-note {
+      margin-top: 12px;
+      text-align: center;
+      font-size: 0.86rem;
+      color: var(--text-light);
+    }
+
     #services {
       background: #f8fafc;
     }
@@ -1057,6 +1090,26 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- VIDEO -->
+    <section class="video-showcase">
+      <div class="container">
+        <h2>Vidéo de prestation</h2>
+        <p class="section-intro">
+          Aperçu réel d’une intervention Prime Detail : préparation, nettoyage et rendu final.
+        </p>
+
+        <div class="video-frame">
+          <video controls preload="metadata" playsinline>
+              <source src="assets/images/gallery/video.mp4" type="video/mp4" />
+            <source src="assets/videos/Pub%20prime%20detail%20dacia%20Logan.MOV" type="video/quicktime" />
+            Votre navigateur ne peut pas lire cette vidéo.
+          </video>
+        </div>
+
+        <p class="video-note">Si la vidéo ne démarre pas, envoie-moi le nom final souhaité et je la relie proprement.</p>
       </div>
     </section>
 
