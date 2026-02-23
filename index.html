@@ -587,29 +587,40 @@
       background: linear-gradient(180deg, #f8fbfd 0%, #f1f6fa 100%);
     }
 
-    .quiz {
+    .quiz-container {
+      max-width: 740px;
+      margin: 0 auto;
       background: var(--neutral-surface);
       border-radius: var(--radius-card);
       box-shadow: var(--shadow-soft);
       border: 1px solid rgba(229, 231, 235, 0.9);
-      padding: 22px;
-      max-width: 860px;
-      margin: 0 auto;
+      padding: 20px;
     }
 
-    .quiz-headline {
-      margin-bottom: 14px;
-      font-size: 0.92rem;
+    .progress {
+      font-size: 0.9rem;
       color: var(--text-light);
+      margin-bottom: 10px;
+      font-weight: 600;
     }
 
-    .quiz-step {
+    .progress span {
+      color: var(--primary-blue);
+      font-weight: 700;
+    }
+
+    .quiz-section .step {
       display: none;
     }
 
-    .quiz-step.active {
+    .quiz-section .step.active {
       display: block;
       animation: fadeStep 0.25s ease;
+      transform: none;
+      box-shadow: none;
+      border: 0;
+      padding: 0;
+      background: transparent;
     }
 
     @keyframes fadeStep {
@@ -623,19 +634,19 @@
       }
     }
 
-    .quiz-step h3 {
+    .quiz-section .step h3 {
       margin-bottom: 12px;
       font-size: 1.08rem;
     }
 
-    .options-grid {
+    .quiz-section .grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
       margin-bottom: 14px;
     }
 
-    .option-card {
+    .quiz-section .card {
       display: flex;
       gap: 10px;
       align-items: flex-start;
@@ -647,71 +658,101 @@
       transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
     }
 
-    .option-card:hover {
+    .quiz-section .card:hover {
       border-color: #1f6f85;
       background: #eef7fb;
       transform: translateY(-1px);
     }
 
-    .option-card input {
+    .quiz-section .card input {
       margin-top: 2px;
       accent-color: #1f6f85;
       flex-shrink: 0;
     }
 
-    .option-card strong {
+    .quiz-section .card strong {
       font-weight: 600;
       color: var(--text-dark);
     }
 
-    .option-card small {
+    .quiz-section .card small {
       display: block;
       margin-top: 2px;
       color: var(--text-light);
       font-size: 0.82rem;
     }
 
-    .quiz-controls {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      margin-top: 8px;
+    #ext-level {
+      width: 100%;
+      margin-bottom: 10px;
     }
 
-    .quiz-btn {
+    .ext-desc {
+      font-size: 0.86rem;
+      color: var(--text-light);
+      margin-bottom: 10px;
+      min-height: 24px;
+    }
+
+    .req {
+      font-size: 0.72rem;
+      color: var(--primary-orange);
+      font-weight: 700;
+      margin-left: 4px;
+    }
+
+    .terrain-warning {
+      margin-top: 8px;
+      color: #b54708;
+      font-size: 0.84rem;
+      font-weight: 600;
+    }
+
+    .next,
+    .prev,
+    .calc {
       border: none;
       border-radius: 999px;
-      padding: 0.72rem 1.05rem;
-      font-size: 0.88rem;
+      padding: 0.7rem 1.05rem;
+      font-size: 0.9rem;
       font-weight: 700;
       cursor: pointer;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 52px;
     }
 
-    .quiz-btn:hover {
-      transform: translateY(-1px);
-    }
-
-    .quiz-btn-next,
-    .quiz-btn-submit {
+    .next,
+    .calc {
       background: linear-gradient(135deg, #2b96b3 0%, #1f6f85 100%);
       color: #ffffff;
       box-shadow: 0 10px 24px rgba(33, 133, 160, 0.25);
     }
 
-    .quiz-btn-prev {
+    .prev {
       background: #eef2f7;
       color: var(--text-dark);
       border: 1px solid #dbe4ef;
+      margin-right: 8px;
     }
 
-    .quiz-btn:disabled {
+    .next:hover,
+    .prev:hover,
+    .calc:hover {
+      transform: translateY(-1px);
+    }
+
+    .next:disabled,
+    .prev:disabled,
+    .calc:disabled {
       opacity: 0.55;
       cursor: not-allowed;
       transform: none;
     }
 
-    .quiz-result {
+    .result-box {
       margin-top: 12px;
       background: #f3f8fb;
       border: 1px solid rgba(31, 111, 133, 0.18);
@@ -719,7 +760,7 @@
       padding: 14px;
     }
 
-    .quiz-result h4 {
+    .result-box h4 {
       margin-bottom: 6px;
       color: #1f6f85;
       font-size: 0.82rem;
@@ -727,7 +768,7 @@
       letter-spacing: 0.05em;
     }
 
-    .quiz-total {
+    .result-price {
       font-size: clamp(1.75rem, 5vw, 2.2rem);
       line-height: 1.1;
       color: var(--primary-orange);
@@ -735,19 +776,19 @@
       margin-bottom: 8px;
     }
 
-    .quiz-breakdown {
+    .result-breakdown {
       font-size: 0.9rem;
       color: var(--text-light);
       margin-bottom: 0;
     }
 
-    .quiz-note {
+    .result-note {
       font-size: 0.8rem;
       margin-top: 8px;
       color: var(--text-light);
     }
 
-    .quiz-cta {
+    .result-cta {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -763,7 +804,7 @@
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .quiz-cta:hover {
+    .result-cta:hover {
       transform: translateY(-2px);
       box-shadow: 0 14px 30px rgba(33, 133, 160, 0.33);
     }
@@ -948,7 +989,7 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .options-grid {
+      .quiz-section .grid {
         grid-template-columns: minmax(0, 1fr);
       }
 
@@ -1035,16 +1076,8 @@
         height: 230px;
       }
 
-      .quiz {
+      .quiz-container {
         padding: 16px;
-      }
-
-      .quiz-controls {
-        flex-direction: column-reverse;
-      }
-
-      .quiz-btn {
-        width: 100%;
       }
     }
   </style>
@@ -1264,110 +1297,75 @@
     <section id="tarifs" class="quiz-section">
       <div class="container">
         <h2>Tarif Intérieur Personnalisé</h2>
-        <p class="section-intro">3 questions → Devis exact en 15s</p>
+        <p class="section-intro">4 étapes → tarif instantané</p>
 
-        <div class="quiz" id="tarif-quiz">
-          <p class="quiz-headline">Sélectionnez vos réponses pour obtenir votre estimation immédiate.</p>
+        <div class="quiz-container" id="tarif-quiz">
+          <div class="progress"><span id="step-num">1</span>/4</div>
 
-          <div class="quiz-step active" data-step="1">
-            <h3>1. Type de véhicule ?</h3>
-            <div class="options-grid">
-              <label class="option-card">
-                <input type="radio" name="vehicle" value="citadine" />
+          <div class="step active" data-step="1">
+            <h3>Véhicule ?</h3>
+            <div class="grid">
+              <label class="card citadine">
+                <input type="radio" name="veh" value="citadine" />
                 <div>
-                  <strong>Citadine</strong>
-                  <small>Clio, 208, Yaris</small>
+                  🚗 <strong>Citadine</strong>
+                  <small>Clio, 208</small>
                 </div>
               </label>
-              <label class="option-card">
-                <input type="radio" name="vehicle" value="berline" />
+              <label class="card suv">
+                <input type="radio" name="veh" value="suv" />
                 <div>
-                  <strong>Berline</strong>
-                  <small>Mégane, Série 3, Passat</small>
-                </div>
-              </label>
-              <label class="option-card">
-                <input type="radio" name="vehicle" value="suv" />
-                <div>
-                  <strong>SUV / Utilitaire</strong>
-                  <small>3008, Tiguan, Kadjar, Kangoo</small>
+                  🚙 <strong>SUV</strong>
+                  <small>3008, Qashqai</small>
                 </div>
               </label>
             </div>
-            <div class="quiz-controls">
-              <button type="button" class="quiz-btn quiz-btn-prev" disabled>Retour</button>
-              <button type="button" class="quiz-btn quiz-btn-next" data-next="2">Suivant</button>
-            </div>
+            <button type="button" class="next" data-next="2">➡️</button>
           </div>
 
-          <div class="quiz-step" data-step="2">
-            <h3>2. État intérieur actuel ?</h3>
-            <div class="options-grid">
-              <label class="option-card">
-                <input type="radio" name="condition" value="standard" />
-                <div>
-                  <strong>Entretien normal</strong>
-                  <small>Véhicule propre, peu de taches</small>
-                </div>
-              </label>
-              <label class="option-card">
-                <input type="radio" name="condition" value="sale" />
-                <div>
-                  <strong>Encrassé</strong>
-                  <small>Plusieurs zones à reprendre</small>
-                </div>
-              </label>
-              <label class="option-card">
-                <input type="radio" name="condition" value="intense" />
-                <div>
-                  <strong>Très encrassé</strong>
-                  <small>Taches marquées, usage intensif</small>
-                </div>
-              </label>
-            </div>
-            <div class="quiz-controls">
-              <button type="button" class="quiz-btn quiz-btn-prev" data-prev="1">Retour</button>
-              <button type="button" class="quiz-btn quiz-btn-next" data-next="3">Suivant</button>
-            </div>
+          <div class="step" data-step="2">
+            <h3>Extérieur souhaité ?</h3>
+            <select id="ext-level">
+              <option value="none">Intérieur seul</option>
+              <option value="quick">Quick Ext. (49/59€)</option>
+              <option value="standard">Standard Ext. (89/109€)</option>
+              <option value="premium">Premium Ext. (199/249€)</option>
+            </select>
+            <div class="ext-desc" id="ext-desc"></div>
+            <button type="button" class="prev" data-prev="1">⬅️</button>
+            <button type="button" class="next" data-next="3">➡️</button>
           </div>
 
-          <div class="quiz-step" data-step="3">
-            <h3>3. Besoins spécifiques ? (3 extras)</h3>
-            <div class="options-grid">
-              <label class="option-card">
-                <input type="checkbox" name="extras" value="poils" />
-                <div>
-                  <strong>Poils d’animaux</strong>
-                  <small>Extraction renforcée</small>
-                </div>
+          <div class="step" data-step="3">
+            <h3>Terrain privé ? <span class="req">Obligatoire ext.</span></h3>
+            <div class="grid">
+              <label class="card ok">
+                <input type="radio" name="terrain" value="oui" />
+                <div>✅ <strong>Allée / Garage</strong></div>
               </label>
-              <label class="option-card">
-                <input type="checkbox" name="extras" value="odeurs" />
-                <div>
-                  <strong>Odeurs marquées</strong>
-                  <small>Traitement désodorisant ciblé</small>
-                </div>
-              </label>
-              <label class="option-card">
-                <input type="checkbox" name="extras" value="coffre" />
-                <div>
-                  <strong>Coffre très sale</strong>
-                  <small>Nettoyage renforcé du coffre</small>
-                </div>
+              <label class="card no">
+                <input type="radio" name="terrain" value="non" />
+                <div>❌ <strong>Non disponible</strong></div>
               </label>
             </div>
-            <div class="quiz-controls">
-              <button type="button" class="quiz-btn quiz-btn-prev" data-prev="2">Retour</button>
-              <button type="button" class="quiz-btn quiz-btn-submit" id="quiz-submit">Voir mon tarif</button>
-            </div>
+            <p class="terrain-warning" id="terrain-warning" hidden>
+              Un accès privé est nécessaire pour une prestation extérieure.
+            </p>
+            <button type="button" class="prev" data-prev="2">⬅️</button>
+            <button type="button" class="next" data-next="4">➡️</button>
+          </div>
 
-            <div class="quiz-result" id="quiz-result" hidden>
+          <div class="step" data-step="4">
+            <h3>Votre estimation</h3>
+            <div class="result-box">
               <h4>Tarif estimé instantané</h4>
-              <div class="quiz-total" id="quiz-total">0€</div>
-              <p class="quiz-breakdown" id="quiz-breakdown"></p>
-              <p class="quiz-note">Tarif indicatif basé sur vos réponses. Le devis final est confirmé après échange rapide.</p>
-              <a href="#contact" class="quiz-cta">Recevoir mon devis personnalisé</a>
+              <div class="result-price" id="result-price">0€</div>
+              <p class="result-breakdown" id="result-breakdown"></p>
+              <p class="result-note">Tarif indicatif. Confirmation finale après échange et photos.</p>
+              <a href="#contact" class="result-cta">Recevoir mon devis personnalisé</a>
             </div>
+            <button type="button" class="prev" data-prev="3">⬅️</button>
+            <button type="button" class="calc" id="calc-price">Calculer</button>
           </div>
         </div>
       </div>
@@ -1531,56 +1529,54 @@
 
     (function () {
       var quiz = document.getElementById('tarif-quiz');
-      var steps = Array.prototype.slice.call(document.querySelectorAll('.quiz-step'));
-      var nextButtons = Array.prototype.slice.call(document.querySelectorAll('.quiz-btn-next'));
-      var prevButtons = Array.prototype.slice.call(document.querySelectorAll('.quiz-btn-prev[data-prev]'));
-      var submitButton = document.getElementById('quiz-submit');
-      var resultBlock = document.getElementById('quiz-result');
-      var resultTotal = document.getElementById('quiz-total');
-      var resultBreakdown = document.getElementById('quiz-breakdown');
+      var steps = quiz ? Array.prototype.slice.call(quiz.querySelectorAll('.step')) : [];
+      var nextButtons = quiz ? Array.prototype.slice.call(quiz.querySelectorAll('.next[data-next]')) : [];
+      var prevButtons = quiz ? Array.prototype.slice.call(quiz.querySelectorAll('.prev[data-prev]')) : [];
+      var stepNum = document.getElementById('step-num');
+      var extLevel = document.getElementById('ext-level');
+      var extDesc = document.getElementById('ext-desc');
+      var terrainWarning = document.getElementById('terrain-warning');
+      var calcButton = document.getElementById('calc-price');
+      var resultPrice = document.getElementById('result-price');
+      var resultBreakdown = document.getElementById('result-breakdown');
       var prestationSelect = document.getElementById('prestation');
       var messageField = document.getElementById('message');
 
-      if (!quiz || !steps.length || !submitButton || !resultBlock || !resultTotal || !resultBreakdown) {
+      if (!quiz || !steps.length || !calcButton || !resultPrice || !resultBreakdown) {
         return;
       }
 
       var currentStep = 1;
 
-      var vehiclePrices = {
+      var interiorPrices = {
         citadine: 120,
-        berline: 135,
         suv: 150
       };
 
-      var vehicleLabels = {
+      var vehicleNames = {
         citadine: 'Citadine',
-        berline: 'Berline',
-        suv: 'SUV / Utilitaire'
+        suv: 'SUV'
       };
 
-      var conditionFees = {
-        standard: 0,
-        sale: 20,
-        intense: 40
+      var exteriorPrices = {
+        none: { citadine: 0, suv: 0 },
+        quick: { citadine: 49, suv: 59 },
+        standard: { citadine: 89, suv: 109 },
+        premium: { citadine: 199, suv: 249 }
       };
 
-      var conditionLabels = {
-        standard: 'Entretien normal',
-        sale: 'Encrassé',
-        intense: 'Très encrassé'
+      var exteriorNames = {
+        none: 'Intérieur seul',
+        quick: 'Quick Extérieur',
+        standard: 'Standard Extérieur',
+        premium: 'Premium Extérieur'
       };
 
-      var extrasFees = {
-        poils: 20,
-        odeurs: 15,
-        coffre: 10
-      };
-
-      var extrasLabels = {
-        poils: 'Poils d’animaux',
-        odeurs: 'Odeurs marquées',
-        coffre: 'Coffre très sale'
+      var exteriorDescriptions = {
+        none: 'Prestation intérieure uniquement, idéale pour un rafraîchissement rapide.',
+        quick: 'Lavage extérieur rapide + finitions essentielles.',
+        standard: 'Lavage approfondi + détails jantes, vitres et protections de base.',
+        premium: 'Préparation extérieure complète avec niveau de finition premium.'
       };
 
       function showStep(stepNumber) {
@@ -1589,65 +1585,83 @@
           var isCurrent = Number(stepElement.getAttribute('data-step')) === stepNumber;
           stepElement.classList.toggle('active', isCurrent);
         });
+
+        if (stepNum) {
+          stepNum.textContent = String(stepNumber);
+        }
       }
 
       function hasAnswer(stepNumber) {
         if (stepNumber === 1) {
-          return !!quiz.querySelector('input[name="vehicle"]:checked');
+          return !!quiz.querySelector('input[name="veh"]:checked');
         }
-        if (stepNumber === 2) {
-          return !!quiz.querySelector('input[name="condition"]:checked');
+
+        if (stepNumber === 3) {
+          var chosenExt = extLevel ? extLevel.value : 'none';
+          var terrainInput = quiz.querySelector('input[name="terrain"]:checked');
+          var terrain = terrainInput ? terrainInput.value : '';
+          var needsTerrain = chosenExt !== 'none';
+
+          if (terrainWarning) {
+            terrainWarning.hidden = true;
+          }
+
+          if (needsTerrain && terrain !== 'oui') {
+            if (terrainWarning) {
+              terrainWarning.hidden = false;
+            }
+            return false;
+          }
+
+          return true;
         }
+
         return true;
       }
 
       function readValues() {
-        var vehicleInput = quiz.querySelector('input[name="vehicle"]:checked');
-        var conditionInput = quiz.querySelector('input[name="condition"]:checked');
-        var extrasInputs = Array.prototype.slice.call(quiz.querySelectorAll('input[name="extras"]:checked'));
+        var vehicleInput = quiz.querySelector('input[name="veh"]:checked');
+        var terrainInput = quiz.querySelector('input[name="terrain"]:checked');
 
         return {
           vehicle: vehicleInput ? vehicleInput.value : null,
-          condition: conditionInput ? conditionInput.value : null,
-          extras: extrasInputs.map(function (input) { return input.value; })
+          ext: extLevel ? extLevel.value : 'none',
+          terrain: terrainInput ? terrainInput.value : 'non-renseigne'
         };
       }
 
       function calculateTotal(values) {
-        var base = vehiclePrices[values.vehicle] || 0;
-        var conditionFee = conditionFees[values.condition] || 0;
-        var extrasFee = values.extras.reduce(function (sum, extra) {
-          return sum + (extrasFees[extra] || 0);
-        }, 0);
+        var interior = interiorPrices[values.vehicle] || 0;
+        var exterior = (exteriorPrices[values.ext] && exteriorPrices[values.ext][values.vehicle]) || 0;
+
         return {
-          base: base,
-          conditionFee: conditionFee,
-          extrasFee: extrasFee,
-          total: base + conditionFee + extrasFee
+          interior: interior,
+          exterior: exterior,
+          total: interior + exterior
         };
       }
 
       function formatBreakdown(values, pricing) {
-        var extrasText = values.extras.length
-          ? values.extras.map(function (extra) { return extrasLabels[extra]; }).join(', ')
-          : 'Aucun extra';
-
-        return vehicleLabels[values.vehicle] + ' (' + pricing.base + '€) + ' + conditionLabels[values.condition] +
-          ' (+' + pricing.conditionFee + '€) + extras (' + extrasText + ', +' + pricing.extrasFee + '€).';
+        return vehicleNames[values.vehicle] + ': intérieur ' + pricing.interior + '€ + extérieur ' + pricing.exterior +
+          '€ (' + exteriorNames[values.ext] + ').';
       }
 
       function syncContactForm(values, pricing) {
         if (prestationSelect) {
-          prestationSelect.value = 'interieur';
+          prestationSelect.value = values.ext === 'none' ? 'interieur' : 'pack';
         }
 
         if (messageField) {
-          var extrasInfo = values.extras.length
-            ? values.extras.map(function (extra) { return extrasLabels[extra]; }).join(', ')
-            : 'Aucun';
-          messageField.value = 'Estimation quiz : ' + pricing.total + '€ | Véhicule : ' + vehicleLabels[values.vehicle] +
-            ' | État : ' + conditionLabels[values.condition] + ' | Extras : ' + extrasInfo + '.';
+          messageField.value = 'Estimation quiz : ' + pricing.total + '€ | Véhicule : ' + vehicleNames[values.vehicle] +
+            ' | Extérieur : ' + exteriorNames[values.ext] + ' | Terrain privé : ' + values.terrain + '.';
         }
+      }
+
+      function refreshExteriorDescription() {
+        if (!extLevel || !extDesc) {
+          return;
+        }
+        extDesc.textContent = exteriorDescriptions[extLevel.value] || '';
       }
 
       nextButtons.forEach(function (button) {
@@ -1665,21 +1679,38 @@
         });
       });
 
-      submitButton.addEventListener('click', function () {
+      calcButton.addEventListener('click', function () {
         var values = readValues();
 
-        if (!values.vehicle || !values.condition) {
+        if (!values.vehicle) {
+          return;
+        }
+
+        if (values.ext !== 'none' && values.terrain !== 'oui') {
+          if (terrainWarning) {
+            terrainWarning.hidden = false;
+          }
+          showStep(3);
           return;
         }
 
         var pricing = calculateTotal(values);
-        resultTotal.textContent = pricing.total + '€';
+        resultPrice.textContent = pricing.total + '€';
         resultBreakdown.textContent = formatBreakdown(values, pricing);
-        resultBlock.hidden = false;
         syncContactForm(values, pricing);
       });
 
+      if (extLevel) {
+        extLevel.addEventListener('change', function () {
+          refreshExteriorDescription();
+          if (terrainWarning) {
+            terrainWarning.hidden = true;
+          }
+        });
+      }
+
       showStep(1);
+      refreshExteriorDescription();
     })();
   </script>
 </body>
