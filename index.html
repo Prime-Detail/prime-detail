@@ -583,186 +583,175 @@
 
     /* PRICING */
 
-    .pricing-wrapper {
-      display: grid;
-      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
-      gap: 26px;
-      align-items: flex-start;
+    .quiz-section {
+      background: linear-gradient(180deg, #f8fbfd 0%, #f1f6fa 100%);
     }
 
-    .pricing-table {
-      background: var(--neutral-surface);
-      border-radius: var(--radius-card);
-      box-shadow: var(--shadow-soft);
-      overflow: hidden;
-      border: 1px solid rgba(229, 231, 235, 0.9);
-    }
-
-    .pricing-table-scroll {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .pricing-table-scroll table {
-      min-width: 720px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.93rem;
-    }
-
-    th,
-    td {
-      padding: 13px 14px;
-      text-align: left;
-      border-bottom: 1px solid #edf2f7;
-      vertical-align: top;
-    }
-
-    th {
-      background: linear-gradient(135deg, #2b96b3 0%, #1f6f85 100%);
-      color: #ffffff;
-      font-weight: 600;
-      font-size: 0.86rem;
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
-    }
-
-    tbody tr:nth-child(even) {
-      background: #f9fafb;
-    }
-
-    tbody tr:hover td {
-      background: #f1f5f9;
-    }
-
-    .price {
-      font-weight: 700;
-      color: var(--primary-orange);
-    }
-
-    .pricing-note {
-      font-size: 0.86rem;
-      color: var(--text-light);
-      margin-top: 12px;
-      padding: 0 14px 14px;
-    }
-
-    .pricing-quiz {
+    .quiz {
       background: var(--neutral-surface);
       border-radius: var(--radius-card);
       box-shadow: var(--shadow-soft);
       border: 1px solid rgba(229, 231, 235, 0.9);
-      padding: 20px;
-      margin-bottom: 18px;
+      padding: 22px;
+      max-width: 860px;
+      margin: 0 auto;
     }
 
-    .pricing-quiz h3 {
-      font-size: 1.08rem;
-      margin-bottom: 8px;
-    }
-
-    .pricing-quiz p {
+    .quiz-headline {
+      margin-bottom: 14px;
       font-size: 0.92rem;
       color: var(--text-light);
-      margin-bottom: 12px;
     }
 
-    .pricing-quiz-options {
+    .quiz-step {
+      display: none;
+    }
+
+    .quiz-step.active {
+      display: block;
+      animation: fadeStep 0.25s ease;
+    }
+
+    @keyframes fadeStep {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .quiz-step h3 {
+      margin-bottom: 12px;
+      font-size: 1.08rem;
+    }
+
+    .options-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
+      margin-bottom: 14px;
     }
 
-    .quiz-option {
+    .option-card {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
       border: 1px solid rgba(31, 111, 133, 0.28);
       border-radius: 12px;
+      padding: 12px;
       background: #f8fafc;
-      color: var(--text-dark);
-      text-align: left;
-      padding: 12px 13px;
-      font-size: 0.9rem;
-      font-weight: 600;
       cursor: pointer;
-      transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+      transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
     }
 
-    .quiz-option:hover {
+    .option-card:hover {
       border-color: #1f6f85;
       background: #eef7fb;
       transform: translateY(-1px);
     }
 
-    .quiz-option.active {
+    .option-card input {
+      margin-top: 2px;
+      accent-color: #1f6f85;
+      flex-shrink: 0;
+    }
+
+    .option-card strong {
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    .option-card small {
+      display: block;
+      margin-top: 2px;
+      color: var(--text-light);
+      font-size: 0.82rem;
+    }
+
+    .quiz-controls {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .quiz-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 0.72rem 1.05rem;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .quiz-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .quiz-btn-next,
+    .quiz-btn-submit {
       background: linear-gradient(135deg, #2b96b3 0%, #1f6f85 100%);
       color: #ffffff;
-      border-color: transparent;
-      box-shadow: 0 10px 26px rgba(33, 133, 160, 0.24);
+      box-shadow: 0 10px 24px rgba(33, 133, 160, 0.25);
     }
 
-    .pricing-result {
+    .quiz-btn-prev {
+      background: #eef2f7;
+      color: var(--text-dark);
+      border: 1px solid #dbe4ef;
+    }
+
+    .quiz-btn:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .quiz-result {
       margin-top: 12px;
-      padding: 12px 14px;
-      border-radius: 14px;
       background: #f3f8fb;
       border: 1px solid rgba(31, 111, 133, 0.18);
+      border-radius: 14px;
+      padding: 14px;
     }
 
-    .pricing-result-title {
-      font-size: 0.8rem;
+    .quiz-result h4 {
+      margin-bottom: 6px;
+      color: #1f6f85;
+      font-size: 0.82rem;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      color: #1f6f85;
-      margin-bottom: 4px;
+    }
+
+    .quiz-total {
+      font-size: clamp(1.75rem, 5vw, 2.2rem);
+      line-height: 1.1;
+      color: var(--primary-orange);
       font-weight: 700;
+      margin-bottom: 8px;
     }
 
-    .pricing-result-text {
-      margin: 0;
-      color: var(--text-dark);
-      font-size: 0.91rem;
+    .quiz-breakdown {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin-bottom: 0;
     }
 
-    .pricing-row-hidden {
-      display: none;
-    }
-
-    .pricing-row-match td {
-      background: #ecf7fd;
-    }
-
-    .pricing-side {
-      background: var(--neutral-surface);
-      border-radius: var(--radius-card);
-      padding: 22px 20px;
-      box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(229, 231, 235, 0.9);
-      font-size: 0.95rem;
+    .quiz-note {
+      font-size: 0.8rem;
+      margin-top: 8px;
       color: var(--text-light);
     }
 
-    .pricing-side h3 {
-      margin-bottom: 8px;
-      font-size: 1.05rem;
-    }
-
-    .pricing-side ul {
-      margin-top: 8px;
-      list-style: none;
-      padding-left: 0;
-    }
-
-    .pricing-side li + li {
-      margin-top: 6px;
-    }
-
-    .pricing-cta {
+    .quiz-cta {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      margin-top: 14px;
+      margin-top: 12px;
       padding: 0.72rem 1rem;
       border-radius: 999px;
       background: linear-gradient(135deg, #2b96b3 0%, #1f6f85 100%);
@@ -774,7 +763,7 @@
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .pricing-cta:hover {
+    .quiz-cta:hover {
       transform: translateY(-2px);
       box-shadow: 0 14px 30px rgba(33, 133, 160, 0.33);
     }
@@ -959,11 +948,7 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .pricing-wrapper {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .pricing-quiz-options {
+      .options-grid {
         grid-template-columns: minmax(0, 1fr);
       }
 
@@ -1050,13 +1035,16 @@
         height: 230px;
       }
 
-      th,
-      td {
-        padding: 11px 12px;
+      .quiz {
+        padding: 16px;
       }
 
-      .pricing-table-scroll table {
-        min-width: 660px;
+      .quiz-controls {
+        flex-direction: column-reverse;
+      }
+
+      .quiz-btn {
+        width: 100%;
       }
     }
   </style>
@@ -1273,94 +1261,114 @@
     </section>
 
     <!-- TARIFS -->
-    <section id="tarifs">
+    <section id="tarifs" class="quiz-section">
       <div class="container">
-        <h2>Tarifs clairs et sans surprise</h2>
-        <p class="section-intro">
-          Les tarifs varient selon la taille du véhicule (citadine, berline, SUV, utilitaire) et l’état
-          initial. Voici une base transparente pour les citadines et berlines, avec devis précis avant toute intervention.
-        </p>
+        <h2>Tarif Intérieur Personnalisé</h2>
+        <p class="section-intro">3 questions → Devis exact en 15s</p>
 
-        <div class="pricing-wrapper">
-          <div class="pricing-table">
-            <div class="pricing-quiz" id="pricing-quiz">
-              <h3>Quel est votre besoin principal ?</h3>
-              <p>Sélectionnez votre profil pour voir une tarification adaptée.</p>
-              <div class="pricing-quiz-options">
-                <button type="button" class="quiz-option" data-client="neuf">Je viens d’acquérir un véhicule neuf</button>
-                <button type="button" class="quiz-option" data-client="occasion">Véhicule d’occasion que je souhaite vendre</button>
-                <button type="button" class="quiz-option" data-client="entretien">J’ai besoin d’un entretien régulier</button>
-                <button type="button" class="quiz-option" data-client="all">Afficher tous les tarifs</button>
-              </div>
-              <div class="pricing-result" id="pricing-result" hidden>
-                <p class="pricing-result-title" id="pricing-result-title">Tarification conseillée</p>
-                <p class="pricing-result-text" id="pricing-result-text"></p>
-              </div>
-            </div>
+        <div class="quiz" id="tarif-quiz">
+          <p class="quiz-headline">Sélectionnez vos réponses pour obtenir votre estimation immédiate.</p>
 
-            <div class="pricing-table-scroll">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Pack</th>
-                    <th>Citadine / Berline</th>
-                    <th>SUV / Utilitaire</th>
-                    <th>Description courte</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr data-clients="occasion,entretien">
-                    <td>Intérieur Complet Detailing</td>
-                    <td class="price">140€</td>
-                    <td class="price">160€</td>
-                    <td>Premier passage, remise à niveau complète de l’habitacle.</td>
-                  </tr>
-                  <tr data-clients="occasion">
-                    <td>Rénovation Intérieure</td>
-                    <td class="price">190€</td>
-                    <td class="price">220€</td>
-                    <td>Pour intérieurs très encrassés (taches, poils, forte utilisation).</td>
-                  </tr>
-                  <tr data-clients="neuf,occasion">
-                    <td>Rénovation One Step Carrosserie</td>
-                    <td class="price">240€</td>
-                    <td class="price">280€</td>
-                    <td>Lavage + décontamination + polissage + protection.</td>
-                  </tr>
-                  <tr data-clients="neuf,entretien">
-                    <td>Face avant & capot</td>
-                    <td class="price">130€</td>
-                    <td class="price">150€</td>
-                    <td>Polissage capot + pare-chocs avant + ailes avant.</td>
-                  </tr>
-                  <tr data-clients="neuf,occasion">
-                    <td>Pack Détail (intérieur + ext.)</td>
-                    <td class="price">370€</td>
-                    <td class="price">400€</td>
-                    <td>Intérieur complet + rénovation One Step carrosserie.</td>
-                  </tr>
-                </tbody>
-              </table>
+          <div class="quiz-step active" data-step="1">
+            <h3>1. Type de véhicule ?</h3>
+            <div class="options-grid">
+              <label class="option-card">
+                <input type="radio" name="vehicle" value="citadine" />
+                <div>
+                  <strong>Citadine</strong>
+                  <small>Clio, 208, Yaris</small>
+                </div>
+              </label>
+              <label class="option-card">
+                <input type="radio" name="vehicle" value="berline" />
+                <div>
+                  <strong>Berline</strong>
+                  <small>Mégane, Série 3, Passat</small>
+                </div>
+              </label>
+              <label class="option-card">
+                <input type="radio" name="vehicle" value="suv" />
+                <div>
+                  <strong>SUV / Utilitaire</strong>
+                  <small>3008, Tiguan, Kadjar, Kangoo</small>
+                </div>
+              </label>
             </div>
-            <div class="pricing-note">
-              Les forfaits d’entretien intérieur (mensuel ou trimestriel) sont proposés à un tarif réduit
-              après une première remise à niveau. Sur demande lors du devis gratuit.
+            <div class="quiz-controls">
+              <button type="button" class="quiz-btn quiz-btn-prev" disabled>Retour</button>
+              <button type="button" class="quiz-btn quiz-btn-next" data-next="2">Suivant</button>
             </div>
           </div>
 
-          <aside class="pricing-side">
-            <h3>Ce qui peut faire varier le prix</h3>
-            <ul>
-              <li>État global de l’intérieur (taches anciennes, poils d’animaux, odeurs marquées).</li>
-              <li>État de la peinture (micro-rayures, voile terne, contamination).</li>
-              <li>Taille réelle du véhicule et temps nécessaire.</li>
-            </ul>
-            <p style="margin-top:10px;">
-              Chaque devis précise clairement la prestation prévue, le temps estimé et le tarif final
-              avant la prise de rendez-vous.
-            </p>
-            <a href="#contact" class="pricing-cta">Demander un devis personnalisé</a>
-          </aside>
+          <div class="quiz-step" data-step="2">
+            <h3>2. État intérieur actuel ?</h3>
+            <div class="options-grid">
+              <label class="option-card">
+                <input type="radio" name="condition" value="standard" />
+                <div>
+                  <strong>Entretien normal</strong>
+                  <small>Véhicule propre, peu de taches</small>
+                </div>
+              </label>
+              <label class="option-card">
+                <input type="radio" name="condition" value="sale" />
+                <div>
+                  <strong>Encrassé</strong>
+                  <small>Plusieurs zones à reprendre</small>
+                </div>
+              </label>
+              <label class="option-card">
+                <input type="radio" name="condition" value="intense" />
+                <div>
+                  <strong>Très encrassé</strong>
+                  <small>Taches marquées, usage intensif</small>
+                </div>
+              </label>
+            </div>
+            <div class="quiz-controls">
+              <button type="button" class="quiz-btn quiz-btn-prev" data-prev="1">Retour</button>
+              <button type="button" class="quiz-btn quiz-btn-next" data-next="3">Suivant</button>
+            </div>
+          </div>
+
+          <div class="quiz-step" data-step="3">
+            <h3>3. Besoins spécifiques ? (3 extras)</h3>
+            <div class="options-grid">
+              <label class="option-card">
+                <input type="checkbox" name="extras" value="poils" />
+                <div>
+                  <strong>Poils d’animaux</strong>
+                  <small>Extraction renforcée</small>
+                </div>
+              </label>
+              <label class="option-card">
+                <input type="checkbox" name="extras" value="odeurs" />
+                <div>
+                  <strong>Odeurs marquées</strong>
+                  <small>Traitement désodorisant ciblé</small>
+                </div>
+              </label>
+              <label class="option-card">
+                <input type="checkbox" name="extras" value="coffre" />
+                <div>
+                  <strong>Coffre très sale</strong>
+                  <small>Nettoyage renforcé du coffre</small>
+                </div>
+              </label>
+            </div>
+            <div class="quiz-controls">
+              <button type="button" class="quiz-btn quiz-btn-prev" data-prev="2">Retour</button>
+              <button type="button" class="quiz-btn quiz-btn-submit" id="quiz-submit">Voir mon tarif</button>
+            </div>
+
+            <div class="quiz-result" id="quiz-result" hidden>
+              <h4>Tarif estimé instantané</h4>
+              <div class="quiz-total" id="quiz-total">0€</div>
+              <p class="quiz-breakdown" id="quiz-breakdown"></p>
+              <p class="quiz-note">Tarif indicatif basé sur vos réponses. Le devis final est confirmé après échange rapide.</p>
+              <a href="#contact" class="quiz-cta">Recevoir mon devis personnalisé</a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1522,76 +1530,156 @@
     })();
 
     (function () {
-      var quizButtons = Array.prototype.slice.call(document.querySelectorAll('.quiz-option'));
-      var pricingRows = Array.prototype.slice.call(document.querySelectorAll('.pricing-table tbody tr[data-clients]'));
-      var resultBlock = document.getElementById('pricing-result');
-      var resultTitle = document.getElementById('pricing-result-title');
-      var resultText = document.getElementById('pricing-result-text');
+      var quiz = document.getElementById('tarif-quiz');
+      var steps = Array.prototype.slice.call(document.querySelectorAll('.quiz-step'));
+      var nextButtons = Array.prototype.slice.call(document.querySelectorAll('.quiz-btn-next'));
+      var prevButtons = Array.prototype.slice.call(document.querySelectorAll('.quiz-btn-prev[data-prev]'));
+      var submitButton = document.getElementById('quiz-submit');
+      var resultBlock = document.getElementById('quiz-result');
+      var resultTotal = document.getElementById('quiz-total');
+      var resultBreakdown = document.getElementById('quiz-breakdown');
       var prestationSelect = document.getElementById('prestation');
+      var messageField = document.getElementById('message');
 
-      if (!quizButtons.length || !pricingRows.length || !resultBlock || !resultTitle || !resultText) {
+      if (!quiz || !steps.length || !submitButton || !resultBlock || !resultTotal || !resultBreakdown) {
         return;
       }
 
-      var profiles = {
-        neuf: {
-          title: 'Client véhicule neuf',
-          text: 'Priorité protection carrosserie. Nous recommandons "Face avant & capot" ou "Pack Détail" selon le niveau de finition souhaité.'
-        },
-        occasion: {
-          title: 'Client véhicule d’occasion à vendre',
-          text: 'Objectif valorisation rapide avant vente. Les packs affichés améliorent l’aspect intérieur et extérieur pour maximiser l’impression générale.'
-        },
-        entretien: {
-          title: 'Client entretien régulier',
-          text: 'Objectif maintien dans le temps. Commencez par une remise à niveau, puis passez sur un forfait d’entretien mensuel ou trimestriel.'
-        },
-        all: {
-          title: 'Tous les tarifs',
-          text: 'Voici l’ensemble des prestations de base. Le devis final reste ajusté selon l’état réel du véhicule.'
-        }
+      var currentStep = 1;
+
+      var vehiclePrices = {
+        citadine: 120,
+        berline: 135,
+        suv: 150
       };
 
-      var selectByProfile = {
-        neuf: 'carrosserie',
-        occasion: 'pack',
-        entretien: 'entretien',
-        all: 'interieur'
+      var vehicleLabels = {
+        citadine: 'Citadine',
+        berline: 'Berline',
+        suv: 'SUV / Utilitaire'
       };
 
-      function normalizeClients(value) {
-        return value.split(',').map(function (item) {
-          return item.trim();
+      var conditionFees = {
+        standard: 0,
+        sale: 20,
+        intense: 40
+      };
+
+      var conditionLabels = {
+        standard: 'Entretien normal',
+        sale: 'Encrassé',
+        intense: 'Très encrassé'
+      };
+
+      var extrasFees = {
+        poils: 20,
+        odeurs: 15,
+        coffre: 10
+      };
+
+      var extrasLabels = {
+        poils: 'Poils d’animaux',
+        odeurs: 'Odeurs marquées',
+        coffre: 'Coffre très sale'
+      };
+
+      function showStep(stepNumber) {
+        currentStep = stepNumber;
+        steps.forEach(function (stepElement) {
+          var isCurrent = Number(stepElement.getAttribute('data-step')) === stepNumber;
+          stepElement.classList.toggle('active', isCurrent);
         });
       }
 
-      function applyProfile(profile) {
-        var isAll = profile === 'all';
+      function hasAnswer(stepNumber) {
+        if (stepNumber === 1) {
+          return !!quiz.querySelector('input[name="vehicle"]:checked');
+        }
+        if (stepNumber === 2) {
+          return !!quiz.querySelector('input[name="condition"]:checked');
+        }
+        return true;
+      }
 
-        quizButtons.forEach(function (button) {
-          button.classList.toggle('active', button.getAttribute('data-client') === profile);
-        });
+      function readValues() {
+        var vehicleInput = quiz.querySelector('input[name="vehicle"]:checked');
+        var conditionInput = quiz.querySelector('input[name="condition"]:checked');
+        var extrasInputs = Array.prototype.slice.call(quiz.querySelectorAll('input[name="extras"]:checked'));
 
-        pricingRows.forEach(function (row) {
-          var matches = isAll || normalizeClients(row.getAttribute('data-clients') || '').indexOf(profile) !== -1;
-          row.classList.toggle('pricing-row-hidden', !matches);
-          row.classList.toggle('pricing-row-match', matches && !isAll);
-        });
+        return {
+          vehicle: vehicleInput ? vehicleInput.value : null,
+          condition: conditionInput ? conditionInput.value : null,
+          extras: extrasInputs.map(function (input) { return input.value; })
+        };
+      }
 
-        resultBlock.hidden = false;
-        resultTitle.textContent = profiles[profile].title;
-        resultText.textContent = profiles[profile].text;
+      function calculateTotal(values) {
+        var base = vehiclePrices[values.vehicle] || 0;
+        var conditionFee = conditionFees[values.condition] || 0;
+        var extrasFee = values.extras.reduce(function (sum, extra) {
+          return sum + (extrasFees[extra] || 0);
+        }, 0);
+        return {
+          base: base,
+          conditionFee: conditionFee,
+          extrasFee: extrasFee,
+          total: base + conditionFee + extrasFee
+        };
+      }
 
-        if (prestationSelect && selectByProfile[profile]) {
-          prestationSelect.value = selectByProfile[profile];
+      function formatBreakdown(values, pricing) {
+        var extrasText = values.extras.length
+          ? values.extras.map(function (extra) { return extrasLabels[extra]; }).join(', ')
+          : 'Aucun extra';
+
+        return vehicleLabels[values.vehicle] + ' (' + pricing.base + '€) + ' + conditionLabels[values.condition] +
+          ' (+' + pricing.conditionFee + '€) + extras (' + extrasText + ', +' + pricing.extrasFee + '€).';
+      }
+
+      function syncContactForm(values, pricing) {
+        if (prestationSelect) {
+          prestationSelect.value = 'interieur';
+        }
+
+        if (messageField) {
+          var extrasInfo = values.extras.length
+            ? values.extras.map(function (extra) { return extrasLabels[extra]; }).join(', ')
+            : 'Aucun';
+          messageField.value = 'Estimation quiz : ' + pricing.total + '€ | Véhicule : ' + vehicleLabels[values.vehicle] +
+            ' | État : ' + conditionLabels[values.condition] + ' | Extras : ' + extrasInfo + '.';
         }
       }
 
-      quizButtons.forEach(function (button) {
+      nextButtons.forEach(function (button) {
         button.addEventListener('click', function () {
-          applyProfile(button.getAttribute('data-client'));
+          if (!hasAnswer(currentStep)) {
+            return;
+          }
+          showStep(Number(button.getAttribute('data-next')));
         });
       });
+
+      prevButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          showStep(Number(button.getAttribute('data-prev')));
+        });
+      });
+
+      submitButton.addEventListener('click', function () {
+        var values = readValues();
+
+        if (!values.vehicle || !values.condition) {
+          return;
+        }
+
+        var pricing = calculateTotal(values);
+        resultTotal.textContent = pricing.total + '€';
+        resultBreakdown.textContent = formatBreakdown(values, pricing);
+        resultBlock.hidden = false;
+        syncContactForm(values, pricing);
+      });
+
+      showStep(1);
     })();
   </script>
 </body>
