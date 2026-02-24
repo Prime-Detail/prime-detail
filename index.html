@@ -583,11 +583,11 @@
 
     /* PRICING */
 
-    .pricing-quiz {
+    .quiz-finition {
       background: linear-gradient(180deg, #f8fbfd 0%, #f1f6fa 100%);
     }
 
-    .pricing-quiz .quiz {
+    .quiz-finition .quiz {
       max-width: 740px;
       margin: 0 auto;
       background: var(--neutral-surface);
@@ -597,37 +597,16 @@
       padding: 20px;
     }
 
-    .pricing-quiz .header {
-      margin-bottom: 14px;
-    }
-
-    .pricing-quiz .header h2 {
-      margin-bottom: 8px;
-      color: var(--primary-blue);
-      font-size: clamp(1.6rem, 3.8vw, 2.1rem);
-    }
-
-    .pricing-quiz .progress {
-      font-size: 0.86rem;
-      color: var(--text-light);
-      margin-bottom: 8px;
-      font-weight: 600;
-    }
-
-    .pricing-quiz .progress span {
-      color: var(--primary-blue);
-      font-weight: 700;
-    }
-
-    .pricing-quiz .progress-bar {
+    .quiz-finition .progress-bar {
       width: 100%;
       height: 8px;
       border-radius: 999px;
       background: #e8eef5;
       overflow: hidden;
+      margin-bottom: 14px;
     }
 
-    .pricing-quiz .progress-fill {
+    .quiz-finition .progress-fill {
       width: 25%;
       height: 100%;
       border-radius: 999px;
@@ -635,11 +614,11 @@
       transition: width 0.25s ease;
     }
 
-    .pricing-quiz .step {
+    .quiz-finition .step {
       display: none;
     }
 
-    .pricing-quiz .step.active {
+    .quiz-finition .step.active {
       display: block;
       animation: fadeStep 0.25s ease;
       transform: none;
@@ -660,24 +639,24 @@
       }
     }
 
-    .pricing-quiz .step h3 {
-      margin-bottom: 12px;
+    .quiz-finition .step h3 {
+      margin-bottom: 14px;
       font-size: 1.08rem;
     }
 
-    .pricing-quiz .vehicle-grid,
-    .pricing-quiz .grid {
+    .quiz-finition .cards-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
-      margin-bottom: 14px;
     }
 
-    .pricing-quiz .vehicle-card,
-    .pricing-quiz .card {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
+    .quiz-finition .cards-grid .card:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+    }
+
+    .quiz-finition .card,
+    .quiz-finition .yes,
+    .quiz-finition .no {
       border: 1px solid rgba(31, 111, 133, 0.28);
       border-radius: 12px;
       padding: 12px;
@@ -686,165 +665,100 @@
       transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
     }
 
-    .pricing-quiz .vehicle-card:hover,
-    .pricing-quiz .card:hover {
+    .quiz-finition .card:hover,
+    .quiz-finition .yes:hover,
+    .quiz-finition .no:hover {
       border-color: #1f6f85;
       background: #eef7fb;
       transform: translateY(-1px);
     }
 
-    .pricing-quiz .vehicle-card input,
-    .pricing-quiz .card input {
-      margin-top: 2px;
-      accent-color: #1f6f85;
-      flex-shrink: 0;
-    }
-
-    .pricing-quiz .vehicle-card strong,
-    .pricing-quiz .card strong {
-      font-weight: 600;
+    .quiz-finition .card strong,
+    .quiz-finition .yes strong,
+    .quiz-finition .no strong {
       color: var(--text-dark);
     }
 
-    .pricing-quiz .vehicle-card small,
-    .pricing-quiz .card small {
+    .quiz-finition .card span,
+    .quiz-finition .card small {
       display: block;
-      margin-top: 2px;
+      margin-top: 4px;
+      font-size: 0.84rem;
       color: var(--text-light);
-      font-size: 0.82rem;
     }
 
-    .pricing-quiz .icon {
-      font-size: 1.25rem;
-      line-height: 1;
-      margin-top: 1px;
+    .quiz-finition .yesno-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
     }
 
-    .pricing-quiz #ext-level {
-      width: 100%;
-      margin-bottom: 10px;
-    }
-
-    .pricing-quiz .ext-desc {
-      font-size: 0.86rem;
-      color: var(--text-light);
-      margin-bottom: 10px;
-      min-height: 24px;
-    }
-
-    .pricing-quiz .req {
-      font-size: 0.72rem;
+    .quiz-finition .req {
+      font-size: 0.78rem;
       color: var(--primary-orange);
       font-weight: 700;
-      margin-left: 4px;
     }
 
-    .pricing-quiz .terrain-warning {
-      margin-top: 8px;
-      color: #b54708;
-      font-size: 0.84rem;
-      font-weight: 600;
+    .quiz-finition .result {
+      text-align: center;
     }
 
-    .pricing-quiz .next,
-    .pricing-quiz .prev,
-    .pricing-quiz .calc {
-      border: none;
-      border-radius: 999px;
-      padding: 0.7rem 1.05rem;
-      font-size: 0.9rem;
+    .quiz-finition .checkmark {
+      font-size: 2rem;
+      margin-bottom: 6px;
+    }
+
+    .quiz-finition .result h2 {
+      margin-bottom: 10px;
+    }
+
+    .quiz-finition .prix-gros {
+      font-size: clamp(1.9rem, 6vw, 2.4rem);
       font-weight: 700;
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 52px;
+      color: var(--primary-orange);
+      margin-bottom: 12px;
     }
 
-    .pricing-quiz .next,
-    .pricing-quiz .calc {
-      background: linear-gradient(135deg, #2b96b3 0%, #1f6f85 100%);
-      color: #ffffff;
-      box-shadow: 0 10px 24px rgba(33, 133, 160, 0.25);
+    .quiz-finition #packs-list,
+    .quiz-finition #process-steps {
+      list-style: none;
+      padding-left: 0;
+      text-align: left;
+      margin: 0;
     }
 
-    .pricing-quiz .prev {
-      background: #eef2f7;
-      color: var(--text-dark);
-      border: 1px solid #dbe4ef;
-      margin-right: 8px;
+    .quiz-finition #packs-list li + li,
+    .quiz-finition #process-steps li + li {
+      margin-top: 6px;
     }
 
-    .pricing-quiz .next:hover,
-    .pricing-quiz .prev:hover,
-    .pricing-quiz .calc:hover {
-      transform: translateY(-1px);
-    }
-
-    .pricing-quiz .next:disabled,
-    .pricing-quiz .prev:disabled,
-    .pricing-quiz .calc:disabled {
-      opacity: 0.55;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    .pricing-quiz .result-box {
-      margin-top: 12px;
+    .quiz-finition .processus {
+      margin-top: 14px;
       background: #f3f8fb;
       border: 1px solid rgba(31, 111, 133, 0.18);
       border-radius: 14px;
-      padding: 14px;
+      padding: 12px;
+      text-align: left;
     }
 
-    .pricing-quiz .result-box h4 {
-      margin-bottom: 6px;
-      color: #1f6f85;
-      font-size: 0.82rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .pricing-quiz .result-price {
-      font-size: clamp(1.75rem, 5vw, 2.2rem);
-      line-height: 1.1;
-      color: var(--primary-orange);
-      font-weight: 700;
+    .quiz-finition .processus h4 {
       margin-bottom: 8px;
-    }
-
-    .pricing-quiz .result-breakdown {
       font-size: 0.9rem;
-      color: var(--text-light);
-      margin-bottom: 0;
+      color: #1f6f85;
     }
 
-    .pricing-quiz .result-note {
-      font-size: 0.8rem;
-      margin-top: 8px;
-      color: var(--text-light);
-    }
-
-    .pricing-quiz .result-cta {
+    .quiz-finition .book-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      margin-top: 12px;
-      padding: 0.72rem 1rem;
+      margin-top: 14px;
+      padding: 0.78rem 1rem;
       border-radius: 999px;
       background: linear-gradient(135deg, #2b96b3 0%, #1f6f85 100%);
       color: #ffffff;
       font-weight: 700;
-      font-size: 0.84rem;
-      letter-spacing: 0.01em;
+      font-size: 0.9rem;
       box-shadow: 0 10px 24px rgba(33, 133, 160, 0.28);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .pricing-quiz .result-cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 14px 30px rgba(33, 133, 160, 0.33);
     }
 
     /* PROCESS */
@@ -1027,8 +941,8 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .pricing-quiz .vehicle-grid,
-      .pricing-quiz .grid {
+      .quiz-finition .cards-grid,
+      .quiz-finition .yesno-grid {
         grid-template-columns: minmax(0, 1fr);
       }
 
@@ -1115,7 +1029,7 @@
         height: 230px;
       }
 
-      .pricing-quiz .quiz {
+      .quiz-finition .quiz {
         padding: 16px;
       }
     }
@@ -1333,89 +1247,83 @@
     </section>
 
     <!-- TARIFS -->
-    <section id="tarifs" class="pricing-quiz">
+    <section id="tarifs" class="quiz-finition">
       <div class="container">
         <div class="quiz" id="tarif-quiz">
-          <div class="header">
-            <h2>Tarifs Personnalisés</h2>
-            <div class="progress"><span id="step-num">1</span>/4</div>
-            <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
-          </div>
+          <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
 
           <div class="step active" data-step="1">
-            <h3>1. Ton véhicule ?</h3>
-            <div class="vehicle-grid">
-              <label class="vehicle-card citadine">
-                <input type="radio" name="vehicle" value="citadine" />
-                <div>
-                  <div class="icon">🚗</div>
-                  <strong>Citadine</strong>
-                  <small>Clio, 208, Yaris</small>
-                </div>
-              </label>
-              <label class="vehicle-card berline">
-                <input type="radio" name="vehicle" value="berline" />
-                <div>
-                  <div class="icon">🚘</div>
-                  <strong>Berline</strong>
-                  <small>Golf, 308, A4</small>
-                </div>
-              </label>
-              <label class="vehicle-card suv">
-                <input type="radio" name="vehicle" value="suv" />
-                <div>
-                  <div class="icon">🚙</div>
-                  <strong>SUV</strong>
-                  <small>3008, Qashqai, Tiguan</small>
-                </div>
-              </label>
+            <h3>Véhicule ?</h3>
+            <div class="cards-grid">
+              <div class="card" data-next="2" data-type="citadine">
+                🚗 <strong>Citadine</strong>
+                <span>Intérieur 120€</span>
+              </div>
+              <div class="card" data-next="2" data-type="berline">
+                🚘 <strong>Berline</strong>
+                <span>Intérieur 135€</span>
+              </div>
+              <div class="card" data-next="2" data-type="suv">
+                🚙 <strong>SUV</strong>
+                <span>Intérieur 150€</span>
+              </div>
             </div>
-            <button type="button" class="next" data-next="2">➡️</button>
           </div>
 
           <div class="step" data-step="2">
-            <h3>2. Extérieur souhaité ?</h3>
-            <select id="ext-level">
-              <option value="none">Intérieur seul</option>
-              <option value="quick">Quick Ext. (49/54/59€)</option>
-              <option value="standard">Standard Ext. (89/99/109€)</option>
-              <option value="premium">Premium Ext. (199/224/249€)</option>
-            </select>
-            <div class="ext-desc" id="ext-desc"></div>
-            <button type="button" class="prev" data-prev="1">⬅️</button>
-            <button type="button" class="next" data-next="3">➡️</button>
+            <h3>Extérieur ?</h3>
+            <div class="cards-grid">
+              <div class="card" data-next="3" data-ext="none">
+                ❌ Intérieur seul
+              </div>
+              <div class="card" data-next="3" data-ext="base" data-prix="49">
+                ✨ <strong>BASE Brillance</strong>
+                <small>HP + Shampoing + Jantes + Pneus<br />49/59€ 30min</small>
+              </div>
+              <div class="card" data-next="3" data-ext="standard" data-prix="89">
+                🛡️ <strong>STANDARD Protection</strong>
+                <small>Base + Décontam ferreuse + Cire synthétique<br />89/109€ 60min</small>
+              </div>
+              <div class="card" data-next="3" data-ext="premium" data-prix="199">
+                💎 <strong>PREMIUM Céramique</strong>
+                <small>Standard + Clay + Polish + Carnauba 6 mois<br />199/249€ 3h</small>
+              </div>
+            </div>
           </div>
 
           <div class="step" data-step="3">
-            <h3>3. Terrain privé ? <span class="req">Obligatoire ext.</span></h3>
-            <div class="grid">
-              <label class="card ok">
-                <input type="radio" name="terrain" value="oui" />
-                <div>✅ <strong>Allée / Garage</strong></div>
-              </label>
-              <label class="card no">
-                <input type="radio" name="terrain" value="non" />
-                <div>❌ <strong>Non disponible</strong></div>
-              </label>
+            <h3>Terrain privé ? <span class="req">*</span></h3>
+            <div class="yesno-grid">
+              <div class="yes card-ok" data-next="4">
+                ✅ <strong>Oui</strong> Allée/Garage
+              </div>
+              <div class="no card-ko" data-alt="terrain">
+                ❌ <strong>Non</strong> Rue seulement
+              </div>
             </div>
-            <p class="terrain-warning" id="terrain-warning" hidden>
-              Un accès privé est nécessaire pour une prestation extérieure.
-            </p>
-            <button type="button" class="prev" data-prev="2">⬅️</button>
-            <button type="button" class="next" data-next="4">➡️</button>
           </div>
 
-          <div class="step" data-step="4">
-            <h3>4. Votre estimation</h3>
-            <div class="result-box">
-              <h4>Tarif estimé instantané</h4>
-              <div class="result-price" id="result-price">0€</div>
-              <p class="result-breakdown" id="result-breakdown"></p>
-              <p class="result-note">Tarif indicatif. Confirmation finale après échange et photos.</p>
-              <a href="#contact" class="result-cta">Recevoir mon devis personnalisé</a>
+          <div class="step result" data-step="4">
+            <div class="checkmark">✅</div>
+            <h2>Devis <span id="vehicule-name"></span></h2>
+            <div class="prix-gros">
+              <span id="prix-total">120€</span>
             </div>
-            <button type="button" class="prev" data-prev="3">⬅️</button>
-            <button type="button" class="calc" id="calc-price">Calculer</button>
+            <ul id="packs-list">
+              <li>Intérieur Complet : 120€</li>
+            </ul>
+            <div class="processus">
+              <h4>✅ Processus Inclus</h4>
+              <ul id="process-steps"></ul>
+            </div>
+            <a href="tel:0656751197" class="book-btn">📅 RDV 06 56 75 11 97</a>
+          </div>
+
+          <div class="step alt-terrain" data-step="terrain">
+            <h3>⚠️ Extérieur Impossible</h3>
+            <p>Terrain privé obligatoire (rue interdit)</p>
+            <div class="prix-gros">Intérieur <strong id="terrain-only-price">120€</strong></div>
+            <a href="tel:0656751197" class="book-btn">Intérieur OK ? RDV</a>
           </div>
         </div>
       </div>
@@ -1580,24 +1488,21 @@
     (function () {
       var quiz = document.getElementById('tarif-quiz');
       var steps = quiz ? Array.prototype.slice.call(quiz.querySelectorAll('.step')) : [];
-      var nextButtons = quiz ? Array.prototype.slice.call(quiz.querySelectorAll('.next[data-next]')) : [];
-      var prevButtons = quiz ? Array.prototype.slice.call(quiz.querySelectorAll('.prev[data-prev]')) : [];
-      var stepNum = document.getElementById('step-num');
       var progressFill = document.getElementById('progress-fill');
-      var extLevel = document.getElementById('ext-level');
-      var extDesc = document.getElementById('ext-desc');
-      var terrainWarning = document.getElementById('terrain-warning');
-      var calcButton = document.getElementById('calc-price');
-      var resultPrice = document.getElementById('result-price');
-      var resultBreakdown = document.getElementById('result-breakdown');
+      var cards = quiz ? Array.prototype.slice.call(quiz.querySelectorAll('.card[data-next]')) : [];
+      var yesCard = quiz ? quiz.querySelector('.yes[data-next]') : null;
+      var noCard = quiz ? quiz.querySelector('.no[data-alt="terrain"]') : null;
+      var vehicleNameEl = document.getElementById('vehicule-name');
+      var totalEl = document.getElementById('prix-total');
+      var packsListEl = document.getElementById('packs-list');
+      var processStepsEl = document.getElementById('process-steps');
+      var terrainOnlyPriceEl = document.getElementById('terrain-only-price');
       var prestationSelect = document.getElementById('prestation');
       var messageField = document.getElementById('message');
 
-      if (!quiz || !steps.length || !calcButton || !resultPrice || !resultBreakdown) {
+      if (!quiz || !steps.length || !cards.length || !vehicleNameEl || !totalEl || !packsListEl || !processStepsEl) {
         return;
       }
-
-      var currentStep = 1;
 
       var interiorPrices = {
         citadine: 120,
@@ -1613,161 +1518,149 @@
 
       var exteriorPrices = {
         none: { citadine: 0, berline: 0, suv: 0 },
-        quick: { citadine: 49, berline: 54, suv: 59 },
+        base: { citadine: 49, berline: 54, suv: 59 },
         standard: { citadine: 89, berline: 99, suv: 109 },
         premium: { citadine: 199, berline: 224, suv: 249 }
       };
 
-      var exteriorNames = {
+      var exteriorLabels = {
         none: 'Intérieur seul',
-        quick: 'Quick Extérieur',
-        standard: 'Standard Extérieur',
-        premium: 'Premium Extérieur'
+        base: 'BASE Brillance',
+        standard: 'STANDARD Protection',
+        premium: 'PREMIUM Céramique'
       };
 
-      var exteriorDescriptions = {
-        none: 'Prestation intérieure uniquement, idéale pour un rafraîchissement rapide.',
-        quick: 'Lavage extérieur rapide + finitions essentielles.',
-        standard: 'Lavage approfondi + détails jantes, vitres et protections de base.',
-        premium: 'Préparation extérieure complète avec niveau de finition premium.'
+      var processByExt = {
+        none: [
+          'Aspiration approfondie habitacle + coffre',
+          'Nettoyage textiles, plastiques, vitres intérieures',
+          'Finitions détaillées sur zones sensibles'
+        ],
+        base: [
+          'Nettoyage intérieur complet',
+          'HP + shampoing carrosserie',
+          'Jantes + dressing pneus'
+        ],
+        standard: [
+          'Pack BASE inclus',
+          'Décontamination ferreuse',
+          'Protection cire synthétique'
+        ],
+        premium: [
+          'Pack STANDARD inclus',
+          'Clay bar + polish de finition',
+          'Protection Carnauba 6 mois'
+        ]
       };
 
-      function showStep(stepNumber) {
-        currentStep = stepNumber;
+      function showStep(stepKey) {
         steps.forEach(function (stepElement) {
-          var isCurrent = Number(stepElement.getAttribute('data-step')) === stepNumber;
+          var isCurrent = stepElement.getAttribute('data-step') === String(stepKey);
           stepElement.classList.toggle('active', isCurrent);
         });
-
-        if (stepNum) {
-          stepNum.textContent = String(stepNumber);
-        }
-
-        if (progressFill) {
-          progressFill.style.width = String(stepNumber * 25) + '%';
-        }
       }
 
-      function hasAnswer(stepNumber) {
-        if (stepNumber === 1) {
-          return !!quiz.querySelector('input[name="vehicle"]:checked');
+      function updateProgress() {
+        if (!progressFill) {
+          return;
         }
-
-        if (stepNumber === 3) {
-          var chosenExt = extLevel ? extLevel.value : 'none';
-          var terrainInput = quiz.querySelector('input[name="terrain"]:checked');
-          var terrain = terrainInput ? terrainInput.value : '';
-          var needsTerrain = chosenExt !== 'none';
-
-          if (terrainWarning) {
-            terrainWarning.hidden = true;
-          }
-
-          if (needsTerrain && terrain !== 'oui') {
-            if (terrainWarning) {
-              terrainWarning.hidden = false;
-            }
-            return false;
-          }
-
-          return true;
-        }
-
-        return true;
-      }
-
-      function readValues() {
-        var vehicleInput = quiz.querySelector('input[name="vehicle"]:checked');
-        var terrainInput = quiz.querySelector('input[name="terrain"]:checked');
-
-        return {
-          vehicle: vehicleInput ? vehicleInput.value : null,
-          ext: extLevel ? extLevel.value : 'none',
-          terrain: terrainInput ? terrainInput.value : 'non-renseigne'
+        var currentStepEl = quiz.querySelector('.step.active');
+        var step = currentStepEl ? currentStepEl.getAttribute('data-step') : '1';
+        var map = {
+          '1': 25,
+          '2': 50,
+          '3': 75,
+          '4': 100,
+          'terrain': 100
         };
+        progressFill.style.width = (map[step] || 25) + '%';
       }
 
-      function calculateTotal(values) {
-        var interior = interiorPrices[values.vehicle] || 0;
-        var exterior = (exteriorPrices[values.ext] && exteriorPrices[values.ext][values.vehicle]) || 0;
-
-        return {
-          interior: interior,
-          exterior: exterior,
-          total: interior + exterior
-        };
+      function getVehicle() {
+        return sessionStorage.getItem('vehicle') || 'citadine';
       }
 
-      function formatBreakdown(values, pricing) {
-        return vehicleNames[values.vehicle] + ': intérieur ' + pricing.interior + '€ + extérieur ' + pricing.exterior +
-          '€ (' + exteriorNames[values.ext] + ').';
+      function getExt() {
+        return sessionStorage.getItem('ext') || 'none';
       }
 
-      function syncContactForm(values, pricing) {
+      function updateResult() {
+        var veh = getVehicle();
+        var ext = getExt();
+        var intPrix = interiorPrices[veh] || interiorPrices.citadine;
+        var extPrix = (exteriorPrices[ext] && exteriorPrices[ext][veh]) || 0;
+        var total = intPrix + extPrix;
+
+        vehicleNameEl.textContent = vehicleNames[veh] || 'Citadine';
+        totalEl.textContent = total + '€';
+
+        packsListEl.innerHTML = '';
+        packsListEl.insertAdjacentHTML('beforeend', '<li>Intérieur Complet : ' + intPrix + '€</li>');
+        if (ext !== 'none') {
+          packsListEl.insertAdjacentHTML('beforeend', '<li>' + exteriorLabels[ext] + ' : ' + extPrix + '€</li>');
+        }
+
+        processStepsEl.innerHTML = '';
+        (processByExt[ext] || processByExt.none).forEach(function (stepText) {
+          processStepsEl.insertAdjacentHTML('beforeend', '<li>• ' + stepText + '</li>');
+        });
+
+        if (terrainOnlyPriceEl) {
+          terrainOnlyPriceEl.textContent = intPrix + '€';
+        }
+
         if (prestationSelect) {
-          prestationSelect.value = values.ext === 'none' ? 'interieur' : 'pack';
+          prestationSelect.value = ext === 'none' ? 'interieur' : 'pack';
         }
 
         if (messageField) {
-          messageField.value = 'Estimation quiz : ' + pricing.total + '€ | Véhicule : ' + vehicleNames[values.vehicle] +
-            ' | Extérieur : ' + exteriorNames[values.ext] + ' | Terrain privé : ' + values.terrain + '.';
+          messageField.value = 'Estimation quiz : ' + total + '€ | Véhicule : ' + (vehicleNames[veh] || 'Citadine') +
+            ' | Extérieur : ' + (exteriorLabels[ext] || 'Intérieur seul') + '.';
         }
       }
 
-      function refreshExteriorDescription() {
-        if (!extLevel || !extDesc) {
-          return;
-        }
-        extDesc.textContent = exteriorDescriptions[extLevel.value] || '';
-      }
+      cards.forEach(function (card) {
+        card.addEventListener('click', function () {
+          var parentStep = card.closest('.step');
+          var currentStep = parentStep ? parentStep.getAttribute('data-step') : '1';
+          var nextStep = card.getAttribute('data-next');
 
-      nextButtons.forEach(function (button) {
-        button.addEventListener('click', function () {
-          if (!hasAnswer(currentStep)) {
-            return;
+          if (card.hasAttribute('data-type')) {
+            sessionStorage.setItem('vehicle', card.getAttribute('data-type'));
           }
-          showStep(Number(button.getAttribute('data-next')));
+
+          if (card.hasAttribute('data-ext')) {
+            sessionStorage.setItem('ext', card.getAttribute('data-ext'));
+            if (card.getAttribute('data-ext') === 'none') {
+              nextStep = '4';
+              updateResult();
+            }
+          }
+
+          showStep(nextStep || currentStep);
+          updateProgress();
         });
       });
 
-      prevButtons.forEach(function (button) {
-        button.addEventListener('click', function () {
-          showStep(Number(button.getAttribute('data-prev')));
-        });
-      });
-
-      calcButton.addEventListener('click', function () {
-        var values = readValues();
-
-        if (!values.vehicle) {
-          return;
-        }
-
-        if (values.ext !== 'none' && values.terrain !== 'oui') {
-          if (terrainWarning) {
-            terrainWarning.hidden = false;
-          }
-          showStep(3);
-          return;
-        }
-
-        var pricing = calculateTotal(values);
-        resultPrice.textContent = pricing.total + '€';
-        resultBreakdown.textContent = formatBreakdown(values, pricing);
-        syncContactForm(values, pricing);
-      });
-
-      if (extLevel) {
-        extLevel.addEventListener('change', function () {
-          refreshExteriorDescription();
-          if (terrainWarning) {
-            terrainWarning.hidden = true;
-          }
+      if (yesCard) {
+        yesCard.addEventListener('click', function () {
+          showStep('4');
+          updateResult();
+          updateProgress();
         });
       }
 
-      showStep(1);
-      refreshExteriorDescription();
+      if (noCard) {
+        noCard.addEventListener('click', function () {
+          updateResult();
+          showStep('terrain');
+          updateProgress();
+        });
+      }
+
+      showStep('1');
+      updateResult();
+      updateProgress();
     })();
   </script>
 </body>
