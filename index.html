@@ -761,6 +761,21 @@
       box-shadow: 0 10px 24px rgba(33, 133, 160, 0.28);
     }
 
+    .quiz-finition .restart-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
+      padding: 0.62rem 0.95rem;
+      border-radius: 999px;
+      border: 1px solid #dbe4ef;
+      background: #eef2f7;
+      color: var(--text-dark);
+      font-weight: 700;
+      font-size: 0.84rem;
+      cursor: pointer;
+    }
+
     /* PROCESS */
 
     .process-grid {
@@ -1317,6 +1332,7 @@
               <ul id="process-steps"></ul>
             </div>
             <a href="tel:0656751197" class="book-btn">📅 RDV 06 56 75 11 97</a>
+            <button type="button" class="restart-btn" data-restart="quiz">↺ Recommencer le quiz</button>
           </div>
 
           <div class="step alt-terrain" data-step="terrain">
@@ -1324,6 +1340,7 @@
             <p>Terrain privé obligatoire (rue interdit)</p>
             <div class="prix-gros">Intérieur <strong id="terrain-only-price">120€</strong></div>
             <a href="tel:0656751197" class="book-btn">Intérieur OK ? RDV</a>
+            <button type="button" class="restart-btn" data-restart="quiz">↺ Recommencer le quiz</button>
           </div>
         </div>
       </div>
@@ -1492,6 +1509,7 @@
       var cards = quiz ? Array.prototype.slice.call(quiz.querySelectorAll('.card[data-next]')) : [];
       var yesCard = quiz ? quiz.querySelector('.yes[data-next]') : null;
       var noCard = quiz ? quiz.querySelector('.no[data-alt="terrain"]') : null;
+      var restartButtons = quiz ? Array.prototype.slice.call(quiz.querySelectorAll('[data-restart="quiz"]')) : [];
       var vehicleNameEl = document.getElementById('vehicule-name');
       var totalEl = document.getElementById('prix-total');
       var packsListEl = document.getElementById('packs-list');
@@ -1657,6 +1675,16 @@
           updateProgress();
         });
       }
+
+      restartButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          sessionStorage.removeItem('vehicle');
+          sessionStorage.removeItem('ext');
+          showStep('1');
+          updateResult();
+          updateProgress();
+        });
+      });
 
       showStep('1');
       updateResult();
