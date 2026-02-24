@@ -11,6 +11,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo/file:/Users/kollyabraham/logo2.png" />
 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FJBK0MCYPQ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-FJBK0MCYPQ');
+  </script>
+
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -1689,6 +1697,31 @@
       showStep('1');
       updateResult();
       updateProgress();
+    })();
+
+    (function () {
+      var phoneLinks = Array.prototype.slice.call(document.querySelectorAll('a[href^="tel:"]'));
+
+      if (!phoneLinks.length) {
+        return;
+      }
+
+      phoneLinks.forEach(function (link) {
+        link.addEventListener('click', function () {
+          if (typeof gtag !== 'function') {
+            return;
+          }
+
+          var phoneNumber = (link.getAttribute('href') || '').replace('tel:', '');
+          var label = (link.textContent || '').trim();
+
+          gtag('event', 'phone_call_click', {
+            phone_number: phoneNumber,
+            link_label: label,
+            page_path: window.location.pathname
+          });
+        });
+      });
     })();
   </script>
 </body>
