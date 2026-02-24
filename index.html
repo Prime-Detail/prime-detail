@@ -707,27 +707,61 @@
       font-weight: 700;
     }
 
-    .quiz-finition .result {
-      text-align: center;
-    }
-
-    .quiz-finition .checkmark {
-      font-size: 2rem;
-      margin-bottom: 6px;
-    }
-
-    .quiz-finition .result h2 {
-      margin-bottom: 10px;
-    }
-
-    .quiz-finition .prix-gros {
+    .quiz-finition .prix-gros,
+    .quiz-finition .prix-giant {
       font-size: clamp(1.9rem, 6vw, 2.4rem);
       font-weight: 700;
       color: var(--primary-orange);
       margin-bottom: 12px;
     }
 
-    .quiz-finition #packs-list,
+    .quiz-finition .result-pro {
+      text-align: left;
+    }
+
+    .quiz-finition .prix-main {
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .quiz-finition #pack-none-note {
+      display: none;
+      margin-bottom: 10px;
+      font-size: 0.88rem;
+      color: var(--text-light);
+    }
+
+    .quiz-finition .pack-base,
+    .quiz-finition .pack-standard,
+    .quiz-finition .pack-premium {
+      display: none;
+      background: #f3f8fb;
+      border: 1px solid rgba(31, 111, 133, 0.18);
+      border-radius: 14px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+
+    .quiz-finition .pack-base.active,
+    .quiz-finition .pack-standard.active,
+    .quiz-finition .pack-premium.active {
+      display: block;
+    }
+
+    .quiz-finition .pack-detail h4 {
+      margin-bottom: 6px;
+      color: #1f6f85;
+      font-size: 0.95rem;
+    }
+
+    .quiz-finition .pack-detail p {
+      margin-bottom: 8px;
+      font-size: 0.88rem;
+      color: var(--text-light);
+    }
+
+    .quiz-finition .pack-detail ul,
+    .quiz-finition .interieur-pro ul,
     .quiz-finition #process-steps {
       list-style: none;
       padding-left: 0;
@@ -735,9 +769,34 @@
       margin: 0;
     }
 
-    .quiz-finition #packs-list li + li,
+    .quiz-finition .pack-detail li + li,
+    .quiz-finition .interieur-pro li + li,
     .quiz-finition #process-steps li + li {
       margin-top: 6px;
+    }
+
+    .quiz-finition .interieur-pro {
+      margin-top: 12px;
+      background: #f8fafc;
+      border: 1px solid rgba(31, 111, 133, 0.14);
+      border-radius: 14px;
+      padding: 12px;
+      text-align: left;
+    }
+
+    .quiz-finition .interieur-pro h5 {
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+      color: #1f6f85;
+    }
+
+    .quiz-finition .garanties {
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(31, 111, 133, 0.16);
+      background: #f7fbff;
+      font-size: 0.86rem;
     }
 
     .quiz-finition .processus {
@@ -755,7 +814,8 @@
       color: #1f6f85;
     }
 
-    .quiz-finition .book-btn {
+    .quiz-finition .book-btn,
+    .quiz-finition .btn-gold {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -1327,19 +1387,74 @@
           </div>
 
           <div class="step result" data-step="4">
-            <div class="checkmark">✅</div>
-            <h2>Devis <span id="vehicule-name"></span></h2>
-            <div class="prix-gros">
-              <span id="prix-total">120€</span>
+            <div class="result-pro">
+              <div class="prix-main">
+                <h2 id="veh-name">Citadine</h2>
+                <div class="prix-giant" id="total">120€</div>
+              </div>
+
+              <div class="pack-detail" id="pack-desc">
+                <p id="pack-none-note">Intérieur seul sélectionné (sans pack extérieur).</p>
+
+                <div class="pack-base">
+                  <h4>✨ BASE Brillance (Ext +49€)</h4>
+                  <p><strong>Finition propre showroom</strong> vs stations brosses agressives</p>
+                  <ul>
+                    <li>Prélavage HP dissout film routier</li>
+                    <li>Shampoing 2 seaux microfibres pro</li>
+                    <li>Jantes ext + pneus brillants</li>
+                    <li>Vitres ext sans traces</li>
+                    <li><strong>Photo/Vidéo AV/APRÈS garantie</strong></li>
+                  </ul>
+                </div>
+
+                <div class="pack-standard">
+                  <h4>🛡️ STANDARD Protection (Ext +89€)</h4>
+                  <p><strong>Défense 1-2 mois</strong> vs lavage basique</p>
+                  <ul>
+                    <li>Base Brillance complète</li>
+                    <li>Décontam ferreuse jantes/carrosserie</li>
+                    <li>Détails pinceau joints/grilles</li>
+                    <li><strong>Cire synthétique liquide 1-2 mois</strong></li>
+                    <li>Certif RS6719 technique</li>
+                  </ul>
+                </div>
+
+                <div class="pack-premium">
+                  <h4>💎 PREMIUM Céramique (Ext +199€)</h4>
+                  <p><strong>Blindage 6 mois collection</strong> vs tout concurrent</p>
+                  <ul>
+                    <li>Standard complète</li>
+                    <li>Clay décontamination totale</li>
+                    <li>Polish 1-2 passes vernis rehaussé</li>
+                    <li><strong>Carnauba céramique 6 mois</strong> hydro</li>
+                    <li>Rénov plastiques ext + pneus</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="interieur-pro">
+                <h5>🧽 INTÉRIEUR Inclus</h5>
+                <ul>
+                  <li>Désodorisation ozone 30min + UVC 99.9%</li>
+                  <li>Extraction vapeur Clean&Protect Koch</li>
+                  <li>Protection anti-taches 3-6 mois</li>
+                  <li>APC console/volant + HPC plastiques</li>
+                  <li><strong>Micro-entreprise 120€ net</strong> (TVA 0%)</li>
+                </ul>
+              </div>
+
+              <div class="processus">
+                <h4>✅ Processus Inclus</h4>
+                <ul id="process-steps"></ul>
+              </div>
+
+              <div class="garanties">
+                <strong>🎖️ RS6719/RS7091 | Garantie 7j | Vidéo preuve</strong>
+              </div>
+
+              <a href="tel:0656751197" class="btn-gold">📱 RDV Certifié Maintenant</a>
             </div>
-            <ul id="packs-list">
-              <li>Intérieur Complet : 120€</li>
-            </ul>
-            <div class="processus">
-              <h4>✅ Processus Inclus</h4>
-              <ul id="process-steps"></ul>
-            </div>
-            <a href="tel:0656751197" class="book-btn">📅 RDV 06 56 75 11 97</a>
             <button type="button" class="restart-btn" data-restart="quiz">↺ Recommencer le quiz</button>
           </div>
 
@@ -1518,15 +1633,19 @@
       var yesCard = quiz ? quiz.querySelector('.yes[data-next]') : null;
       var noCard = quiz ? quiz.querySelector('.no[data-alt="terrain"]') : null;
       var restartButtons = quiz ? Array.prototype.slice.call(quiz.querySelectorAll('[data-restart="quiz"]')) : [];
-      var vehicleNameEl = document.getElementById('vehicule-name');
-      var totalEl = document.getElementById('prix-total');
-      var packsListEl = document.getElementById('packs-list');
+      var vehicleNameEl = document.getElementById('veh-name');
+      var totalEl = document.getElementById('total');
+      var packDesc = document.getElementById('pack-desc');
+      var packNoneNote = document.getElementById('pack-none-note');
+      var packBase = quiz ? quiz.querySelector('.pack-base') : null;
+      var packStandard = quiz ? quiz.querySelector('.pack-standard') : null;
+      var packPremium = quiz ? quiz.querySelector('.pack-premium') : null;
       var processStepsEl = document.getElementById('process-steps');
       var terrainOnlyPriceEl = document.getElementById('terrain-only-price');
       var prestationSelect = document.getElementById('prestation');
       var messageField = document.getElementById('message');
 
-      if (!quiz || !steps.length || !cards.length || !vehicleNameEl || !totalEl || !packsListEl || !processStepsEl) {
+      if (!quiz || !steps.length || !cards.length || !vehicleNameEl || !totalEl || !processStepsEl) {
         return;
       }
 
@@ -1555,6 +1674,13 @@
         standard: 'STANDARD Protection',
         premium: 'PREMIUM Céramique'
       };
+
+      function trackQuiz(eventName, params) {
+        if (typeof gtag !== 'function') {
+          return;
+        }
+        gtag('event', eventName, params || {});
+      }
 
       var processByExt = {
         none: [
@@ -1620,10 +1746,19 @@
         vehicleNameEl.textContent = vehicleNames[veh] || 'Citadine';
         totalEl.textContent = total + '€';
 
-        packsListEl.innerHTML = '';
-        packsListEl.insertAdjacentHTML('beforeend', '<li>Intérieur Complet : ' + intPrix + '€</li>');
-        if (ext !== 'none') {
-          packsListEl.insertAdjacentHTML('beforeend', '<li>' + exteriorLabels[ext] + ' : ' + extPrix + '€</li>');
+        if (packDesc) {
+          if (packBase) {
+            packBase.classList.toggle('active', ext === 'base');
+          }
+          if (packStandard) {
+            packStandard.classList.toggle('active', ext === 'standard');
+          }
+          if (packPremium) {
+            packPremium.classList.toggle('active', ext === 'premium');
+          }
+          if (packNoneNote) {
+            packNoneNote.style.display = ext === 'none' ? 'block' : 'none';
+          }
         }
 
         processStepsEl.innerHTML = '';
@@ -1643,6 +1778,12 @@
           messageField.value = 'Estimation quiz : ' + total + '€ | Véhicule : ' + (vehicleNames[veh] || 'Citadine') +
             ' | Extérieur : ' + (exteriorLabels[ext] || 'Intérieur seul') + '.';
         }
+
+        trackQuiz('quiz_result_view', {
+          vehicle: veh,
+          exterior: ext,
+          total_price: total
+        });
       }
 
       cards.forEach(function (card) {
@@ -1653,10 +1794,16 @@
 
           if (card.hasAttribute('data-type')) {
             sessionStorage.setItem('vehicle', card.getAttribute('data-type'));
+            trackQuiz('quiz_vehicle_select', {
+              vehicle: card.getAttribute('data-type')
+            });
           }
 
           if (card.hasAttribute('data-ext')) {
             sessionStorage.setItem('ext', card.getAttribute('data-ext'));
+            trackQuiz('quiz_exterior_select', {
+              exterior: card.getAttribute('data-ext')
+            });
             if (card.getAttribute('data-ext') === 'none') {
               nextStep = '4';
               updateResult();
@@ -1673,6 +1820,7 @@
           showStep('4');
           updateResult();
           updateProgress();
+          trackQuiz('quiz_terrain_select', { terrain: 'oui' });
         });
       }
 
@@ -1681,6 +1829,7 @@
           updateResult();
           showStep('terrain');
           updateProgress();
+          trackQuiz('quiz_terrain_select', { terrain: 'non' });
         });
       }
 
@@ -1691,6 +1840,7 @@
           showStep('1');
           updateResult();
           updateProgress();
+          trackQuiz('quiz_restart', {});
         });
       });
 
