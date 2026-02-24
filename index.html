@@ -1674,6 +1674,7 @@
         standard: 'STANDARD Protection',
         premium: 'PREMIUM Céramique'
       };
+      var lastTrackedStep = null;
 
       function trackQuiz(eventName, params) {
         if (typeof gtag !== 'function') {
@@ -1710,6 +1711,21 @@
           var isCurrent = stepElement.getAttribute('data-step') === String(stepKey);
           stepElement.classList.toggle('active', isCurrent);
         });
+
+        if (lastTrackedStep !== String(stepKey)) {
+          var progressMap = {
+            '1': 25,
+            '2': 50,
+            '3': 75,
+            '4': 100,
+            'terrain': 100
+          };
+          trackQuiz('quiz_step_view', {
+            step_key: String(stepKey),
+            progress_percent: progressMap[String(stepKey)] || 0
+          });
+          lastTrackedStep = String(stepKey);
+        }
       }
 
       function updateProgress() {
