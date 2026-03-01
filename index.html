@@ -1218,7 +1218,7 @@
         <a href="#" class="logo" aria-label="Prime Detail">
           <img src="assets/images/logo/logo2.png" alt="Logo Prime Detail" loading="eager" decoding="async" fetchpriority="high" />
         </a>
-        <img src="assets/images/gallery/polissage.png" alt="Certification Polissage RS7091 Prime Detail Caen" class="cert-badge" loading="lazy" decoding="async" />
+        <img src="assets/images/gallery/polissage.png" alt="Certification Polissage RS7091 Prime Detail Caen" class="cert-badge" loading="eager" decoding="async" />
         <div class="nav-links">
           <a href="#services">Services</a>
           <a href="#tarifs">Tarifs</a>
@@ -1279,8 +1279,8 @@
           <div class="certif-card">
             <div class="certif-img">
               <div class="certif-badges">
-                <img src="assets/images/gallery/nettoyage.png" alt="Certificat nettoyage automobile" loading="lazy" decoding="async" />
-                <img src="assets/images/gallery/polissage.png" alt="Certificat polissage automobile" loading="lazy" decoding="async" />
+                <img src="assets/images/gallery/nettoyage.png" alt="Certificat nettoyage automobile" loading="eager" decoding="async" />
+                <img src="assets/images/gallery/polissage.png" alt="Certificat polissage automobile" loading="eager" decoding="async" />
               </div>
             </div>
             <div class="certif-text">
@@ -1308,19 +1308,19 @@
             <h3>BMW intérieur (avant / après)</h3>
             <div class="illustration-photos">
               <div class="illustration-photo">
-                <img src="assets/images/gallery/siege1.jpeg" alt="BMW intérieur siège avant" loading="lazy" decoding="async" />
+                <img src="assets/images/gallery/siege1.jpeg" alt="BMW intérieur siège avant" loading="eager" decoding="async" />
                 <span>Siège avant</span>
               </div>
               <div class="illustration-photo">
-                <img src="assets/images/gallery/siege2.jpeg" alt="BMW intérieur siège après" loading="lazy" decoding="async" />
+                <img src="assets/images/gallery/siege2.jpeg" alt="BMW intérieur siège après" loading="eager" decoding="async" />
                 <span>Siège après</span>
               </div>
               <div class="illustration-photo">
-                <img src="assets/images/gallery/banquette1.jpeg" alt="BMW intérieur banquette avant" loading="lazy" decoding="async" />
+                <img src="assets/images/gallery/banquette1.jpeg" alt="BMW intérieur banquette avant" loading="eager" decoding="async" />
                 <span>Banquette avant</span>
               </div>
               <div class="illustration-photo">
-                <img src="assets/images/gallery/banquette2.jpeg" alt="BMW intérieur banquette après" loading="lazy" decoding="async" />
+                <img src="assets/images/gallery/banquette2.jpeg" alt="BMW intérieur banquette après" loading="eager" decoding="async" />
                 <span>Banquette après</span>
               </div>
             </div>
@@ -1330,15 +1330,15 @@
             <h3>Porsche extérieur (avant / après)</h3>
             <div class="illustration-photos three">
               <div class="illustration-photo">
-                <img src="assets/images/gallery/avant.jpeg" alt="Porsche extérieur avant detailing" loading="lazy" decoding="async" />
+                <img src="assets/images/gallery/avant.jpeg" alt="Porsche extérieur avant detailing" loading="eager" decoding="async" />
                 <span>Avant</span>
               </div>
               <div class="illustration-photo">
-                <img src="assets/images/gallery/apres.jpeg" alt="Porsche extérieur après detailing" loading="lazy" decoding="async" />
+                <img src="assets/images/gallery/apres.jpeg" alt="Porsche extérieur après detailing" loading="eager" decoding="async" />
                 <span>Après</span>
               </div>
               <div class="illustration-photo">
-                <img src="assets/images/gallery/detail.jpeg" alt="Porsche extérieur vue détail" loading="lazy" decoding="async" />
+                <img src="assets/images/gallery/detail.jpeg" alt="Porsche extérieur vue détail" loading="eager" decoding="async" />
                 <span>Détail</span>
               </div>
             </div>
@@ -1356,8 +1356,8 @@
         </p>
 
         <div class="video-frame">
-          <video controls preload="metadata" playsinline>
-              <source src="assets/images/gallery/video.mp4" type="video/mp4" />
+          <video controls preload="none" playsinline webkit-playsinline poster="assets/images/gallery/apres.jpeg" id="main-video">
+            <source src="assets/images/gallery/video.mp4" type="video/mp4" />
             <source src="assets/videos/Pub%20prime%20detail%20dacia%20Logan.MOV" type="video/quicktime" />
             Votre navigateur ne peut pas lire cette vidéo.
           </video>
@@ -2000,6 +2000,43 @@
           statusEl.textContent = 'Choisissez votre méthode: envoyer votre demande par message WhatsApp et/ou appeler directement.';
         }
 
+      });
+    })();
+
+    (function () {
+      var images = Array.prototype.slice.call(document.querySelectorAll('img[src]'));
+
+      images.forEach(function (img) {
+        img.addEventListener('error', function () {
+          if (img.dataset.retried === '1') {
+            return;
+          }
+
+          img.dataset.retried = '1';
+
+          var src = img.getAttribute('src') || '';
+          if (!src) {
+            return;
+          }
+
+          var separator = src.indexOf('?') === -1 ? '?' : '&';
+          img.setAttribute('src', src + separator + 'retry=1');
+        });
+      });
+
+      var mainVideo = document.getElementById('main-video');
+
+      if (!mainVideo) {
+        return;
+      }
+
+      mainVideo.addEventListener('error', function () {
+        if (mainVideo.dataset.retried === '1') {
+          return;
+        }
+
+        mainVideo.dataset.retried = '1';
+        mainVideo.load();
       });
     })();
 
