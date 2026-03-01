@@ -1676,14 +1676,6 @@
         standard: 'STANDARD Protection',
         premium: 'PREMIUM Céramique'
       };
-      var lastTrackedStep = null;
-
-      function trackQuiz(eventName, params) {
-        if (typeof gtag !== 'function') {
-          return;
-        }
-        gtag('event', eventName, params || {});
-      }
 
       var processByExt = {
         none: [
@@ -1713,21 +1705,6 @@
           var isCurrent = stepElement.getAttribute('data-step') === String(stepKey);
           stepElement.classList.toggle('active', isCurrent);
         });
-
-        if (lastTrackedStep !== String(stepKey)) {
-          var progressMap = {
-            '1': 25,
-            '2': 50,
-            '3': 75,
-            '4': 100,
-            'terrain': 100
-          };
-          trackQuiz('quiz_step_view', {
-            step_key: String(stepKey),
-            progress_percent: progressMap[String(stepKey)] || 0
-          });
-          lastTrackedStep = String(stepKey);
-        }
       }
 
       function updateProgress() {
@@ -1797,11 +1774,6 @@
             ' | Extérieur : ' + (exteriorLabels[ext] || 'Intérieur seul') + '.';
         }
 
-        trackQuiz('quiz_result_view', {
-          vehicle: veh,
-          exterior: ext,
-          total_price: total
-        });
       }
 
       cards.forEach(function (card) {
@@ -1812,16 +1784,10 @@
 
           if (card.hasAttribute('data-type')) {
             sessionStorage.setItem('vehicle', card.getAttribute('data-type'));
-            trackQuiz('quiz_vehicle_select', {
-              vehicle: card.getAttribute('data-type')
-            });
           }
 
           if (card.hasAttribute('data-ext')) {
             sessionStorage.setItem('ext', card.getAttribute('data-ext'));
-            trackQuiz('quiz_exterior_select', {
-              exterior: card.getAttribute('data-ext')
-            });
             if (card.getAttribute('data-ext') === 'none') {
               nextStep = '4';
               updateResult();
@@ -1838,7 +1804,6 @@
           showStep('4');
           updateResult();
           updateProgress();
-          trackQuiz('quiz_terrain_select', { terrain: 'oui' });
         });
       }
 
@@ -1847,7 +1812,6 @@
           updateResult();
           showStep('terrain');
           updateProgress();
-          trackQuiz('quiz_terrain_select', { terrain: 'non' });
         });
       }
 
@@ -1858,7 +1822,6 @@
           showStep('1');
           updateResult();
           updateProgress();
-          trackQuiz('quiz_restart', {});
         });
       });
 
@@ -1872,7 +1835,6 @@
       var statusEl = document.getElementById('contact-form-status');
       var actionsEl = document.getElementById('contact-actions');
       var whatsappLinkEl = document.getElementById('contact-whatsapp');
-      var callLinkEl = document.getElementById('contact-call');
 
       if (!contactForm) {
         return;
@@ -1936,10 +1898,6 @@
           whatsappLinkEl.setAttribute('href', whatsappUrl);
         }
 
-        if (callLinkEl) {
-          callLinkEl.setAttribute('href', 'tel:0656751197');
-        }
-
         if (actionsEl) {
           actionsEl.style.display = 'flex';
         }
@@ -1951,30 +1909,6 @@
       });
     })();
 
-    (function () {
-      var phoneLinks = Array.prototype.slice.call(document.querySelectorAll('a[href^="tel:"]'));
-
-      if (!phoneLinks.length) {
-        return;
-      }
-
-      phoneLinks.forEach(function (link) {
-        link.addEventListener('click', function () {
-          if (typeof gtag !== 'function') {
-            return;
-          }
-
-          var phoneNumber = (link.getAttribute('href') || '').replace('tel:', '');
-          var label = (link.textContent || '').trim();
-
-          gtag('event', 'phone_call_click', {
-            phone_number: phoneNumber,
-            link_label: label,
-            page_path: window.location.pathname
-          });
-        });
-      });
-    })();
   </script>
 </body>
 </html>
