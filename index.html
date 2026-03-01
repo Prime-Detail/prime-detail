@@ -1590,8 +1590,12 @@
               <textarea id="message" placeholder="Précisez l’état actuel (propre, sale, très sale), présence de poils d’animaux, taches, etc." required></textarea>
             </div>
 
-            <button type="submit" class="btn-primary" id="contact-submit">Recevoir mon devis personnalisé</button>
+            <button type="submit" class="btn-primary" id="contact-submit">Obtenir mes options de contact</button>
             <p id="contact-form-status" style="margin-top:10px;font-size:0.92rem;color:#6b7280;"></p>
+            <div id="contact-actions" style="display:none;gap:10px;flex-wrap:wrap;margin-top:12px;">
+              <a id="contact-whatsapp" class="btn-primary" href="#" target="_blank" rel="noopener">Envoyer ma demande sur WhatsApp</a>
+              <a id="contact-call" class="btn-primary" href="tel:0656751197">Appeler 06 56 75 11 97</a>
+            </div>
           </form>
         </div>
       </div>
@@ -1874,6 +1878,9 @@
     (function () {
       var contactForm = document.getElementById('contact-form');
       var statusEl = document.getElementById('contact-form-status');
+      var actionsEl = document.getElementById('contact-actions');
+      var whatsappLinkEl = document.getElementById('contact-whatsapp');
+      var callLinkEl = document.getElementById('contact-call');
 
       if (!contactForm) {
         return;
@@ -1907,13 +1914,15 @@
         var message = getFieldValue('message');
 
         if (!nom || !vehicule || !message) {
+          if (actionsEl) {
+            actionsEl.style.display = 'none';
+          }
           if (statusEl) {
             statusEl.textContent = 'Merci de renseigner au minimum : nom, véhicule et détails de la demande.';
           }
           return;
         }
 
-        var subject = 'Demande de devis - ' + vehicule;
         var lines = [
           'Bonjour Prime Detail,',
           '',
@@ -1929,14 +1938,27 @@
           'Merci.'
         ];
 
-        var mailtoUrl = 'mailto:contact@prime-detail.fr?subject=' +
-          encodeURIComponent(subject) + '&body=' + encodeURIComponent(lines.join('\n'));
+        var whatsappUrl = 'https://wa.me/33656751197?text=' + encodeURIComponent(lines.join('\n'));
 
-        if (statusEl) {
-          statusEl.textContent = 'Ouverture de votre application email…';
+        if (whatsappLinkEl) {
+          whatsappLinkEl.setAttribute('href', whatsappUrl);
         }
 
-        window.location.href = mailtoUrl;
+        if (callLinkEl) {
+          callLinkEl.setAttribute('href', 'tel:0656751197');
+        }
+
+        if (actionsEl) {
+          actionsEl.style.display = 'flex';
+        }
+
+        if (statusEl) {
+          statusEl.textContent = 'Choisissez votre méthode: envoyer votre demande par message WhatsApp et/ou appeler directement.';
+        }
+
+        if (whatsappLinkEl) {
+          whatsappLinkEl.click();
+        }
       });
     })();
 
