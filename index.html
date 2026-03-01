@@ -69,6 +69,12 @@
       box-sizing: border-box;
     }
 
+    html,
+    body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
     body {
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
         "Segoe UI", sans-serif;
@@ -81,6 +87,13 @@
 
     img {
       max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    video {
+      max-width: 100%;
+      height: auto;
       display: block;
     }
 
@@ -110,6 +123,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 12px 0;
+      min-width: 0;
     }
 
     .logo {
@@ -153,6 +167,7 @@
       font-size: 0.92rem;
       font-weight: 500;
       color: var(--text-light);
+      min-width: 0;
     }
 
     .nav-links a {
@@ -200,6 +215,10 @@
       grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
       gap: 44px;
       align-items: center;
+    }
+
+    .hero-inner > * {
+      min-width: 0;
     }
 
     .badge-certif {
@@ -670,6 +689,8 @@
       background: #f8fafc;
       cursor: pointer;
       transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+      overflow-wrap: anywhere;
+      word-break: break-word;
     }
 
     .quiz-finition .card:hover,
@@ -772,6 +793,16 @@
     .quiz-finition .interieur-pro li + li,
     .quiz-finition #process-steps li + li {
       margin-top: 6px;
+    }
+
+    .quiz-finition .pack-detail li,
+    .quiz-finition .interieur-pro li,
+    .quiz-finition #process-steps li,
+    .quiz-finition .garanties,
+    .quiz-finition .book-btn,
+    .quiz-finition .btn-gold {
+      overflow-wrap: anywhere;
+      word-break: break-word;
     }
 
     .quiz-finition .interieur-pro {
@@ -899,6 +930,10 @@
       align-items: flex-start;
     }
 
+    .contact-inner > * {
+      min-width: 0;
+    }
+
     .contact-info {
       background: var(--neutral-surface);
       border-radius: var(--radius-card);
@@ -934,6 +969,7 @@
       display: flex;
       gap: 14px;
       margin-bottom: 10px;
+      min-width: 0;
     }
 
     .form-group {
@@ -942,6 +978,7 @@
       flex-direction: column;
       gap: 4px;
       margin-bottom: 10px;
+      min-width: 0;
     }
 
     label {
@@ -962,6 +999,8 @@
       outline: none;
       background: #fcfdff;
       transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      width: 100%;
+      min-width: 0;
     }
 
     input:focus,
@@ -1133,6 +1172,31 @@
 
       .quiz-finition .quiz {
         padding: 16px;
+      }
+
+      .quiz-finition .step h3 {
+        font-size: 0.98rem;
+      }
+
+      .quiz-finition .prix-gros,
+      .quiz-finition .prix-giant {
+        font-size: clamp(1.55rem, 8vw, 1.9rem);
+      }
+
+      .quiz-finition .card,
+      .quiz-finition .yes,
+      .quiz-finition .no,
+      .quiz-finition .pack-base,
+      .quiz-finition .pack-standard,
+      .quiz-finition .pack-premium,
+      .quiz-finition .interieur-pro,
+      .quiz-finition .processus {
+        padding: 10px;
+      }
+
+      .form-row {
+        flex-direction: column;
+        gap: 0;
       }
 
       #contact-actions {
