@@ -1557,11 +1557,11 @@
             </p>
           </div>
 
-          <form class="contact-form">
+          <form class="contact-form" id="contact-form" novalidate>
             <div class="form-row">
               <div class="form-group">
                 <label for="nom">Nom / Prénom</label>
-                <input id="nom" type="text" placeholder="Votre nom" />
+                <input id="nom" type="text" placeholder="Votre nom" required />
               </div>
               <div class="form-group">
                 <label for="ville">Ville</label>
@@ -1572,7 +1572,7 @@
             <div class="form-row">
               <div class="form-group">
                 <label for="vehicule">Modèle du véhicule</label>
-                <input id="vehicule" type="text" placeholder="Renault Clio 4, Peugeot 3008..." />
+                <input id="vehicule" type="text" placeholder="Renault Clio 4, Peugeot 3008..." required />
               </div>
               <div class="form-group">
                 <label for="prestation">Type de prestation souhaitée</label>
@@ -1587,10 +1587,11 @@
 
             <div class="form-group">
               <label for="message">Détails / message</label>
-              <textarea id="message" placeholder="Précisez l’état actuel (propre, sale, très sale), présence de poils d’animaux, taches, etc."></textarea>
+              <textarea id="message" placeholder="Précisez l’état actuel (propre, sale, très sale), présence de poils d’animaux, taches, etc." required></textarea>
             </div>
 
-            <button type="button" class="btn-primary">Recevoir mon devis personnalisé</button>
+            <button type="submit" class="btn-primary" id="contact-submit">Recevoir mon devis personnalisé</button>
+            <p id="contact-form-status" style="margin-top:10px;font-size:0.92rem;color:#6b7280;"></p>
           </form>
         </div>
       </div>
@@ -1868,6 +1869,75 @@
       showStep('1');
       updateResult();
       updateProgress();
+    })();
+
+    (function () {
+      var contactForm = document.getElementById('contact-form');
+      var statusEl = document.getElementById('contact-form-status');
+
+      if (!contactForm) {
+        return;
+      }
+
+      function getFieldValue(id) {
+        var el = document.getElementById(id);
+        return el ? (el.value || '').trim() : '';
+      }
+
+      function getPrestationLabel(value) {
+        var labels = {
+          interieur: 'Nettoyage intérieur',
+          carrosserie: 'Rénovation carrosserie / polissage',
+          pack: 'Pack intérieur + extérieur',
+          entretien: 'Forfait entretien'
+        };
+
+        return labels[value] || value || 'Non précisé';
+      }
+
+      contactForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        var nom = getFieldValue('nom');
+        var ville = getFieldValue('ville');
+        var vehicule = getFieldValue('vehicule');
+        var prestationEl = document.getElementById('prestation');
+        var prestationValue = prestationEl ? prestationEl.value : '';
+        var prestationLabel = getPrestationLabel(prestationValue);
+        var message = getFieldValue('message');
+
+        if (!nom || !vehicule || !message) {
+          if (statusEl) {
+            statusEl.textContent = 'Merci de renseigner au minimum : nom, véhicule et détails de la demande.';
+          }
+          return;
+        }
+
+        var subject = 'Demande de devis - ' + vehicule;
+        var lines = [
+          'Bonjour Prime Detail,',
+          '',
+          'Je souhaite un devis personnalisé :',
+          '- Nom / Prénom : ' + nom,
+          '- Ville : ' + (ville || 'Non précisée'),
+          '- Véhicule : ' + vehicule,
+          '- Prestation souhaitée : ' + prestationLabel,
+          '',
+          'Détails :',
+          message,
+          '',
+          'Merci.'
+        ];
+
+        var mailtoUrl = 'mailto:contact@prime-detail.fr?subject=' +
+          encodeURIComponent(subject) + '&body=' + encodeURIComponent(lines.join('\n'));
+
+        if (statusEl) {
+          statusEl.textContent = 'Ouverture de votre application email…';
+        }
+
+        window.location.href = mailtoUrl;
+      });
     })();
 
     (function () {
