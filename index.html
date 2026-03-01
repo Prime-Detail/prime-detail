@@ -76,6 +76,7 @@
       color: var(--text-dark);
       line-height: 1.7;
       letter-spacing: 0.01em;
+      overflow-x: hidden;
     }
 
     img {
@@ -990,6 +991,10 @@
     }
 
     @media (max-width: 960px) {
+      .container {
+        padding: 0 16px;
+      }
+
       .hero-inner {
         grid-template-columns: minmax(0, 1fr);
       }
@@ -1040,7 +1045,19 @@
       }
 
       .nav-links {
-        display: none;
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 10px;
+        font-size: 0.86rem;
+      }
+
+      .nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
       }
 
       .hero {
@@ -1051,6 +1068,10 @@
     @media (max-width: 640px) {
       section {
         padding: 62px 0;
+      }
+
+      .container {
+        padding: 0 14px;
       }
 
       .logo {
@@ -1112,6 +1133,15 @@
 
       .quiz-finition .quiz {
         padding: 16px;
+      }
+
+      #contact-actions {
+        flex-direction: column;
+      }
+
+      #contact-actions .btn-primary {
+        width: 100%;
+        text-align: center;
       }
     }
   </style>
