@@ -18,6 +18,21 @@ npm run dev
 - Workflow: `.github/workflows/deploy-astro-pages.yml`.
 - Source build: `astro/` puis publication de `astro/dist`.
 
+### Avis Google auto-actualisés (Astro)
+- Les avis sont stockés dans `astro/src/data/google-reviews.json`.
+- Le script `tools/fetch-google-reviews.mjs` récupère automatiquement la note, le nombre d’avis et un extrait d’avis via Google Places API.
+- Le workflow `.github/workflows/update-google-reviews.yml` s’exécute chaque jour et peut aussi être lancé manuellement.
+
+Secrets GitHub à configurer dans le dépôt:
+- `GOOGLE_PLACES_API_KEY` (obligatoire)
+- `GOOGLE_PLACES_TEXT_QUERY` (optionnel, défaut: `Prime Detail Caen`)
+
+Exécution manuelle locale:
+
+```bash
+GOOGLE_PLACES_API_KEY="votre_cle_api" node tools/fetch-google-reviews.mjs
+```
+
 ## Assets & Logos
 
 Les images sont organisées dans `assets/images/...`. Utilisez des formats optimisés (WebP/PNG) et des dimensions adaptées.

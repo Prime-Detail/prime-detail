@@ -1,0 +1,49 @@
+---
+import reviewsData from '../data/google-reviews.json';
+
+const reviews = (reviewsData.reviews || []).filter((item) => item.text).slice(0, 6);
+const hasRating = typeof reviewsData.rating === 'number' && typeof reviewsData.userRatingCount === 'number';
+
+const reviewsSchema = hasRating
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'LocalBusiness',
+      name: reviewsData.businessName || 'Prime Detail',
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: reviewsData.rating,
+        reviewCount: reviewsData.userRatingCount
+      }
+    }
+  : null;
+---
+<section id="avis-google">
+  <div class="container">
+    <h2>Avis Google clients à Caen</h2>
+    {hasRating ? (
+      <p class="section-intro">
+        Note moyenne&nbsp;: <strong>{reviewsData.rating.toFixed(1)} / 5</strong> sur <strong>{reviewsData.userRatingCount}</strong> avis Google.
+      </p>
+    ) : (
+      <p class="section-intro">Les avis Google seront affichés automatiquement dès la première synchronisation API.</p>
+    )}
+
+    {reviews.length > 0 ? (
+      <div class="grid">
+        {reviews.map((review) => (
+          <article class="card">
+            <h3>{review.authorName}</h3>
+            <p><strong>{'★'.repeat(Math.max(0, Number(review.rating) || 0))}</strong>{review.relativeTime ? ` · ${review.relativeTime}` : ''}</p>
+            <p>{review.text}</p>
+          </article>
+        ))}
+      </div>
+    ) : null}
+
+    <p style="margin-top: 12px;">
+      <a href={reviewsData.googleMapsUri || 'https://share.google/gbHRHWBGYSqUaPxgx'} target="_blank" rel="noopener">Voir tous les avis Google</a>
+    </p>
+  </div>
+
+  {reviewsSchema ? <script type="application/ld+json" set:html={JSON.stringify(reviewsSchema)}></script> : null}
+</section>
