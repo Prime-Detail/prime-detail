@@ -1,0 +1,6 @@
+exclude:
+  - astro
+  - node_modules
+  - .cache
+  - .venv
+  - tools
