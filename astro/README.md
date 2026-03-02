@@ -16,14 +16,17 @@ npm run dev
 ## Important (assets)
 
 La reprise des pages utilise encore les chemins `/assets/...`.
-Pour les servir dans Astro, copiez les assets dans `astro/public/assets`:
+La copie `../assets` vers `astro/public/assets` est maintenant automatique via:
+- `npm run predev`
+- `npm run prebuild`
+
+Commande manuelle si besoin:
 
 ```bash
-mkdir -p public
-cp -R ../assets ./public/assets
+npm run sync:assets
 ```
 
 ## Objectif de l'étape suivante
 
-Copier automatiquement les assets (`../assets`) dans `public/assets` pendant le build/dev,
-puis mesurer les gains Lighthouse mobile avant/après.
+Mesurer les gains Lighthouse mobile avant/après,
+puis finaliser le cutover de déploiement Astro.

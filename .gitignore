@@ -1,3 +1,9 @@
 .cache/
 tools/lighthouse-mobile.report.html
 tools/lighthouse-mobile.report.json
+tools/lighthouse-astro-mobile.report.html
+tools/lighthouse-astro-mobile.report.json
+
+astro/node_modules/
+astro/dist/
+astro/.astro/
