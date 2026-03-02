@@ -394,6 +394,11 @@
       padding: 74px 0;
     }
 
+    main > section:not(.hero) {
+      content-visibility: auto;
+      contain-intrinsic-size: 900px;
+    }
+
     h2 {
       font-family: "Montserrat", sans-serif;
       font-size: clamp(1.75rem, 3vw, 2.1rem);
@@ -1329,8 +1334,8 @@
           <div class="certif-card">
             <div class="certif-img">
               <div class="certif-badges">
-                <img src="assets/images/gallery/nettoyage.png" alt="Certificat nettoyage automobile" loading="eager" decoding="async" />
-                <img src="assets/images/gallery/polissage.png" alt="Certificat polissage automobile" loading="eager" decoding="async" />
+                <img src="assets/images/gallery/nettoyage.png" alt="Certificat nettoyage automobile" loading="lazy" decoding="async" fetchpriority="low" />
+                <img src="assets/images/gallery/polissage.png" alt="Certificat polissage automobile" loading="lazy" decoding="async" fetchpriority="low" />
               </div>
             </div>
             <div class="certif-text">
@@ -1358,19 +1363,19 @@
             <h3>BMW intérieur (avant / après)</h3>
             <div class="illustration-photos">
               <div class="illustration-photo">
-                <img src="assets/images/gallery/siege1.jpeg" alt="BMW intérieur siège avant" loading="eager" decoding="async" />
+                <img src="assets/images/gallery/siege1.jpeg" alt="BMW intérieur siège avant" loading="lazy" decoding="async" fetchpriority="low" />
                 <span>Siège avant</span>
               </div>
               <div class="illustration-photo">
-                <img src="assets/images/gallery/siege2.jpeg" alt="BMW intérieur siège après" loading="eager" decoding="async" />
+                <img src="assets/images/gallery/siege2.jpeg" alt="BMW intérieur siège après" loading="lazy" decoding="async" fetchpriority="low" />
                 <span>Siège après</span>
               </div>
               <div class="illustration-photo">
-                <img src="assets/images/gallery/banquette1.jpeg" alt="BMW intérieur banquette avant" loading="eager" decoding="async" />
+                <img src="assets/images/gallery/banquette1.jpeg" alt="BMW intérieur banquette avant" loading="lazy" decoding="async" fetchpriority="low" />
                 <span>Banquette avant</span>
               </div>
               <div class="illustration-photo">
-                <img src="assets/images/gallery/banquette2.jpeg" alt="BMW intérieur banquette après" loading="eager" decoding="async" />
+                <img src="assets/images/gallery/banquette2.jpeg" alt="BMW intérieur banquette après" loading="lazy" decoding="async" fetchpriority="low" />
                 <span>Banquette après</span>
               </div>
             </div>
@@ -1380,15 +1385,15 @@
             <h3>Porsche extérieur (avant / après)</h3>
             <div class="illustration-photos three">
               <div class="illustration-photo">
-                <img src="assets/images/gallery/avant.jpeg" alt="Porsche extérieur avant detailing" loading="eager" decoding="async" />
+                <img src="assets/images/gallery/avant.jpeg" alt="Porsche extérieur avant detailing" loading="lazy" decoding="async" fetchpriority="low" />
                 <span>Avant</span>
               </div>
               <div class="illustration-photo">
-                <img src="assets/images/gallery/apres.jpeg" alt="Porsche extérieur après detailing" loading="eager" decoding="async" />
+                <img src="assets/images/gallery/apres.jpeg" alt="Porsche extérieur après detailing" loading="lazy" decoding="async" fetchpriority="low" />
                 <span>Après</span>
               </div>
               <div class="illustration-photo">
-                <img src="assets/images/gallery/detail.jpeg" alt="Porsche extérieur vue détail" loading="eager" decoding="async" />
+                <img src="assets/images/gallery/detail.jpeg" alt="Porsche extérieur vue détail" loading="lazy" decoding="async" fetchpriority="low" />
                 <span>Détail</span>
               </div>
             </div>
