@@ -21,7 +21,8 @@ npm run dev
 ### Avis Google auto-actualisés (Astro)
 - Les avis sont stockés dans `astro/src/data/google-reviews.json`.
 - Le script `tools/fetch-google-reviews.mjs` récupère automatiquement la note, le nombre d’avis et un extrait d’avis via Google Places API.
-- Le workflow `.github/workflows/update-google-reviews.yml` s’exécute chaque jour et peut aussi être lancé manuellement.
+- Le workflow `.github/workflows/update-google-reviews.yml` s’exécute chaque jour, peut être lancé manuellement, et se déclenche aussi au push sur ses fichiers.
+- Si `GOOGLE_PLACES_API_KEY` n’est pas configuré, le workflow passe en mode “skip” sans erreur.
 
 Secrets GitHub à configurer dans le dépôt:
 - `GOOGLE_PLACES_API_KEY` (obligatoire)

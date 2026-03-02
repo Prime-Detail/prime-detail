@@ -1,6 +1,13 @@
 name: Update Google Reviews Data
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - tools/fetch-google-reviews.mjs
+      - astro/src/data/google-reviews.json
+      - .github/workflows/update-google-reviews.yml
   schedule:
     - cron: '17 5 * * *'
   workflow_dispatch:
@@ -20,13 +27,27 @@ jobs:
         with:
           node-version: 20
 
+      - name: Check API key availability
+        id: check_key
+        env:
+          GOOGLE_PLACES_API_KEY: ${{ secrets.GOOGLE_PLACES_API_KEY }}
+        run: |
+          if [ -z "${GOOGLE_PLACES_API_KEY}" ]; then
+            echo "has_key=false" >> "$GITHUB_OUTPUT"
+            echo "GOOGLE_PLACES_API_KEY is not configured. Skipping update."
+          else
+            echo "has_key=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Fetch reviews from Google Places API
+        if: steps.check_key.outputs.has_key == 'true'
         env:
           GOOGLE_PLACES_API_KEY: ${{ secrets.GOOGLE_PLACES_API_KEY }}
           GOOGLE_PLACES_TEXT_QUERY: ${{ secrets.GOOGLE_PLACES_TEXT_QUERY }}
         run: node tools/fetch-google-reviews.mjs
 
       - name: Commit and push if changed
+        if: steps.check_key.outputs.has_key == 'true'
         run: |
           if git diff --quiet -- astro/src/data/google-reviews.json; then
             echo "No review changes"
