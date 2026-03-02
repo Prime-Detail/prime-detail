@@ -9,7 +9,6 @@ import TarifsSection from '../components/TarifsSection.astro';
 import ProcessSection from '../components/ProcessSection.astro';
 import ContactSection from '../components/ContactSection.astro';
 import SiteFooter from '../components/SiteFooter.astro';
-import ClientScripts from '../components/ClientScripts.astro';
 ---
 <BaseLayout>
 	<HeaderNav />
@@ -24,5 +23,7 @@ import ClientScripts from '../components/ClientScripts.astro';
 		<ContactSection />
 	</main>
 	<SiteFooter />
-	<ClientScripts />
+	<script src="/scripts/hero-ab.js" defer></script>
+	<script src="/scripts/quiz.js" defer></script>
+	<script src="/scripts/contact-media.js" defer></script>
 </BaseLayout>
