@@ -61,6 +61,8 @@ Le script crée:
 - `assets/videos/video-mobile.mp4` (qualité standard mobile)
 - `assets/videos/video-mobile-lite.mp4` (version légère pour réseau lent)
 
+Si le fichier MOV source est vide, le script bascule automatiquement sur `assets/images/gallery/video.mp4`.
+
 Le site privilégie automatiquement la version légère si l’appareil indique un débit faible / mode économie de données.
 
 ### Lancer un audit Lighthouse mobile

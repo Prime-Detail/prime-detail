@@ -13,9 +13,9 @@ if ! command -v ffmpeg >/dev/null 2>&1; then
   exit 1
 fi
 
-if [[ -f "$INPUT_MOV" ]]; then
+if [[ -s "$INPUT_MOV" ]]; then
   INPUT_FILE="$INPUT_MOV"
-elif [[ -f "$INPUT_MP4" ]]; then
+elif [[ -s "$INPUT_MP4" ]]; then
   INPUT_FILE="$INPUT_MP4"
 else
   echo "Erreur: aucun fichier source trouvé."
