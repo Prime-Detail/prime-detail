@@ -1,0 +1,38 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+
+const cssPath = path.resolve(process.cwd(), '..', 'styles.css');
+const legalCss = fs.readFileSync(cssPath, 'utf-8');
+---
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Mentions légales – Prime Detail</title>
+    <meta name="description" content="Mentions légales de Prime Detail : informations éditeur, hébergement, données personnelles, cookies et droit applicable." />
+    <meta name="theme-color" content="#2185a0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="canonical" href="https://prime-detail.github.io/prime-detail/mentions-legales.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://prime-detail.github.io/prime-detail/mentions-legales.html" />
+    <meta property="og:title" content="Mentions légales – Prime Detail" />
+    <meta property="og:description" content="Informations légales de Prime Detail : éditeur, données personnelles, cookies et responsabilité." />
+    <meta property="og:image" content="https://prime-detail.github.io/prime-detail/assets/images/gallery/apres.jpeg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Mentions légales – Prime Detail" />
+    <meta name="twitter:description" content="Informations légales de Prime Detail : éditeur, données personnelles, cookies et responsabilité." />
+    <meta name="twitter:image" content="https://prime-detail.github.io/prime-detail/assets/images/gallery/apres.jpeg" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/logo/logo2.png" />
+    <link rel="shortcut icon" href="/assets/images/logo/logo2.png" />
+    <link rel="apple-touch-icon" href="/assets/images/logo/logo2.png" />
+    <style set:html={legalCss}></style>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

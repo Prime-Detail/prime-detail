@@ -2,7 +2,8 @@
 
 Ce dossier contient un scaffold Astro **isolé**:
 - homepage `index` migrée en composants Astro natifs (`src/components/*`)
-- page `mentions-legales` encore en reprise legacy (étape suivante)
+- page `mentions-legales` migrée en Astro natif
+- JavaScript découpé en scripts ciblés (`public/scripts/*`)
 
 ## Lancer localement
 
@@ -24,5 +25,5 @@ cp -R ../assets ./public/assets
 
 ## Objectif de l'étape suivante
 
-Migrer `mentions-legales` en version Astro native,
-puis remplacer le script inline global par des modules ciblés (quiz + contact + média) pour réduire le JS embarqué.
+Copier automatiquement les assets (`../assets`) dans `public/assets` pendant le build/dev,
+puis mesurer les gains Lighthouse mobile avant/après.
