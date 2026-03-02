@@ -7,16 +7,92 @@ const raw = fs.readFileSync(sourcePath, 'utf-8');
 const styleMatch = raw.match(/<style>([\s\S]*?)<\/style>/i);
 const inlineStyles = styleMatch ? styleMatch[1] : '';
 const base = import.meta.env.BASE_URL;
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+  ogType?: string;
+  ogImagePath?: string;
+  noindex?: boolean;
+}
+
+const {
+  title = 'Prime Detail – Detailing Auto Premium à Domicile | Caen',
+  description = 'Detailing intérieur et rénovation carrosserie à domicile autour de Caen. Detailer certifié FD Formation. Nettoyage intérieur complet, polissage et packs premium.',
+  canonicalPath,
+  ogType = 'website',
+  ogImagePath = 'assets/images/gallery/apres.jpeg',
+  noindex = false
+} = Astro.props as Props;
+
+const fallbackSite = new URL('https://prime-detail.github.io/prime-detail/');
+const siteUrl = Astro.site ? new URL(Astro.site.toString()) : fallbackSite;
+
+function absoluteUrl(relativeOrPath: string) {
+  return new URL(relativeOrPath.replace(/^\//, ''), siteUrl).toString();
+}
+
+const canonicalUrl = canonicalPath ? absoluteUrl(canonicalPath) : (Astro.url?.href || siteUrl.toString());
+const ogImageUrl = absoluteUrl(ogImagePath);
+const robotsContent = noindex ? 'noindex, nofollow' : 'index, follow';
+
+const schemaGraph = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl.toString()}#website`,
+      url: siteUrl.toString(),
+      name: 'Prime Detail',
+      inLanguage: 'fr-FR'
+    },
+    {
+      '@type': 'LocalBusiness',
+      '@id': `${siteUrl.toString()}#localbusiness`,
+      name: 'Prime Detail',
+      url: siteUrl.toString(),
+      image: ogImageUrl,
+      telephone: '+33656751197',
+      priceRange: '€€',
+      areaServed: [
+        { '@type': 'City', name: 'Caen' },
+        { '@type': 'City', name: 'Ifs' },
+        { '@type': 'City', name: 'Hérouville-Saint-Clair' },
+        { '@type': 'City', name: 'Mondeville' }
+      ],
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Caen',
+        addressRegion: 'Normandie',
+        addressCountry: 'FR'
+      },
+      sameAs: [
+        'https://wa.me/33656751197',
+        siteUrl.toString()
+      ],
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Prestations detailing',
+        itemListElement: [
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Nettoyage intérieur automobile' } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Rénovation carrosserie et polissage' } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Pack intérieur + extérieur' } }
+        ]
+      }
+    }
+  ]
+};
 ---
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Prime Detail – Detailing Auto Premium à Domicile | Caen</title>
-    <meta name="description" content="Detailing intérieur et rénovation carrosserie à domicile autour de Caen. Detailer certifié FD Formation. Nettoyage intérieur complet, polissage et packs premium." />
-    <link rel="canonical" href="https://prime-detail.github.io/prime-detail/" />
-    <meta name="robots" content="index, follow" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="robots" content={robotsContent} />
 
     <meta name="theme-color" content="#1e5f71" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -24,35 +100,17 @@ const base = import.meta.env.BASE_URL;
     <link rel="icon" type="image/png" sizes="32x32" href={`${base}assets/images/logo/logo2.png`} />
     <link rel="shortcut icon" href={`${base}assets/images/logo/logo2.png`} />
     <link rel="apple-touch-icon" href={`${base}assets/images/logo/logo2.png`} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://prime-detail.github.io/prime-detail/" />
-    <meta property="og:title" content="Prime Detail – Detailing Auto Premium à Domicile | Caen" />
-    <meta property="og:description" content="Detailing intérieur et rénovation carrosserie à domicile autour de Caen. Nettoyage premium, polissage et packs complets." />
-    <meta property="og:image" content="https://prime-detail.github.io/prime-detail/assets/images/gallery/apres.jpeg" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Prime Detail – Detailing Auto Premium à Domicile | Caen" />
-    <meta name="twitter:description" content="Detailing intérieur et rénovation carrosserie à domicile autour de Caen. Nettoyage premium, polissage et packs complets." />
-    <meta name="twitter:image" content="https://prime-detail.github.io/prime-detail/assets/images/gallery/apres.jpeg" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
 
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "Prime Detail",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Caen",
-          "addressRegion": "Normandie"
-        },
-        "telephone": "0656751197",
-        "priceRange": "€€",
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "5",
-          "reviewCount": "45"
-        }
-      }
-    </script>
+    <script type="application/ld+json" set:html={JSON.stringify(schemaGraph)}></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet" />
     <style set:html={inlineStyles}></style>

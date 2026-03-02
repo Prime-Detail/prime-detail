@@ -1,0 +1,52 @@
+---
+const faqItems = [
+  {
+    q: 'Quel est le prix d’un detailing auto à Caen ?',
+    a: 'Le prix dépend du type de véhicule, de l’état initial et de la formule choisie (intérieur, extérieur ou pack complet). Prime Detail propose un devis personnalisé avant intervention.'
+  },
+  {
+    q: 'Intervenez-vous uniquement à Caen ?',
+    a: 'Prime Detail intervient à Caen et dans les communes proches (Ifs, Hérouville-Saint-Clair, Mondeville et alentours), selon planning et accès au véhicule.'
+  },
+  {
+    q: 'Combien de temps dure une prestation de detailing ?',
+    a: 'Selon la formule et l’état du véhicule, une intervention peut durer de 2h à une demi-journée. Les packs complets demandent généralement plus de temps.'
+  },
+  {
+    q: 'Faut-il de l’eau ou de l’électricité sur place ?',
+    a: 'Un accès pratique au véhicule est nécessaire. Les besoins précis (eau/électricité) sont confirmés lors du devis pour garantir la meilleure intervention possible.'
+  }
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.a
+    }
+  }))
+};
+---
+<section id="faq-local">
+  <div class="container">
+    <h2>FAQ detailing auto à Caen</h2>
+    <p class="section-intro">
+      Réponses rapides aux questions les plus fréquentes avant une prestation Prime Detail.
+    </p>
+
+    <div class="grid">
+      {faqItems.map((item) => (
+        <article class="card">
+          <h3>{item.q}</h3>
+          <p>{item.a}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
+</section>
