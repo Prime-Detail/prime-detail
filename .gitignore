@@ -1,0 +1,3 @@
+.cache/
+tools/lighthouse-mobile.report.html
+tools/lighthouse-mobile.report.json
