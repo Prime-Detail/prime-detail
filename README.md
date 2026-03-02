@@ -45,3 +45,26 @@ Le script crée:
 - `assets/videos/video-mobile-lite.mp4` (version légère pour réseau lent)
 
 Le site privilégie automatiquement la version légère si l’appareil indique un débit faible / mode économie de données.
+
+### Lancer un audit Lighthouse mobile
+Lancez un serveur local à la racine du projet, puis exécutez le script:
+
+```bash
+python3 -m http.server 4173
+```
+
+Dans un autre terminal:
+
+```bash
+bash ./tools/run-lighthouse-mobile.sh
+```
+
+Vous obtiendrez:
+- `tools/lighthouse-mobile.html`
+- `tools/lighthouse-mobile.json`
+
+Vous pouvez aussi passer une URL en argument:
+
+```bash
+bash ./tools/run-lighthouse-mobile.sh "http://127.0.0.1:4173/index.html"
+```
