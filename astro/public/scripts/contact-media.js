@@ -77,25 +77,27 @@
 })();
 
 (function () {
-  var images = Array.prototype.slice.call(document.querySelectorAll('img[src]'));
+  document.addEventListener('error', function (event) {
+    var target = event && event.target;
 
-  images.forEach(function (img) {
-    img.addEventListener('error', function () {
-      if (img.dataset.retried === '1') {
-        return;
-      }
+    if (!target || target.tagName !== 'IMG') {
+      return;
+    }
 
-      img.dataset.retried = '1';
+    if (target.dataset.retried === '1') {
+      return;
+    }
 
-      var src = img.getAttribute('src') || '';
-      if (!src) {
-        return;
-      }
+    target.dataset.retried = '1';
 
-      var separator = src.indexOf('?') === -1 ? '?' : '&';
-      img.setAttribute('src', src + separator + 'retry=1');
-    });
-  });
+    var src = target.getAttribute('src') || '';
+    if (!src) {
+      return;
+    }
+
+    var separator = src.indexOf('?') === -1 ? '?' : '&';
+    target.setAttribute('src', src + separator + 'retry=1');
+  }, true);
 
   var mainVideo = document.getElementById('main-video');
   var mobileVideoSource = document.getElementById('video-mobile-src');
