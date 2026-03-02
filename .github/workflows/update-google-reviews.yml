@@ -17,7 +17,7 @@ permissions:
 
 jobs:
   update-reviews:
-    if: github.actor != 'github-actions[bot]'
+    if: ${{ github.actor != 'github-actions[bot]' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -41,14 +41,14 @@ jobs:
           fi
 
       - name: Fetch reviews from Google Places API
-        if: steps.check_key.outputs.has_key == 'true'
+        if: ${{ steps.check_key.outputs.has_key == 'true' }}
         env:
           GOOGLE_PLACES_API_KEY: ${{ secrets.GOOGLE_PLACES_API_KEY }}
           GOOGLE_PLACES_TEXT_QUERY: ${{ secrets.GOOGLE_PLACES_TEXT_QUERY }}
         run: node tools/fetch-google-reviews.mjs
 
       - name: Commit and push if changed
-        if: steps.check_key.outputs.has_key == 'true'
+        if: ${{ steps.check_key.outputs.has_key == 'true' }}
         run: |
           if git diff --quiet -- astro/src/data/google-reviews.json; then
             echo "No review changes"
