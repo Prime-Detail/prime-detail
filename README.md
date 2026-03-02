@@ -68,17 +68,17 @@ python3 -m http.server 4173
 Dans un autre terminal:
 
 ```bash
-bash ./tools/run-lighthouse-mobile.sh
+./tools/run-lighthouse-mobile.sh
 ```
 
 Vous obtiendrez:
-- `tools/lighthouse-mobile.html`
-- `tools/lighthouse-mobile.json`
+- `tools/lighthouse-mobile.report.html`
+- `tools/lighthouse-mobile.report.json`
 
 Vous pouvez aussi passer une URL en argument:
 
 ```bash
-bash ./tools/run-lighthouse-mobile.sh "http://127.0.0.1:4173/index.html"
+./tools/run-lighthouse-mobile.sh "http://127.0.0.1:4173/index.html"
 ```
 
 Si `BROWSER` est défini, le rapport HTML s’ouvre automatiquement à la fin.
@@ -87,7 +87,20 @@ Si `BROWSER` est défini, le rapport HTML s’ouvre automatiquement à la fin.
 Ce script démarre un serveur local temporaire, lance Lighthouse mobile, puis coupe le serveur automatiquement:
 
 ```bash
-bash ./tools/run-lighthouse-mobile-once.sh
+./tools/run-lighthouse-mobile-once.sh
 ```
 
 Si `BROWSER` est défini, le rapport HTML s’ouvre automatiquement à la fin.
+
+### Vérification avant `git push`
+Pour éviter les erreurs de push (ex: `RPC failed; HTTP 408`) dues à des fichiers trop lourds:
+
+```bash
+bash ./tools/pre-push-check.sh
+```
+
+Optionnel: définir un seuil personnalisé en MB (par défaut: `50`):
+
+```bash
+bash ./tools/pre-push-check.sh 25
+```
