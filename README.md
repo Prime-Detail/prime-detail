@@ -69,6 +69,8 @@ Vous pouvez aussi passer une URL en argument:
 bash ./tools/run-lighthouse-mobile.sh "http://127.0.0.1:4173/index.html"
 ```
 
+Si `BROWSER` est défini, le rapport HTML s’ouvre automatiquement à la fin.
+
 ### Audit Lighthouse en une seule commande
 Ce script démarre un serveur local temporaire, lance Lighthouse mobile, puis coupe le serveur automatiquement:
 
