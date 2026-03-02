@@ -1370,13 +1370,16 @@
 
         <div class="video-frame">
           <video controls preload="none" playsinline webkit-playsinline poster="assets/images/gallery/apres.jpeg" id="main-video">
-            <source src="assets/videos/video-mobile.mp4" type="video/mp4; codecs=avc1.42E01E, mp4a.40.2" />
+            <source id="video-mobile-src" src="assets/videos/video-mobile.mp4" type="video/mp4; codecs=avc1.42E01E, mp4a.40.2" />
+            <source id="video-lite-src" src="assets/videos/video-mobile-lite.mp4" type="video/mp4; codecs=avc1.42E01E, mp4a.40.2" />
             <source src="assets/images/gallery/video.mp4" type="video/mp4" />
             <source src="assets/videos/Pub%20prime%20detail%20dacia%20Logan.MOV" type="video/quicktime" />
             Votre navigateur ne peut pas lire cette vidéo.
           </video>
           <p style="margin-top:10px;text-align:center;font-size:0.84rem;color:#6b7280;">
             Si la vidéo ne démarre pas sur votre appareil,
+            <a href="assets/videos/video-mobile-lite.mp4">essayez la version lite</a>,
+            puis
             <a href="assets/videos/video-mobile.mp4">essayez cette version mobile</a>
             ou
             <a href="assets/images/gallery/video.mp4">cette version alternative</a>.
@@ -2099,12 +2102,44 @@
       });
 
       var mainVideo = document.getElementById('main-video');
+      var mobileVideoSource = document.getElementById('video-mobile-src');
+      var liteVideoSource = document.getElementById('video-lite-src');
 
       if (!mainVideo) {
         return;
       }
 
+      function switchVideoToLite() {
+        if (!mobileVideoSource || !liteVideoSource) {
+          return false;
+        }
+
+        var liteSrc = liteVideoSource.getAttribute('src');
+        var mobileSrc = mobileVideoSource.getAttribute('src');
+
+        if (!liteSrc || !mobileSrc || mobileSrc === liteSrc) {
+          return false;
+        }
+
+        mobileVideoSource.setAttribute('src', liteSrc);
+        liteVideoSource.setAttribute('src', mobileSrc);
+        mainVideo.dataset.liteActive = '1';
+        mainVideo.load();
+        return true;
+      }
+
+      var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+      var shouldPreferLite = !!(connection && (connection.saveData || (typeof connection.downlink === 'number' && connection.downlink > 0 && connection.downlink < 1.5)));
+
+      if (shouldPreferLite) {
+        switchVideoToLite();
+      }
+
       mainVideo.addEventListener('error', function () {
+        if (mainVideo.dataset.liteActive !== '1' && switchVideoToLite()) {
+          return;
+        }
+
         if (mainVideo.dataset.retried === '1') {
           return;
         }

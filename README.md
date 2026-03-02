@@ -32,12 +32,16 @@ Utilisez le script simple ci-dessous pour vérifier la disponibilité du logo vi
 
 Le script tente une requête HEAD (`curl -I`) et ouvre l’URL si `$BROWSER` est défini.
 
-### Générer une vidéo mobile ultra-compatible
-Pour améliorer la lecture vidéo sur Android/iPhone (anciens appareils inclus), générez une version H.264 Baseline:
+### Générer des vidéos mobiles ultra-compatibles
+Pour améliorer la lecture vidéo sur Android/iPhone (anciens appareils inclus), générez des versions H.264 Baseline:
 
 ```bash
 chmod +x ./tools/transcode-mobile-video.sh
 ./tools/transcode-mobile-video.sh
 ```
 
-Le script crée `assets/videos/video-mobile.mp4`, utilisé en priorité par le site.
+Le script crée:
+- `assets/videos/video-mobile.mp4` (qualité standard mobile)
+- `assets/videos/video-mobile-lite.mp4` (version légère pour réseau lent)
+
+Le site privilégie automatiquement la version légère si l’appareil indique un débit faible / mode économie de données.
