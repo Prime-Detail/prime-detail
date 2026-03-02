@@ -23,6 +23,7 @@ npm run dev
 - Le script `tools/fetch-google-reviews.mjs` récupère automatiquement la note, le nombre d’avis et un extrait d’avis via Google Places API.
 - Le workflow `.github/workflows/update-google-reviews.yml` s’exécute chaque jour, peut être lancé manuellement, et se déclenche aussi au push sur ses fichiers.
 - Si `GOOGLE_PLACES_API_KEY` n’est pas configuré, le workflow passe en mode “skip” sans erreur.
+- Le workflow ignore les exécutions déclenchées par `github-actions[bot]` pour éviter une boucle de commits automatiques.
 
 Secrets GitHub à configurer dans le dépôt:
 - `GOOGLE_PLACES_API_KEY` (obligatoire)
