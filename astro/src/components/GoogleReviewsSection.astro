@@ -3,6 +3,7 @@ import reviewsData from '../data/google-reviews.json';
 
 const reviews = (reviewsData.reviews || []).filter((item) => item.text).slice(0, 6);
 const hasRating = typeof reviewsData.rating === 'number' && typeof reviewsData.userRatingCount === 'number';
+const hasReviewCount = typeof reviewsData.userRatingCount === 'number' && reviewsData.userRatingCount > 0;
 
 const reviewsSchema = hasRating
   ? {
@@ -18,32 +19,158 @@ const reviewsSchema = hasRating
   : null;
 ---
 <section id="avis-google">
-  <div class="container">
-    <h2>Avis Google clients à Caen</h2>
+  <div class="container reviews-wrap">
+    <div class="reviews-head">
+      <h2>Avis Google clients à Caen</h2>
+    </div>
     {hasRating ? (
-      <p class="section-intro">
+      <p class="section-intro reviews-intro">
         Note moyenne&nbsp;: <strong>{reviewsData.rating.toFixed(1)} / 5</strong> sur <strong>{reviewsData.userRatingCount}</strong> avis Google.
       </p>
+    ) : hasReviewCount ? (
+      <p class="section-intro reviews-intro">
+        Déjà <strong>plus de {reviewsData.userRatingCount} avis Google</strong> sur notre fiche établissement.
+      </p>
     ) : (
-      <p class="section-intro">Les avis Google seront affichés automatiquement dès la première synchronisation API.</p>
+      <p class="section-intro reviews-intro">Retours récents de clients Prime Detail à Caen.</p>
     )}
 
     {reviews.length > 0 ? (
-      <div class="grid">
+      <div class="reviews-grid">
         {reviews.map((review) => (
-          <article class="card">
-            <h3>{review.authorName}</h3>
-            <p><strong>{'★'.repeat(Math.max(0, Number(review.rating) || 0))}</strong>{review.relativeTime ? ` · ${review.relativeTime}` : ''}</p>
-            <p>{review.text}</p>
+          <article class="review-card">
+            <div class="review-meta">
+              <h3>{review.authorName}</h3>
+              <p>{review.relativeTime ? review.relativeTime : 'Avis client'}</p>
+            </div>
+            <p class="review-stars" aria-label={`Note ${Math.max(0, Number(review.rating) || 0)} sur 5`}>
+              {'★'.repeat(Math.max(0, Number(review.rating) || 0))}
+            </p>
+            <p class="review-text">{review.text}</p>
           </article>
         ))}
       </div>
-    ) : null}
+    ) : (
+      <p class="section-intro reviews-intro">Consultez notre profil Google pour lire les derniers retours clients.</p>
+    )}
 
-    <p style="margin-top: 12px;">
-      <a href={reviewsData.googleMapsUri || 'https://share.google/gbHRHWBGYSqUaPxgx'} target="_blank" rel="noopener">Voir tous les avis Google</a>
-    </p>
+    <a class="reviews-cta" href={reviewsData.googleMapsUri || 'https://share.google/gbHRHWBGYSqUaPxgx'} target="_blank" rel="noopener">
+      Voir tous les avis Google
+    </a>
   </div>
 
   {reviewsSchema ? <script type="application/ld+json" set:html={JSON.stringify(reviewsSchema)}></script> : null}
 </section>
+
+<style>
+  #avis-google {
+    padding-top: 8px;
+  }
+
+  .reviews-wrap {
+    background: #ffffff;
+    border: 1px solid rgba(229, 231, 235, 0.9);
+    border-radius: 18px;
+    padding: 20px 16px;
+    box-shadow: 0 12px 30px rgba(15, 52, 67, 0.08);
+  }
+
+  .reviews-head h2 {
+    margin-bottom: 4px;
+  }
+
+  .reviews-intro {
+    margin-bottom: 16px;
+  }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .review-card {
+    background: linear-gradient(180deg, #ffffff 0%, #f8fbfd 100%);
+    border: 1px solid rgba(213, 225, 233, 0.9);
+    border-radius: 14px;
+    padding: 14px;
+  }
+
+  .review-meta {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+
+  .review-meta h3 {
+    margin: 0;
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: #173f4c;
+  }
+
+  .review-meta p {
+    margin: 0;
+    font-size: 0.82rem;
+    color: #6b7280;
+    white-space: nowrap;
+  }
+
+  .review-stars {
+    margin: 0 0 8px;
+    color: #f59e0b;
+    letter-spacing: 0.04em;
+    font-size: 0.92rem;
+    font-weight: 700;
+  }
+
+  .review-text {
+    margin: 0;
+    color: #22323d;
+    line-height: 1.55;
+    font-size: 0.95rem;
+  }
+
+  .reviews-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 44px;
+    border-radius: 12px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #1e7b93 0%, #1e5f71 100%);
+    color: #ffffff;
+    border: 1px solid rgba(13, 50, 60, 0.28);
+    box-shadow: 0 10px 20px rgba(30, 95, 113, 0.25);
+  }
+
+  .reviews-cta:hover {
+    transform: translateY(-1px);
+  }
+
+  @media (min-width: 700px) {
+    .reviews-wrap {
+      padding: 24px;
+    }
+
+    .reviews-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .reviews-cta {
+      width: auto;
+      padding: 0 18px;
+    }
+  }
+
+  @media (min-width: 1040px) {
+    .reviews-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>
