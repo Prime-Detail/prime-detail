@@ -10,6 +10,7 @@ import TarifsSection from '../components/TarifsSection.astro';
 import ProcessSection from '../components/ProcessSection.astro';
 import ContactSection from '../components/ContactSection.astro';
 import SiteFooter from '../components/SiteFooter.astro';
+const base = import.meta.env.BASE_URL;
 ---
 <BaseLayout>
 	<HeaderNav />
@@ -24,7 +25,7 @@ import SiteFooter from '../components/SiteFooter.astro';
 		<ContactSection />
 	</main>
 	<SiteFooter />
-	<script src="/scripts/hero-ab.js" defer></script>
-	<script src="/scripts/quiz.js" defer></script>
-	<script src="/scripts/contact-media.js" defer></script>
+	<script src={`${base}scripts/hero-ab.js`} defer></script>
+	<script src={`${base}scripts/quiz.js`} defer></script>
+	<script src={`${base}scripts/contact-media.js`} defer></script>
 </BaseLayout>

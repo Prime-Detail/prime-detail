@@ -1,3 +1,6 @@
+---
+const base = import.meta.env.BASE_URL;
+---
 <section class="video-showcase">
   <div class="container">
     <h2>Vidéo de prestation</h2>
@@ -6,10 +9,10 @@
     </p>
 
     <div class="video-frame">
-      <video controls preload="none" playsinline webkit-playsinline poster="/assets/images/gallery/apres.jpeg" id="main-video">
-        <source id="video-mobile-src" src="/assets/images/gallery/video.mp4" type="video/mp4" />
-        <source id="video-lite-src" src="/assets/images/gallery/video.mp4" type="video/mp4" />
-        <source src="/assets/videos/Pub%20prime%20detail%20dacia%20Logan.MOV" type="video/quicktime" />
+      <video controls preload="none" playsinline webkit-playsinline poster={`${base}assets/images/gallery/apres.jpeg`} id="main-video">
+        <source id="video-mobile-src" src={`${base}assets/images/gallery/video.mp4`} type="video/mp4" />
+        <source id="video-lite-src" src={`${base}assets/images/gallery/video.mp4`} type="video/mp4" />
+        <source src={`${base}assets/videos/Pub%20prime%20detail%20dacia%20Logan.MOV`} type="video/quicktime" />
         Votre navigateur ne peut pas lire cette vidéo.
       </video>
     </div>

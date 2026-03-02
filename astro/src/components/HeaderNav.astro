@@ -1,10 +1,13 @@
+---
+const base = import.meta.env.BASE_URL;
+---
 <header>
   <div class="container">
     <div class="nav">
       <a href="#" class="logo" aria-label="Prime Detail">
-        <img src="/assets/images/logo/logo2.png" alt="Logo Prime Detail" loading="eager" decoding="async" fetchpriority="high" />
+        <img src={`${base}assets/images/logo/logo2.png`} alt="Logo Prime Detail" loading="eager" decoding="async" fetchpriority="high" />
       </a>
-      <img src="/assets/images/gallery/polissage.png" alt="Certification Polissage RS7091 Prime Detail Caen" class="cert-badge" loading="eager" decoding="async" />
+      <img src={`${base}assets/images/gallery/polissage.png`} alt="Certification Polissage RS7091 Prime Detail Caen" class="cert-badge" loading="eager" decoding="async" />
       <div class="nav-links">
         <a href="#services">Services</a>
         <a href="#tarifs">Tarifs</a>
