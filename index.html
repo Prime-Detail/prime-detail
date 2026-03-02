@@ -2,7 +2,8 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Prime Detail – Detailing Auto Premium à Domicile | Caen</title>
   <meta name="description" content="Detailing intérieur et rénovation carrosserie à domicile autour de Caen. Detailer certifié FD Formation. Nettoyage intérieur complet, polissage et packs premium.">
   <link rel="canonical" href="https://prime-detail.github.io/prime-detail/" />
@@ -75,6 +76,11 @@
       overflow-x: hidden;
     }
 
+    html {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
     body {
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
         "Segoe UI", sans-serif;
@@ -112,10 +118,17 @@
       position: sticky;
       top: 0;
       z-index: 50;
+      -webkit-backdrop-filter: blur(14px);
       backdrop-filter: blur(14px);
       background: rgba(247, 250, 252, 0.9);
       border-bottom: 1px solid rgba(229, 231, 235, 0.8);
       box-shadow: 0 10px 28px rgba(15, 52, 67, 0.08);
+    }
+
+    @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+      header {
+        background: #f7fafc;
+      }
     }
 
     .nav {
@@ -1705,11 +1718,20 @@
       }
 
       var storageKey = 'prime_detail_ab_variant';
-      var variant = localStorage.getItem(storageKey);
+      var variant = null;
+
+      try {
+        variant = localStorage.getItem(storageKey);
+      } catch (error) {
+        variant = null;
+      }
 
       if (variant !== 'A' && variant !== 'B') {
         variant = Math.random() < 0.5 ? 'A' : 'B';
-        localStorage.setItem(storageKey, variant);
+        try {
+          localStorage.setItem(storageKey, variant);
+        } catch (error) {
+        }
       }
 
       if (variant === 'B') {
@@ -1740,6 +1762,7 @@
       var terrainOnlyPriceEl = document.getElementById('terrain-only-price');
       var prestationSelect = document.getElementById('prestation');
       var messageField = document.getElementById('message');
+      var memoryStore = { vehicle: null, ext: null };
 
       if (!quiz || !steps.length || !cards.length || !vehicleNameEl || !totalEl || !processStepsEl) {
         return;
@@ -1818,11 +1841,55 @@
       }
 
       function getVehicle() {
-        return sessionStorage.getItem('vehicle') || 'citadine';
+        try {
+          return sessionStorage.getItem('vehicle') || memoryStore.vehicle || 'citadine';
+        } catch (error) {
+          return memoryStore.vehicle || 'citadine';
+        }
       }
 
       function getExt() {
-        return sessionStorage.getItem('ext') || 'none';
+        try {
+          return sessionStorage.getItem('ext') || memoryStore.ext || 'none';
+        } catch (error) {
+          return memoryStore.ext || 'none';
+        }
+      }
+
+      function setStoredValue(key, value) {
+        memoryStore[key] = value;
+        try {
+          sessionStorage.setItem(key, value);
+        } catch (error) {
+        }
+      }
+
+      function clearStoredValue(key) {
+        memoryStore[key] = null;
+        try {
+          sessionStorage.removeItem(key);
+        } catch (error) {
+        }
+      }
+
+      function getParentStep(cardElement) {
+        if (!cardElement) {
+          return null;
+        }
+
+        if (typeof cardElement.closest === 'function') {
+          return cardElement.closest('.step');
+        }
+
+        var node = cardElement.parentNode;
+        while (node && node !== quiz) {
+          if (node.classList && node.classList.contains('step')) {
+            return node;
+          }
+          node = node.parentNode;
+        }
+
+        return null;
       }
 
       function updateResult() {
@@ -1872,16 +1939,16 @@
 
       cards.forEach(function (card) {
         card.addEventListener('click', function () {
-          var parentStep = card.closest('.step');
+          var parentStep = getParentStep(card);
           var currentStep = parentStep ? parentStep.getAttribute('data-step') : '1';
           var nextStep = card.getAttribute('data-next');
 
           if (card.hasAttribute('data-type')) {
-            sessionStorage.setItem('vehicle', card.getAttribute('data-type'));
+            setStoredValue('vehicle', card.getAttribute('data-type'));
           }
 
           if (card.hasAttribute('data-ext')) {
-            sessionStorage.setItem('ext', card.getAttribute('data-ext'));
+            setStoredValue('ext', card.getAttribute('data-ext'));
             if (card.getAttribute('data-ext') === 'none') {
               nextStep = '4';
               updateResult();
@@ -1911,8 +1978,8 @@
 
       restartButtons.forEach(function (button) {
         button.addEventListener('click', function () {
-          sessionStorage.removeItem('vehicle');
-          sessionStorage.removeItem('ext');
+          clearStoredValue('vehicle');
+          clearStoredValue('ext');
           showStep('1');
           updateResult();
           updateProgress();
