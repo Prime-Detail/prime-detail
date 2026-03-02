@@ -13,6 +13,11 @@ npm install
 npm run dev
 ```
 
+### Déploiement GitHub Pages (Astro)
+- Le workflow CI publie automatiquement Astro à chaque push sur `main`.
+- Workflow: `.github/workflows/deploy-astro-pages.yml`.
+- Source build: `astro/` puis publication de `astro/dist`.
+
 ## Assets & Logos
 
 Les images sont organisées dans `assets/images/...`. Utilisez des formats optimisés (WebP/PNG) et des dimensions adaptées.
