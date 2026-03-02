@@ -68,3 +68,10 @@ Vous pouvez aussi passer une URL en argument:
 ```bash
 bash ./tools/run-lighthouse-mobile.sh "http://127.0.0.1:4173/index.html"
 ```
+
+### Audit Lighthouse en une seule commande
+Ce script démarre un serveur local temporaire, lance Lighthouse mobile, puis coupe le serveur automatiquement:
+
+```bash
+bash ./tools/run-lighthouse-mobile-once.sh
+```
