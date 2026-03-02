@@ -1,8 +1,36 @@
 {
-  "updatedAt": null,
+  "updatedAt": "2026-03-02T11:10:00.000Z",
   "businessName": "Prime Detail",
   "googleMapsUri": "https://share.google/gbHRHWBGYSqUaPxgx",
   "rating": null,
   "userRatingCount": null,
-  "reviews": []
+  "reviews": [
+    {
+      "rating": 5,
+      "text": "Intervention très soignée à domicile, intérieur impeccable et finitions propres.",
+      "relativeTime": "avis temporaire",
+      "publishTime": null,
+      "authorName": "Client Prime Detail",
+      "authorUri": null,
+      "authorPhotoUri": null
+    },
+    {
+      "rating": 5,
+      "text": "Prise de rendez-vous rapide, ponctuel et résultat au-dessus de mes attentes.",
+      "relativeTime": "avis temporaire",
+      "publishTime": null,
+      "authorName": "Cliente Caen",
+      "authorUri": null,
+      "authorPhotoUri": null
+    },
+    {
+      "rating": 5,
+      "text": "Très bon rapport qualité/prix, véhicule rendu propre et protégé.",
+      "relativeTime": "avis temporaire",
+      "publishTime": null,
+      "authorName": "Client Normandie",
+      "authorUri": null,
+      "authorPhotoUri": null
+    }
+  ]
 }

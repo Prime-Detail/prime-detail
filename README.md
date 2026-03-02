@@ -24,6 +24,8 @@ npm run dev
 - Le workflow `.github/workflows/update-google-reviews.yml` s’exécute chaque jour, peut être lancé manuellement, et se déclenche aussi au push sur ses fichiers.
 - Si `GOOGLE_PLACES_API_KEY` n’est pas configuré, le workflow passe en mode “skip” sans erreur.
 - Le workflow ignore les exécutions déclenchées par `github-actions[bot]` pour éviter une boucle de commits automatiques.
+- Si la clé API est invalide ou si l’API échoue, le script conserve le dernier cache `astro/src/data/google-reviews.json` pour éviter d’échouer la CI.
+- Mode temporaire possible: pré-remplir manuellement `astro/src/data/google-reviews.json` pour afficher des avis immédiatement, puis laisser l’API écraser ces données quand la clé devient valide.
 
 Secrets GitHub à configurer dans le dépôt:
 - `GOOGLE_PLACES_API_KEY` (obligatoire)

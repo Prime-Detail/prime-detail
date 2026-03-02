@@ -5,9 +5,25 @@ const apiKey = process.env.GOOGLE_PLACES_API_KEY;
 const query = process.env.GOOGLE_PLACES_TEXT_QUERY || 'Prime Detail Caen';
 const outputFile = path.resolve(process.cwd(), 'astro', 'src', 'data', 'google-reviews.json');
 
-if (!apiKey) {
-  console.error('Missing GOOGLE_PLACES_API_KEY');
-  process.exit(1);
+async function readExistingData() {
+  try {
+    const raw = await fs.readFile(outputFile, 'utf-8');
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+}
+
+async function keepExistingData(reason) {
+  const existing = await readExistingData();
+
+  if (existing) {
+    console.warn(`[google-reviews] ${reason}. Keeping existing cached data.`);
+    console.log(`Using cached reviews from ${outputFile}`);
+    process.exit(0);
+  }
+
+  throw new Error(`${reason}. No cached reviews file available at ${outputFile}`);
 }
 
 async function searchPlaceId() {
@@ -87,6 +103,10 @@ function normalize(data, fallback) {
 }
 
 async function main() {
+  if (!apiKey) {
+    await keepExistingData('Missing GOOGLE_PLACES_API_KEY');
+  }
+
   const place = await searchPlaceId();
   const details = await fetchPlaceDetails(place.id);
   const normalized = normalize(details, place);
@@ -100,6 +120,8 @@ async function main() {
 }
 
 main().catch((error) => {
-  console.error(error);
-  process.exit(1);
+  keepExistingData(error?.message || 'Failed to update Google reviews').catch((fallbackError) => {
+    console.error(fallbackError);
+    process.exit(1);
+  });
 });
