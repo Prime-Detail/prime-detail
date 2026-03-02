@@ -1,6 +1,18 @@
 # primedetail
 Site web de Prime Detail — Nettoyage automobile premium à domicile à Caen. Présente les services, les tarifs, et permet de réserver en ligne.
 
+## Migration Astro (dossier isolé)
+
+Une base de migration est disponible dans [astro/README.md](astro/README.md).
+
+Résumé rapide:
+
+```bash
+cd astro
+npm install
+npm run dev
+```
+
 ## Assets & Logos
 
 Les images sont organisées dans `assets/images/...`. Utilisez des formats optimisés (WebP/PNG) et des dimensions adaptées.

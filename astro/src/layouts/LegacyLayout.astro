@@ -1,0 +1,26 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+
+interface Props {
+  sourceFile: string;
+}
+
+const { sourceFile } = Astro.props;
+const sourcePath = path.resolve(process.cwd(), '..', sourceFile);
+const raw = fs.readFileSync(sourcePath, 'utf-8');
+
+const headMatch = raw.match(/<head[^>]*>([\s\S]*?)<\/head>/i);
+const bodyMatch = raw.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+
+const extractedHead = headMatch ? headMatch[1] : '';
+const extractedBody = bodyMatch ? bodyMatch[1] : raw;
+---
+<html lang="fr">
+  <head>
+    <Fragment set:html={extractedHead} />
+  </head>
+  <body>
+    <Fragment set:html={extractedBody} />
+  </body>
+</html>
