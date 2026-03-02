@@ -1,76 +1,2154 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Prime Detail - Detailing Auto Premium Caen</title>
-  <meta name="description" content="Detailing professionnel à domicile Caen. Certifié RS6719/RS7091. Intérieur/extérieur 120€. RDV 06 56 75 11 97">
-  <meta name="theme-color" content="#1e3c72">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Prime Detail – Detailing Auto Premium à Domicile | Caen</title>
+  <meta name="description" content="Detailing intérieur et rénovation carrosserie à domicile autour de Caen. Detailer certifié FD Formation. Nettoyage intérieur complet, polissage et packs premium.">
+  <link rel="canonical" href="https://prime-detail.github.io/prime-detail/" />
+  <meta name="robots" content="index, follow" />
 
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo/logo2.png">
-  <link rel="apple-touch-icon" href="assets/images/logo/logo2.png">
+  <meta name="theme-color" content="#1e5f71" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo/logo2.png" />
+  <link rel="shortcut icon" href="assets/images/logo/logo2.png" />
+  <link rel="apple-touch-icon" href="assets/images/logo/logo2.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://prime-detail.github.io/prime-detail/" />
+  <meta property="og:title" content="Prime Detail – Detailing Auto Premium à Domicile | Caen" />
+  <meta property="og:description" content="Detailing intérieur et rénovation carrosserie à domicile autour de Caen. Nettoyage premium, polissage et packs complets." />
+  <meta property="og:image" content="https://prime-detail.github.io/prime-detail/assets/images/gallery/apres.jpeg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Prime Detail – Detailing Auto Premium à Domicile | Caen" />
+  <meta name="twitter:description" content="Detailing intérieur et rénovation carrosserie à domicile autour de Caen. Nettoyage premium, polissage et packs complets." />
+  <meta name="twitter:image" content="https://prime-detail.github.io/prime-detail/assets/images/gallery/apres.jpeg" />
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Prime Detail",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Caen",
+        "addressRegion": "Normandie"
+      },
+      "telephone": "0656751197",
+      "priceRange": "€€",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "reviewCount": "45"
+      }
+    }
   </script>
 
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary-blue: #2185a0;
+      --primary-orange: #ff6b35;
+      --neutral-light: #f8f9fa;
+      --neutral-surface: #ffffff;
+      --neutral-panel: #f4f7fa;
+      --neutral-mid: #e5e7eb;
+      --text-dark: #1f2933;
+      --text-light: #6b7280;
+      --text-muted: #8792a2;
+      --shadow-soft: 0 18px 45px rgba(15, 52, 67, 0.12);
+      --shadow-strong: 0 26px 70px rgba(15, 52, 67, 0.2);
+      --radius-card: 22px;
+      --radius-btn: 14px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #f7fafc 0%, #f1f5f9 100%);
+      color: var(--text-dark);
+      line-height: 1.7;
+      letter-spacing: 0.01em;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    video {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 22px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+      background: rgba(247, 250, 252, 0.9);
+      border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+      box-shadow: 0 10px 28px rgba(15, 52, 67, 0.08);
+    }
+
+    @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+      header {
+        background: #f7fafc;
+      }
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+      min-width: 0;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 178px;
+      height: 62px;
+      background: linear-gradient(135deg, #1e5f71 0%, #133b47 100%);
+      border: 1px solid rgba(16, 38, 46, 0.85);
+      border-radius: 14px;
+      box-shadow: 0 14px 34px rgba(15, 52, 67, 0.28);
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
+    }
+
+    .cert-badge {
+      width: 58px;
+      height: 58px;
+      object-fit: contain;
+      border-radius: 10px;
+      background: #ffffff;
+      border: 1px solid rgba(226, 232, 240, 0.95);
+      box-shadow: 0 10px 22px rgba(15, 52, 67, 0.16);
+      padding: 4px;
+      margin-left: 10px;
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--text-light);
+      min-width: 0;
+    }
+
+    .nav-links a {
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-blue);
+    }
+
+    .nav-call {
+      font-weight: 600;
+      color: #ffffff;
+      background: linear-gradient(135deg, #ff7d4e 0%, #ff6b35 100%);
+      padding: 0.55rem 0.9rem;
+      border-radius: 999px;
+      box-shadow: 0 12px 24px rgba(255, 107, 53, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    /* HERO */
+
+    .hero {
+      background: radial-gradient(circle at top left, #35b2d2 0, #1e5968 52%, #10262e 100%);
+      color: white;
+      padding: 86px 0 82px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.12) 0, transparent 60%),
+        radial-gradient(circle at 100% 0, rgba(255, 255, 255, 0.06) 0, transparent 55%);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      gap: 44px;
+      align-items: center;
+    }
+
+    .hero-inner > * {
+      min-width: 0;
+    }
+
+    .badge-certif {
+      display: inline-block;
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      font-size: 0.86rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      letter-spacing: 0.02em;
+    }
+
+    h1 {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+      font-size: clamp(2.35rem, 4.2vw, 3.3rem);
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 span {
+      color: #fefefe;
+      text-shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
+    }
+
+    .hero-subtitle {
+      font-size: 1.02rem;
+      max-width: 520px;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 16px;
+    }
+
+    .hero-rating {
+      font-size: 0.93rem;
+      margin-bottom: 26px;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .hero-rating strong {
+      color: #fff;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 26px;
+    }
+
+    .btn-primary {
+      padding: 0.92rem 1.95rem;
+      border-radius: var(--radius-btn);
+      border: none;
+      background: linear-gradient(135deg, #ff8358 0%, #ff6b35 100%);
+      color: white;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      box-shadow: 0 18px 45px rgba(255, 107, 53, 0.45);
+      transition: all 0.25s ease-out;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #ff7a4d 0%, #e55a24 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 24px 60px rgba(255, 107, 53, 0.55);
+    }
+
+    .btn-outline {
+      padding: 0.82rem 1.6rem;
+      border-radius: var(--radius-btn);
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      background: rgba(15, 52, 67, 0.35);
+      color: #f9fafb;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.25s ease-out;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-outline:hover {
+      background: rgba(248, 250, 252, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .hero-note {
+      font-size: 0.9rem;
+      color: rgba(229, 231, 235, 0.92);
+      max-width: 560px;
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(16, 37, 44, 0.92) 0%, rgba(11, 30, 36, 0.9) 100%);
+      border-radius: 24px;
+      padding: 24px 24px 22px;
+      box-shadow: 0 20px 60px rgba(3, 7, 18, 0.7);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+    }
+
+    .hero-card-title {
+      font-size: 0.86rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: rgba(209, 213, 219, 0.9);
+      margin-bottom: 8px;
+    }
+
+    .hero-card-main {
+      font-size: 1.08rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      line-height: 1.45;
+    }
+
+    .hero-card-list {
+      list-style: none;
+      font-size: 0.9rem;
+      color: rgba(209, 213, 219, 0.9);
+    }
+
+    .hero-card-list li + li {
+      margin-top: 6px;
+    }
+
+    /* GENERIC SECTIONS */
+
+    section {
+      padding: 74px 0;
+    }
+
+    h2 {
+      font-family: "Montserrat", sans-serif;
+      font-size: clamp(1.75rem, 3vw, 2.1rem);
+      margin-bottom: 12px;
+      color: var(--primary-blue);
+      line-height: 1.2;
+    }
+
+    .section-intro {
+      color: var(--text-light);
+      font-size: 0.97rem;
+      margin-bottom: 30px;
+      max-width: 700px;
+    }
+
+    /* CERTIFICATIONS */
+
+    .certification {
+      padding: 70px 0;
+      background: var(--neutral-panel);
+      border-top: 1px solid rgba(226, 232, 240, 0.75);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.75);
+    }
+
+    .certifs-grid {
+      display: flex;
+      justify-content: center;
+    }
+
+    .certif-card {
+      background: var(--neutral-surface);
+      border-radius: 20px;
+      padding: 28px 30px;
+      max-width: 760px;
+      box-shadow: 0 22px 60px rgba(15, 52, 67, 0.14);
+      border: 1px solid rgba(229, 231, 235, 0.9);
+      display: flex;
+      gap: 26px;
+      align-items: center;
+    }
+
+    .certif-img img {
+      width: 140px;
+      height: auto;
+      display: block;
+    }
+
+    .certif-badges {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .certif-badges img {
+      width: 100%;
+      max-width: 220px;
+      border-radius: 14px;
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      box-shadow: 0 14px 30px rgba(15, 52, 67, 0.14);
+      background: #ffffff;
+      padding: 8px;
+    }
+
+    .certif-text h3 {
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+      color: var(--text-dark);
+    }
+
+    .certif-text p {
+      font-size: 0.95rem;
+      color: var(--text-light);
+    }
+
+    /* ILLUSTRATIONS */
+
+    .illustrations {
+      background: linear-gradient(180deg, #ffffff 0%, #f7fbfc 100%);
+    }
+
+    .illustration-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .illustration-card {
+      background: var(--neutral-surface);
+      border-radius: var(--radius-card);
+      padding: 20px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(229, 231, 235, 0.9);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .illustration-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-strong);
+    }
+
+    .illustration-card h3 {
+      font-size: 1.08rem;
+      margin-bottom: 12px;
+      color: var(--primary-blue);
+    }
+
+    .illustration-photos {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .illustration-photos.three {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .illustration-photos.three .illustration-photo:nth-child(3) {
+      grid-column: 1 / -1;
+    }
+
+    .illustration-photo {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(203, 213, 225, 0.9);
+      background: #ffffff;
+      box-shadow: 0 14px 30px rgba(15, 52, 67, 0.14);
+    }
+
+    .illustration-photo img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      display: block;
+      filter: contrast(1.05) saturate(1.06);
+      transition: transform 0.28s ease, filter 0.28s ease;
+    }
+
+    .illustration-photo:hover img {
+      transform: scale(1.03);
+      filter: contrast(1.08) saturate(1.1);
+    }
+
+    .illustration-photo span {
+      position: absolute;
+      left: 10px;
+      bottom: 10px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0.24rem 0.62rem;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: #ffffff;
+      background: rgba(15, 52, 67, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(4px);
+    }
+
+    /* VIDEO */
+
+    .video-showcase {
+      background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+      border-top: 1px solid rgba(226, 232, 240, 0.75);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.75);
+    }
+
+    .video-frame {
+      background: #0f2530;
+      border-radius: 18px;
+      padding: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: 0 20px 48px rgba(15, 52, 67, 0.24);
+      overflow: hidden;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .video-frame video {
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+      background: #020617;
+    }
+
+    #services {
+      background: #f8fafc;
+    }
+
+    #tarifs {
+      background: #ffffff;
+    }
+
+    #process {
+      background: #f8fafc;
+    }
+
+    #contact {
+      background: #ffffff;
+      border-top: 1px solid rgba(226, 232, 240, 0.7);
+    }
+
+    /* SERVICES GRID */
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      background: var(--neutral-surface);
+      border-radius: var(--radius-card);
+      padding: 24px 22px 22px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(229, 231, 235, 0.92);
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-strong);
+    }
+
+    .card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 10px;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+
+    .card p {
+      font-size: 0.94rem;
+      color: var(--text-light);
+      margin-bottom: 12px;
+    }
+
+    .card ul {
+      list-style: none;
+      padding-left: 0;
+      font-size: 0.92rem;
+      color: var(--text-dark);
+    }
+
+    .card ul li + li {
+      margin-top: 5px;
+    }
+
+    /* PRICING */
+
+    .quiz-finition {
+      background: linear-gradient(180deg, #f8fbfd 0%, #f1f6fa 100%);
+    }
+
+    .quiz-finition .quiz {
+      max-width: 740px;
+      margin: 0 auto;
+      background: var(--neutral-surface);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(229, 231, 235, 0.9);
+      padding: 20px;
+    }
+
+    .quiz-finition .progress-bar {
+      width: 100%;
+      height: 8px;
+      border-radius: 999px;
+      background: #e8eef5;
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+
+    .quiz-finition .progress-fill {
+      width: 25%;
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #2b96b3 0%, #1f6f85 100%);
+      transition: width 0.25s ease;
+    }
+
+    .quiz-finition .step {
+      display: none;
+    }
+
+    .quiz-finition .step.active {
+      display: block;
+      animation: fadeStep 0.25s ease;
+      transform: none;
+      box-shadow: none;
+      border: 0;
+      padding: 0;
+      background: transparent;
+    }
+
+    @keyframes fadeStep {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .quiz-finition .step h3 {
+      margin-bottom: 14px;
+      font-size: 1.08rem;
+    }
+
+    .quiz-finition .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .quiz-finition .cards-grid .card:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+    }
+
+    .quiz-finition .card,
+    .quiz-finition .yes,
+    .quiz-finition .no {
+      border: 1px solid rgba(31, 111, 133, 0.28);
+      border-radius: 12px;
+      padding: 12px;
+      background: #f8fafc;
+      cursor: pointer;
+      transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .quiz-finition .card:hover,
+    .quiz-finition .yes:hover,
+    .quiz-finition .no:hover {
+      border-color: #1f6f85;
+      background: #eef7fb;
+      transform: translateY(-1px);
+    }
+
+    .quiz-finition .card strong,
+    .quiz-finition .yes strong,
+    .quiz-finition .no strong {
+      color: var(--text-dark);
+    }
+
+    .quiz-finition .card span,
+    .quiz-finition .card small {
+      display: block;
+      margin-top: 4px;
+      font-size: 0.84rem;
+      color: var(--text-light);
+    }
+
+    .quiz-finition .yesno-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .quiz-finition .req {
+      font-size: 0.78rem;
+      color: var(--primary-orange);
+      font-weight: 700;
+    }
+
+    .quiz-finition .prix-gros,
+    .quiz-finition .prix-giant {
+      font-size: clamp(1.9rem, 6vw, 2.4rem);
+      font-weight: 700;
+      color: var(--primary-orange);
+      margin-bottom: 12px;
+    }
+
+    .quiz-finition .result-pro {
+      text-align: left;
+    }
+
+    .quiz-finition .prix-main {
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .quiz-finition #pack-none-note {
+      display: none;
+      margin-bottom: 10px;
+      font-size: 0.88rem;
+      color: var(--text-light);
+    }
+
+    .quiz-finition .pack-base,
+    .quiz-finition .pack-standard,
+    .quiz-finition .pack-premium {
+      display: none;
+      background: #f3f8fb;
+      border: 1px solid rgba(31, 111, 133, 0.18);
+      border-radius: 14px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+
+    .quiz-finition .pack-base.active,
+    .quiz-finition .pack-standard.active,
+    .quiz-finition .pack-premium.active {
+      display: block;
+    }
+
+    .quiz-finition .pack-detail h4 {
+      margin-bottom: 6px;
+      color: #1f6f85;
+      font-size: 0.95rem;
+    }
+
+    .quiz-finition .pack-detail p {
+      margin-bottom: 8px;
+      font-size: 0.88rem;
+      color: var(--text-light);
+    }
+
+    .quiz-finition .pack-detail ul,
+    .quiz-finition .interieur-pro ul,
+    .quiz-finition #process-steps {
+      list-style: none;
+      padding-left: 0;
+      text-align: left;
+      margin: 0;
+    }
+
+    .quiz-finition .pack-detail li + li,
+    .quiz-finition .interieur-pro li + li,
+    .quiz-finition #process-steps li + li {
+      margin-top: 6px;
+    }
+
+    .quiz-finition .pack-detail li,
+    .quiz-finition .interieur-pro li,
+    .quiz-finition #process-steps li,
+    .quiz-finition .garanties,
+    .quiz-finition .book-btn,
+    .quiz-finition .btn-gold {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .quiz-finition .interieur-pro {
+      margin-top: 12px;
+      background: #f8fafc;
+      border: 1px solid rgba(31, 111, 133, 0.14);
+      border-radius: 14px;
+      padding: 12px;
+      text-align: left;
+    }
+
+    .quiz-finition .interieur-pro h5 {
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+      color: #1f6f85;
+    }
+
+    .quiz-finition .garanties {
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(31, 111, 133, 0.16);
+      background: #f7fbff;
+      font-size: 0.86rem;
+    }
+
+    .quiz-finition .processus {
+      margin-top: 14px;
+      background: #f3f8fb;
+      border: 1px solid rgba(31, 111, 133, 0.18);
+      border-radius: 14px;
+      padding: 12px;
+      text-align: left;
+    }
+
+    .quiz-finition .processus h4 {
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+      color: #1f6f85;
+    }
+
+    .quiz-finition .book-btn,
+    .quiz-finition .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 14px;
+      padding: 0.78rem 1rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #2b96b3 0%, #1f6f85 100%);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.9rem;
+      box-shadow: 0 10px 24px rgba(33, 133, 160, 0.28);
+    }
+
+    .quiz-finition .restart-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
+      padding: 0.62rem 0.95rem;
+      border-radius: 999px;
+      border: 1px solid #dbe4ef;
+      background: #eef2f7;
+      color: var(--text-dark);
+      font-weight: 700;
+      font-size: 0.84rem;
+      cursor: pointer;
+    }
+
+    /* PROCESS */
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      font-size: 0.95rem;
+    }
+
+    .step {
+      background: var(--neutral-surface);
+      border-radius: var(--radius-card);
+      padding: 18px 18px 20px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(229, 231, 235, 0.9);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .step:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-strong);
+    }
+
+    .step-number {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background: rgba(33, 133, 160, 0.1);
+      color: var(--primary-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+    }
+
+    .step-title {
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .step p {
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+
+    /* CONTACT */
+
+    .contact-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.7fr);
+      gap: 26px;
+      align-items: flex-start;
+    }
+
+    .contact-inner > * {
+      min-width: 0;
+    }
+
+    .contact-info {
+      background: var(--neutral-surface);
+      border-radius: var(--radius-card);
+      padding: 22px 20px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(229, 231, 235, 0.9);
+      font-size: 0.95rem;
+      color: var(--text-light);
+    }
+
+    .contact-info h3 {
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+    }
+
+    .contact-info p + p {
+      margin-top: 6px;
+    }
+
+    .contact-info strong {
+      color: var(--text-dark);
+    }
+
+    .contact-form {
+      background: var(--neutral-surface);
+      border-radius: var(--radius-card);
+      padding: 22px 20px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(229, 231, 235, 0.9);
+    }
+
+    .form-row {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 10px;
+      min-width: 0;
+    }
+
+    .form-group {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 10px;
+      min-width: 0;
+    }
+
+    label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.015em;
+      color: var(--text-light);
+    }
+
+    input,
+    textarea,
+    select {
+      border-radius: 12px;
+      border: 1px solid var(--neutral-mid);
+      padding: 10px 12px;
+      font-size: 0.92rem;
+      font-family: inherit;
+      outline: none;
+      background: #fcfdff;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      width: 100%;
+      min-width: 0;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--primary-blue);
+      box-shadow: 0 0 0 3px rgba(33, 133, 160, 0.18);
+      background: #ffffff;
+    }
+
+    textarea {
+      min-height: 96px;
+      resize: vertical;
+    }
+
+    footer {
+      padding: 26px 0 32px;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      text-align: center;
+      border-top: 1px solid rgba(226, 232, 240, 0.85);
+      background: #f8fafc;
+    }
+
+    footer a {
+      color: var(--primary-blue);
+    }
+
+    @media (max-width: 960px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .hero-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-card {
+        margin-top: 18px;
+      }
+
+      .grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .certifs-grid {
+        flex-direction: column;
+      }
+
+      .certif-card {
+        max-width: none;
+      }
+
+      .illustration-photo img {
+        height: 140px;
+      }
+
+      .illustration-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .illustration-photos.three {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .quiz-finition .cards-grid,
+      .quiz-finition .yesno-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .process-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .contact-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      header {
+        position: static;
+      }
+
+      .nav-links {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 10px;
+        font-size: 0.86rem;
+      }
+
+      .nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .hero {
+        padding: 72px 0 68px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      section {
+        padding: 62px 0;
+      }
+
+      .container {
+        padding: 0 14px;
+      }
+
+      .logo {
+        width: 158px;
+        height: 56px;
+      }
+
+      .cert-badge {
+        width: 46px;
+        height: 46px;
+        margin-left: 8px;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 10vw, 2.35rem);
+      }
+
+      .hero-subtitle,
+      .hero-rating,
+      .hero-note {
+        font-size: 0.9rem;
+      }
+
+      .btn-primary,
+      .btn-outline {
+        width: 100%;
+        text-align: center;
+      }
+
+      .certif-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .certif-img img {
+        width: 120px;
+      }
+
+      .certif-badges {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .certif-badges img {
+        max-width: 180px;
+      }
+
+      .illustration-photos,
+      .illustration-photos.three {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .illustration-photos.three .illustration-photo:nth-child(3) {
+        grid-column: auto;
+      }
+
+      .illustration-photo img {
+        height: 230px;
+      }
+
+      .quiz-finition .quiz {
+        padding: 16px;
+      }
+
+      .quiz-finition .step h3 {
+        font-size: 0.98rem;
+      }
+
+      .quiz-finition .prix-gros,
+      .quiz-finition .prix-giant {
+        font-size: clamp(1.55rem, 8vw, 1.9rem);
+      }
+
+      .quiz-finition .card,
+      .quiz-finition .yes,
+      .quiz-finition .no,
+      .quiz-finition .pack-base,
+      .quiz-finition .pack-standard,
+      .quiz-finition .pack-premium,
+      .quiz-finition .interieur-pro,
+      .quiz-finition .processus {
+        padding: 10px;
+      }
+
+      .form-row {
+        flex-direction: column;
+        gap: 0;
+      }
+
+      #contact-actions {
+        flex-direction: column;
+      }
+
+      #contact-actions .btn-primary {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
+
 <body>
   <header>
-    <div class="hero">
-      <h1>🚗 PRIME DETAIL</h1>
-      <h2>Detailing Auto Premium à Domicile - Caen</h2>
-      <p><strong>Certifié RS6719/RS7091</strong> • 120€ intérieur citadine</p>
-      <a href="#quiz" class="cta">TEST GRATUIT 30s → Tarif perso</a>
-      <a href="tel:0656751197" class="cta tel">📞 06 56 75 11 97</a>
+    <div class="container">
+      <div class="nav">
+        <a href="#" class="logo" aria-label="Prime Detail">
+          <img src="assets/images/logo/logo2.png" alt="Logo Prime Detail" loading="eager" decoding="async" fetchpriority="high" />
+        </a>
+        <img src="assets/images/gallery/polissage.png" alt="Certification Polissage RS7091 Prime Detail Caen" class="cert-badge" loading="eager" decoding="async" />
+        <div class="nav-links">
+          <a href="#services">Services</a>
+          <a href="#tarifs">Tarifs</a>
+          <a href="#process">Déroulé</a>
+          <a href="#contact">Contact</a>
+          <a href="tel:0656751197" class="nav-call">06 56 75 11 97</a>
+        </div>
+      </div>
     </div>
   </header>
 
   <main>
-    <section id="services">
-      <h3>Nos Services</h3>
-      <div class="cards">
-        <article class="card">
-          <h4>Intérieur</h4>
-          <p>Aspiration HEPA • Vapeur Koch • Ozone UVC • 120€</p>
-        </article>
-        <article class="card">
-          <h4>Extérieur</h4>
-          <p>Lavage neige fondue • Quick detailer • 80€</p>
-        </article>
-        <article class="card">
-          <h4>Complète</h4>
-          <p>Intérieur + Extérieur showroom • 180€</p>
-        </article>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-inner">
+          <div>
+            <span class="badge-certif">Detailer certifié FD Formation • Nettoyage & Polissage</span>
+            <h1 id="hero-title">Detailing auto premium<br /><span>à domicile, autour de Caen</span></h1>
+            <p class="hero-subtitle">
+              Nettoyage intérieur façon detailing et rénovation esthétique de la carrosserie,
+              avec méthodes sécurisées pour vos tissus, plastiques, cuirs et vernis.
+            </p>
+            <p class="hero-rating">
+              <strong>+40 avis 5★ vérifiés sur Google</strong> – qualité constante, résultat clinique et finition premium.
+            </p>
+            <div class="hero-ctas">
+              <a href="#contact" class="btn-primary" id="hero-primary-cta">Obtenir mon devis en 24h</a>
+              <a href="#tarifs" class="btn-outline">Voir les tarifs</a>
+            </div>
+            <p class="hero-note">
+              Intervention à domicile sur Caen et alentours. Devis gratuit et personnalisé selon le véhicule et l’état initial.
+            </p>
+          </div>
+
+          <aside class="hero-card">
+            <div class="hero-card-title">Spécialité Prime Detail</div>
+            <div class="hero-card-main">Nettoyages intérieurs cliniques & rénovations carrosserie</div>
+            <ul class="hero-card-list">
+              <li>Intérieurs remis à niveau, taches et odeurs fortement réduites</li>
+              <li>Carrosseries ravivées par polissage et protection adaptée</li>
+              <li>Prestation réalisée par un detailer formé et certifié</li>
+            </ul>
+          </aside>
+        </div>
       </div>
     </section>
 
-    <section id="quiz">
-      <h3>🔍 Diagnostic Voiture 30s</h3>
-      <div id="quiz-container"></div>
+    <!-- CERTIFICATIONS -->
+    <section class="certification">
+      <div class="container">
+        <h2>Detailer certifié FD Formation</h2>
+        <p class="section-intro">
+          Double certification professionnelle en nettoyage automobile et polissage machine, reconnue pour des méthodes sûres et un résultat haut de gamme.
+        </p>
 
-      <div id="result" hidden>
-        <h4 id="result-title"></h4>
-        <p id="result-text"></p>
-        <a href="tel:0656751197" class="cta">RDV Immédiat</a>
+        <div class="certifs-grid">
+          <div class="certif-card">
+            <div class="certif-img">
+              <div class="certif-badges">
+                <img src="assets/images/gallery/nettoyage.png" alt="Certificat nettoyage automobile" loading="eager" decoding="async" />
+                <img src="assets/images/gallery/polissage.png" alt="Certificat polissage automobile" loading="eager" decoding="async" />
+              </div>
+            </div>
+            <div class="certif-text">
+              <h3>Certificats : Nettoyage & Polissage</h3>
+              <p>
+                Deux certifications professionnelles dédiées au nettoyage automobile et au polissage.
+                Travail conforme aux standards pros du detailing.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <noscript>
-        <p class="noscript">Le quiz nécessite JavaScript. Appelez directement le <a href="tel:0656751197">06 56 75 11 97</a>.</p>
-      </noscript>
+    <!-- ILLUSTRATIONS -->
+    <section class="illustrations">
+      <div class="container">
+        <h2>Illustrations avant / après</h2>
+        <p class="section-intro">
+          Résultats réels Prime Detail : intérieur BMW et extérieur Porsche traités avec une méthodologie de detailing professionnelle.
+        </p>
+
+        <div class="illustration-grid">
+          <div class="illustration-card">
+            <h3>BMW intérieur (avant / après)</h3>
+            <div class="illustration-photos">
+              <div class="illustration-photo">
+                <img src="assets/images/gallery/siege1.jpeg" alt="BMW intérieur siège avant" loading="eager" decoding="async" />
+                <span>Siège avant</span>
+              </div>
+              <div class="illustration-photo">
+                <img src="assets/images/gallery/siege2.jpeg" alt="BMW intérieur siège après" loading="eager" decoding="async" />
+                <span>Siège après</span>
+              </div>
+              <div class="illustration-photo">
+                <img src="assets/images/gallery/banquette1.jpeg" alt="BMW intérieur banquette avant" loading="eager" decoding="async" />
+                <span>Banquette avant</span>
+              </div>
+              <div class="illustration-photo">
+                <img src="assets/images/gallery/banquette2.jpeg" alt="BMW intérieur banquette après" loading="eager" decoding="async" />
+                <span>Banquette après</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="illustration-card">
+            <h3>Porsche extérieur (avant / après)</h3>
+            <div class="illustration-photos three">
+              <div class="illustration-photo">
+                <img src="assets/images/gallery/avant.jpeg" alt="Porsche extérieur avant detailing" loading="eager" decoding="async" />
+                <span>Avant</span>
+              </div>
+              <div class="illustration-photo">
+                <img src="assets/images/gallery/apres.jpeg" alt="Porsche extérieur après detailing" loading="eager" decoding="async" />
+                <span>Après</span>
+              </div>
+              <div class="illustration-photo">
+                <img src="assets/images/gallery/detail.jpeg" alt="Porsche extérieur vue détail" loading="eager" decoding="async" />
+                <span>Détail</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO -->
+    <section class="video-showcase">
+      <div class="container">
+        <h2>Vidéo de prestation</h2>
+        <p class="section-intro">
+          Aperçu réel d’une intervention Prime Detail : préparation, nettoyage et rendu final.
+        </p>
+
+        <div class="video-frame">
+          <video controls preload="none" playsinline webkit-playsinline poster="assets/images/gallery/apres.jpeg" id="main-video">
+            <source id="video-mobile-src" src="assets/videos/video-mobile.mp4" type="video/mp4; codecs=avc1.42E01E, mp4a.40.2" />
+            <source id="video-lite-src" src="assets/videos/video-mobile-lite.mp4" type="video/mp4; codecs=avc1.42E01E, mp4a.40.2" />
+            <source src="assets/images/gallery/video.mp4" type="video/mp4" />
+            <source src="assets/videos/Pub%20prime%20detail%20dacia%20Logan.MOV" type="video/quicktime" />
+            Votre navigateur ne peut pas lire cette vidéo.
+          </video>
+          <p style="margin-top:10px;text-align:center;font-size:0.84rem;color:#6b7280;">
+            Si la vidéo ne démarre pas sur votre appareil,
+            <a href="assets/videos/video-mobile-lite.mp4">essayez la version lite</a>,
+            puis
+            <a href="assets/videos/video-mobile.mp4">essayez cette version mobile</a>
+            ou
+            <a href="assets/images/gallery/video.mp4">cette version alternative</a>.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="container">
+        <h2>Services de detailing proposés</h2>
+        <p class="section-intro">
+          Prime Detail se concentre sur deux axes principaux : la remise à niveau des intérieurs et
+          la rénovation esthétique de la carrosserie. Chaque prestation est réalisée à la main, avec
+          un niveau de détail bien supérieur à un lavage classique.
+        </p>
+
+        <div class="grid">
+          <div class="card">
+            <h3>Nettoyage intérieur detailing</h3>
+            <p>
+              Remise à niveau complète de l’habitacle : sièges, moquettes, plastiques, vitres et
+              zones difficiles d’accès, avec machines professionnelles.
+            </p>
+            <ul>
+              <li>Aspiration approfondie habitacle + coffre</li>
+              <li>Nettoyage plastiques, console, volant, portes</li>
+              <li>Traitement ciblé des taches textiles</li>
+              <li>Vitres intérieures sans traces</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Rénovation carrosserie & polissage</h3>
+            <p>
+              Correction esthétique et protection de la peinture pour retrouver une carrosserie
+              brillante et homogène, sans passer par la carrosserie-peinture.
+            </p>
+            <ul>
+              <li>Lavage complet et décontamination</li>
+              <li>Polissage “One Step” ou zones ciblées</li>
+              <li>Protection par cire ou traitement synthétique</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Packs complets intérieur + extérieur</h3>
+            <p>
+              Formules combinées pour les clients qui souhaitent un résultat global, à
+              l’intérieur comme à l’extérieur, avec un meilleur rapport qualité/prix.
+            </p>
+            <ul>
+              <li>Intérieur complet + rénovation carrosserie</li>
+              <li>Formules confort, détail ou premium</li>
+              <li>Devis ajusté au véhicule et à l’usage</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TARIFS -->
+    <section id="tarifs" class="quiz-finition">
+      <div class="container">
+        <div class="quiz" id="tarif-quiz">
+          <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+
+          <div class="step active" data-step="1">
+            <h3>Véhicule ?</h3>
+            <div class="cards-grid">
+              <div class="card" data-next="2" data-type="citadine">
+                🚗 <strong>Citadine</strong>
+                <span>Format compact</span>
+              </div>
+              <div class="card" data-next="2" data-type="berline">
+                🚘 <strong>Berline</strong>
+                <span>Format familial</span>
+              </div>
+              <div class="card" data-next="2" data-type="suv">
+                🚙 <strong>SUV</strong>
+                <span>Grand format</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="step" data-step="2">
+            <h3>Extérieur ?</h3>
+            <div class="cards-grid">
+              <div class="card" data-next="3" data-ext="none">
+                ❌ Intérieur seul
+              </div>
+              <div class="card" data-next="3" data-ext="base">
+                ✨ <strong>BASE Brillance</strong>
+                <small>HP + Shampoing + Jantes + Pneus<br />30 min</small>
+              </div>
+              <div class="card" data-next="3" data-ext="standard">
+                🛡️ <strong>STANDARD Protection</strong>
+                <small>Base + Décontam ferreuse + Cire synthétique<br />60 min</small>
+              </div>
+              <div class="card" data-next="3" data-ext="premium">
+                💎 <strong>PREMIUM Céramique</strong>
+                <small>Standard + Clay + Polish + Carnauba 6 mois<br />3 h</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="step" data-step="3">
+            <h3>Terrain privé ? <span class="req">*</span></h3>
+            <div class="yesno-grid">
+              <div class="yes card-ok" data-next="4">
+                ✅ <strong>Oui</strong> Allée/Garage
+              </div>
+              <div class="no card-ko" data-alt="terrain">
+                ❌ <strong>Non</strong> Rue seulement
+              </div>
+            </div>
+          </div>
+
+          <div class="step result" data-step="4">
+            <div class="result-pro">
+              <div class="prix-main">
+                <h2 id="veh-name">Citadine</h2>
+                <div class="prix-giant" id="total">120€</div>
+              </div>
+
+              <div class="pack-detail" id="pack-desc">
+                <p id="pack-none-note">Intérieur seul sélectionné (sans pack extérieur).</p>
+
+                <div class="pack-base">
+                  <h4>✨ BASE Brillance (Ext +49€)</h4>
+                  <p><strong>Finition propre showroom</strong> vs stations brosses agressives</p>
+                  <ul>
+                    <li>Prélavage HP dissout film routier</li>
+                    <li>Shampoing 2 seaux microfibres pro</li>
+                    <li>Jantes ext + pneus brillants</li>
+                    <li>Vitres ext sans traces</li>
+                    <li><strong>Photo/Vidéo AV/APRÈS garantie</strong></li>
+                  </ul>
+                </div>
+
+                <div class="pack-standard">
+                  <h4>🛡️ STANDARD Protection (Ext +89€)</h4>
+                  <p><strong>Défense 1-2 mois</strong> vs lavage basique</p>
+                  <ul>
+                    <li>Base Brillance complète</li>
+                    <li>Décontam ferreuse jantes/carrosserie</li>
+                    <li>Détails pinceau joints/grilles</li>
+                    <li><strong>Cire synthétique liquide 1-2 mois</strong></li>
+                    <li>Certif RS6719 technique</li>
+                  </ul>
+                </div>
+
+                <div class="pack-premium">
+                  <h4>💎 PREMIUM Céramique (Ext +199€)</h4>
+                  <p><strong>Blindage 6 mois collection</strong> vs tout concurrent</p>
+                  <ul>
+                    <li>Standard complète</li>
+                    <li>Clay décontamination totale</li>
+                    <li>Polish 1-2 passes vernis rehaussé</li>
+                    <li><strong>Carnauba céramique 6 mois</strong> hydro</li>
+                    <li>Rénov plastiques ext + pneus</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="interieur-pro">
+                <h5>🧽 INTÉRIEUR Inclus</h5>
+                <ul>
+                  <li>Désodorisation ozone 30min + UVC 99.9%</li>
+                  <li>Extraction vapeur Clean&Protect Koch</li>
+                  <li>Protection anti-taches 3-6 mois</li>
+                  <li>APC console/volant + HPC plastiques</li>
+                  <li><strong>Micro-entreprise 120€ net</strong> (TVA 0%)</li>
+                </ul>
+              </div>
+
+              <div class="processus">
+                <h4>✅ Processus Inclus</h4>
+                <ul id="process-steps"></ul>
+              </div>
+
+              <div class="garanties">
+                <strong>🎖️ RS6719/RS7091 | Garantie 7j | Vidéo preuve</strong>
+              </div>
+
+              <a href="tel:0656751197" class="btn-gold">📱 RDV Certifié Maintenant</a>
+            </div>
+            <button type="button" class="restart-btn" data-restart="quiz">↺ Recommencer le quiz</button>
+          </div>
+
+          <div class="step alt-terrain" data-step="terrain">
+            <h3>⚠️ Extérieur Impossible</h3>
+            <p>Terrain privé obligatoire (rue interdit)</p>
+            <div class="prix-gros">Intérieur <strong id="terrain-only-price">120€</strong></div>
+            <a href="tel:0656751197" class="book-btn">Intérieur OK ? RDV</a>
+            <button type="button" class="restart-btn" data-restart="quiz">↺ Recommencer le quiz</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section id="process">
+      <div class="container">
+        <h2>Comment se déroule une prestation Prime Detail ?</h2>
+        <p class="section-intro">
+          L’objectif est de proposer une expérience simple et claire, tout en gardant un niveau
+          d’exigence élevé sur le résultat final.
+        </p>
+
+        <div class="process-grid">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-title">Prise de contact</div>
+            <p>
+              Contact par téléphone, WhatsApp ou formulaire. Récupération des informations
+              essentielles : modèle, année, photos éventuelles, état global.
+            </p>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-title">Devis personnalisé</div>
+            <p>
+              Envoi d’un devis clair avec détail de la prestation, temps estimé et tarif.
+              Validation du créneau ensemble.
+            </p>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-title">Installation & protection</div>
+            <p>
+              Mise en place du matériel, protection des zones sensibles, organisation
+              méthodique du travail sur le véhicule.
+            </p>
+          </div>
+          <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-title">Travail de detailing</div>
+            <p>
+              Nettoyage ou polissage selon le pack choisi, avec produits et techniques
+              adaptés à chaque surface pour un résultat clinique.
+            </p>
+          </div>
+          <div class="step">
+            <div class="step-number">5</div>
+            <div class="step-title">Contrôle & finitions</div>
+            <p>
+              Inspection visuelle complète, retouches si nécessaire, photos éventuelles
+              avant/après et présentation du résultat.
+            </p>
+          </div>
+          <div class="step">
+            <div class="step-number">6</div>
+            <div class="step-title">Suivi & avis</div>
+            <p>
+              Conseils d’entretien pour garder le résultat dans le temps et envoi d’un lien
+              pour laisser un avis Google après la prestation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container">
+        <h2>Demandez votre devis personnalisé</h2>
+        <p class="section-intro">
+          Décrivez votre véhicule et la prestation souhaitée : vous recevez un devis clair, détaillé et adapté,
+          généralement sous 24h.
+        </p>
+
+        <div class="contact-inner">
+          <div class="contact-info">
+            <h3>Coordonnées directes</h3>
+            <p><strong>Téléphone :</strong> <a href="tel:0656751197">06 56 75 11 97</a></p>
+            <p><strong>Email :</strong> <a href="mailto:contact@prime-detail.fr">contact@prime-detail.fr</a></p>
+            <p><strong>Zone d’intervention :</strong> Caen et alentours.</p>
+            <p style="margin-top:8px;">
+              Indiquez le modèle, l’année, l’état global (intérieur / extérieur) et, si possible, quelques photos :
+              cela permet d’ajuster parfaitement le devis.
+            </p>
+          </div>
+
+          <form class="contact-form" id="contact-form" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="nom">Nom / Prénom</label>
+                <input id="nom" type="text" placeholder="Votre nom" required />
+              </div>
+              <div class="form-group">
+                <label for="ville">Ville</label>
+                <input id="ville" type="text" placeholder="Caen, Ifs, Hérouville..." />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="vehicule">Modèle du véhicule</label>
+                <input id="vehicule" type="text" placeholder="Renault Clio 4, Peugeot 3008..." required />
+              </div>
+              <div class="form-group">
+                <label for="prestation">Type de prestation souhaitée</label>
+                <select id="prestation">
+                  <option value="interieur">Nettoyage intérieur</option>
+                  <option value="carrosserie">Rénovation carrosserie / polissage</option>
+                  <option value="pack">Pack intérieur + extérieur</option>
+                  <option value="entretien">Forfait entretien</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Détails / message</label>
+              <textarea id="message" placeholder="Précisez l’état actuel (propre, sale, très sale), présence de poils d’animaux, taches, etc." required></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary" id="contact-submit">Obtenir mes options de contact</button>
+            <p id="contact-form-status" style="margin-top:10px;font-size:0.92rem;color:#6b7280;"></p>
+            <div id="contact-actions" style="display:none;gap:10px;flex-wrap:wrap;margin-top:12px;">
+              <a id="contact-whatsapp" class="btn-primary" href="#" target="_blank" rel="noopener">Envoyer ma demande sur WhatsApp</a>
+              <a id="contact-call" class="btn-primary" href="tel:0656751197">Appeler 06 56 75 11 97</a>
+            </div>
+          </form>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer>
-    <p>Prime Detail • Caen (14) • <a href="tel:0656751197">06 56 75 11 97</a></p>
+    <div class="container">
+      Prime Detail – Detailing auto premium à domicile autour de Caen.  
+      Site vitrine sans collecte automatique de données. <a href="mentions-legales.html">Mentions légales</a>.
+    </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    (function () {
+      var titleEl = document.getElementById('hero-title');
+      var ctaEl = document.getElementById('hero-primary-cta');
+
+      if (!titleEl || !ctaEl) {
+        return;
+      }
+
+      var storageKey = 'prime_detail_ab_variant';
+      var variant = null;
+
+      try {
+        variant = localStorage.getItem(storageKey);
+      } catch (error) {
+        variant = null;
+      }
+
+      if (variant !== 'A' && variant !== 'B') {
+        variant = Math.random() < 0.5 ? 'A' : 'B';
+        try {
+          localStorage.setItem(storageKey, variant);
+        } catch (error) {
+        }
+      }
+
+      if (variant === 'B') {
+        titleEl.innerHTML = 'Nettoyage auto clinique premium<br /><span>à domicile, autour de Caen</span>';
+        ctaEl.textContent = 'Réserver mon diagnostic gratuit';
+      } else {
+        titleEl.innerHTML = 'Detailing auto premium<br /><span>à domicile, autour de Caen</span>';
+        ctaEl.textContent = 'Obtenir mon devis en 24h';
+      }
+    })();
+
+    (function () {
+      var quiz = document.getElementById('tarif-quiz');
+      var steps = quiz ? Array.prototype.slice.call(quiz.querySelectorAll('.step')) : [];
+      var progressFill = document.getElementById('progress-fill');
+      var cards = quiz ? Array.prototype.slice.call(quiz.querySelectorAll('.card[data-next]')) : [];
+      var yesCard = quiz ? quiz.querySelector('.yes[data-next]') : null;
+      var noCard = quiz ? quiz.querySelector('.no[data-alt="terrain"]') : null;
+      var restartButtons = quiz ? Array.prototype.slice.call(quiz.querySelectorAll('[data-restart="quiz"]')) : [];
+      var vehicleNameEl = document.getElementById('veh-name');
+      var totalEl = document.getElementById('total');
+      var packDesc = document.getElementById('pack-desc');
+      var packNoneNote = document.getElementById('pack-none-note');
+      var packBase = quiz ? quiz.querySelector('.pack-base') : null;
+      var packStandard = quiz ? quiz.querySelector('.pack-standard') : null;
+      var packPremium = quiz ? quiz.querySelector('.pack-premium') : null;
+      var processStepsEl = document.getElementById('process-steps');
+      var terrainOnlyPriceEl = document.getElementById('terrain-only-price');
+      var prestationSelect = document.getElementById('prestation');
+      var messageField = document.getElementById('message');
+      var memoryStore = { vehicle: null, ext: null };
+
+      if (!quiz || !steps.length || !cards.length || !vehicleNameEl || !totalEl || !processStepsEl) {
+        return;
+      }
+
+      var interiorPrices = {
+        citadine: 120,
+        berline: 135,
+        suv: 150
+      };
+
+      var vehicleNames = {
+        citadine: 'Citadine',
+        berline: 'Berline',
+        suv: 'SUV'
+      };
+
+      var exteriorPrices = {
+        none: { citadine: 0, berline: 0, suv: 0 },
+        base: { citadine: 49, berline: 54, suv: 59 },
+        standard: { citadine: 89, berline: 99, suv: 109 },
+        premium: { citadine: 199, berline: 224, suv: 249 }
+      };
+
+      var exteriorLabels = {
+        none: 'Intérieur seul',
+        base: 'BASE Brillance',
+        standard: 'STANDARD Protection',
+        premium: 'PREMIUM Céramique'
+      };
+
+      var processByExt = {
+        none: [
+          'Aspiration approfondie habitacle + coffre',
+          'Nettoyage textiles, plastiques, vitres intérieures',
+          'Finitions détaillées sur zones sensibles'
+        ],
+        base: [
+          'Nettoyage intérieur complet',
+          'HP + shampoing carrosserie',
+          'Jantes + dressing pneus'
+        ],
+        standard: [
+          'Pack BASE inclus',
+          'Décontamination ferreuse',
+          'Protection cire synthétique'
+        ],
+        premium: [
+          'Pack STANDARD inclus',
+          'Clay bar + polish de finition',
+          'Protection Carnauba 6 mois'
+        ]
+      };
+
+      function showStep(stepKey) {
+        steps.forEach(function (stepElement) {
+          var isCurrent = stepElement.getAttribute('data-step') === String(stepKey);
+          stepElement.classList.toggle('active', isCurrent);
+        });
+      }
+
+      function updateProgress() {
+        if (!progressFill) {
+          return;
+        }
+        var currentStepEl = quiz.querySelector('.step.active');
+        var step = currentStepEl ? currentStepEl.getAttribute('data-step') : '1';
+        var map = {
+          '1': 25,
+          '2': 50,
+          '3': 75,
+          '4': 100,
+          'terrain': 100
+        };
+        progressFill.style.width = (map[step] || 25) + '%';
+      }
+
+      function getVehicle() {
+        try {
+          return sessionStorage.getItem('vehicle') || memoryStore.vehicle || 'citadine';
+        } catch (error) {
+          return memoryStore.vehicle || 'citadine';
+        }
+      }
+
+      function getExt() {
+        try {
+          return sessionStorage.getItem('ext') || memoryStore.ext || 'none';
+        } catch (error) {
+          return memoryStore.ext || 'none';
+        }
+      }
+
+      function setStoredValue(key, value) {
+        memoryStore[key] = value;
+        try {
+          sessionStorage.setItem(key, value);
+        } catch (error) {
+        }
+      }
+
+      function clearStoredValue(key) {
+        memoryStore[key] = null;
+        try {
+          sessionStorage.removeItem(key);
+        } catch (error) {
+        }
+      }
+
+      function getParentStep(cardElement) {
+        if (!cardElement) {
+          return null;
+        }
+
+        if (typeof cardElement.closest === 'function') {
+          return cardElement.closest('.step');
+        }
+
+        var node = cardElement.parentNode;
+        while (node && node !== quiz) {
+          if (node.classList && node.classList.contains('step')) {
+            return node;
+          }
+          node = node.parentNode;
+        }
+
+        return null;
+      }
+
+      function updateResult() {
+        var veh = getVehicle();
+        var ext = getExt();
+        var intPrix = interiorPrices[veh] || interiorPrices.citadine;
+        var extPrix = (exteriorPrices[ext] && exteriorPrices[ext][veh]) || 0;
+        var total = intPrix + extPrix;
+
+        vehicleNameEl.textContent = vehicleNames[veh] || 'Citadine';
+        totalEl.textContent = total + '€';
+
+        if (packDesc) {
+          if (packBase) {
+            packBase.classList.toggle('active', ext === 'base');
+          }
+          if (packStandard) {
+            packStandard.classList.toggle('active', ext === 'standard');
+          }
+          if (packPremium) {
+            packPremium.classList.toggle('active', ext === 'premium');
+          }
+          if (packNoneNote) {
+            packNoneNote.style.display = ext === 'none' ? 'block' : 'none';
+          }
+        }
+
+        processStepsEl.innerHTML = '';
+        (processByExt[ext] || processByExt.none).forEach(function (stepText) {
+          processStepsEl.insertAdjacentHTML('beforeend', '<li>• ' + stepText + '</li>');
+        });
+
+        if (terrainOnlyPriceEl) {
+          terrainOnlyPriceEl.textContent = intPrix + '€';
+        }
+
+        if (prestationSelect) {
+          prestationSelect.value = ext === 'none' ? 'interieur' : 'pack';
+        }
+
+        if (messageField) {
+          messageField.value = 'Estimation quiz : ' + total + '€ | Véhicule : ' + (vehicleNames[veh] || 'Citadine') +
+            ' | Extérieur : ' + (exteriorLabels[ext] || 'Intérieur seul') + '.';
+        }
+
+      }
+
+      cards.forEach(function (card) {
+        card.addEventListener('click', function () {
+          var parentStep = getParentStep(card);
+          var currentStep = parentStep ? parentStep.getAttribute('data-step') : '1';
+          var nextStep = card.getAttribute('data-next');
+
+          if (card.hasAttribute('data-type')) {
+            setStoredValue('vehicle', card.getAttribute('data-type'));
+          }
+
+          if (card.hasAttribute('data-ext')) {
+            setStoredValue('ext', card.getAttribute('data-ext'));
+            if (card.getAttribute('data-ext') === 'none') {
+              nextStep = '4';
+              updateResult();
+            }
+          }
+
+          showStep(nextStep || currentStep);
+          updateProgress();
+        });
+      });
+
+      if (yesCard) {
+        yesCard.addEventListener('click', function () {
+          showStep('4');
+          updateResult();
+          updateProgress();
+        });
+      }
+
+      if (noCard) {
+        noCard.addEventListener('click', function () {
+          updateResult();
+          showStep('terrain');
+          updateProgress();
+        });
+      }
+
+      restartButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          clearStoredValue('vehicle');
+          clearStoredValue('ext');
+          showStep('1');
+          updateResult();
+          updateProgress();
+        });
+      });
+
+      showStep('1');
+      updateResult();
+      updateProgress();
+    })();
+
+    (function () {
+      var contactForm = document.getElementById('contact-form');
+      var statusEl = document.getElementById('contact-form-status');
+      var actionsEl = document.getElementById('contact-actions');
+      var whatsappLinkEl = document.getElementById('contact-whatsapp');
+
+      if (!contactForm) {
+        return;
+      }
+
+      function getFieldValue(id) {
+        var el = document.getElementById(id);
+        return el ? (el.value || '').trim() : '';
+      }
+
+      function getPrestationLabel(value) {
+        var labels = {
+          interieur: 'Nettoyage intérieur',
+          carrosserie: 'Rénovation carrosserie / polissage',
+          pack: 'Pack intérieur + extérieur',
+          entretien: 'Forfait entretien'
+        };
+
+        return labels[value] || value || 'Non précisé';
+      }
+
+      contactForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        var nom = getFieldValue('nom');
+        var ville = getFieldValue('ville');
+        var vehicule = getFieldValue('vehicule');
+        var prestationEl = document.getElementById('prestation');
+        var prestationValue = prestationEl ? prestationEl.value : '';
+        var prestationLabel = getPrestationLabel(prestationValue);
+        var message = getFieldValue('message');
+
+        if (!nom || !vehicule || !message) {
+          if (actionsEl) {
+            actionsEl.style.display = 'none';
+          }
+          if (statusEl) {
+            statusEl.textContent = 'Merci de renseigner au minimum : nom, véhicule et détails de la demande.';
+          }
+          return;
+        }
+
+        var lines = [
+          'Bonjour Prime Detail,',
+          '',
+          'Je souhaite un devis personnalisé :',
+          '- Nom / Prénom : ' + nom,
+          '- Ville : ' + (ville || 'Non précisée'),
+          '- Véhicule : ' + vehicule,
+          '- Prestation souhaitée : ' + prestationLabel,
+          '',
+          'Détails :',
+          message,
+          '',
+          'Merci.'
+        ];
+
+        var whatsappUrl = 'https://wa.me/33656751197?text=' + encodeURIComponent(lines.join('\n'));
+
+        if (whatsappLinkEl) {
+          whatsappLinkEl.setAttribute('href', whatsappUrl);
+        }
+
+        if (actionsEl) {
+          actionsEl.style.display = 'flex';
+        }
+
+        if (statusEl) {
+          statusEl.textContent = 'Choisissez votre méthode: envoyer votre demande par message WhatsApp et/ou appeler directement.';
+        }
+
+      });
+    })();
+
+    (function () {
+      var images = Array.prototype.slice.call(document.querySelectorAll('img[src]'));
+
+      images.forEach(function (img) {
+        img.addEventListener('error', function () {
+          if (img.dataset.retried === '1') {
+            return;
+          }
+
+          img.dataset.retried = '1';
+
+          var src = img.getAttribute('src') || '';
+          if (!src) {
+            return;
+          }
+
+          var separator = src.indexOf('?') === -1 ? '?' : '&';
+          img.setAttribute('src', src + separator + 'retry=1');
+        });
+      });
+
+      var mainVideo = document.getElementById('main-video');
+      var mobileVideoSource = document.getElementById('video-mobile-src');
+      var liteVideoSource = document.getElementById('video-lite-src');
+
+      if (!mainVideo) {
+        return;
+      }
+
+      function switchVideoToLite() {
+        if (!mobileVideoSource || !liteVideoSource) {
+          return false;
+        }
+
+        var liteSrc = liteVideoSource.getAttribute('src');
+        var mobileSrc = mobileVideoSource.getAttribute('src');
+
+        if (!liteSrc || !mobileSrc || mobileSrc === liteSrc) {
+          return false;
+        }
+
+        mobileVideoSource.setAttribute('src', liteSrc);
+        liteVideoSource.setAttribute('src', mobileSrc);
+        mainVideo.dataset.liteActive = '1';
+        mainVideo.load();
+        return true;
+      }
+
+      var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+      var shouldPreferLite = !!(connection && (connection.saveData || (typeof connection.downlink === 'number' && connection.downlink > 0 && connection.downlink < 1.5)));
+
+      if (shouldPreferLite) {
+        switchVideoToLite();
+      }
+
+      mainVideo.addEventListener('error', function () {
+        if (mainVideo.dataset.liteActive !== '1' && switchVideoToLite()) {
+          return;
+        }
+
+        if (mainVideo.dataset.retried === '1') {
+          return;
+        }
+
+        mainVideo.dataset.retried = '1';
+        mainVideo.load();
+      });
+    })();
+
+  </script>
 </body>
 </html>
