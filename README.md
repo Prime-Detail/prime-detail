@@ -75,3 +75,5 @@ Ce script démarre un serveur local temporaire, lance Lighthouse mobile, puis co
 ```bash
 bash ./tools/run-lighthouse-mobile-once.sh
 ```
+
+Si `BROWSER` est défini, le rapport HTML s’ouvre automatiquement à la fin.

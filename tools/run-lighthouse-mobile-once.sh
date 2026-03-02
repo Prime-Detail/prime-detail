@@ -44,3 +44,11 @@ npx --yes lighthouse "$URL" \
   --output-path="$OUT_BASE"
 
 echo "Terminé ✅"
+
+if [[ -n "${BROWSER:-}" ]]; then
+  REPORT_URL="file://${OUT_BASE}.html"
+  echo "Ouverture du rapport: ${REPORT_URL}"
+  "$BROWSER" "$REPORT_URL" >/dev/null 2>&1 || true
+else
+  echo "Info: variable BROWSER non définie, ouverture auto ignorée."
+fi
