@@ -1,8 +1,8 @@
 # Migration Astro (étape 1)
 
-Ce dossier contient un scaffold Astro **isolé** qui reprend automatiquement:
-- `../index.html`
-- `../mentions-legales.html`
+Ce dossier contient un scaffold Astro **isolé**:
+- homepage `index` migrée en composants Astro natifs (`src/components/*`)
+- page `mentions-legales` encore en reprise legacy (étape suivante)
 
 ## Lancer localement
 
@@ -24,5 +24,5 @@ cp -R ../assets ./public/assets
 
 ## Objectif de l'étape suivante
 
-Remplacer la reprise "legacy" par des composants Astro natifs section par section,
-avec optimisation mobile-first (images responsive, JS minimal, SEO conservé).
+Migrer `mentions-legales` en version Astro native,
+puis remplacer le script inline global par des modules ciblés (quiz + contact + média) pour réduire le JS embarqué.

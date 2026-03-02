@@ -1,0 +1,62 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+
+const sourcePath = path.resolve(process.cwd(), '..', 'index.html');
+const raw = fs.readFileSync(sourcePath, 'utf-8');
+const styleMatch = raw.match(/<style>([\s\S]*?)<\/style>/i);
+const inlineStyles = styleMatch ? styleMatch[1] : '';
+---
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Prime Detail – Detailing Auto Premium à Domicile | Caen</title>
+    <meta name="description" content="Detailing intérieur et rénovation carrosserie à domicile autour de Caen. Detailer certifié FD Formation. Nettoyage intérieur complet, polissage et packs premium." />
+    <link rel="canonical" href="https://prime-detail.github.io/prime-detail/" />
+    <meta name="robots" content="index, follow" />
+
+    <meta name="theme-color" content="#1e5f71" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/logo/logo2.png" />
+    <link rel="shortcut icon" href="/assets/images/logo/logo2.png" />
+    <link rel="apple-touch-icon" href="/assets/images/logo/logo2.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://prime-detail.github.io/prime-detail/" />
+    <meta property="og:title" content="Prime Detail – Detailing Auto Premium à Domicile | Caen" />
+    <meta property="og:description" content="Detailing intérieur et rénovation carrosserie à domicile autour de Caen. Nettoyage premium, polissage et packs complets." />
+    <meta property="og:image" content="https://prime-detail.github.io/prime-detail/assets/images/gallery/apres.jpeg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Prime Detail – Detailing Auto Premium à Domicile | Caen" />
+    <meta name="twitter:description" content="Detailing intérieur et rénovation carrosserie à domicile autour de Caen. Nettoyage premium, polissage et packs complets." />
+    <meta name="twitter:image" content="https://prime-detail.github.io/prime-detail/assets/images/gallery/apres.jpeg" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Prime Detail",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Caen",
+          "addressRegion": "Normandie"
+        },
+        "telephone": "0656751197",
+        "priceRange": "€€",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5",
+          "reviewCount": "45"
+        }
+      }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet" />
+    <style set:html={inlineStyles}></style>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

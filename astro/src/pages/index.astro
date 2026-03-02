@@ -1,4 +1,28 @@
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeaderNav from '../components/HeaderNav.astro';
+import HeroSection from '../components/HeroSection.astro';
+import CertificationSection from '../components/CertificationSection.astro';
+import IllustrationsSection from '../components/IllustrationsSection.astro';
+import VideoSection from '../components/VideoSection.astro';
+import ServicesSection from '../components/ServicesSection.astro';
+import TarifsSection from '../components/TarifsSection.astro';
+import ProcessSection from '../components/ProcessSection.astro';
+import ContactSection from '../components/ContactSection.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import ClientScripts from '../components/ClientScripts.astro';
 ---
-import LegacyLayout from '../layouts/LegacyLayout.astro';
----
-<LegacyLayout sourceFile="index.html" />
+<BaseLayout>
+	<HeaderNav />
+	<main>
+		<HeroSection />
+		<CertificationSection />
+		<IllustrationsSection />
+		<VideoSection />
+		<ServicesSection />
+		<TarifsSection />
+		<ProcessSection />
+		<ContactSection />
+	</main>
+	<SiteFooter />
+	<ClientScripts />
+</BaseLayout>

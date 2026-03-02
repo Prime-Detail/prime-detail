@@ -1,0 +1,132 @@
+<section id="tarifs" class="quiz-finition">
+  <div class="container">
+    <div class="quiz" id="tarif-quiz">
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+
+      <div class="step active" data-step="1">
+        <h3>Véhicule ?</h3>
+        <div class="cards-grid">
+          <div class="card" data-next="2" data-type="citadine">
+            🚗 <strong>Citadine</strong>
+            <span>Format compact</span>
+          </div>
+          <div class="card" data-next="2" data-type="berline">
+            🚘 <strong>Berline</strong>
+            <span>Format familial</span>
+          </div>
+          <div class="card" data-next="2" data-type="suv">
+            🚙 <strong>SUV</strong>
+            <span>Grand format</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step" data-step="2">
+        <h3>Extérieur ?</h3>
+        <div class="cards-grid">
+          <div class="card" data-next="3" data-ext="none">❌ Intérieur seul</div>
+          <div class="card" data-next="3" data-ext="base">
+            ✨ <strong>BASE Brillance</strong>
+            <small>HP + Shampoing + Jantes + Pneus<br />30 min</small>
+          </div>
+          <div class="card" data-next="3" data-ext="standard">
+            🛡️ <strong>STANDARD Protection</strong>
+            <small>Base + Décontam ferreuse + Cire synthétique<br />60 min</small>
+          </div>
+          <div class="card" data-next="3" data-ext="premium">
+            💎 <strong>PREMIUM Céramique</strong>
+            <small>Standard + Clay + Polish + Carnauba 6 mois<br />3 h</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="step" data-step="3">
+        <h3>Terrain privé ? <span class="req">*</span></h3>
+        <div class="yesno-grid">
+          <div class="yes card-ok" data-next="4">✅ <strong>Oui</strong> Allée/Garage</div>
+          <div class="no card-ko" data-alt="terrain">❌ <strong>Non</strong> Rue seulement</div>
+        </div>
+      </div>
+
+      <div class="step result" data-step="4">
+        <div class="result-pro">
+          <div class="prix-main">
+            <h2 id="veh-name">Citadine</h2>
+            <div class="prix-giant" id="total">120€</div>
+          </div>
+
+          <div class="pack-detail" id="pack-desc">
+            <p id="pack-none-note">Intérieur seul sélectionné (sans pack extérieur).</p>
+
+            <div class="pack-base">
+              <h4>✨ BASE Brillance (Ext +49€)</h4>
+              <p><strong>Finition propre showroom</strong> vs stations brosses agressives</p>
+              <ul>
+                <li>Prélavage HP dissout film routier</li>
+                <li>Shampoing 2 seaux microfibres pro</li>
+                <li>Jantes ext + pneus brillants</li>
+                <li>Vitres ext sans traces</li>
+                <li><strong>Photo/Vidéo AV/APRÈS garantie</strong></li>
+              </ul>
+            </div>
+
+            <div class="pack-standard">
+              <h4>🛡️ STANDARD Protection (Ext +89€)</h4>
+              <p><strong>Défense 1-2 mois</strong> vs lavage basique</p>
+              <ul>
+                <li>Base Brillance complète</li>
+                <li>Décontam ferreuse jantes/carrosserie</li>
+                <li>Détails pinceau joints/grilles</li>
+                <li><strong>Cire synthétique liquide 1-2 mois</strong></li>
+                <li>Certif RS6719 technique</li>
+              </ul>
+            </div>
+
+            <div class="pack-premium">
+              <h4>💎 PREMIUM Céramique (Ext +199€)</h4>
+              <p><strong>Blindage 6 mois collection</strong> vs tout concurrent</p>
+              <ul>
+                <li>Standard complète</li>
+                <li>Clay décontamination totale</li>
+                <li>Polish 1-2 passes vernis rehaussé</li>
+                <li><strong>Carnauba céramique 6 mois</strong> hydro</li>
+                <li>Rénov plastiques ext + pneus</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="interieur-pro">
+            <h5>🧽 INTÉRIEUR Inclus</h5>
+            <ul>
+              <li>Désodorisation ozone 30min + UVC 99.9%</li>
+              <li>Extraction vapeur Clean&Protect Koch</li>
+              <li>Protection anti-taches 3-6 mois</li>
+              <li>APC console/volant + HPC plastiques</li>
+              <li><strong>Micro-entreprise 120€ net</strong> (TVA 0%)</li>
+            </ul>
+          </div>
+
+          <div class="processus">
+            <h4>✅ Processus Inclus</h4>
+            <ul id="process-steps"></ul>
+          </div>
+
+          <div class="garanties">
+            <strong>🎖️ RS6719/RS7091 | Garantie 7j | Vidéo preuve</strong>
+          </div>
+
+          <a href="tel:0656751197" class="btn-gold">📱 RDV Certifié Maintenant</a>
+        </div>
+        <button type="button" class="restart-btn" data-restart="quiz">↺ Recommencer le quiz</button>
+      </div>
+
+      <div class="step alt-terrain" data-step="terrain">
+        <h3>⚠️ Extérieur Impossible</h3>
+        <p>Terrain privé obligatoire (rue interdit)</p>
+        <div class="prix-gros">Intérieur <strong id="terrain-only-price">120€</strong></div>
+        <a href="tel:0656751197" class="book-btn">Intérieur OK ? RDV</a>
+        <button type="button" class="restart-btn" data-restart="quiz">↺ Recommencer le quiz</button>
+      </div>
+    </div>
+  </div>
+</section>

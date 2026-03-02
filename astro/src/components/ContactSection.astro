@@ -1,0 +1,63 @@
+<section id="contact">
+  <div class="container">
+    <h2>Demandez votre devis personnalisé</h2>
+    <p class="section-intro">
+      Décrivez votre véhicule et la prestation souhaitée : vous recevez un devis clair, détaillé et adapté,
+      généralement sous 24h.
+    </p>
+
+    <div class="contact-inner">
+      <div class="contact-info">
+        <h3>Coordonnées directes</h3>
+        <p><strong>Téléphone :</strong> <a href="tel:0656751197">06 56 75 11 97</a></p>
+        <p><strong>Email :</strong> <a href="mailto:contact@prime-detail.fr">contact@prime-detail.fr</a></p>
+        <p><strong>Zone d’intervention :</strong> Caen et alentours.</p>
+        <p style="margin-top:8px;">
+          Indiquez le modèle, l’année, l’état global (intérieur / extérieur) et, si possible, quelques photos :
+          cela permet d’ajuster parfaitement le devis.
+        </p>
+      </div>
+
+      <form class="contact-form" id="contact-form" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nom">Nom / Prénom</label>
+            <input id="nom" type="text" placeholder="Votre nom" required />
+          </div>
+          <div class="form-group">
+            <label for="ville">Ville</label>
+            <input id="ville" type="text" placeholder="Caen, Ifs, Hérouville..." />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="vehicule">Modèle du véhicule</label>
+            <input id="vehicule" type="text" placeholder="Renault Clio 4, Peugeot 3008..." required />
+          </div>
+          <div class="form-group">
+            <label for="prestation">Type de prestation souhaitée</label>
+            <select id="prestation">
+              <option value="interieur">Nettoyage intérieur</option>
+              <option value="carrosserie">Rénovation carrosserie / polissage</option>
+              <option value="pack">Pack intérieur + extérieur</option>
+              <option value="entretien">Forfait entretien</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Détails / message</label>
+          <textarea id="message" placeholder="Précisez l’état actuel (propre, sale, très sale), présence de poils d’animaux, taches, etc." required></textarea>
+        </div>
+
+        <button type="submit" class="btn-primary" id="contact-submit">Obtenir mes options de contact</button>
+        <p id="contact-form-status" style="margin-top:10px;font-size:0.92rem;color:#6b7280;"></p>
+        <div id="contact-actions" style="display:none;gap:10px;flex-wrap:wrap;margin-top:12px;">
+          <a id="contact-whatsapp" class="btn-primary" href="#" target="_blank" rel="noopener">Envoyer ma demande sur WhatsApp</a>
+          <a id="contact-call" class="btn-primary" href="tel:0656751197">Appeler 06 56 75 11 97</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
