@@ -7,28 +7,28 @@
   "reviews": [
     {
       "rating": 5,
-      "text": "Intervention très soignée à domicile, intérieur impeccable et finitions propres.",
-      "relativeTime": "avis temporaire",
+      "text": "Très bon service : lavage soigné, résultat impeccable, voiture comme neuve. On sent le souci du détail. Je recommande sans hésiter !",
+      "relativeTime": "il y a 2 mois",
       "publishTime": null,
-      "authorName": "Client Prime Detail",
+      "authorName": "Flo",
       "authorUri": null,
       "authorPhotoUri": null
     },
     {
       "rating": 5,
-      "text": "Prise de rendez-vous rapide, ponctuel et résultat au-dessus de mes attentes.",
-      "relativeTime": "avis temporaire",
+      "text": "Avis 5 étoiles · visite en février.",
+      "relativeTime": "il y a 2 jours",
       "publishTime": null,
-      "authorName": "Cliente Caen",
+      "authorName": "Lucie Bolou",
       "authorUri": null,
       "authorPhotoUri": null
     },
     {
       "rating": 5,
-      "text": "Très bon rapport qualité/prix, véhicule rendu propre et protégé.",
-      "relativeTime": "avis temporaire",
+      "text": "Très content du résultat : travail soigné, attention à chaque détail. Je recommande vivement.",
+      "relativeTime": "il y a un mois",
       "publishTime": null,
-      "authorName": "Client Normandie",
+      "authorName": "Adrian Cibotari",
       "authorUri": null,
       "authorPhotoUri": null
     }
