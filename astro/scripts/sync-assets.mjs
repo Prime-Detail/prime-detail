@@ -14,6 +14,7 @@ if (!fs.existsSync(source)) {
 }
 
 fs.mkdirSync(path.dirname(destination), { recursive: true });
+fs.rmSync(destination, { recursive: true, force: true });
 fs.cpSync(source, destination, { recursive: true, force: true });
 
 console.log(`[sync:assets] Copie terminée: ${source} -> ${destination}`);
