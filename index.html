@@ -108,6 +108,23 @@
       text-decoration: none;
     }
 
+    a,
+    button,
+    input,
+    select,
+    textarea {
+      touch-action: manipulation;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+      outline: 3px solid rgba(33, 133, 160, 0.45);
+      outline-offset: 2px;
+    }
+
     .container {
       max-width: 1120px;
       margin: 0 auto;
@@ -185,10 +202,17 @@
 
     .nav-links a {
       transition: color 0.2s ease;
+      padding: 0.35rem 0.45rem;
+      border-radius: 10px;
     }
 
     .nav-links a:hover {
       color: var(--primary-blue);
+    }
+
+    .nav-links a:focus-visible {
+      color: var(--primary-blue);
+      background: rgba(33, 133, 160, 0.12);
     }
 
     .nav-call {
@@ -1151,6 +1175,19 @@
       .btn-outline {
         width: 100%;
         text-align: center;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .nav-links a,
+      .nav-call,
+      .quiz-finition .restart-btn {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
       }
 
       .certif-card {
