@@ -1,0 +1,43 @@
+export const AREA_SERVED_CITIES = [
+  'Caen',
+  'Ifs',
+  'Hérouville-Saint-Clair',
+  'Mondeville',
+  'Colombelles',
+  'Carpiquet',
+  'Cormelles-le-Royal',
+  'Fleury-sur-Orne',
+  'Louvigny',
+  'Bretteville-sur-Odon',
+  'Épron',
+  'Giberville',
+  'Démouville',
+  'Blainville-sur-Orne',
+  'Ouistreham',
+  'Bénouville',
+  'Biéville-Beuville',
+  'Saint-Contest',
+  'Mathieu',
+  'Deauville'
+] as const;
+
+export const LOCAL_CITY_PAGES = [
+  { slug: 'ifs', name: 'Ifs' },
+  { slug: 'herouville-saint-clair', name: 'Hérouville-Saint-Clair' },
+  { slug: 'mondeville', name: 'Mondeville' },
+  { slug: 'colombelles', name: 'Colombelles' },
+  { slug: 'carpiquet', name: 'Carpiquet' },
+  { slug: 'cormelles-le-royal', name: 'Cormelles-le-Royal' },
+  { slug: 'fleury-sur-orne', name: 'Fleury-sur-Orne' },
+  { slug: 'louvigny', name: 'Louvigny' },
+  { slug: 'bretteville-sur-odon', name: 'Bretteville-sur-Odon' },
+  { slug: 'epron', name: 'Épron' },
+  { slug: 'giberville', name: 'Giberville' },
+  { slug: 'demouville', name: 'Démouville' },
+  { slug: 'blainville-sur-orne', name: 'Blainville-sur-Orne' },
+  { slug: 'ouistreham', name: 'Ouistreham' },
+  { slug: 'benouville', name: 'Bénouville' },
+  { slug: 'bieville-beuville', name: 'Biéville-Beuville' },
+  { slug: 'saint-contest', name: 'Saint-Contest' },
+  { slug: 'mathieu', name: 'Mathieu' }
+] as const;

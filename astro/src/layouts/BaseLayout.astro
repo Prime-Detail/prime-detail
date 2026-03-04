@@ -1,6 +1,7 @@
 ---
 import fs from 'node:fs';
 import path from 'node:path';
+import { AREA_SERVED_CITIES } from '../data/local-cities';
 
 const sourcePath = path.resolve(process.cwd(), '..', 'index.html');
 const raw = fs.readFileSync(sourcePath, 'utf-8');
@@ -56,19 +57,7 @@ const schemaGraph = {
       telephone: '+33656751197',
       email: 'primedetailcaen@gmail.com',
       priceRange: '€€',
-      areaServed: [
-        { '@type': 'City', name: 'Caen' },
-        { '@type': 'City', name: 'Ifs' },
-        { '@type': 'City', name: 'Hérouville-Saint-Clair' },
-        { '@type': 'City', name: 'Colombelles' },
-        { '@type': 'City', name: 'Deauville' },
-        { '@type': 'City', name: 'Mondeville' },
-        { '@type': 'City', name: 'Carpiquet' },
-        { '@type': 'City', name: 'Cormelles-le-Royal' },
-        { '@type': 'City', name: 'Fleury-sur-Orne' },
-        { '@type': 'City', name: 'Louvigny' },
-        { '@type': 'City', name: 'Ouistreham' }
-      ],
+      areaServed: AREA_SERVED_CITIES.map((city) => ({ '@type': 'City', name: city })),
       address: {
         '@type': 'PostalAddress',
         addressLocality: 'Caen',

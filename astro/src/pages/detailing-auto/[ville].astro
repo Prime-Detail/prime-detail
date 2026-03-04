@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { LOCAL_CITY_PAGES } from '../../data/local-cities';
+
+export function getStaticPaths() {
+  return LOCAL_CITY_PAGES.map((city) => ({
+    params: { ville: city.slug },
+    props: { cityName: city.name, citySlug: city.slug }
+  }));
+}
+
+const { cityName, citySlug } = Astro.props as { cityName: string; citySlug: string };
+const base = import.meta.env.BASE_URL;
+---
+<BaseLayout
+  title={`Detailing auto à ${cityName} : intérieur, polissage, packs premium | Prime Detail`}
+  description={`Detailing auto à ${cityName} et autour de Caen : nettoyage intérieur, polissage carrosserie et packs premium à domicile. Devis rapide avec Prime Detail.`}
+  canonicalPath={`detailing-auto/${citySlug}`}
+>
+  <main>
+    <section>
+      <div class="container">
+        <h1>Detailing auto à {cityName} avec Prime Detail</h1>
+        <p class="section-intro">
+          Prime Detail intervient à {cityName} pour des prestations de detailing automobile à domicile,
+          avec une méthode rigoureuse et une finition premium.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2>Prestations disponibles à {cityName}</h2>
+        <div class="grid">
+          <article class="card">
+            <h3>Nettoyage intérieur complet</h3>
+            <p>Habitacle, sièges, moquettes, plastiques, vitres intérieures et zones difficiles d’accès.</p>
+          </article>
+          <article class="card">
+            <h3>Polissage carrosserie</h3>
+            <p>Correction esthétique, atténuation des défauts visuels légers et protection de la peinture.</p>
+          </article>
+          <article class="card">
+            <h3>Pack intérieur + extérieur</h3>
+            <p>Solution globale pour retrouver un véhicule propre, valorisé et agréable à l’usage.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2>Intervention autour de {cityName}</h2>
+        <p class="section-intro">
+          Déplacements possibles dans {cityName} et les communes voisines (zone ~20 km autour de Caen) selon planning.
+        </p>
+        <p>
+          Besoin d’une estimation rapide ?
+          <a href={`${base}#contact`}>Demandez un devis</a>
+          ou consultez les <a href={`${base}#tarifs`}>tarifs indicatifs</a>.
+        </p>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { LOCAL_CITY_PAGES } from '../data/local-cities';
+const base = import.meta.env.BASE_URL;
+---
+<BaseLayout
+  title="Detailing auto autour de Caen (20 km) | Prime Detail"
+  description="Villes desservies autour de Caen par Prime Detail : nettoyage intérieur, polissage carrosserie et packs premium à domicile."
+  canonicalPath="detailing-auto-autour-caen"
+>
+  <main>
+    <section>
+      <div class="container">
+        <h1>Villes desservies autour de Caen (environ 20 km)</h1>
+        <p class="section-intro">
+          Prime Detail intervient à domicile dans les communes proches de Caen. Sélectionnez votre ville pour voir la page locale dédiée.
+        </p>
+
+        <div class="grid">
+          <article class="card">
+            <h3>Pages principales</h3>
+            <ul>
+              <li><a href={`${base}detailing-auto-caen`}>Detailing auto à Caen</a></li>
+              <li><a href={`${base}detailing-auto-deauville`}>Detailing auto à Deauville</a></li>
+            </ul>
+          </article>
+
+          <article class="card" style="grid-column: span 2;">
+            <h3>Autres villes autour de Caen</h3>
+            <ul>
+              {LOCAL_CITY_PAGES.map((city) => (
+                <li><a href={`${base}detailing-auto/${city.slug}`}>Detailing auto à {city.name}</a></li>
+              ))}
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
