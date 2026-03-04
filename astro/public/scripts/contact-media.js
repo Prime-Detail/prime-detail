@@ -35,12 +35,12 @@
     var prestationLabel = getPrestationLabel(prestationValue);
     var message = getFieldValue('message');
 
-    if (!nom || !vehicule || !message) {
+    if (!nom || !vehicule) {
       if (actionsEl) {
         actionsEl.style.display = 'none';
       }
       if (statusEl) {
-        statusEl.textContent = 'Merci de renseigner au minimum : nom, véhicule et détails de la demande.';
+        statusEl.textContent = 'Merci de renseigner au minimum : nom et véhicule.';
       }
       return;
     }
@@ -55,7 +55,7 @@
       '- Prestation souhaitée : ' + prestationLabel,
       '',
       'Détails :',
-      message,
+      (message || 'Non précisés'),
       '',
       'Merci.'
     ];

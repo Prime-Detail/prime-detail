@@ -4,6 +4,11 @@ import reviewsData from '../data/google-reviews.json';
 const reviews = (reviewsData.reviews || []).filter((item) => item.text).slice(0, 6);
 const hasRating = typeof reviewsData.rating === 'number' && typeof reviewsData.userRatingCount === 'number';
 const hasReviewCount = typeof reviewsData.userRatingCount === 'number' && reviewsData.userRatingCount > 0;
+const updatedAt = reviewsData.updatedAt ? new Date(reviewsData.updatedAt) : null;
+const hasValidUpdatedAt = !!(updatedAt && !Number.isNaN(updatedAt.getTime()));
+const updatedAtLabel = hasValidUpdatedAt
+  ? new Intl.DateTimeFormat('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' }).format(updatedAt)
+  : null;
 
 const reviewsSchema = hasRating
   ? {
@@ -34,6 +39,8 @@ const reviewsSchema = hasRating
     ) : (
       <p class="section-intro reviews-intro">Retours récents de clients Prime Detail à Caen.</p>
     )}
+
+    {updatedAtLabel ? <p class="reviews-updated">Données avis mises à jour le {updatedAtLabel}</p> : null}
 
     {reviews.length > 0 ? (
       <div class="reviews-grid">
@@ -81,6 +88,12 @@ const reviewsSchema = hasRating
 
   .reviews-intro {
     margin-bottom: 16px;
+  }
+
+  .reviews-updated {
+    margin: -4px 0 14px;
+    font-size: 0.82rem;
+    color: #6b7280;
   }
 
   .reviews-grid {
