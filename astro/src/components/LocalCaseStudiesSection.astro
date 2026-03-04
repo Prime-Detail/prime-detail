@@ -5,7 +5,9 @@ const caseStudies = [
   {
     title: 'Peugeot 3008 - intérieur',
     city: 'Caen',
+    beforeWebp: `${base}assets/images/avant-apres/avant-3008.webp`,
     beforeSrc: `${base}assets/images/avant-apres/avant-3008.jpeg`,
+    afterWebp: `${base}assets/images/avant-apres/apres-3008.webp`,
     afterSrc: `${base}assets/images/avant-apres/apres-3008.jpeg`,
     beforeAlt: 'Avant detailing intérieur Peugeot 3008 à Caen',
     afterAlt: 'Après detailing intérieur Peugeot 3008 à Caen'
@@ -13,7 +15,9 @@ const caseStudies = [
   {
     title: 'Renault Zoe - intérieur',
     city: 'Mondeville',
+    beforeWebp: `${base}assets/images/avant-apres/avant-zoe.webp`,
     beforeSrc: `${base}assets/images/avant-apres/avant-zoe.jpeg`,
+    afterWebp: `${base}assets/images/avant-apres/apres-zoe.webp`,
     afterSrc: `${base}assets/images/avant-apres/apres-zoe.jpeg`,
     beforeAlt: 'Avant detailing intérieur Renault Zoe à Mondeville',
     afterAlt: 'Après detailing intérieur Renault Zoe à Mondeville'
@@ -21,7 +25,9 @@ const caseStudies = [
   {
     title: 'Citroen C8 - intérieur',
     city: 'Hérouville-Saint-Clair',
+    beforeWebp: `${base}assets/images/avant-apres/c8-avant.webp`,
     beforeSrc: `${base}assets/images/avant-apres/c8-avant.jpeg`,
+    afterWebp: `${base}assets/images/avant-apres/c8-apres.webp`,
     afterSrc: `${base}assets/images/avant-apres/c8-apres.jpeg`,
     beforeAlt: 'Avant detailing intérieur Citroen C8 à Hérouville-Saint-Clair',
     afterAlt: 'Après detailing intérieur Citroen C8 à Hérouville-Saint-Clair'
@@ -43,11 +49,17 @@ const caseStudies = [
 
           <div class="case-compare">
             <figure>
-              <img src={item.beforeSrc} alt={item.beforeAlt} loading="lazy" decoding="async" width="1200" height="900" sizes="(max-width: 900px) 45vw, 18vw" />
+              <picture>
+                <source srcset={item.beforeWebp} type="image/webp" />
+                <img src={item.beforeSrc} alt={item.beforeAlt} loading="lazy" decoding="async" width="1200" height="900" sizes="(max-width: 900px) 45vw, 18vw" />
+              </picture>
               <figcaption>Avant</figcaption>
             </figure>
             <figure>
-              <img src={item.afterSrc} alt={item.afterAlt} loading="lazy" decoding="async" width="1200" height="900" sizes="(max-width: 900px) 45vw, 18vw" />
+              <picture>
+                <source srcset={item.afterWebp} type="image/webp" />
+                <img src={item.afterSrc} alt={item.afterAlt} loading="lazy" decoding="async" width="1200" height="900" sizes="(max-width: 900px) 45vw, 18vw" />
+              </picture>
               <figcaption>Apres</figcaption>
             </figure>
           </div>

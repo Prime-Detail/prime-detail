@@ -84,6 +84,15 @@ Si le fichier MOV source est vide, le script bascule automatiquement sur `assets
 
 Le site privilégie automatiquement la version légère si l’appareil indique un débit faible / mode économie de données.
 
+### Optimiser les images avant/après en WebP
+Pour accélérer l'affichage mobile des cas clients, générez des variantes `.webp` depuis `assets/images/avant-apres`:
+
+```bash
+bash tools/generate-avant-apres-webp.sh
+```
+
+Le script utilise automatiquement `cwebp`, sinon `ffmpeg`, sinon `magick` selon ce qui est disponible.
+
 ### Lancer un audit Lighthouse mobile
 Lancez un serveur local à la racine du projet, puis exécutez le script:
 
