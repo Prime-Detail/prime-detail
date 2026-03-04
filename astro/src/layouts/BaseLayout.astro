@@ -114,6 +114,23 @@ const schemaGraph = {
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet" />
     <style set:html={siteCss}></style>
+    <style>
+      html {
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+      }
+
+      @media (max-width: 640px) {
+        body {
+          font-size: 1rem;
+        }
+
+        h1 {
+          font-size: clamp(2rem, 8vw, 2.6rem) !important;
+          line-height: 1.15;
+        }
+      }
+    </style>
   </head>
   <body>
     <slot />
