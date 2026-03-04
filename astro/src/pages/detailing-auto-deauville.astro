@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL;
+---
+<BaseLayout
+  title="Detailing auto à Deauville : intérieur, polissage, packs premium | Prime Detail"
+  description="Detailing auto à Deauville et alentours : nettoyage intérieur premium, polissage carrosserie et packs complets à domicile. Devis personnalisé rapide."
+  canonicalPath="detailing-auto-deauville"
+>
+  <main>
+    <section>
+      <div class="container">
+        <h1>Detailing auto à Deauville avec Prime Detail</h1>
+        <p class="section-intro">
+          Prime Detail intervient à Deauville pour des prestations de detailing automobile à domicile.
+          Objectif : remettre votre véhicule à niveau avec une finition premium et une méthode soignée.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2>Prestations les plus demandées à Deauville</h2>
+        <div class="grid">
+          <article class="card">
+            <h3>Nettoyage intérieur complet</h3>
+            <p>Habitacle, sièges, moquettes, plastiques, vitres intérieures et zones difficiles d’accès.</p>
+          </article>
+          <article class="card">
+            <h3>Polissage carrosserie</h3>
+            <p>Correction esthétique, atténuation des défauts visuels légers et protection de la peinture.</p>
+          </article>
+          <article class="card">
+            <h3>Pack intérieur + extérieur</h3>
+            <p>Solution globale pour retrouver un véhicule propre, valorisé et agréable à l’usage.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2>Zone d’intervention autour de Deauville</h2>
+        <p class="section-intro">
+          Interventions possibles à Deauville et communes voisines selon planning, avec déplacement à domicile.
+        </p>
+        <p>
+          Besoin d’une estimation rapide ?
+          <a href={`${base}#contact`}>Demandez un devis</a>
+          ou consultez les <a href={`${base}#tarifs`}>tarifs indicatifs</a>.
+        </p>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

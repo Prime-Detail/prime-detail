@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 
-const paths = ['', 'detailing-auto-caen', 'mentions-legales'];
+const paths = ['', 'detailing-auto-caen', 'detailing-auto-deauville', 'mentions-legales'];
 
 export const GET: APIRoute = ({ site }) => {
   const baseSite = site?.toString() ?? 'https://prime-detail.github.io/prime-detail/';
