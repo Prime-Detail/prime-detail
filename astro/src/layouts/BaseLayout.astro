@@ -3,8 +3,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { AREA_SERVED_CITIES } from '../data/local-cities';
 
+const sourcePath = path.resolve(process.cwd(), '..', 'index.html');
 const cssPath = path.resolve(process.cwd(), '..', 'styles.css');
-const siteCss = fs.readFileSync(cssPath, 'utf-8');
+
+const raw = fs.readFileSync(sourcePath, 'utf-8');
+const styleMatch = raw.match(/<style>([\s\S]*?)<\/style>/i);
+const fallbackCss = fs.readFileSync(cssPath, 'utf-8');
+const siteCss = styleMatch ? styleMatch[1] : fallbackCss;
 const base = import.meta.env.BASE_URL;
 
 interface Props {
