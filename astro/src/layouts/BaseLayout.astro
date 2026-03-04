@@ -3,10 +3,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { AREA_SERVED_CITIES } from '../data/local-cities';
 
-const sourcePath = path.resolve(process.cwd(), '..', 'index.html');
-const raw = fs.readFileSync(sourcePath, 'utf-8');
-const styleMatch = raw.match(/<style>([\s\S]*?)<\/style>/i);
-const inlineStyles = styleMatch ? styleMatch[1] : '';
+const cssPath = path.resolve(process.cwd(), '..', 'styles.css');
+const siteCss = fs.readFileSync(cssPath, 'utf-8');
 const base = import.meta.env.BASE_URL;
 
 interface Props {
@@ -110,7 +108,7 @@ const schemaGraph = {
     <script type="application/ld+json" set:html={JSON.stringify(schemaGraph)}></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet" />
-    <style set:html={inlineStyles}></style>
+    <style set:html={siteCss}></style>
   </head>
   <body>
     <slot />
