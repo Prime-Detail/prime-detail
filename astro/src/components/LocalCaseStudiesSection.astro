@@ -1,0 +1,134 @@
+---
+const base = import.meta.env.BASE_URL;
+
+const caseStudies = [
+  {
+    title: 'Peugeot 3008 - intérieur',
+    city: 'Caen',
+    beforeSrc: `${base}assets/images/avant-apres/avant-3008.jpeg`,
+    afterSrc: `${base}assets/images/avant-apres/apres-3008.jpeg`,
+    beforeAlt: 'Avant detailing intérieur Peugeot 3008 à Caen',
+    afterAlt: 'Après detailing intérieur Peugeot 3008 à Caen'
+  },
+  {
+    title: 'Renault Zoe - intérieur',
+    city: 'Mondeville',
+    beforeSrc: `${base}assets/images/avant-apres/avant-zoe.jpeg`,
+    afterSrc: `${base}assets/images/avant-apres/apres-zoe.jpeg`,
+    beforeAlt: 'Avant detailing intérieur Renault Zoe à Mondeville',
+    afterAlt: 'Après detailing intérieur Renault Zoe à Mondeville'
+  },
+  {
+    title: 'Citroen C8 - intérieur',
+    city: 'Hérouville-Saint-Clair',
+    beforeSrc: `${base}assets/images/avant-apres/c8-avant.jpeg`,
+    afterSrc: `${base}assets/images/avant-apres/c8-apres.jpeg`,
+    beforeAlt: 'Avant detailing intérieur Citroen C8 à Hérouville-Saint-Clair',
+    afterAlt: 'Après detailing intérieur Citroen C8 à Hérouville-Saint-Clair'
+  }
+];
+---
+<section id="cas-clients-locaux" class="case-local">
+  <div class="container">
+    <h2>Cas clients locaux - avant / après</h2>
+    <p class="section-intro">Résultats réels sur véhicules traités autour de Caen. Chaque prestation est adaptée à l'état du véhicule.</p>
+
+    <div class="case-grid">
+      {caseStudies.map((item) => (
+        <article class="case-card">
+          <header class="case-head">
+            <h3>{item.title}</h3>
+            <p>{item.city}</p>
+          </header>
+
+          <div class="case-compare">
+            <figure>
+              <img src={item.beforeSrc} alt={item.beforeAlt} loading="lazy" decoding="async" />
+              <figcaption>Avant</figcaption>
+            </figure>
+            <figure>
+              <img src={item.afterSrc} alt={item.afterAlt} loading="lazy" decoding="async" />
+              <figcaption>Apres</figcaption>
+            </figure>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .case-local {
+    padding-top: 10px;
+  }
+
+  .case-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .case-card {
+    background: #ffffff;
+    border: 1px solid rgba(221, 229, 235, 0.95);
+    border-radius: 16px;
+    box-shadow: 0 10px 24px rgba(15, 52, 67, 0.08);
+    overflow: hidden;
+  }
+
+  .case-head {
+    padding: 14px 14px 10px;
+  }
+
+  .case-head h3 {
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  .case-head p {
+    margin: 4px 0 0;
+    color: #6b7280;
+    font-size: 0.88rem;
+  }
+
+  .case-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 0 12px 12px;
+  }
+
+  .case-compare figure {
+    margin: 0;
+    background: #f8fbfd;
+    border: 1px solid rgba(215, 224, 232, 0.9);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .case-compare img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .case-compare figcaption {
+    text-align: center;
+    font-size: 0.84rem;
+    font-weight: 700;
+    padding: 8px 6px;
+    color: #264450;
+  }
+
+  @media (min-width: 900px) {
+    .case-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .case-compare img {
+      height: 180px;
+    }
+  }
+</style>
