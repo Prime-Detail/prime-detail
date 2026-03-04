@@ -2,10 +2,38 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { LOCAL_CITY_PAGES } from '../data/local-cities';
 const base = import.meta.env.BASE_URL;
+
+const faqItems = [
+  {
+    q: 'Intervenez-vous partout autour de Caen ?',
+    a: 'Prime Detail intervient dans un rayon d’environ 20 km autour de Caen, selon planning et accessibilite du vehicule.'
+  },
+  {
+    q: 'Quel delai pour un devis ?',
+    a: 'Un devis personnalise est generalement transmis sous 24h apres reception des informations du vehicule.'
+  },
+  {
+    q: 'Quelles prestations sont disponibles ?',
+    a: 'Nettoyage interieur detailing, polissage carrosserie et packs complets interieur + exterieur, avec intervention a domicile.'
+  }
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.a
+    }
+  }))
+};
 ---
 <BaseLayout
   title="Detailing auto autour de Caen (20 km) | Prime Detail"
-  description="Villes desservies autour de Caen par Prime Detail : nettoyage intérieur, polissage carrosserie et packs premium à domicile."
+  description="Detailing auto autour de Caen (20 km) : villes desservies, prestations disponibles, delais de devis et intervention a domicile avec Prime Detail."
   canonicalPath="detailing-auto-autour-caen"
 >
   <main>
@@ -13,7 +41,14 @@ const base = import.meta.env.BASE_URL;
       <div class="container">
         <h1>Villes desservies autour de Caen (environ 20 km)</h1>
         <p class="section-intro">
-          Prime Detail intervient à domicile dans les communes proches de Caen. Sélectionnez votre ville pour voir la page locale dédiée.
+          Prime Detail intervient a domicile dans les communes proches de Caen pour le nettoyage interieur,
+          le polissage carrosserie et les packs complets. Cette page regroupe toutes les zones couvertes
+          et les liens vers les pages locales dediees.
+        </p>
+        <p>
+          Besoin d'une estimation rapide ?
+          <a href={`${base}#contact`}>Demandez votre devis</a>
+          ou consultez les <a href={`${base}#tarifs`}>tarifs indicatifs</a>.
         </p>
 
         <div class="grid">
@@ -36,5 +71,41 @@ const base = import.meta.env.BASE_URL;
         </div>
       </div>
     </section>
+
+    <section>
+      <div class="container">
+        <h2>Prestations disponibles dans toutes les communes couvertes</h2>
+        <div class="grid">
+          <article class="card">
+            <h3>Nettoyage interieur detailing</h3>
+            <p>Remise a niveau complete de l'habitacle : sieges, moquettes, plastiques, vitres et zones difficiles d'acces.</p>
+          </article>
+          <article class="card">
+            <h3>Polissage carrosserie</h3>
+            <p>Correction esthetique et protection de la peinture pour retrouver une carrosserie nette et valorisee.</p>
+          </article>
+          <article class="card">
+            <h3>Packs complets</h3>
+            <p>Solution interieur + exterieur pour un resultat global, avec adaptation selon l'etat initial du vehicule.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq-local-around-caen">
+      <div class="container">
+        <h2>FAQ - Detailing auto autour de Caen</h2>
+        <div class="grid">
+          {faqItems.map((item) => (
+            <article class="card">
+              <h3>{item.q}</h3>
+              <p>{item.a}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
   </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
 </BaseLayout>
