@@ -700,6 +700,26 @@
       transition: width 0.28s ease;
     }
 
+    .quiz-finition .quiz-proof {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .quiz-finition .quiz-proof span {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(31, 111, 133, 0.22);
+      background: rgba(255, 255, 255, 0.78);
+      color: #174557;
+      font-size: 0.78rem;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
     .quiz-finition .step {
       display: none;
     }
@@ -745,6 +765,7 @@
     .quiz-finition .card,
     .quiz-finition .yes,
     .quiz-finition .no {
+      position: relative;
       border: 1px solid rgba(31, 111, 133, 0.24);
       border-radius: 14px;
       padding: 14px;
@@ -754,6 +775,27 @@
       overflow-wrap: anywhere;
       word-break: break-word;
       box-shadow: 0 8px 24px rgba(16, 64, 81, 0.08);
+    }
+
+    .quiz-finition .card-badge {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-size: 0.67rem;
+      font-weight: 700;
+      color: #0f5164;
+      background: #def5fb;
+      border: 1px solid rgba(24, 124, 151, 0.35);
+    }
+
+    .quiz-finition .card-badge.alt {
+      color: #8b3e17;
+      background: #fff0e6;
+      border-color: rgba(255, 129, 77, 0.45);
     }
 
     .quiz-finition .card:hover,
@@ -973,6 +1015,20 @@
       transform: translateY(-2px);
       box-shadow: 0 18px 34px rgba(27, 111, 135, 0.34);
       filter: saturate(1.05);
+    }
+
+    .quiz-finition .cta-helper {
+      margin-top: 14px;
+      margin-bottom: 2px;
+      color: #16495c;
+      font-size: 0.84rem;
+      font-weight: 600;
+    }
+
+    .quiz-finition .cta-subnote {
+      margin-top: 8px;
+      font-size: 0.8rem;
+      color: #5a6775;
     }
 
     .quiz-finition .restart-btn {
@@ -1309,6 +1365,17 @@
         padding: 16px;
       }
 
+      .quiz-finition .quiz-proof span {
+        font-size: 0.74rem;
+      }
+
+      .quiz-finition .card-badge {
+        top: 6px;
+        right: 6px;
+        font-size: 0.64rem;
+        padding: 3px 7px;
+      }
+
       .quiz-finition .step h3 {
         font-size: 0.98rem;
       }
@@ -1327,6 +1394,11 @@
       .quiz-finition .interieur-pro,
       .quiz-finition .processus {
         padding: 10px;
+      }
+
+      .quiz-finition .cta-helper,
+      .quiz-finition .cta-subnote {
+        text-align: left;
       }
 
       .form-row {
@@ -1561,6 +1633,11 @@
       <div class="container">
         <div class="quiz" id="tarif-quiz">
           <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+          <div class="quiz-proof" aria-label="Points forts Prime Detail">
+            <span>+50 avis Google</span>
+            <span>Devis personnalisé en 24h</span>
+            <span>Créneaux rapides autour de Caen</span>
+          </div>
 
           <div class="step active" data-step="1">
             <h3>Véhicule ?</h3>
@@ -1584,17 +1661,20 @@
             <h3>Extérieur ?</h3>
             <div class="cards-grid">
               <div class="card" data-next="3" data-ext="none">
-                ❌ Intérieur seul
+                ❌ <strong>Intérieur seul</strong>
+                <small>Le plus économique</small>
               </div>
               <div class="card" data-next="3" data-ext="base">
                 ✨ <strong>BASE Brillance</strong>
                 <small>HP + Shampoing + Jantes + Pneus<br />30 min</small>
               </div>
               <div class="card" data-next="3" data-ext="standard">
+                <span class="card-badge">Le plus choisi</span>
                 🛡️ <strong>STANDARD Protection</strong>
                 <small>Base + Décontam ferreuse + Cire synthétique<br />60 min</small>
               </div>
               <div class="card" data-next="3" data-ext="premium">
+                <span class="card-badge alt">Showroom 6 mois</span>
                 💎 <strong>PREMIUM Céramique</strong>
                 <small>Standard + Clay + Polish + Carnauba 6 mois<br />3 h</small>
               </div>
@@ -1680,7 +1760,9 @@
                 <strong>🎖️ RS6719/RS7091 | Garantie 7j | Vidéo preuve</strong>
               </div>
 
+              <p class="cta-helper">Créneaux limités cette semaine. Réservez maintenant pour bloquer votre passage.</p>
               <a href="tel:0656751197" class="btn-gold">📱 RDV Certifié Maintenant</a>
+              <p class="cta-subnote">Réponse rapide par appel ou WhatsApp au <strong>06 56 75 11 97</strong>.</p>
             </div>
             <button type="button" class="restart-btn" data-restart="quiz">↺ Recommencer le quiz</button>
           </div>
