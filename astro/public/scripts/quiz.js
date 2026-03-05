@@ -37,6 +37,7 @@
 
   var exteriorPrices = {
     none: { citadine: 0, berline: 0, suv: 0 },
+    exterior_only: { citadine: 79, berline: 89, suv: 99 },
     base: { citadine: 49, berline: 54, suv: 59 },
     standard: { citadine: 89, berline: 99, suv: 109 },
     premium: { citadine: 199, berline: 224, suv: 249 }
@@ -44,6 +45,7 @@
 
   var exteriorLabels = {
     none: 'Intérieur seul',
+    exterior_only: 'Extérieur seul',
     base: 'BASE Brillance',
     standard: 'STANDARD Protection',
     premium: 'PREMIUM Céramique'
@@ -54,6 +56,11 @@
       'Aspiration approfondie habitacle + coffre',
       'Nettoyage textiles, plastiques, vitres intérieures',
       'Finitions détaillées sur zones sensibles'
+    ],
+    exterior_only: [
+      'Pré-lavage haute pression + mousse active',
+      'Lavage extérieur complet carrosserie/jantes',
+      'Finitions vitres extérieures + dressing pneus'
     ],
     base: [
       'Nettoyage intérieur complet',
@@ -115,9 +122,12 @@
     var totalEl = document.getElementById('total');
     var packDesc = document.getElementById('pack-desc');
     var packNoneNote = document.getElementById('pack-none-note');
+    var packExteriorNote = document.getElementById('pack-exterior-note');
     var packBase = quiz ? quiz.querySelector('.pack-base') : null;
     var packStandard = quiz ? quiz.querySelector('.pack-standard') : null;
     var packPremium = quiz ? quiz.querySelector('.pack-premium') : null;
+    var interieurProEl = quiz ? quiz.querySelector('.interieur-pro') : null;
+    var interiorProtocolEl = document.getElementById('interior-protocol');
     var processStepsEl = document.getElementById('process-steps');
     var terrainOnlyPriceEl = document.getElementById('terrain-only-price');
     var ctaButtonEl = quiz ? quiz.querySelector('.btn-gold') : null;
@@ -399,7 +409,7 @@
 
     var veh = getVehicle();
     var ext = getExt();
-    var intPrix = interiorPrices[veh] || interiorPrices.citadine;
+    var intPrix = ext === 'exterior_only' ? 0 : (interiorPrices[veh] || interiorPrices.citadine);
     var extPrix = (exteriorPrices[ext] && exteriorPrices[ext][veh]) || 0;
     var total = intPrix + extPrix;
     var variantData = getCtaVariantData();
@@ -420,6 +430,17 @@
       if (packNoneNote) {
         packNoneNote.style.display = ext === 'none' ? 'block' : 'none';
       }
+      if (packExteriorNote) {
+        packExteriorNote.style.display = ext === 'exterior_only' ? 'block' : 'none';
+      }
+    }
+
+    if (interieurProEl) {
+      interieurProEl.style.display = ext === 'exterior_only' ? 'none' : 'block';
+    }
+
+    if (interiorProtocolEl) {
+      interiorProtocolEl.style.display = ext === 'exterior_only' ? 'none' : 'block';
     }
 
     processStepsEl.innerHTML = '';
@@ -434,7 +455,7 @@
     if (quickFormEl) {
       quickFormEl.hidden = !quizState.isFinalized;
       if (quickServiceEl) {
-        quickServiceEl.value = ext === 'none' ? 'interieur' : 'pack';
+        quickServiceEl.value = ext === 'none' ? 'interieur' : (ext === 'exterior_only' ? 'carrosserie' : 'pack');
       }
       if (quickMessageEl && (quickMessageEl.value === '' || quickMessageEl.value.indexOf('Estimation quiz : ') === 0)) {
         quickMessageEl.value = 'Estimation quiz : ' + total + '€ | Véhicule : ' + (vehicleNames[veh] || 'Citadine') +
@@ -446,7 +467,7 @@
     }
 
     if (prestationSelect) {
-      prestationSelect.value = ext === 'none' ? 'interieur' : 'pack';
+      prestationSelect.value = ext === 'none' ? 'interieur' : (ext === 'exterior_only' ? 'carrosserie' : 'pack');
     }
 
     if (messageField) {
@@ -490,7 +511,7 @@
           trackEvent('quiz_exterior_selected', {
             exterior_pack: card.getAttribute('data-ext')
           });
-          if (card.getAttribute('data-ext') === 'none') {
+          if (card.getAttribute('data-ext') === 'none' || card.getAttribute('data-ext') === 'exterior_only') {
             nextStep = '4';
             updateResult(true);
           }
