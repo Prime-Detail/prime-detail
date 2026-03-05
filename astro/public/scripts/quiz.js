@@ -176,7 +176,7 @@
 
     processStepsEl.innerHTML = '';
     (processByExt[ext] || processByExt.none).forEach(function (stepText) {
-      processStepsEl.insertAdjacentHTML('beforeend', '<li>• ' + stepText + '</li>');
+      processStepsEl.insertAdjacentHTML('beforeend', '<li>' + stepText + '</li>');
     });
 
     if (terrainOnlyPriceEl) {
