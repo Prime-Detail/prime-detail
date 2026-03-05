@@ -120,6 +120,7 @@
     var quickModalCloseEl = document.getElementById('tarif-qf-modal-close');
     var quickModalWhatsappEl = document.getElementById('tarif-qf-modal-whatsapp');
     var quickModalContactEl = document.getElementById('tarif-qf-modal-contact');
+    var quickModalEstimateEl = document.getElementById('tarif-qf-modal-estimate');
     var prestationSelect = document.getElementById('prestation');
     var messageField = document.getElementById('message');
     var quizState = { isFinalized: false };
@@ -479,6 +480,7 @@
       var quickService = quickServiceEl ? quickServiceEl.value : 'interieur';
       var quickMessage = quickMessageEl ? quickMessageEl.value.trim() : '';
       var variantData = getCtaVariantData();
+      var quickEstimate = (document.getElementById('total') || {}).textContent || '';
       var contactName = document.getElementById('nom');
       var contactVehicle = document.getElementById('vehicule');
       var contactCity = document.getElementById('ville');
@@ -545,6 +547,9 @@
       if (quickModalWhatsappEl) {
         quickModalWhatsappEl.setAttribute('href', whatsappUrl);
       }
+      if (quickModalEstimateEl) {
+        quickModalEstimateEl.textContent = quickEstimate ? ('Estimation actuelle: ' + quickEstimate) : '';
+      }
 
       openQuickModal();
 
@@ -564,6 +569,12 @@
   if (quickModalEl) {
     quickModalEl.addEventListener('click', function (event) {
       if (event.target === quickModalEl) {
+        closeQuickModal();
+      }
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && !quickModalEl.hidden) {
         closeQuickModal();
       }
     });
