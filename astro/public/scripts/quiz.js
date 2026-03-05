@@ -111,6 +111,7 @@
     var ctaSubnoteEl = quiz ? quiz.querySelector('.cta-subnote') : null;
     var prestationSelect = document.getElementById('prestation');
     var messageField = document.getElementById('message');
+    var quizState = { isFinalized: false };
 
     if (!quiz || !steps.length || !cards.length || !vehicleNameEl || !totalEl || !processStepsEl) {
       return;
@@ -256,7 +257,34 @@
     return null;
   }
 
-    function updateResult() {
+    function persistQuizContext(veh, ext, total, isFinalized) {
+      var context = {
+        finalized: !!isFinalized,
+        vehicle: veh,
+        vehicle_name: vehicleNames[veh] || 'Citadine',
+        exterior: ext,
+        exterior_label: exteriorLabels[ext] || 'Intérieur seul',
+        total: total
+      };
+
+      try {
+        sessionStorage.setItem('quiz_estimate_context', JSON.stringify(context));
+      } catch (error) {
+      }
+    }
+
+    function clearQuizContext() {
+      try {
+        sessionStorage.removeItem('quiz_estimate_context');
+      } catch (error) {
+      }
+    }
+
+    function updateResult(isFinalized) {
+    if (typeof isFinalized === 'boolean') {
+      quizState.isFinalized = isFinalized;
+    }
+
     var veh = getVehicle();
     var ext = getExt();
     var intPrix = interiorPrices[veh] || interiorPrices.citadine;
@@ -296,12 +324,18 @@
     }
 
     if (messageField) {
-      messageField.value = 'Estimation quiz : ' + total + '€ | Véhicule : ' + (vehicleNames[veh] || 'Citadine') +
-        ' | Extérieur : ' + (exteriorLabels[ext] || 'Intérieur seul') + '.';
+      if (quizState.isFinalized) {
+        messageField.value = 'Estimation quiz : ' + total + '€ | Véhicule : ' + (vehicleNames[veh] || 'Citadine') +
+          ' | Extérieur : ' + (exteriorLabels[ext] || 'Intérieur seul') + '.';
+      } else if (messageField.value.indexOf('Estimation quiz : ') === 0) {
+        messageField.value = '';
+      }
     }
 
+    persistQuizContext(veh, ext, total, quizState.isFinalized);
+
     var estimateKey = [veh, ext, total].join('|');
-    if (estimateKey !== analyticsState.estimateKey) {
+    if (quizState.isFinalized && estimateKey !== analyticsState.estimateKey) {
       analyticsState.estimateKey = estimateKey;
       trackEvent('quiz_estimate_viewed', {
         vehicle_type: veh,
@@ -332,7 +366,7 @@
           });
           if (card.getAttribute('data-ext') === 'none') {
             nextStep = '4';
-            updateResult();
+            updateResult(true);
           }
         }
 
@@ -345,7 +379,7 @@
     yesCard.addEventListener('click', function () {
       trackEvent('quiz_private_space_selected', { has_private_space: true });
       showStep('4');
-      updateResult();
+      updateResult(true);
       updateProgress();
     });
   }
@@ -353,7 +387,7 @@
   if (noCard) {
     noCard.addEventListener('click', function () {
       trackEvent('quiz_private_space_selected', { has_private_space: false });
-      updateResult();
+      updateResult(true);
       showStep('terrain');
       updateProgress();
     });
@@ -364,8 +398,10 @@
       trackEvent('quiz_restart_clicked', {});
       clearStoredValue('vehicle');
       clearStoredValue('ext');
+      clearQuizContext();
+      analyticsState.estimateKey = null;
       showStep('1');
-      updateResult();
+      updateResult(false);
       updateProgress();
     });
   });
@@ -392,7 +428,7 @@
 
     showStep('1');
     applyCtaVariant();
-    updateResult();
+    updateResult(false);
     updateProgress();
   }
 

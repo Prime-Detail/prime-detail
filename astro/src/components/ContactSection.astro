@@ -19,6 +19,14 @@
       </div>
 
       <form class="contact-form" id="contact-form" novalidate>
+        <div id="quiz-summary-lock" class="quiz-summary-lock" hidden>
+          <p class="quiz-summary-title">Récapitulatif de votre estimation</p>
+          <p id="quiz-summary-text" class="quiz-summary-text"></p>
+          <p id="quiz-summary-warning" class="quiz-summary-warning" hidden></p>
+          <p id="quiz-summary-success" class="quiz-summary-success" hidden></p>
+          <a id="quiz-summary-edit" class="quiz-summary-edit" href="#tarifs">Modifier mon quiz</a>
+        </div>
+
         <div class="form-row">
           <div class="form-group">
             <label for="nom">Nom / Prénom</label>

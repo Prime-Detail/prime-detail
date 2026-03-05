@@ -20,6 +20,13 @@
   var statusEl = document.getElementById('contact-form-status');
   var actionsEl = document.getElementById('contact-actions');
   var whatsappLinkEl = document.getElementById('contact-whatsapp');
+  var quizSummaryLockEl = document.getElementById('quiz-summary-lock');
+  var quizSummaryTextEl = document.getElementById('quiz-summary-text');
+  var quizSummaryWarningEl = document.getElementById('quiz-summary-warning');
+  var quizSummarySuccessEl = document.getElementById('quiz-summary-success');
+  var quizSummaryEditEl = document.getElementById('quiz-summary-edit');
+  var mismatchWarningTracked = false;
+  var mismatchWarningVisible = false;
 
   if (!contactForm) {
     return;
@@ -64,6 +71,133 @@
     return labels[index];
   }
 
+  function getQuizEstimateContext() {
+    var raw = null;
+    var parsed = null;
+
+    try {
+      raw = sessionStorage.getItem('quiz_estimate_context');
+    } catch (error) {
+      raw = null;
+    }
+
+    if (!raw) {
+      return null;
+    }
+
+    try {
+      parsed = JSON.parse(raw);
+    } catch (error) {
+      parsed = null;
+    }
+
+    return parsed;
+  }
+
+  function renderQuizSummaryLock(quizContext) {
+    if (!quizSummaryLockEl || !quizSummaryTextEl) {
+      return;
+    }
+
+    if (!quizContext || !quizContext.finalized) {
+      quizSummaryLockEl.hidden = true;
+      quizSummaryTextEl.textContent = '';
+      if (quizSummaryWarningEl) {
+        quizSummaryWarningEl.hidden = true;
+        quizSummaryWarningEl.textContent = '';
+      }
+      if (quizSummarySuccessEl) {
+        quizSummarySuccessEl.hidden = true;
+        quizSummarySuccessEl.textContent = '';
+      }
+      return;
+    }
+
+    quizSummaryLockEl.hidden = false;
+    quizSummaryTextEl.textContent =
+      quizContext.total + '€ | ' + quizContext.vehicle_name + ' | ' + quizContext.exterior_label;
+  }
+
+  function getQuizContextMismatchMessage(prestationValue, quizContext) {
+    if (!quizContext || !quizContext.finalized) {
+      return '';
+    }
+
+    if (prestationValue === 'interieur' && quizContext.exterior !== 'none') {
+      return 'Votre quiz inclut un exterieur. Choisissez "Pack interieur + exterieur" ou modifiez votre quiz.';
+    }
+
+    if (prestationValue === 'pack' && quizContext.exterior === 'none') {
+      return 'Votre quiz correspond a un interieur seul. Choisissez "Nettoyage interieur" ou modifiez votre quiz.';
+    }
+
+    return '';
+  }
+
+  function updateQuizCoherenceWarning(prestationValue, quizContext, ctaVariantLabel) {
+    if (!quizSummaryWarningEl || !quizSummaryLockEl || quizSummaryLockEl.hidden) {
+      return;
+    }
+
+    var mismatchMessage = getQuizContextMismatchMessage(prestationValue, quizContext);
+
+    if (!mismatchMessage) {
+      quizSummaryWarningEl.hidden = true;
+      quizSummaryWarningEl.textContent = '';
+
+      if (quizSummarySuccessEl) {
+        quizSummarySuccessEl.hidden = false;
+        quizSummarySuccessEl.textContent = 'Cohérent avec votre prestation sélectionnée.';
+      }
+
+      if (mismatchWarningVisible) {
+        trackEvent('contact_quiz_mismatch_warning_resolved', {
+          prestation_type: prestationValue || 'unknown',
+          quiz_exterior_pack: (quizContext && quizContext.exterior) || 'unknown',
+          cta_variant: ctaVariantLabel || getQuizCtaVariantLabel()
+        });
+
+        trackEvent('lead_coherence_fixed', {
+          prestation_type: prestationValue || 'unknown',
+          quiz_exterior_pack: (quizContext && quizContext.exterior) || 'unknown',
+          cta_variant: ctaVariantLabel || getQuizCtaVariantLabel()
+        });
+      }
+
+      mismatchWarningVisible = false;
+      mismatchWarningTracked = false;
+      return;
+    }
+
+    quizSummaryWarningEl.hidden = false;
+    quizSummaryWarningEl.textContent = mismatchMessage;
+    mismatchWarningVisible = true;
+
+    if (quizSummarySuccessEl) {
+      quizSummarySuccessEl.hidden = true;
+      quizSummarySuccessEl.textContent = '';
+    }
+
+    if (!mismatchWarningTracked) {
+      mismatchWarningTracked = true;
+      trackEvent('contact_quiz_mismatch_warning_shown', {
+        prestation_type: prestationValue || 'unknown',
+        quiz_exterior_pack: quizContext.exterior || 'unknown',
+        cta_variant: ctaVariantLabel || getQuizCtaVariantLabel()
+      });
+
+      trackEvent('lead_coherence_issue_detected', {
+        prestation_type: prestationValue || 'unknown',
+        quiz_exterior_pack: quizContext.exterior || 'unknown',
+        cta_variant: ctaVariantLabel || getQuizCtaVariantLabel()
+      });
+    }
+  }
+
+  function isQuizContextCoherent(prestationValue, quizContext) {
+    return getQuizContextMismatchMessage(prestationValue, quizContext) === '';
+  }
+
   contactForm.addEventListener('submit', function (event) {
     event.preventDefault();
 
@@ -75,6 +209,16 @@
     var prestationLabel = getPrestationLabel(prestationValue);
     var message = getFieldValue('message');
     var ctaVariantLabel = getQuizCtaVariantLabel();
+    var quizContext = getQuizEstimateContext();
+    var isCoherent = isQuizContextCoherent(prestationValue, quizContext);
+    var quizSummary = '';
+
+    updateQuizCoherenceWarning(prestationValue, quizContext, ctaVariantLabel);
+
+    if (quizContext && quizContext.finalized) {
+      quizSummary = 'Estimation quiz : ' + quizContext.total + '€ | Véhicule : ' + quizContext.vehicle_name +
+        ' | Extérieur : ' + quizContext.exterior_label + '.';
+    }
 
     if (!nom || !vehicule) {
       trackEvent('contact_form_invalid_submit', {
@@ -91,6 +235,16 @@
       return;
     }
 
+    var detailsText = message || 'Non précisés';
+
+    if (quizSummary && isCoherent && detailsText.indexOf('Estimation quiz : ') !== 0) {
+      detailsText = quizSummary + '\n' + detailsText;
+    }
+
+    if (!isCoherent && detailsText === quizSummary) {
+      detailsText = 'Non précisés';
+    }
+
     var lines = [
       'Bonjour Prime Detail,',
       '',
@@ -102,10 +256,23 @@
       '- CTA Quiz : ' + ctaVariantLabel,
       '',
       'Détails :',
-      (message || 'Non précisés'),
+      detailsText,
       '',
       'Merci.'
     ];
+
+    if (quizSummary && !isCoherent) {
+      lines.splice(lines.length - 2, 0,
+        '',
+        'Contexte quiz non retenu (incohérent avec la prestation choisie).'
+      );
+
+      trackEvent('contact_quiz_context_mismatch', {
+        prestation_type: prestationValue || 'unknown',
+        quiz_exterior_pack: quizContext.exterior || 'unknown',
+        cta_variant: ctaVariantLabel
+      });
+    }
 
     trackEvent('contact_form_valid_submit', {
       prestation_type: prestationValue || 'unknown',
@@ -152,6 +319,23 @@
       statusEl.textContent = 'Choisissez votre méthode: envoyer votre demande par message WhatsApp et/ou appeler directement.';
     }
   });
+
+  renderQuizSummaryLock(getQuizEstimateContext());
+
+  var prestationSelectEl = document.getElementById('prestation');
+  if (prestationSelectEl) {
+    prestationSelectEl.addEventListener('change', function () {
+      updateQuizCoherenceWarning(prestationSelectEl.value, getQuizEstimateContext(), getQuizCtaVariantLabel());
+    });
+
+    updateQuizCoherenceWarning(prestationSelectEl.value, getQuizEstimateContext(), getQuizCtaVariantLabel());
+  }
+
+  if (quizSummaryEditEl) {
+    quizSummaryEditEl.addEventListener('click', function () {
+      trackEvent('quiz_summary_edit_clicked', { location: 'contact_form' });
+    });
+  }
 })();
 
 (function () {

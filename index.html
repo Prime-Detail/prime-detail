@@ -1231,6 +1231,66 @@
       margin-top: 12px;
     }
 
+    .quiz-summary-lock {
+      margin-bottom: 14px;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(31, 111, 133, 0.25);
+      background: linear-gradient(180deg, #f4faff 0%, #eaf4fc 100%);
+    }
+
+    .quiz-summary-title {
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #1b5f74;
+      margin-bottom: 4px;
+    }
+
+    .quiz-summary-text {
+      font-size: 0.9rem;
+      color: #233645;
+      margin-bottom: 8px;
+    }
+
+    .quiz-summary-warning {
+      margin-bottom: 8px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 107, 53, 0.35);
+      background: rgba(255, 107, 53, 0.08);
+      color: #8f3f1d;
+      font-size: 0.82rem;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+
+    .quiz-summary-success {
+      margin-bottom: 8px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(33, 143, 88, 0.3);
+      background: rgba(33, 143, 88, 0.1);
+      color: #1f5d3f;
+      font-size: 0.82rem;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+
+    .quiz-summary-edit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 0.42rem 0.78rem;
+      background: rgba(32, 130, 160, 0.12);
+      border: 1px solid rgba(32, 130, 160, 0.28);
+      color: #1b5f74;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
     footer {
       padding: 26px 0 32px;
       font-size: 0.85rem;
@@ -2213,6 +2273,14 @@
           </div>
 
           <form class="contact-form" id="contact-form" novalidate>
+            <div id="quiz-summary-lock" class="quiz-summary-lock" hidden>
+              <p class="quiz-summary-title">Récapitulatif de votre estimation</p>
+              <p id="quiz-summary-text" class="quiz-summary-text"></p>
+              <p id="quiz-summary-warning" class="quiz-summary-warning" hidden></p>
+              <p id="quiz-summary-success" class="quiz-summary-success" hidden></p>
+              <a id="quiz-summary-edit" class="quiz-summary-edit" href="#tarifs">Modifier mon quiz</a>
+            </div>
+
             <div class="form-row">
               <div class="form-group">
                 <label for="nom">Nom / Prénom</label>
@@ -2339,6 +2407,7 @@
       var prestationSelect = document.getElementById('prestation');
       var messageField = document.getElementById('message');
       var memoryStore = { vehicle: null, ext: null };
+      var quizState = { isFinalized: false };
       var analyticsState = { estimateKey: null, variantTracked: false };
 
       if (!quiz || !steps.length || !cards.length || !vehicleNameEl || !totalEl || !processStepsEl) {
@@ -2543,7 +2612,34 @@
         return null;
       }
 
-      function updateResult() {
+      function persistQuizContext(veh, ext, total, isFinalized) {
+        var context = {
+          finalized: !!isFinalized,
+          vehicle: veh,
+          vehicle_name: vehicleNames[veh] || 'Citadine',
+          exterior: ext,
+          exterior_label: exteriorLabels[ext] || 'Intérieur seul',
+          total: total
+        };
+
+        try {
+          sessionStorage.setItem('quiz_estimate_context', JSON.stringify(context));
+        } catch (error) {
+        }
+      }
+
+      function clearQuizContext() {
+        try {
+          sessionStorage.removeItem('quiz_estimate_context');
+        } catch (error) {
+        }
+      }
+
+      function updateResult(isFinalized) {
+        if (typeof isFinalized === 'boolean') {
+          quizState.isFinalized = isFinalized;
+        }
+
         var veh = getVehicle();
         var ext = getExt();
         var intPrix = interiorPrices[veh] || interiorPrices.citadine;
@@ -2584,12 +2680,18 @@
         }
 
         if (messageField) {
-          messageField.value = 'Estimation quiz : ' + total + '€ | Véhicule : ' + (vehicleNames[veh] || 'Citadine') +
-            ' | Extérieur : ' + (exteriorLabels[ext] || 'Intérieur seul') + '.';
+          if (quizState.isFinalized) {
+            messageField.value = 'Estimation quiz : ' + total + '€ | Véhicule : ' + (vehicleNames[veh] || 'Citadine') +
+              ' | Extérieur : ' + (exteriorLabels[ext] || 'Intérieur seul') + '.';
+          } else if (messageField.value.indexOf('Estimation quiz : ') === 0) {
+            messageField.value = '';
+          }
         }
 
+        persistQuizContext(veh, ext, total, quizState.isFinalized);
+
         var estimateKey = [veh, ext, total].join('|');
-        if (estimateKey !== analyticsState.estimateKey) {
+        if (quizState.isFinalized && estimateKey !== analyticsState.estimateKey) {
           analyticsState.estimateKey = estimateKey;
           trackEvent('quiz_estimate_viewed', {
             vehicle_type: veh,
@@ -2621,7 +2723,7 @@
             });
             if (card.getAttribute('data-ext') === 'none') {
               nextStep = '4';
-              updateResult();
+              updateResult(true);
             }
           }
 
@@ -2634,7 +2736,7 @@
         yesCard.addEventListener('click', function () {
           trackEvent('quiz_private_space_selected', { has_private_space: true });
           showStep('4');
-          updateResult();
+          updateResult(true);
           updateProgress();
         });
       }
@@ -2642,7 +2744,7 @@
       if (noCard) {
         noCard.addEventListener('click', function () {
           trackEvent('quiz_private_space_selected', { has_private_space: false });
-          updateResult();
+          updateResult(true);
           showStep('terrain');
           updateProgress();
         });
@@ -2653,8 +2755,10 @@
           trackEvent('quiz_restart_clicked', {});
           clearStoredValue('vehicle');
           clearStoredValue('ext');
+          clearQuizContext();
+          analyticsState.estimateKey = null;
           showStep('1');
-          updateResult();
+          updateResult(false);
           updateProgress();
         });
       });
@@ -2682,7 +2786,7 @@
 
       showStep('1');
       applyCtaVariant();
-      updateResult();
+      updateResult(false);
       updateProgress();
     })();
 
@@ -2708,6 +2812,13 @@
       var statusEl = document.getElementById('contact-form-status');
       var actionsEl = document.getElementById('contact-actions');
       var whatsappLinkEl = document.getElementById('contact-whatsapp');
+      var quizSummaryLockEl = document.getElementById('quiz-summary-lock');
+      var quizSummaryTextEl = document.getElementById('quiz-summary-text');
+      var quizSummaryWarningEl = document.getElementById('quiz-summary-warning');
+      var quizSummarySuccessEl = document.getElementById('quiz-summary-success');
+      var quizSummaryEditEl = document.getElementById('quiz-summary-edit');
+      var mismatchWarningTracked = false;
+      var mismatchWarningVisible = false;
 
       if (!contactForm) {
         return;
@@ -2752,6 +2863,133 @@
         return labels[index];
       }
 
+      function getQuizEstimateContext() {
+        var raw = null;
+        var parsed = null;
+
+        try {
+          raw = sessionStorage.getItem('quiz_estimate_context');
+        } catch (error) {
+          raw = null;
+        }
+
+        if (!raw) {
+          return null;
+        }
+
+        try {
+          parsed = JSON.parse(raw);
+        } catch (error) {
+          parsed = null;
+        }
+
+        return parsed;
+      }
+
+      function renderQuizSummaryLock(quizContext) {
+        if (!quizSummaryLockEl || !quizSummaryTextEl) {
+          return;
+        }
+
+        if (!quizContext || !quizContext.finalized) {
+          quizSummaryLockEl.hidden = true;
+          quizSummaryTextEl.textContent = '';
+          if (quizSummaryWarningEl) {
+            quizSummaryWarningEl.hidden = true;
+            quizSummaryWarningEl.textContent = '';
+          }
+          if (quizSummarySuccessEl) {
+            quizSummarySuccessEl.hidden = true;
+            quizSummarySuccessEl.textContent = '';
+          }
+          return;
+        }
+
+        quizSummaryLockEl.hidden = false;
+        quizSummaryTextEl.textContent =
+          quizContext.total + '€ | ' + quizContext.vehicle_name + ' | ' + quizContext.exterior_label;
+      }
+
+      function getQuizContextMismatchMessage(prestationValue, quizContext) {
+        if (!quizContext || !quizContext.finalized) {
+          return '';
+        }
+
+        if (prestationValue === 'interieur' && quizContext.exterior !== 'none') {
+          return 'Votre quiz inclut un exterieur. Choisissez "Pack interieur + exterieur" ou modifiez votre quiz.';
+        }
+
+        if (prestationValue === 'pack' && quizContext.exterior === 'none') {
+          return 'Votre quiz correspond a un interieur seul. Choisissez "Nettoyage interieur" ou modifiez votre quiz.';
+        }
+
+        return '';
+      }
+
+      function updateQuizCoherenceWarning(prestationValue, quizContext, ctaVariantLabel) {
+        if (!quizSummaryWarningEl || !quizSummaryLockEl || quizSummaryLockEl.hidden) {
+          return;
+        }
+
+        var mismatchMessage = getQuizContextMismatchMessage(prestationValue, quizContext);
+
+        if (!mismatchMessage) {
+          quizSummaryWarningEl.hidden = true;
+          quizSummaryWarningEl.textContent = '';
+
+          if (quizSummarySuccessEl) {
+            quizSummarySuccessEl.hidden = false;
+            quizSummarySuccessEl.textContent = 'Cohérent avec votre prestation sélectionnée.';
+          }
+
+          if (mismatchWarningVisible) {
+            trackEvent('contact_quiz_mismatch_warning_resolved', {
+              prestation_type: prestationValue || 'unknown',
+              quiz_exterior_pack: (quizContext && quizContext.exterior) || 'unknown',
+              cta_variant: ctaVariantLabel || getQuizCtaVariantLabel()
+            });
+
+            trackEvent('lead_coherence_fixed', {
+              prestation_type: prestationValue || 'unknown',
+              quiz_exterior_pack: (quizContext && quizContext.exterior) || 'unknown',
+              cta_variant: ctaVariantLabel || getQuizCtaVariantLabel()
+            });
+          }
+
+          mismatchWarningVisible = false;
+          mismatchWarningTracked = false;
+          return;
+        }
+
+        quizSummaryWarningEl.hidden = false;
+        quizSummaryWarningEl.textContent = mismatchMessage;
+        mismatchWarningVisible = true;
+
+        if (quizSummarySuccessEl) {
+          quizSummarySuccessEl.hidden = true;
+          quizSummarySuccessEl.textContent = '';
+        }
+
+        if (!mismatchWarningTracked) {
+          mismatchWarningTracked = true;
+          trackEvent('contact_quiz_mismatch_warning_shown', {
+            prestation_type: prestationValue || 'unknown',
+            quiz_exterior_pack: quizContext.exterior || 'unknown',
+            cta_variant: ctaVariantLabel || getQuizCtaVariantLabel()
+          });
+
+          trackEvent('lead_coherence_issue_detected', {
+            prestation_type: prestationValue || 'unknown',
+            quiz_exterior_pack: quizContext.exterior || 'unknown',
+            cta_variant: ctaVariantLabel || getQuizCtaVariantLabel()
+          });
+        }
+      }
+
+      function isQuizContextCoherent(prestationValue, quizContext) {
+        return getQuizContextMismatchMessage(prestationValue, quizContext) === '';
+      }
+
       contactForm.addEventListener('submit', function (event) {
         event.preventDefault();
 
@@ -2763,6 +3001,16 @@
         var prestationLabel = getPrestationLabel(prestationValue);
         var message = getFieldValue('message');
         var ctaVariantLabel = getQuizCtaVariantLabel();
+        var quizContext = getQuizEstimateContext();
+        var isCoherent = isQuizContextCoherent(prestationValue, quizContext);
+        var quizSummary = '';
+
+        updateQuizCoherenceWarning(prestationValue, quizContext, ctaVariantLabel);
+
+        if (quizContext && quizContext.finalized) {
+          quizSummary = 'Estimation quiz : ' + quizContext.total + '€ | Véhicule : ' + quizContext.vehicle_name +
+            ' | Extérieur : ' + quizContext.exterior_label + '.';
+        }
 
         if (!nom || !vehicule || !message) {
           trackEvent('contact_form_invalid_submit', {
@@ -2780,6 +3028,16 @@
           return;
         }
 
+        var detailsText = message || 'Non précisés';
+
+        if (quizSummary && isCoherent && detailsText.indexOf('Estimation quiz : ') !== 0) {
+          detailsText = quizSummary + '\n' + detailsText;
+        }
+
+        if (!isCoherent && detailsText === quizSummary) {
+          detailsText = 'Non précisés';
+        }
+
         var lines = [
           'Bonjour Prime Detail,',
           '',
@@ -2791,10 +3049,23 @@
           '- CTA Quiz : ' + ctaVariantLabel,
           '',
           'Détails :',
-          message,
+          detailsText,
           '',
           'Merci.'
         ];
+
+        if (quizSummary && !isCoherent) {
+          lines.splice(lines.length - 2, 0,
+            '',
+            'Contexte quiz non retenu (incohérent avec la prestation choisie).'
+          );
+
+          trackEvent('contact_quiz_context_mismatch', {
+            prestation_type: prestationValue || 'unknown',
+            quiz_exterior_pack: quizContext.exterior || 'unknown',
+            cta_variant: ctaVariantLabel
+          });
+        }
 
         trackEvent('contact_form_valid_submit', {
           prestation_type: prestationValue || 'unknown',
@@ -2842,6 +3113,23 @@
         }
 
       });
+
+      renderQuizSummaryLock(getQuizEstimateContext());
+
+      var prestationSelectEl = document.getElementById('prestation');
+      if (prestationSelectEl) {
+        prestationSelectEl.addEventListener('change', function () {
+          updateQuizCoherenceWarning(prestationSelectEl.value, getQuizEstimateContext(), getQuizCtaVariantLabel());
+        });
+
+        updateQuizCoherenceWarning(prestationSelectEl.value, getQuizEstimateContext(), getQuizCtaVariantLabel());
+      }
+
+      if (quizSummaryEditEl) {
+        quizSummaryEditEl.addEventListener('click', function () {
+          trackEvent('quiz_summary_edit_clicked', { location: 'contact_form' });
+        });
+      }
     })();
 
     (function () {
