@@ -130,6 +130,8 @@
     var interiorProtocolEl = document.getElementById('interior-protocol');
     var processStepsEl = document.getElementById('process-steps');
     var terrainOnlyPriceEl = document.getElementById('terrain-only-price');
+    var exteriorOnlyHintEl = document.getElementById('exterior-only-hint');
+    var interiorOnlyHintEl = document.getElementById('interior-only-hint');
     var ctaButtonEl = quiz ? quiz.querySelector('.btn-gold') : null;
     var ctaHelperEl = quiz ? quiz.querySelector('.cta-helper') : null;
     var ctaSubnoteEl = quiz ? quiz.querySelector('.cta-subnote') : null;
@@ -416,6 +418,14 @@
 
     vehicleNameEl.textContent = vehicleNames[veh] || 'Citadine';
     totalEl.textContent = total + '€';
+
+    if (exteriorOnlyHintEl) {
+      exteriorOnlyHintEl.style.display = ext === 'exterior_only' ? 'block' : 'none';
+    }
+
+    if (interiorOnlyHintEl) {
+      interiorOnlyHintEl.style.display = ext === 'none' ? 'block' : 'none';
+    }
 
     if (packDesc) {
       if (packBase) {
