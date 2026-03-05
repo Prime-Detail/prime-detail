@@ -1,4 +1,21 @@
 (function () {
+  function trackEvent(eventName, params) {
+    var payload = params || {};
+
+    try {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: eventName, event_params: payload });
+    } catch (error) {
+    }
+
+    try {
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', eventName, payload);
+      }
+    } catch (error) {
+    }
+  }
+
   var contactForm = document.getElementById('contact-form');
   var statusEl = document.getElementById('contact-form-status');
   var actionsEl = document.getElementById('contact-actions');
@@ -60,6 +77,11 @@
     var ctaVariantLabel = getQuizCtaVariantLabel();
 
     if (!nom || !vehicule) {
+      trackEvent('contact_form_invalid_submit', {
+        has_name: !!nom,
+        has_vehicle: !!vehicule
+      });
+
       if (actionsEl) {
         actionsEl.style.display = 'none';
       }
@@ -85,6 +107,13 @@
       'Merci.'
     ];
 
+    trackEvent('contact_form_valid_submit', {
+      prestation_type: prestationValue || 'unknown',
+      cta_variant: ctaVariantLabel,
+      has_message: !!message,
+      city_filled: !!ville
+    });
+
     var whatsappUrl = 'https://wa.me/33656751197?text=' + encodeURIComponent(lines.join('\n'));
 
     if (whatsappLinkEl) {
@@ -94,6 +123,30 @@
     if (actionsEl) {
       actionsEl.style.display = 'flex';
     }
+
+    if (whatsappLinkEl) {
+      whatsappLinkEl.addEventListener('click', function () {
+        trackEvent('contact_whatsapp_clicked', {
+          cta_variant: ctaVariantLabel,
+          prestation_type: prestationValue || 'unknown'
+        });
+      }, { once: true });
+    }
+
+    var contactCallEl = document.getElementById('contact-call');
+    if (contactCallEl) {
+      contactCallEl.addEventListener('click', function () {
+        trackEvent('contact_call_clicked', {
+          cta_variant: ctaVariantLabel,
+          prestation_type: prestationValue || 'unknown'
+        });
+      }, { once: true });
+    }
+
+    trackEvent('contact_options_displayed', {
+      cta_variant: ctaVariantLabel,
+      prestation_type: prestationValue || 'unknown'
+    });
 
     if (statusEl) {
       statusEl.textContent = 'Choisissez votre méthode: envoyer votre demande par message WhatsApp et/ou appeler directement.';

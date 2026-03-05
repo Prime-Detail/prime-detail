@@ -2276,6 +2276,23 @@
     })();
 
     (function () {
+      function trackEvent(eventName, params) {
+        var payload = params || {};
+
+        try {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: eventName, event_params: payload });
+        } catch (error) {
+        }
+
+        try {
+          if (typeof window.gtag === 'function') {
+            window.gtag('event', eventName, payload);
+          }
+        } catch (error) {
+        }
+      }
+
       var quiz = document.getElementById('tarif-quiz');
       var steps = quiz ? Array.prototype.slice.call(quiz.querySelectorAll('.step')) : [];
       var progressFill = document.getElementById('progress-fill');
@@ -2298,6 +2315,7 @@
       var prestationSelect = document.getElementById('prestation');
       var messageField = document.getElementById('message');
       var memoryStore = { vehicle: null, ext: null };
+      var analyticsState = { estimateKey: null, variantTracked: false };
 
       if (!quiz || !steps.length || !cards.length || !vehicleNameEl || !totalEl || !processStepsEl) {
         return;
@@ -2469,6 +2487,16 @@
         if (ctaSubnoteEl) {
           ctaSubnoteEl.innerHTML = variant.subnote;
         }
+
+        if (!analyticsState.variantTracked) {
+          var index = ctaVariants.indexOf(variant);
+          analyticsState.variantTracked = true;
+          trackEvent('quiz_cta_variant_assigned', {
+            cta_variant: String.fromCharCode(65 + Math.max(index, 0)),
+            cta_variant_index: Math.max(index, 0),
+            cta_button_text: variant.button
+          });
+        }
       }
 
       function getParentStep(cardElement) {
@@ -2497,6 +2525,8 @@
         var intPrix = interiorPrices[veh] || interiorPrices.citadine;
         var extPrix = (exteriorPrices[ext] && exteriorPrices[ext][veh]) || 0;
         var total = intPrix + extPrix;
+        var variant = getCtaVariant();
+        var variantIndex = ctaVariants.indexOf(variant);
 
         vehicleNameEl.textContent = vehicleNames[veh] || 'Citadine';
         totalEl.textContent = total + '€';
@@ -2534,6 +2564,17 @@
             ' | Extérieur : ' + (exteriorLabels[ext] || 'Intérieur seul') + '.';
         }
 
+        var estimateKey = [veh, ext, total].join('|');
+        if (estimateKey !== analyticsState.estimateKey) {
+          analyticsState.estimateKey = estimateKey;
+          trackEvent('quiz_estimate_viewed', {
+            vehicle_type: veh,
+            exterior_pack: ext,
+            estimate_total_eur: total,
+            cta_variant: String.fromCharCode(65 + Math.max(variantIndex, 0))
+          });
+        }
+
       }
 
       cards.forEach(function (card) {
@@ -2544,10 +2585,16 @@
 
           if (card.hasAttribute('data-type')) {
             setStoredValue('vehicle', card.getAttribute('data-type'));
+            trackEvent('quiz_vehicle_selected', {
+              vehicle_type: card.getAttribute('data-type')
+            });
           }
 
           if (card.hasAttribute('data-ext')) {
             setStoredValue('ext', card.getAttribute('data-ext'));
+            trackEvent('quiz_exterior_selected', {
+              exterior_pack: card.getAttribute('data-ext')
+            });
             if (card.getAttribute('data-ext') === 'none') {
               nextStep = '4';
               updateResult();
@@ -2561,6 +2608,7 @@
 
       if (yesCard) {
         yesCard.addEventListener('click', function () {
+          trackEvent('quiz_private_space_selected', { has_private_space: true });
           showStep('4');
           updateResult();
           updateProgress();
@@ -2569,6 +2617,7 @@
 
       if (noCard) {
         noCard.addEventListener('click', function () {
+          trackEvent('quiz_private_space_selected', { has_private_space: false });
           updateResult();
           showStep('terrain');
           updateProgress();
@@ -2577,6 +2626,7 @@
 
       restartButtons.forEach(function (button) {
         button.addEventListener('click', function () {
+          trackEvent('quiz_restart_clicked', {});
           clearStoredValue('vehicle');
           clearStoredValue('ext');
           showStep('1');
@@ -2585,6 +2635,27 @@
         });
       });
 
+      var quizCta = quiz ? quiz.querySelector('.btn-gold') : null;
+      if (quizCta) {
+        quizCta.addEventListener('click', function () {
+          var variant = getCtaVariant();
+          var index = ctaVariants.indexOf(variant);
+          trackEvent('quiz_primary_cta_clicked', {
+            cta_variant: String.fromCharCode(65 + Math.max(index, 0)),
+            destination: 'phone_call'
+          });
+        });
+      }
+
+      var terrainCta = quiz ? quiz.querySelector('.book-btn') : null;
+      if (terrainCta) {
+        terrainCta.addEventListener('click', function () {
+          trackEvent('quiz_terrain_cta_clicked', {
+            destination: 'phone_call'
+          });
+        });
+      }
+
       showStep('1');
       applyCtaVariant();
       updateResult();
@@ -2592,6 +2663,23 @@
     })();
 
     (function () {
+      function trackEvent(eventName, params) {
+        var payload = params || {};
+
+        try {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: eventName, event_params: payload });
+        } catch (error) {
+        }
+
+        try {
+          if (typeof window.gtag === 'function') {
+            window.gtag('event', eventName, payload);
+          }
+        } catch (error) {
+        }
+      }
+
       var contactForm = document.getElementById('contact-form');
       var statusEl = document.getElementById('contact-form-status');
       var actionsEl = document.getElementById('contact-actions');
@@ -2653,6 +2741,12 @@
         var ctaVariantLabel = getQuizCtaVariantLabel();
 
         if (!nom || !vehicule || !message) {
+          trackEvent('contact_form_invalid_submit', {
+            has_name: !!nom,
+            has_vehicle: !!vehicule,
+            has_message: !!message
+          });
+
           if (actionsEl) {
             actionsEl.style.display = 'none';
           }
@@ -2678,6 +2772,13 @@
           'Merci.'
         ];
 
+        trackEvent('contact_form_valid_submit', {
+          prestation_type: prestationValue || 'unknown',
+          cta_variant: ctaVariantLabel,
+          has_message: !!message,
+          city_filled: !!ville
+        });
+
         var whatsappUrl = 'https://wa.me/33656751197?text=' + encodeURIComponent(lines.join('\n'));
 
         if (whatsappLinkEl) {
@@ -2687,6 +2788,30 @@
         if (actionsEl) {
           actionsEl.style.display = 'flex';
         }
+
+        if (whatsappLinkEl) {
+          whatsappLinkEl.addEventListener('click', function () {
+            trackEvent('contact_whatsapp_clicked', {
+              cta_variant: ctaVariantLabel,
+              prestation_type: prestationValue || 'unknown'
+            });
+          }, { once: true });
+        }
+
+        var contactCallEl = document.getElementById('contact-call');
+        if (contactCallEl) {
+          contactCallEl.addEventListener('click', function () {
+            trackEvent('contact_call_clicked', {
+              cta_variant: ctaVariantLabel,
+              prestation_type: prestationValue || 'unknown'
+            });
+          }, { once: true });
+        }
+
+        trackEvent('contact_options_displayed', {
+          cta_variant: ctaVariantLabel,
+          prestation_type: prestationValue || 'unknown'
+        });
 
         if (statusEl) {
           statusEl.textContent = 'Choisissez votre méthode: envoyer votre demande par message WhatsApp et/ou appeler directement.';
