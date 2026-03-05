@@ -139,6 +139,40 @@
         <a href="tel:0656751197" class="book-btn">Intérieur OK ? RDV</a>
         <button type="button" class="restart-btn" data-restart="quiz">↺ Recommencer le quiz</button>
       </div>
+
+      <form id="tarif-quick-form" class="tarif-quick-form" hidden>
+        <h4>Recevoir ce tarif via le formulaire</h4>
+        <p class="tarif-quick-intro">Remplissez ces 3 champs, on pre-remplit ensuite votre demande complete.</p>
+        <div class="tarif-quick-grid">
+          <label>
+            Nom *
+            <input id="tarif-qf-name" type="text" placeholder="Votre nom" required />
+          </label>
+          <label>
+            Vehicule *
+            <input id="tarif-qf-vehicle" type="text" placeholder="Ex: Peugeot 308" required />
+          </label>
+          <label>
+            Ville
+            <input id="tarif-qf-city" type="text" placeholder="Ex: Caen" />
+          </label>
+          <label>
+            Prestation
+            <select id="tarif-qf-service">
+              <option value="interieur">Nettoyage interieur</option>
+              <option value="pack">Pack interieur + exterieur</option>
+              <option value="carrosserie">Renovation carrosserie / polissage</option>
+              <option value="entretien">Forfait entretien</option>
+            </select>
+          </label>
+        </div>
+        <label>
+          Details
+          <textarea id="tarif-qf-message" rows="3" placeholder="Ajoutez un detail (taches, poils, urgence, etc.)"></textarea>
+        </label>
+        <button type="submit" class="btn-gold tarif-qf-submit">Continuer vers le formulaire complet</button>
+        <p id="tarif-qf-status" class="tarif-qf-status"></p>
+      </form>
     </div>
   </div>
 </section>

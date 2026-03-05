@@ -109,6 +109,13 @@
     var ctaButtonEl = quiz ? quiz.querySelector('.btn-gold') : null;
     var ctaHelperEl = quiz ? quiz.querySelector('.cta-helper') : null;
     var ctaSubnoteEl = quiz ? quiz.querySelector('.cta-subnote') : null;
+    var quickFormEl = document.getElementById('tarif-quick-form');
+    var quickNameEl = document.getElementById('tarif-qf-name');
+    var quickVehicleEl = document.getElementById('tarif-qf-vehicle');
+    var quickCityEl = document.getElementById('tarif-qf-city');
+    var quickServiceEl = document.getElementById('tarif-qf-service');
+    var quickMessageEl = document.getElementById('tarif-qf-message');
+    var quickStatusEl = document.getElementById('tarif-qf-status');
     var prestationSelect = document.getElementById('prestation');
     var messageField = document.getElementById('message');
     var quizState = { isFinalized: false };
@@ -319,6 +326,20 @@
       terrainOnlyPriceEl.textContent = intPrix + '€';
     }
 
+    if (quickFormEl) {
+      quickFormEl.hidden = !quizState.isFinalized;
+      if (quickServiceEl) {
+        quickServiceEl.value = ext === 'none' ? 'interieur' : 'pack';
+      }
+      if (quickMessageEl && (quickMessageEl.value === '' || quickMessageEl.value.indexOf('Estimation quiz : ') === 0)) {
+        quickMessageEl.value = 'Estimation quiz : ' + total + '€ | Véhicule : ' + (vehicleNames[veh] || 'Citadine') +
+          ' | Extérieur : ' + (exteriorLabels[ext] || 'Intérieur seul') + '.';
+      }
+      if (!quizState.isFinalized && quickStatusEl) {
+        quickStatusEl.textContent = '';
+      }
+    }
+
     if (prestationSelect) {
       prestationSelect.value = ext === 'none' ? 'interieur' : 'pack';
     }
@@ -423,6 +444,66 @@
       trackEvent('quiz_terrain_cta_clicked', {
         destination: 'phone_call'
       });
+    });
+  }
+
+  if (quickFormEl) {
+    quickFormEl.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      var quickName = quickNameEl ? quickNameEl.value.trim() : '';
+      var quickVehicle = quickVehicleEl ? quickVehicleEl.value.trim() : '';
+      var quickCity = quickCityEl ? quickCityEl.value.trim() : '';
+      var quickService = quickServiceEl ? quickServiceEl.value : 'interieur';
+      var quickMessage = quickMessageEl ? quickMessageEl.value.trim() : '';
+      var contactName = document.getElementById('nom');
+      var contactVehicle = document.getElementById('vehicule');
+      var contactCity = document.getElementById('ville');
+      var contactService = document.getElementById('prestation');
+      var contactMessage = document.getElementById('message');
+      var contactSection = document.getElementById('contact');
+
+      if (!quickName || !quickVehicle) {
+        if (quickStatusEl) {
+          quickStatusEl.textContent = 'Merci de renseigner au minimum votre nom et votre vehicule.';
+        }
+
+        trackEvent('tarif_quick_form_invalid_submit', {
+          has_name: !!quickName,
+          has_vehicle: !!quickVehicle
+        });
+        return;
+      }
+
+      if (contactName) {
+        contactName.value = quickName;
+      }
+      if (contactVehicle) {
+        contactVehicle.value = quickVehicle;
+      }
+      if (contactCity) {
+        contactCity.value = quickCity;
+      }
+      if (contactService) {
+        contactService.value = quickService;
+      }
+      if (contactMessage) {
+        contactMessage.value = quickMessage || contactMessage.value;
+      }
+
+      if (quickStatusEl) {
+        quickStatusEl.textContent = 'Infos transferees. Continuez votre demande juste en dessous.';
+      }
+
+      trackEvent('tarif_quick_form_continue_clicked', {
+        prestation_type: quickService || 'unknown',
+        has_city: !!quickCity,
+        has_message: !!quickMessage
+      });
+
+      if (contactSection && typeof contactSection.scrollIntoView === 'function') {
+        contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     });
   }
 

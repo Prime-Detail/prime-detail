@@ -1278,6 +1278,80 @@
       line-height: 1.35;
     }
 
+    .tarif-quick-form {
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(18, 102, 149, 0.2);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(236, 246, 255, 0.86));
+    }
+
+    .tarif-quick-form h4 {
+      margin: 0 0 6px;
+      color: #133447;
+      font-size: 1.03rem;
+    }
+
+    .tarif-quick-intro {
+      margin: 0 0 12px;
+      color: #2b4556;
+      font-size: 0.9rem;
+    }
+
+    .tarif-quick-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .tarif-quick-form label {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      color: #12384c;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .tarif-quick-form input,
+    .tarif-quick-form select,
+    .tarif-quick-form textarea {
+      width: 100%;
+      border: 1px solid rgba(18, 102, 149, 0.3);
+      border-radius: 10px;
+      background: #ffffff;
+      color: #1a3445;
+      padding: 10px 12px;
+      font-size: 0.92rem;
+      font-family: inherit;
+    }
+
+    .tarif-quick-form textarea {
+      margin-top: 8px;
+      resize: vertical;
+      min-height: 74px;
+    }
+
+    .tarif-qf-submit {
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    .tarif-qf-status {
+      margin-top: 8px;
+      min-height: 1.2em;
+      color: #1f5d3f;
+      font-size: 0.84rem;
+      font-weight: 600;
+    }
+
+    @media (max-width: 760px) {
+      .tarif-quick-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .quiz-summary-edit {
       display: inline-flex;
       align-items: center;
@@ -2185,6 +2259,40 @@
             <a href="tel:0656751197" class="book-btn">Intérieur OK ? RDV</a>
             <button type="button" class="restart-btn" data-restart="quiz">↺ Recommencer le quiz</button>
           </div>
+
+          <form id="tarif-quick-form" class="tarif-quick-form" hidden>
+            <h4>Recevoir ce tarif via le formulaire</h4>
+            <p class="tarif-quick-intro">Remplissez ces 3 champs, on pre-remplit ensuite votre demande complete.</p>
+            <div class="tarif-quick-grid">
+              <label>
+                Nom *
+                <input id="tarif-qf-name" type="text" placeholder="Votre nom" required />
+              </label>
+              <label>
+                Vehicule *
+                <input id="tarif-qf-vehicle" type="text" placeholder="Ex: Peugeot 308" required />
+              </label>
+              <label>
+                Ville
+                <input id="tarif-qf-city" type="text" placeholder="Ex: Caen" />
+              </label>
+              <label>
+                Prestation
+                <select id="tarif-qf-service">
+                  <option value="interieur">Nettoyage interieur</option>
+                  <option value="pack">Pack interieur + exterieur</option>
+                  <option value="carrosserie">Renovation carrosserie / polissage</option>
+                  <option value="entretien">Forfait entretien</option>
+                </select>
+              </label>
+            </div>
+            <label>
+              Details
+              <textarea id="tarif-qf-message" rows="3" placeholder="Ajoutez un detail (taches, poils, urgence, etc.)"></textarea>
+            </label>
+            <button type="submit" class="btn-gold tarif-qf-submit">Continuer vers le formulaire complet</button>
+            <p id="tarif-qf-status" class="tarif-qf-status"></p>
+          </form>
         </div>
       </div>
     </section>
@@ -2404,6 +2512,13 @@
       var ctaButtonEl = quiz ? quiz.querySelector('.btn-gold') : null;
       var ctaHelperEl = quiz ? quiz.querySelector('.cta-helper') : null;
       var ctaSubnoteEl = quiz ? quiz.querySelector('.cta-subnote') : null;
+      var quickFormEl = document.getElementById('tarif-quick-form');
+      var quickNameEl = document.getElementById('tarif-qf-name');
+      var quickVehicleEl = document.getElementById('tarif-qf-vehicle');
+      var quickCityEl = document.getElementById('tarif-qf-city');
+      var quickServiceEl = document.getElementById('tarif-qf-service');
+      var quickMessageEl = document.getElementById('tarif-qf-message');
+      var quickStatusEl = document.getElementById('tarif-qf-status');
       var prestationSelect = document.getElementById('prestation');
       var messageField = document.getElementById('message');
       var memoryStore = { vehicle: null, ext: null };
@@ -2675,6 +2790,20 @@
           terrainOnlyPriceEl.textContent = intPrix + '€';
         }
 
+        if (quickFormEl) {
+          quickFormEl.hidden = !quizState.isFinalized;
+          if (quickServiceEl) {
+            quickServiceEl.value = ext === 'none' ? 'interieur' : 'pack';
+          }
+          if (quickMessageEl && (quickMessageEl.value === '' || quickMessageEl.value.indexOf('Estimation quiz : ') === 0)) {
+            quickMessageEl.value = 'Estimation quiz : ' + total + '€ | Véhicule : ' + (vehicleNames[veh] || 'Citadine') +
+              ' | Extérieur : ' + (exteriorLabels[ext] || 'Intérieur seul') + '.';
+          }
+          if (!quizState.isFinalized && quickStatusEl) {
+            quickStatusEl.textContent = '';
+          }
+        }
+
         if (prestationSelect) {
           prestationSelect.value = ext === 'none' ? 'interieur' : 'pack';
         }
@@ -2781,6 +2910,66 @@
           trackEvent('quiz_terrain_cta_clicked', {
             destination: 'phone_call'
           });
+        });
+      }
+
+      if (quickFormEl) {
+        quickFormEl.addEventListener('submit', function (event) {
+          event.preventDefault();
+
+          var quickName = quickNameEl ? quickNameEl.value.trim() : '';
+          var quickVehicle = quickVehicleEl ? quickVehicleEl.value.trim() : '';
+          var quickCity = quickCityEl ? quickCityEl.value.trim() : '';
+          var quickService = quickServiceEl ? quickServiceEl.value : 'interieur';
+          var quickMessage = quickMessageEl ? quickMessageEl.value.trim() : '';
+          var contactName = document.getElementById('nom');
+          var contactVehicle = document.getElementById('vehicule');
+          var contactCity = document.getElementById('ville');
+          var contactService = document.getElementById('prestation');
+          var contactMessage = document.getElementById('message');
+          var contactSection = document.getElementById('contact');
+
+          if (!quickName || !quickVehicle) {
+            if (quickStatusEl) {
+              quickStatusEl.textContent = 'Merci de renseigner au minimum votre nom et votre vehicule.';
+            }
+
+            trackEvent('tarif_quick_form_invalid_submit', {
+              has_name: !!quickName,
+              has_vehicle: !!quickVehicle
+            });
+            return;
+          }
+
+          if (contactName) {
+            contactName.value = quickName;
+          }
+          if (contactVehicle) {
+            contactVehicle.value = quickVehicle;
+          }
+          if (contactCity) {
+            contactCity.value = quickCity;
+          }
+          if (contactService) {
+            contactService.value = quickService;
+          }
+          if (contactMessage) {
+            contactMessage.value = quickMessage || contactMessage.value;
+          }
+
+          if (quickStatusEl) {
+            quickStatusEl.textContent = 'Infos transferees. Continuez votre demande juste en dessous.';
+          }
+
+          trackEvent('tarif_quick_form_continue_clicked', {
+            prestation_type: quickService || 'unknown',
+            has_city: !!quickCity,
+            has_message: !!quickMessage
+          });
+
+          if (contactSection && typeof contactSection.scrollIntoView === 'function') {
+            contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
         });
       }
 
