@@ -1346,6 +1346,60 @@
       font-weight: 600;
     }
 
+    .tarif-qf-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1300;
+      display: grid;
+      place-items: center;
+      background: rgba(8, 26, 38, 0.58);
+      padding: 16px;
+    }
+
+    .tarif-qf-modal-box {
+      width: min(560px, 100%);
+      border-radius: 16px;
+      border: 1px solid rgba(18, 102, 149, 0.22);
+      background: linear-gradient(155deg, #ffffff, #eef7ff);
+      padding: 18px 16px 16px;
+      position: relative;
+      box-shadow: 0 16px 40px rgba(10, 38, 56, 0.2);
+    }
+
+    .tarif-qf-modal-box h4 {
+      margin: 0 0 8px;
+      color: #123447;
+      font-size: 1.08rem;
+    }
+
+    .tarif-qf-modal-box p {
+      margin: 0;
+      color: #2a4658;
+      font-size: 0.92rem;
+    }
+
+    .tarif-qf-modal-close {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      border: 0;
+      background: transparent;
+      color: #2b5267;
+      font-size: 1.5rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .tarif-qf-modal-actions {
+      margin-top: 14px;
+      display: grid;
+      gap: 10px;
+    }
+
+    body.tarif-modal-open {
+      overflow: hidden;
+    }
+
     @media (max-width: 760px) {
       .tarif-quick-grid {
         grid-template-columns: 1fr;
@@ -2293,6 +2347,18 @@
             <button type="submit" class="btn-gold tarif-qf-submit">Continuer vers le formulaire complet</button>
             <p id="tarif-qf-status" class="tarif-qf-status"></p>
           </form>
+
+          <div id="tarif-qf-modal" class="tarif-qf-modal" hidden aria-hidden="true">
+            <div class="tarif-qf-modal-box" role="dialog" aria-modal="true" aria-labelledby="tarif-qf-modal-title">
+              <button id="tarif-qf-modal-close" type="button" class="tarif-qf-modal-close" aria-label="Fermer">×</button>
+              <h4 id="tarif-qf-modal-title">Votre demande est pre-remplie</h4>
+              <p>Choisissez votre action: envoyer directement sur WhatsApp ou finaliser depuis le formulaire complet.</p>
+              <div class="tarif-qf-modal-actions">
+                <a id="tarif-qf-modal-whatsapp" class="btn-gold" href="https://wa.me/33656751197" target="_blank" rel="noopener">Envoyer sur WhatsApp</a>
+                <button id="tarif-qf-modal-contact" type="button" class="restart-btn">Finaliser le formulaire complet</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -2519,6 +2585,10 @@
       var quickServiceEl = document.getElementById('tarif-qf-service');
       var quickMessageEl = document.getElementById('tarif-qf-message');
       var quickStatusEl = document.getElementById('tarif-qf-status');
+      var quickModalEl = document.getElementById('tarif-qf-modal');
+      var quickModalCloseEl = document.getElementById('tarif-qf-modal-close');
+      var quickModalWhatsappEl = document.getElementById('tarif-qf-modal-whatsapp');
+      var quickModalContactEl = document.getElementById('tarif-qf-modal-contact');
       var prestationSelect = document.getElementById('prestation');
       var messageField = document.getElementById('message');
       var memoryStore = { vehicle: null, ext: null };
@@ -2676,6 +2746,24 @@
         }
 
         return ctaVariants[index] || ctaVariants[0];
+      }
+
+      function openQuickModal() {
+        if (!quickModalEl) {
+          return;
+        }
+        quickModalEl.hidden = false;
+        quickModalEl.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('tarif-modal-open');
+      }
+
+      function closeQuickModal() {
+        if (!quickModalEl) {
+          return;
+        }
+        quickModalEl.hidden = true;
+        quickModalEl.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('tarif-modal-open');
       }
 
       function applyCtaVariant() {
@@ -2922,12 +3010,15 @@
           var quickCity = quickCityEl ? quickCityEl.value.trim() : '';
           var quickService = quickServiceEl ? quickServiceEl.value : 'interieur';
           var quickMessage = quickMessageEl ? quickMessageEl.value.trim() : '';
+          var variant = getCtaVariant();
+          var variantIndex = ctaVariants.indexOf(variant);
           var contactName = document.getElementById('nom');
           var contactVehicle = document.getElementById('vehicule');
           var contactCity = document.getElementById('ville');
           var contactService = document.getElementById('prestation');
           var contactMessage = document.getElementById('message');
-          var contactSection = document.getElementById('contact');
+          var whatsappLines = [];
+          var whatsappUrl = '';
 
           if (!quickName || !quickVehicle) {
             if (quickStatusEl) {
@@ -2967,9 +3058,64 @@
             has_message: !!quickMessage
           });
 
+          whatsappLines = [
+            'Bonjour Prime Detail,',
+            '',
+            'Je souhaite un devis rapide :',
+            '- Nom / Prénom : ' + quickName,
+            '- Ville : ' + (quickCity || 'Non précisée'),
+            '- Véhicule : ' + quickVehicle,
+            '- Prestation souhaitée : ' + quickService,
+            '- CTA Quiz : ' + String.fromCharCode(65 + Math.max(variantIndex, 0)),
+            '',
+            'Détails :',
+            (quickMessage || 'Non précisés'),
+            '',
+            'Merci.'
+          ];
+
+          whatsappUrl = 'https://wa.me/33656751197?text=' + encodeURIComponent(whatsappLines.join('\n'));
+          if (quickModalWhatsappEl) {
+            quickModalWhatsappEl.setAttribute('href', whatsappUrl);
+          }
+
+          openQuickModal();
+
+          trackEvent('tarif_quick_form_modal_opened', {
+            prestation_type: quickService || 'unknown',
+            cta_variant: String.fromCharCode(65 + Math.max(variantIndex, 0))
+          });
+        });
+      }
+
+      if (quickModalCloseEl) {
+        quickModalCloseEl.addEventListener('click', function () {
+          closeQuickModal();
+        });
+      }
+
+      if (quickModalEl) {
+        quickModalEl.addEventListener('click', function (event) {
+          if (event.target === quickModalEl) {
+            closeQuickModal();
+          }
+        });
+      }
+
+      if (quickModalWhatsappEl) {
+        quickModalWhatsappEl.addEventListener('click', function () {
+          trackEvent('tarif_quick_form_whatsapp_clicked', { source: 'tarif_modal' });
+        });
+      }
+
+      if (quickModalContactEl) {
+        quickModalContactEl.addEventListener('click', function () {
+          var contactSection = document.getElementById('contact');
+          closeQuickModal();
           if (contactSection && typeof contactSection.scrollIntoView === 'function') {
             contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
+          trackEvent('tarif_quick_form_contact_clicked', { source: 'tarif_modal' });
         });
       }
 

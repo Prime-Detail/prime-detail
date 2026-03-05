@@ -116,6 +116,10 @@
     var quickServiceEl = document.getElementById('tarif-qf-service');
     var quickMessageEl = document.getElementById('tarif-qf-message');
     var quickStatusEl = document.getElementById('tarif-qf-status');
+    var quickModalEl = document.getElementById('tarif-qf-modal');
+    var quickModalCloseEl = document.getElementById('tarif-qf-modal-close');
+    var quickModalWhatsappEl = document.getElementById('tarif-qf-modal-whatsapp');
+    var quickModalContactEl = document.getElementById('tarif-qf-modal-contact');
     var prestationSelect = document.getElementById('prestation');
     var messageField = document.getElementById('message');
     var quizState = { isFinalized: false };
@@ -212,6 +216,24 @@
       label: String.fromCharCode(65 + index),
       variant: ctaVariants[index] || ctaVariants[0]
     };
+  }
+
+  function openQuickModal() {
+    if (!quickModalEl) {
+      return;
+    }
+    quickModalEl.hidden = false;
+    quickModalEl.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('tarif-modal-open');
+  }
+
+  function closeQuickModal() {
+    if (!quickModalEl) {
+      return;
+    }
+    quickModalEl.hidden = true;
+    quickModalEl.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('tarif-modal-open');
   }
 
   function applyCtaVariant() {
@@ -456,12 +478,14 @@
       var quickCity = quickCityEl ? quickCityEl.value.trim() : '';
       var quickService = quickServiceEl ? quickServiceEl.value : 'interieur';
       var quickMessage = quickMessageEl ? quickMessageEl.value.trim() : '';
+      var variantData = getCtaVariantData();
       var contactName = document.getElementById('nom');
       var contactVehicle = document.getElementById('vehicule');
       var contactCity = document.getElementById('ville');
       var contactService = document.getElementById('prestation');
       var contactMessage = document.getElementById('message');
-      var contactSection = document.getElementById('contact');
+      var whatsappLines = [];
+      var whatsappUrl = '';
 
       if (!quickName || !quickVehicle) {
         if (quickStatusEl) {
@@ -501,9 +525,64 @@
         has_message: !!quickMessage
       });
 
+      whatsappLines = [
+        'Bonjour Prime Detail,',
+        '',
+        'Je souhaite un devis rapide :',
+        '- Nom / Prénom : ' + quickName,
+        '- Ville : ' + (quickCity || 'Non précisée'),
+        '- Véhicule : ' + quickVehicle,
+        '- Prestation souhaitée : ' + quickService,
+        '- CTA Quiz : ' + (variantData ? variantData.label : 'Non défini'),
+        '',
+        'Détails :',
+        (quickMessage || 'Non précisés'),
+        '',
+        'Merci.'
+      ];
+
+      whatsappUrl = 'https://wa.me/33656751197?text=' + encodeURIComponent(whatsappLines.join('\n'));
+      if (quickModalWhatsappEl) {
+        quickModalWhatsappEl.setAttribute('href', whatsappUrl);
+      }
+
+      openQuickModal();
+
+      trackEvent('tarif_quick_form_modal_opened', {
+        prestation_type: quickService || 'unknown',
+        cta_variant: variantData ? variantData.label : 'Non défini'
+      });
+    });
+  }
+
+  if (quickModalCloseEl) {
+    quickModalCloseEl.addEventListener('click', function () {
+      closeQuickModal();
+    });
+  }
+
+  if (quickModalEl) {
+    quickModalEl.addEventListener('click', function (event) {
+      if (event.target === quickModalEl) {
+        closeQuickModal();
+      }
+    });
+  }
+
+  if (quickModalWhatsappEl) {
+    quickModalWhatsappEl.addEventListener('click', function () {
+      trackEvent('tarif_quick_form_whatsapp_clicked', { source: 'tarif_modal' });
+    });
+  }
+
+  if (quickModalContactEl) {
+    quickModalContactEl.addEventListener('click', function () {
+      var contactSection = document.getElementById('contact');
+      closeQuickModal();
       if (contactSection && typeof contactSection.scrollIntoView === 'function') {
         contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
+      trackEvent('tarif_quick_form_contact_clicked', { source: 'tarif_modal' });
     });
   }
 
