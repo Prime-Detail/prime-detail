@@ -2,7 +2,8 @@
   var memoryStore = { vehicle: null, ext: null };
   var analyticsState = {
     estimateKey: null,
-    variantTracked: false
+    variantTracked: false,
+    quickFormVariantTracked: false
   };
 
   function trackEvent(eventName, params) {
@@ -89,6 +90,19 @@
     }
   ];
 
+  var quickFormVariants = [
+    {
+      intro: 'Remplissez ces 3 champs, on pre-remplit ensuite votre demande complete.',
+      submit: 'Continuer vers le formulaire complet',
+      modalContact: 'Finaliser le formulaire complet'
+    },
+    {
+      intro: '30 secondes pour pre-remplir votre demande et gagner du temps.',
+      submit: 'Je complete ma demande',
+      modalContact: 'Je complete ma demande'
+    }
+  ];
+
   function initQuiz() {
     var quiz = document.getElementById('tarif-quiz');
     var steps = quiz ? Array.prototype.slice.call(quiz.querySelectorAll('.step')) : [];
@@ -110,6 +124,8 @@
     var ctaHelperEl = quiz ? quiz.querySelector('.cta-helper') : null;
     var ctaSubnoteEl = quiz ? quiz.querySelector('.cta-subnote') : null;
     var quickFormEl = document.getElementById('tarif-quick-form');
+    var quickIntroEl = document.getElementById('tarif-quick-intro');
+    var quickSubmitEl = document.getElementById('tarif-qf-submit');
     var quickNameEl = document.getElementById('tarif-qf-name');
     var quickVehicleEl = document.getElementById('tarif-qf-vehicle');
     var quickCityEl = document.getElementById('tarif-qf-city');
@@ -235,6 +251,72 @@
     quickModalEl.hidden = true;
     quickModalEl.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('tarif-modal-open');
+  }
+
+  function getQuickFormVariantData() {
+    var key = 'tarif_quick_form_variant';
+    var raw = null;
+    var index = 0;
+
+    try {
+      raw = sessionStorage.getItem(key);
+    } catch (error) {
+      raw = null;
+    }
+
+    if (raw !== null) {
+      index = parseInt(raw, 10);
+      if (!isNaN(index) && index >= 0 && index < quickFormVariants.length) {
+        return {
+          index: index,
+          label: String.fromCharCode(65 + index),
+          variant: quickFormVariants[index]
+        };
+      }
+    }
+
+    index = Math.floor(Math.random() * quickFormVariants.length);
+    try {
+      sessionStorage.setItem(key, String(index));
+    } catch (error) {
+    }
+
+    return {
+      index: index,
+      label: String.fromCharCode(65 + index),
+      variant: quickFormVariants[index] || quickFormVariants[0]
+    };
+  }
+
+  function applyQuickFormVariant() {
+    var variantData = getQuickFormVariantData();
+    var variant = variantData && variantData.variant;
+
+    if (!variantData || !variant) {
+      return;
+    }
+
+    if (quickIntroEl) {
+      quickIntroEl.textContent = variant.intro;
+    }
+
+    if (quickSubmitEl) {
+      quickSubmitEl.textContent = variant.submit;
+    }
+
+    if (quickModalContactEl) {
+      quickModalContactEl.textContent = variant.modalContact;
+    }
+
+    if (!analyticsState.quickFormVariantTracked) {
+      analyticsState.quickFormVariantTracked = true;
+      trackEvent('tarif_quick_form_variant_assigned', {
+        quick_form_variant: variantData.label,
+        quick_form_variant_index: variantData.index,
+        quick_form_submit_text: variant.submit,
+        quick_form_modal_contact_text: variant.modalContact
+      });
+    }
   }
 
   function applyCtaVariant() {
@@ -480,6 +562,7 @@
       var quickService = quickServiceEl ? quickServiceEl.value : 'interieur';
       var quickMessage = quickMessageEl ? quickMessageEl.value.trim() : '';
       var variantData = getCtaVariantData();
+      var quickFormVariantData = getQuickFormVariantData();
       var quickEstimate = (document.getElementById('total') || {}).textContent || '';
       var contactName = document.getElementById('nom');
       var contactVehicle = document.getElementById('vehicule');
@@ -524,7 +607,8 @@
       trackEvent('tarif_quick_form_continue_clicked', {
         prestation_type: quickService || 'unknown',
         has_city: !!quickCity,
-        has_message: !!quickMessage
+        has_message: !!quickMessage,
+        quick_form_variant: quickFormVariantData.label
       });
 
       whatsappLines = [
@@ -555,7 +639,8 @@
 
       trackEvent('tarif_quick_form_modal_opened', {
         prestation_type: quickService || 'unknown',
-        cta_variant: variantData ? variantData.label : 'Non défini'
+        cta_variant: variantData ? variantData.label : 'Non défini',
+        quick_form_variant: quickFormVariantData.label
       });
     });
   }
@@ -582,7 +667,10 @@
 
   if (quickModalWhatsappEl) {
     quickModalWhatsappEl.addEventListener('click', function () {
-      trackEvent('tarif_quick_form_whatsapp_clicked', { source: 'tarif_modal' });
+      trackEvent('tarif_quick_form_whatsapp_clicked', {
+        source: 'tarif_modal',
+        quick_form_variant: getQuickFormVariantData().label
+      });
     });
   }
 
@@ -593,12 +681,16 @@
       if (contactSection && typeof contactSection.scrollIntoView === 'function') {
         contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
-      trackEvent('tarif_quick_form_contact_clicked', { source: 'tarif_modal' });
+      trackEvent('tarif_quick_form_contact_clicked', {
+        source: 'tarif_modal',
+        quick_form_variant: getQuickFormVariantData().label
+      });
     });
   }
 
     showStep('1');
     applyCtaVariant();
+    applyQuickFormVariant();
     updateResult(false);
     updateProgress();
   }

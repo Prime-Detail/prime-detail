@@ -2327,7 +2327,7 @@
 
           <form id="tarif-quick-form" class="tarif-quick-form" hidden>
             <h4>Recevoir ce tarif via le formulaire</h4>
-            <p class="tarif-quick-intro">Remplissez ces 3 champs, on pre-remplit ensuite votre demande complete.</p>
+            <p id="tarif-quick-intro" class="tarif-quick-intro">Remplissez ces 3 champs, on pre-remplit ensuite votre demande complete.</p>
             <div class="tarif-quick-grid">
               <label>
                 Nom *
@@ -2355,7 +2355,7 @@
               Details
               <textarea id="tarif-qf-message" rows="3" placeholder="Ajoutez un detail (taches, poils, urgence, etc.)"></textarea>
             </label>
-            <button type="submit" class="btn-gold tarif-qf-submit">Continuer vers le formulaire complet</button>
+            <button id="tarif-qf-submit" type="submit" class="btn-gold tarif-qf-submit">Continuer vers le formulaire complet</button>
             <p id="tarif-qf-status" class="tarif-qf-status"></p>
           </form>
 
@@ -2591,6 +2591,8 @@
       var ctaHelperEl = quiz ? quiz.querySelector('.cta-helper') : null;
       var ctaSubnoteEl = quiz ? quiz.querySelector('.cta-subnote') : null;
       var quickFormEl = document.getElementById('tarif-quick-form');
+      var quickIntroEl = document.getElementById('tarif-quick-intro');
+      var quickSubmitEl = document.getElementById('tarif-qf-submit');
       var quickNameEl = document.getElementById('tarif-qf-name');
       var quickVehicleEl = document.getElementById('tarif-qf-vehicle');
       var quickCityEl = document.getElementById('tarif-qf-city');
@@ -2606,7 +2608,7 @@
       var messageField = document.getElementById('message');
       var memoryStore = { vehicle: null, ext: null };
       var quizState = { isFinalized: false };
-      var analyticsState = { estimateKey: null, variantTracked: false };
+      var analyticsState = { estimateKey: null, variantTracked: false, quickFormVariantTracked: false };
 
       if (!quiz || !steps.length || !cards.length || !vehicleNameEl || !totalEl || !processStepsEl) {
         return;
@@ -2676,6 +2678,19 @@
           button: '✅ Bloquer mon créneau cette semaine',
           helper: 'Les disponibilités partent vite. Vérifions ensemble le meilleur timing.',
           subnote: 'Contact rapide par appel ou WhatsApp au <strong>06 56 75 11 97</strong>.'
+        }
+      ];
+
+      var quickFormVariants = [
+        {
+          intro: 'Remplissez ces 3 champs, on pre-remplit ensuite votre demande complete.',
+          submit: 'Continuer vers le formulaire complet',
+          modalContact: 'Finaliser le formulaire complet'
+        },
+        {
+          intro: '30 secondes pour pre-remplir votre demande et gagner du temps.',
+          submit: 'Je complete ma demande',
+          modalContact: 'Je complete ma demande'
         }
       ];
 
@@ -2777,6 +2792,72 @@
         quickModalEl.hidden = true;
         quickModalEl.setAttribute('aria-hidden', 'true');
         document.body.classList.remove('tarif-modal-open');
+      }
+
+      function getQuickFormVariantData() {
+        var key = 'tarif_quick_form_variant';
+        var raw = null;
+        var index = 0;
+
+        try {
+          raw = sessionStorage.getItem(key);
+        } catch (error) {
+          raw = null;
+        }
+
+        if (raw !== null) {
+          index = parseInt(raw, 10);
+          if (!isNaN(index) && index >= 0 && index < quickFormVariants.length) {
+            return {
+              index: index,
+              label: String.fromCharCode(65 + index),
+              variant: quickFormVariants[index]
+            };
+          }
+        }
+
+        index = Math.floor(Math.random() * quickFormVariants.length);
+        try {
+          sessionStorage.setItem(key, String(index));
+        } catch (error) {
+        }
+
+        return {
+          index: index,
+          label: String.fromCharCode(65 + index),
+          variant: quickFormVariants[index] || quickFormVariants[0]
+        };
+      }
+
+      function applyQuickFormVariant() {
+        var variantData = getQuickFormVariantData();
+        var variant = variantData && variantData.variant;
+
+        if (!variantData || !variant) {
+          return;
+        }
+
+        if (quickIntroEl) {
+          quickIntroEl.textContent = variant.intro;
+        }
+
+        if (quickSubmitEl) {
+          quickSubmitEl.textContent = variant.submit;
+        }
+
+        if (quickModalContactEl) {
+          quickModalContactEl.textContent = variant.modalContact;
+        }
+
+        if (!analyticsState.quickFormVariantTracked) {
+          analyticsState.quickFormVariantTracked = true;
+          trackEvent('tarif_quick_form_variant_assigned', {
+            quick_form_variant: variantData.label,
+            quick_form_variant_index: variantData.index,
+            quick_form_submit_text: variant.submit,
+            quick_form_modal_contact_text: variant.modalContact
+          });
+        }
       }
 
       function applyCtaVariant() {
@@ -3025,6 +3106,7 @@
           var quickMessage = quickMessageEl ? quickMessageEl.value.trim() : '';
           var variant = getCtaVariant();
           var variantIndex = ctaVariants.indexOf(variant);
+          var quickFormVariantData = getQuickFormVariantData();
           var quickEstimate = (document.getElementById('total') || {}).textContent || '';
           var contactName = document.getElementById('nom');
           var contactVehicle = document.getElementById('vehicule');
@@ -3069,7 +3151,8 @@
           trackEvent('tarif_quick_form_continue_clicked', {
             prestation_type: quickService || 'unknown',
             has_city: !!quickCity,
-            has_message: !!quickMessage
+            has_message: !!quickMessage,
+            quick_form_variant: quickFormVariantData.label
           });
 
           whatsappLines = [
@@ -3100,7 +3183,8 @@
 
           trackEvent('tarif_quick_form_modal_opened', {
             prestation_type: quickService || 'unknown',
-            cta_variant: String.fromCharCode(65 + Math.max(variantIndex, 0))
+            cta_variant: String.fromCharCode(65 + Math.max(variantIndex, 0)),
+            quick_form_variant: quickFormVariantData.label
           });
         });
       }
@@ -3127,7 +3211,10 @@
 
       if (quickModalWhatsappEl) {
         quickModalWhatsappEl.addEventListener('click', function () {
-          trackEvent('tarif_quick_form_whatsapp_clicked', { source: 'tarif_modal' });
+          trackEvent('tarif_quick_form_whatsapp_clicked', {
+            source: 'tarif_modal',
+            quick_form_variant: getQuickFormVariantData().label
+          });
         });
       }
 
@@ -3138,12 +3225,16 @@
           if (contactSection && typeof contactSection.scrollIntoView === 'function') {
             contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
-          trackEvent('tarif_quick_form_contact_clicked', { source: 'tarif_modal' });
+          trackEvent('tarif_quick_form_contact_clicked', {
+            source: 'tarif_modal',
+            quick_form_variant: getQuickFormVariantData().label
+          });
         });
       }
 
       showStep('1');
       applyCtaVariant();
+      applyQuickFormVariant();
       updateResult(false);
       updateProgress();
     })();
