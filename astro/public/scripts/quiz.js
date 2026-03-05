@@ -140,6 +140,15 @@
     var packBase = quiz ? quiz.querySelector('.pack-base') : null;
     var packStandard = quiz ? quiz.querySelector('.pack-standard') : null;
     var packPremium = quiz ? quiz.querySelector('.pack-premium') : null;
+    var packBaseTitleEl = document.getElementById('pack-base-title');
+    var packStandardTitleEl = document.getElementById('pack-standard-title');
+    var packPremiumTitleEl = document.getElementById('pack-premium-title');
+    var packExBase = quiz ? quiz.querySelector('.pack-ex-base') : null;
+    var packExStandard = quiz ? quiz.querySelector('.pack-ex-standard') : null;
+    var packExPremium = quiz ? quiz.querySelector('.pack-ex-premium') : null;
+    var packExBaseTitleEl = document.getElementById('pack-ex-base-title');
+    var packExStandardTitleEl = document.getElementById('pack-ex-standard-title');
+    var packExPremiumTitleEl = document.getElementById('pack-ex-premium-title');
     var interieurProEl = quiz ? quiz.querySelector('.interieur-pro') : null;
     var interiorProtocolEl = document.getElementById('interior-protocol');
     var processStepsEl = document.getElementById('process-steps');
@@ -432,9 +441,34 @@
     var extPrix = (exteriorPrices[ext] && exteriorPrices[ext][veh]) || 0;
     var total = intPrix + extPrix;
     var variantData = getCtaVariantData();
+    var basePrice = (exteriorPrices.base && exteriorPrices.base[veh]) || 0;
+    var standardPrice = (exteriorPrices.standard && exteriorPrices.standard[veh]) || 0;
+    var premiumPrice = (exteriorPrices.premium && exteriorPrices.premium[veh]) || 0;
+    var exBasePrice = (exteriorPrices.ex_base && exteriorPrices.ex_base[veh]) || 0;
+    var exStandardPrice = (exteriorPrices.ex_standard && exteriorPrices.ex_standard[veh]) || 0;
+    var exPremiumPrice = (exteriorPrices.ex_premium && exteriorPrices.ex_premium[veh]) || 0;
 
     vehicleNameEl.textContent = vehicleNames[veh] || 'Citadine';
     totalEl.textContent = total + '€';
+
+    if (packBaseTitleEl) {
+      packBaseTitleEl.textContent = '✨ BASE Brillance (Ext +' + basePrice + '€)';
+    }
+    if (packStandardTitleEl) {
+      packStandardTitleEl.textContent = '🛡️ STANDARD Protection (Ext +' + standardPrice + '€)';
+    }
+    if (packPremiumTitleEl) {
+      packPremiumTitleEl.textContent = '💎 PREMIUM Céramique (Ext +' + premiumPrice + '€)';
+    }
+    if (packExBaseTitleEl) {
+      packExBaseTitleEl.textContent = '🌤️ BASE Extérieur seul (' + exBasePrice + '€)';
+    }
+    if (packExStandardTitleEl) {
+      packExStandardTitleEl.textContent = '🌤️ STANDARD Extérieur seul (' + exStandardPrice + '€)';
+    }
+    if (packExPremiumTitleEl) {
+      packExPremiumTitleEl.textContent = '🌤️ PREMIUM Extérieur seul (' + exPremiumPrice + '€)';
+    }
 
     if (exteriorOnlyHintEl) {
       exteriorOnlyHintEl.style.display = isExteriorOnlyMode ? 'block' : 'none';
@@ -446,13 +480,22 @@
 
     if (packDesc) {
       if (packBase) {
-        packBase.classList.toggle('active', normalizedExt === 'base');
+        packBase.classList.toggle('active', !isExteriorOnlyMode && normalizedExt === 'base');
       }
       if (packStandard) {
-        packStandard.classList.toggle('active', normalizedExt === 'standard');
+        packStandard.classList.toggle('active', !isExteriorOnlyMode && normalizedExt === 'standard');
       }
       if (packPremium) {
-        packPremium.classList.toggle('active', normalizedExt === 'premium');
+        packPremium.classList.toggle('active', !isExteriorOnlyMode && normalizedExt === 'premium');
+      }
+      if (packExBase) {
+        packExBase.classList.toggle('active', isExteriorOnlyMode && normalizedExt === 'base');
+      }
+      if (packExStandard) {
+        packExStandard.classList.toggle('active', isExteriorOnlyMode && normalizedExt === 'standard');
+      }
+      if (packExPremium) {
+        packExPremium.classList.toggle('active', isExteriorOnlyMode && normalizedExt === 'premium');
       }
       if (packNoneNote) {
         packNoneNote.style.display = ext === 'none' ? 'block' : 'none';

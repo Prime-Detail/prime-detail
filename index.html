@@ -904,7 +904,10 @@
 
     .quiz-finition .pack-base,
     .quiz-finition .pack-standard,
-    .quiz-finition .pack-premium {
+    .quiz-finition .pack-premium,
+    .quiz-finition .pack-ex-base,
+    .quiz-finition .pack-ex-standard,
+    .quiz-finition .pack-ex-premium {
       display: none;
       background: linear-gradient(180deg, #f9fcff 0%, #edf5fb 100%);
       border: 1px solid rgba(31, 111, 133, 0.2);
@@ -916,7 +919,10 @@
 
     .quiz-finition .pack-base.active,
     .quiz-finition .pack-standard.active,
-    .quiz-finition .pack-premium.active {
+    .quiz-finition .pack-premium.active,
+    .quiz-finition .pack-ex-base.active,
+    .quiz-finition .pack-ex-standard.active,
+    .quiz-finition .pack-ex-premium.active {
       display: block;
       border-color: rgba(31, 111, 133, 0.4);
       box-shadow: 0 14px 26px rgba(19, 72, 90, 0.13);
@@ -2321,7 +2327,7 @@
                 <p id="pack-exterior-note" hidden>Extérieur seul sélectionné (sans prestation intérieure).</p>
 
                 <div class="pack-base">
-                  <h4>✨ BASE Brillance (Ext +49€)</h4>
+                  <h4 id="pack-base-title">✨ BASE Brillance (Ext +49€)</h4>
                   <p><strong>Finition propre showroom</strong> vs stations brosses agressives</p>
                   <ul>
                     <li>Prélavage HP dissout film routier</li>
@@ -2333,7 +2339,7 @@
                 </div>
 
                 <div class="pack-standard">
-                  <h4>🛡️ STANDARD Protection (Ext +89€)</h4>
+                  <h4 id="pack-standard-title">🛡️ STANDARD Protection (Ext +89€)</h4>
                   <p><strong>Défense 1-2 mois</strong> vs lavage basique</p>
                   <ul>
                     <li>Base Brillance complète</li>
@@ -2345,7 +2351,7 @@
                 </div>
 
                 <div class="pack-premium">
-                  <h4>💎 PREMIUM Céramique (Ext +199€)</h4>
+                  <h4 id="pack-premium-title">💎 PREMIUM Céramique (Ext +199€)</h4>
                   <p><strong>Blindage 6 mois collection</strong> vs tout concurrent</p>
                   <ul>
                     <li>Standard complète</li>
@@ -2353,6 +2359,42 @@
                     <li>Polish 1-2 passes vernis rehaussé</li>
                     <li><strong>Carnauba céramique 6 mois</strong> hydro</li>
                     <li>Rénov plastiques ext + pneus</li>
+                  </ul>
+                </div>
+
+                <div class="pack-ex-base">
+                  <h4 id="pack-ex-base-title">🌤️ BASE Extérieur seul</h4>
+                  <p><strong>Remise au propre rapide</strong> pour un véhicule présentable au quotidien.</p>
+                  <ul>
+                    <li>Pré-lavage HP + mousse active</li>
+                    <li>Lavage carrosserie méthode 2 seaux</li>
+                    <li>Jantes + pneus + vitres extérieures</li>
+                    <li>Finitions homogènes sans traces</li>
+                    <li>Photo/Vidéo AVANT/APRÈS</li>
+                  </ul>
+                </div>
+
+                <div class="pack-ex-standard">
+                  <h4 id="pack-ex-standard-title">🌤️ STANDARD Extérieur seul</h4>
+                  <p><strong>Protection renforcée</strong> pour garder la brillance plus longtemps.</p>
+                  <ul>
+                    <li>Pack BASE extérieur inclus</li>
+                    <li>Décontamination ferreuse carrosserie/jantes</li>
+                    <li>Détails joints/grilles au pinceau</li>
+                    <li>Protection extérieure 1-2 mois</li>
+                    <li>Contrôle finition zone par zone</li>
+                  </ul>
+                </div>
+
+                <div class="pack-ex-premium">
+                  <h4 id="pack-ex-premium-title">🌤️ PREMIUM Extérieur seul</h4>
+                  <p><strong>Finition show-car</strong> avec profondeur visuelle et toucher lisse.</p>
+                  <ul>
+                    <li>Pack STANDARD extérieur inclus</li>
+                    <li>Clay bar de décontamination complète</li>
+                    <li>Polish de finition carrosserie</li>
+                    <li>Protection longue durée hydrophobe</li>
+                    <li>Rendu showroom validé en fin de prestation</li>
                   </ul>
                 </div>
               </div>
@@ -2670,6 +2712,15 @@
       var packBase = quiz ? quiz.querySelector('.pack-base') : null;
       var packStandard = quiz ? quiz.querySelector('.pack-standard') : null;
       var packPremium = quiz ? quiz.querySelector('.pack-premium') : null;
+      var packBaseTitleEl = document.getElementById('pack-base-title');
+      var packStandardTitleEl = document.getElementById('pack-standard-title');
+      var packPremiumTitleEl = document.getElementById('pack-premium-title');
+      var packExBase = quiz ? quiz.querySelector('.pack-ex-base') : null;
+      var packExStandard = quiz ? quiz.querySelector('.pack-ex-standard') : null;
+      var packExPremium = quiz ? quiz.querySelector('.pack-ex-premium') : null;
+      var packExBaseTitleEl = document.getElementById('pack-ex-base-title');
+      var packExStandardTitleEl = document.getElementById('pack-ex-standard-title');
+      var packExPremiumTitleEl = document.getElementById('pack-ex-premium-title');
       var interieurProEl = quiz ? quiz.querySelector('.interieur-pro') : null;
       var interiorProtocolEl = document.getElementById('interior-protocol');
       var processStepsEl = document.getElementById('process-steps');
@@ -3057,9 +3108,34 @@
         var total = intPrix + extPrix;
         var variant = getCtaVariant();
         var variantIndex = ctaVariants.indexOf(variant);
+        var basePrice = (exteriorPrices.base && exteriorPrices.base[veh]) || 0;
+        var standardPrice = (exteriorPrices.standard && exteriorPrices.standard[veh]) || 0;
+        var premiumPrice = (exteriorPrices.premium && exteriorPrices.premium[veh]) || 0;
+        var exBasePrice = (exteriorPrices.ex_base && exteriorPrices.ex_base[veh]) || 0;
+        var exStandardPrice = (exteriorPrices.ex_standard && exteriorPrices.ex_standard[veh]) || 0;
+        var exPremiumPrice = (exteriorPrices.ex_premium && exteriorPrices.ex_premium[veh]) || 0;
 
         vehicleNameEl.textContent = vehicleNames[veh] || 'Citadine';
         totalEl.textContent = total + '€';
+
+        if (packBaseTitleEl) {
+          packBaseTitleEl.textContent = '✨ BASE Brillance (Ext +' + basePrice + '€)';
+        }
+        if (packStandardTitleEl) {
+          packStandardTitleEl.textContent = '🛡️ STANDARD Protection (Ext +' + standardPrice + '€)';
+        }
+        if (packPremiumTitleEl) {
+          packPremiumTitleEl.textContent = '💎 PREMIUM Céramique (Ext +' + premiumPrice + '€)';
+        }
+        if (packExBaseTitleEl) {
+          packExBaseTitleEl.textContent = '🌤️ BASE Extérieur seul (' + exBasePrice + '€)';
+        }
+        if (packExStandardTitleEl) {
+          packExStandardTitleEl.textContent = '🌤️ STANDARD Extérieur seul (' + exStandardPrice + '€)';
+        }
+        if (packExPremiumTitleEl) {
+          packExPremiumTitleEl.textContent = '🌤️ PREMIUM Extérieur seul (' + exPremiumPrice + '€)';
+        }
 
         if (exteriorOnlyHintEl) {
           exteriorOnlyHintEl.style.display = isExteriorOnlyMode ? 'block' : 'none';
@@ -3071,13 +3147,22 @@
 
         if (packDesc) {
           if (packBase) {
-            packBase.classList.toggle('active', normalizedExt === 'base');
+            packBase.classList.toggle('active', !isExteriorOnlyMode && normalizedExt === 'base');
           }
           if (packStandard) {
-            packStandard.classList.toggle('active', normalizedExt === 'standard');
+            packStandard.classList.toggle('active', !isExteriorOnlyMode && normalizedExt === 'standard');
           }
           if (packPremium) {
-            packPremium.classList.toggle('active', normalizedExt === 'premium');
+            packPremium.classList.toggle('active', !isExteriorOnlyMode && normalizedExt === 'premium');
+          }
+          if (packExBase) {
+            packExBase.classList.toggle('active', isExteriorOnlyMode && normalizedExt === 'base');
+          }
+          if (packExStandard) {
+            packExStandard.classList.toggle('active', isExteriorOnlyMode && normalizedExt === 'standard');
+          }
+          if (packExPremium) {
+            packExPremium.classList.toggle('active', isExteriorOnlyMode && normalizedExt === 'premium');
           }
           if (packNoneNote) {
             packNoneNote.style.display = ext === 'none' ? 'block' : 'none';
