@@ -117,7 +117,22 @@ const schemaGraph = {
       function gtag(){dataLayer.push(arguments);}
       window.gtag = window.gtag || gtag;
       gtag('js', new Date());
-      gtag('config', GA_MEASUREMENT_ID);
+
+      var search = window.location && window.location.search ? window.location.search : '';
+      var gaDebug = search.indexOf('ga_debug=1') !== -1;
+      var gaTest = search.indexOf('ga_test=1') !== -1;
+
+      gtag('config', GA_MEASUREMENT_ID, {
+        debug_mode: gaDebug
+      });
+
+      if (gaTest) {
+        gtag('event', 'ga_test_ping', {
+          debug_mode: true,
+          non_interaction: true,
+          page_location: window.location.href
+        });
+      }
     </script>
 
     <script type="application/ld+json" set:html={JSON.stringify(schemaGraph)}></script>
