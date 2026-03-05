@@ -5,6 +5,7 @@ import { AREA_SERVED_CITIES } from '../data/local-cities';
 
 const sourcePath = path.resolve(process.cwd(), '..', 'index.html');
 const cssPath = path.resolve(process.cwd(), '..', 'styles.css');
+const GA_MEASUREMENT_ID = 'G-FJBK0MCYPQ';
 
 const raw = fs.readFileSync(sourcePath, 'utf-8');
 const styleMatch = raw.match(/<style>([\s\S]*?)<\/style>/i);
@@ -109,6 +110,15 @@ const schemaGraph = {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
+
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
+    <script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = window.gtag || gtag;
+      gtag('js', new Date());
+      gtag('config', GA_MEASUREMENT_ID);
+    </script>
 
     <script type="application/ld+json" set:html={JSON.stringify(schemaGraph)}></script>
 
