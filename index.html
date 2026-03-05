@@ -1194,6 +1194,19 @@
       resize: vertical;
     }
 
+    .contact-form-status {
+      margin-top: 10px;
+      font-size: 0.92rem;
+      color: #6b7280;
+    }
+
+    .contact-actions {
+      display: none;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
     footer {
       padding: 26px 0 32px;
       font-size: 0.85rem;
@@ -1205,6 +1218,293 @@
 
     footer a {
       color: var(--primary-blue);
+    }
+
+    /* FULL-PAGE VISUAL UPGRADE */
+
+    .hero {
+      background:
+        radial-gradient(circle at 18% 12%, rgba(66, 206, 235, 0.28) 0%, rgba(66, 206, 235, 0) 36%),
+        radial-gradient(circle at 82% 18%, rgba(255, 142, 92, 0.22) 0%, rgba(255, 142, 92, 0) 34%),
+        linear-gradient(150deg, #0f3f4c 0%, #144f5d 46%, #102832 100%);
+    }
+
+    .hero-inner {
+      gap: 48px;
+    }
+
+    .hero h1 {
+      max-width: 14ch;
+      text-wrap: balance;
+    }
+
+    .hero-subtitle,
+    .hero-note {
+      max-width: 62ch;
+    }
+
+    .hero-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(144, 212, 230, 0.45);
+      background: linear-gradient(180deg, rgba(13, 40, 48, 0.92) 0%, rgba(10, 28, 34, 0.9) 100%);
+    }
+
+    .hero-card::after {
+      content: '';
+      position: absolute;
+      inset: auto -40px -55px auto;
+      width: 180px;
+      height: 180px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(255, 138, 88, 0.28) 0%, rgba(255, 138, 88, 0) 70%);
+      pointer-events: none;
+    }
+
+    .hero-card-list li::before {
+      content: '•';
+      color: #65d4ef;
+      margin-right: 7px;
+    }
+
+    .certification {
+      background:
+        linear-gradient(180deg, #f3f8fb 0%, #eef5fb 100%);
+    }
+
+    .certification h2,
+    .illustrations h2,
+    .video-showcase h2,
+    #services h2,
+    #process h2,
+    #contact h2 {
+      position: relative;
+      display: inline-block;
+      padding-right: 44px;
+    }
+
+    .certification h2::after,
+    .illustrations h2::after,
+    .video-showcase h2::after,
+    #services h2::after,
+    #process h2::after,
+    #contact h2::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      width: 32px;
+      height: 3px;
+      border-radius: 99px;
+      transform: translateY(-50%);
+      background: linear-gradient(90deg, #37adc9 0%, #ff8d54 100%);
+    }
+
+    .certif-card {
+      transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+    }
+
+    .certif-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 30px 66px rgba(15, 52, 67, 0.2);
+      border-color: rgba(33, 133, 160, 0.32);
+    }
+
+    .certif-badges img {
+      transition: transform 0.24s ease, box-shadow 0.24s ease;
+    }
+
+    .certif-badges img:hover {
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 18px 36px rgba(15, 52, 67, 0.2);
+    }
+
+    .illustrations {
+      position: relative;
+      background:
+        radial-gradient(circle at 86% 12%, rgba(55, 173, 201, 0.12) 0%, rgba(55, 173, 201, 0) 32%),
+        linear-gradient(180deg, #ffffff 0%, #f6fbfd 100%);
+    }
+
+    .illustration-card {
+      border-color: rgba(198, 215, 230, 0.78);
+      background: linear-gradient(180deg, #ffffff 0%, #f9fcff 100%);
+    }
+
+    .illustration-photo {
+      border-color: rgba(155, 184, 205, 0.48);
+    }
+
+    .illustration-photo span {
+      background: rgba(13, 52, 66, 0.84);
+      font-size: 0.7rem;
+      letter-spacing: 0.04em;
+    }
+
+    .video-showcase {
+      background:
+        linear-gradient(180deg, #f3f8fc 0%, #ffffff 100%);
+    }
+
+    .video-frame {
+      position: relative;
+      border: 1px solid rgba(123, 163, 191, 0.45);
+      background: linear-gradient(180deg, #102e3a 0%, #0a1d24 100%);
+    }
+
+    .video-frame::before {
+      content: 'Prime Detail - Intervention réelle';
+      position: absolute;
+      top: 10px;
+      left: 12px;
+      z-index: 2;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #dbe9f5;
+      background: rgba(6, 23, 30, 0.66);
+      border: 1px solid rgba(128, 170, 197, 0.38);
+      border-radius: 999px;
+      padding: 4px 8px;
+    }
+
+    #services {
+      background:
+        radial-gradient(circle at 12% 15%, rgba(55, 173, 201, 0.1) 0%, rgba(55, 173, 201, 0) 35%),
+        #f8fbfe;
+    }
+
+    .grid .card {
+      border-color: rgba(196, 213, 229, 0.82);
+      background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
+    }
+
+    .grid .card h3 {
+      color: #1a4f63;
+    }
+
+    .grid .card ul li {
+      position: relative;
+      padding-left: 18px;
+    }
+
+    .grid .card ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #2ea4c2 0%, #ff8e58 100%);
+      box-shadow: 0 0 0 3px rgba(46, 164, 194, 0.12);
+    }
+
+    #process {
+      background: linear-gradient(180deg, #f6fbff 0%, #f3f8fd 100%);
+    }
+
+    .process-grid .step {
+      position: relative;
+      overflow: hidden;
+      border-color: rgba(190, 210, 228, 0.86);
+      background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
+    }
+
+    .process-grid .step::before {
+      content: '';
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 4px;
+      background: linear-gradient(180deg, #35aeca 0%, #ff8a55 100%);
+      opacity: 0.82;
+    }
+
+    .process-grid .step-number {
+      width: 32px;
+      height: 32px;
+      font-size: 0.95rem;
+      background: linear-gradient(180deg, #e7f6fb 0%, #d9eff8 100%);
+    }
+
+    #contact {
+      background:
+        radial-gradient(circle at 88% 12%, rgba(255, 136, 84, 0.12) 0%, rgba(255, 136, 84, 0) 34%),
+        linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
+    }
+
+    .contact-info,
+    .contact-form {
+      border-color: rgba(190, 210, 228, 0.86);
+      background: linear-gradient(180deg, #ffffff 0%, #f9fcff 100%);
+    }
+
+    .contact-info {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-info::after {
+      content: '';
+      position: absolute;
+      inset: auto -40px -65px auto;
+      width: 180px;
+      height: 180px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(53, 174, 202, 0.18) 0%, rgba(53, 174, 202, 0) 72%);
+      pointer-events: none;
+    }
+
+    #contact-actions .btn-primary {
+      box-shadow: 0 14px 30px rgba(255, 107, 53, 0.32);
+    }
+
+    footer {
+      position: relative;
+      background: linear-gradient(180deg, #f5f9fd 0%, #eef4fa 100%);
+      color: #5d6876;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(46, 164, 194, 0) 0%, rgba(46, 164, 194, 0.55) 50%, rgba(46, 164, 194, 0) 100%);
+    }
+
+    @keyframes sectionRise {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .certif-card,
+    .illustration-card,
+    .grid .card,
+    .process-grid .step,
+    .contact-info,
+    .contact-form {
+      animation: sectionRise 0.55s ease both;
+    }
+
+    .illustration-grid .illustration-card:nth-child(2),
+    .grid .card:nth-child(2),
+    .process-grid .step:nth-child(2) {
+      animation-delay: 0.08s;
+    }
+
+    .grid .card:nth-child(3),
+    .process-grid .step:nth-child(3) {
+      animation-delay: 0.14s;
     }
 
     @media (max-width: 960px) {
@@ -1280,6 +1580,24 @@
       .hero {
         padding: 72px 0 68px;
       }
+
+      .certification h2,
+      .illustrations h2,
+      .video-showcase h2,
+      #services h2,
+      #process h2,
+      #contact h2 {
+        padding-right: 30px;
+      }
+
+      .certification h2::after,
+      .illustrations h2::after,
+      .video-showcase h2::after,
+      #services h2::after,
+      #process h2::after,
+      #contact h2::after {
+        width: 22px;
+      }
     }
 
     @media (max-width: 640px) {
@@ -1310,6 +1628,12 @@
       .hero-rating,
       .hero-note {
         font-size: 0.9rem;
+      }
+
+      .video-frame::before {
+        font-size: 0.6rem;
+        top: 8px;
+        left: 8px;
       }
 
       .btn-primary,
@@ -1446,18 +1770,18 @@
             <span class="badge-certif">Detailer certifié FD Formation • Nettoyage & Polissage</span>
             <h1 id="hero-title">Detailing auto premium<br /><span>à domicile, autour de Caen</span></h1>
             <p class="hero-subtitle">
-              Nettoyage intérieur façon detailing et rénovation esthétique de la carrosserie,
-              avec méthodes sécurisées pour vos tissus, plastiques, cuirs et vernis.
+              Redonnez de la valeur à votre véhicule avec un detailing intérieur précis et une rénovation esthétique
+              carrosserie, réalisés avec des méthodes sûres pour tissus, plastiques, cuirs et vernis.
             </p>
             <p class="hero-rating">
-              <strong>+40 avis 5★ vérifiés sur Google</strong> – qualité constante, résultat clinique et finition premium.
+              <strong>+50 avis 5★ vérifiés sur Google</strong> - résultat constant, finitions premium et suivi sérieux.
             </p>
             <div class="hero-ctas">
               <a href="#contact" class="btn-primary" id="hero-primary-cta">Obtenir mon devis en 24h</a>
               <a href="#tarifs" class="btn-outline">Voir les tarifs</a>
             </div>
             <p class="hero-note">
-              Intervention à domicile sur Caen et alentours. Devis gratuit et personnalisé selon le véhicule et l’état initial.
+              Intervention à domicile sur Caen et alentours. Devis gratuit, sans engagement, adapté à l’état réel de votre véhicule.
             </p>
           </div>
 
@@ -1465,9 +1789,9 @@
             <div class="hero-card-title">Spécialité Prime Detail</div>
             <div class="hero-card-main">Nettoyages intérieurs cliniques & rénovations carrosserie</div>
             <ul class="hero-card-list">
-              <li>Intérieurs remis à niveau, taches et odeurs fortement réduites</li>
-              <li>Carrosseries ravivées par polissage et protection adaptée</li>
-              <li>Prestation réalisée par un detailer formé et certifié</li>
+              <li>Intérieurs remis à niveau avec forte réduction des taches et odeurs</li>
+              <li>Carrosseries ravivées par polissage raisonné et protection adaptée</li>
+              <li>Prestation assurée par un detailer formé et certifié FD Formation</li>
             </ul>
           </aside>
         </div>
@@ -1479,7 +1803,8 @@
       <div class="container">
         <h2>Detailer certifié FD Formation</h2>
         <p class="section-intro">
-          Double certification professionnelle en nettoyage automobile et polissage machine, reconnue pour des méthodes sûres et un résultat haut de gamme.
+          Double certification professionnelle en nettoyage automobile et polissage machine,
+          pour une méthode contrôlée, sûre et reproductible sur chaque véhicule.
         </p>
 
         <div class="certifs-grid">
@@ -1493,8 +1818,8 @@
             <div class="certif-text">
               <h3>Certificats : Nettoyage & Polissage</h3>
               <p>
-                Deux certifications professionnelles dédiées au nettoyage automobile et au polissage.
-                Travail conforme aux standards pros du detailing.
+                Deux certifications dédiées au nettoyage automobile et au polissage machine.
+                Vous bénéficiez d’un protocole professionnel, clair, et orienté résultat durable.
               </p>
             </div>
           </div>
@@ -1507,7 +1832,8 @@
       <div class="container">
         <h2>Illustrations avant / après</h2>
         <p class="section-intro">
-          Résultats réels Prime Detail : intérieur BMW et extérieur Porsche traités avec une méthodologie de detailing professionnelle.
+          Exemples réels Prime Detail, sans retouche: intérieur BMW et extérieur Porsche traités
+          avec une méthodologie de detailing professionnelle.
         </p>
 
         <div class="illustration-grid">
@@ -1559,7 +1885,8 @@
       <div class="container">
         <h2>Vidéo de prestation</h2>
         <p class="section-intro">
-          Aperçu réel d’une intervention Prime Detail : préparation, nettoyage et rendu final.
+          Extrait réel d’une intervention Prime Detail: préparation, exécution et rendu final.
+          Vous voyez exactement le niveau de soin appliqué sur véhicule client.
         </p>
 
         <div class="video-frame">
@@ -1579,22 +1906,22 @@
       <div class="container">
         <h2>Services de detailing proposés</h2>
         <p class="section-intro">
-          Prime Detail se concentre sur deux axes principaux : la remise à niveau des intérieurs et
-          la rénovation esthétique de la carrosserie. Chaque prestation est réalisée à la main, avec
-          un niveau de détail bien supérieur à un lavage classique.
+          Prime Detail se concentre sur deux axes: la remise à niveau des intérieurs et la rénovation
+          esthétique carrosserie. Chaque prestation est réalisée à la main, avec un niveau de finition
+          supérieur à un lavage classique.
         </p>
 
         <div class="grid">
           <div class="card">
             <h3>Nettoyage intérieur detailing</h3>
             <p>
-              Remise à niveau complète de l’habitacle : sièges, moquettes, plastiques, vitres et
-              zones difficiles d’accès, avec machines professionnelles.
+              Remise à niveau complète de l’habitacle: sièges, moquettes, plastiques, vitres et zones
+              difficiles d’accès, avec matériel professionnel et protocole précis.
             </p>
             <ul>
               <li>Aspiration approfondie habitacle + coffre</li>
               <li>Nettoyage plastiques, console, volant, portes</li>
-              <li>Traitement ciblé des taches textiles</li>
+              <li>Traitement ciblé des taches textiles et finitions détaillées</li>
               <li>Vitres intérieures sans traces</li>
             </ul>
           </div>
@@ -1602,24 +1929,24 @@
           <div class="card">
             <h3>Rénovation carrosserie & polissage</h3>
             <p>
-              Correction esthétique et protection de la peinture pour retrouver une carrosserie
-              brillante et homogène, sans passer par la carrosserie-peinture.
+              Correction esthétique et protection de peinture pour retrouver une carrosserie plus
+              brillante et homogène, sans engager systématiquement une reprise carrosserie-peinture.
             </p>
             <ul>
               <li>Lavage complet et décontamination</li>
-              <li>Polissage “One Step” ou zones ciblées</li>
-              <li>Protection par cire ou traitement synthétique</li>
+              <li>Polissage one-step ou corrections ciblées selon l’état</li>
+              <li>Protection par cire ou traitement synthétique adapté</li>
             </ul>
           </div>
 
           <div class="card">
             <h3>Packs complets intérieur + extérieur</h3>
             <p>
-              Formules combinées pour les clients qui souhaitent un résultat global, à
-              l’intérieur comme à l’extérieur, avec un meilleur rapport qualité/prix.
+              Formules combinées pour un résultat global intérieur + extérieur,
+              avec un meilleur équilibre entre rendu final, temps d’intervention et budget.
             </p>
             <ul>
-              <li>Intérieur complet + rénovation carrosserie</li>
+              <li>Intérieur complet + rénovation extérieure coordonnée</li>
               <li>Formules confort, détail ou premium</li>
               <li>Devis ajusté au véhicule et à l’usage</li>
             </ul>
@@ -1783,55 +2110,55 @@
       <div class="container">
         <h2>Comment se déroule une prestation Prime Detail ?</h2>
         <p class="section-intro">
-          L’objectif est de proposer une expérience simple et claire, tout en gardant un niveau
-          d’exigence élevé sur le résultat final.
+          Un déroulé clair, transparent et structuré: vous savez ce qui est fait, dans quel ordre,
+          et avec quel niveau d’exigence.
         </p>
 
         <div class="process-grid">
           <div class="step">
             <div class="step-number">1</div>
-            <div class="step-title">Prise de contact</div>
-            <p>
+              Contact par téléphone, WhatsApp ou formulaire. Collecte des infos clés (modèle,
+              usage, état, photos) pour cadrer une proposition réaliste.
               Contact par téléphone, WhatsApp ou formulaire. Récupération des informations
               essentielles : modèle, année, photos éventuelles, état global.
             </p>
           </div>
           <div class="step">
             <div class="step-number">2</div>
-            <div class="step-title">Devis personnalisé</div>
-            <p>
+              Envoi d’un devis clair: prestation détaillée, durée estimée, tarif et options.
+              Validation du créneau ensemble, sans zone floue.
               Envoi d’un devis clair avec détail de la prestation, temps estimé et tarif.
               Validation du créneau ensemble.
             </p>
           </div>
           <div class="step">
             <div class="step-number">3</div>
-            <div class="step-title">Installation & protection</div>
-            <p>
+              Mise en place du matériel et protection des zones sensibles pour travailler
+              proprement, en sécurité et sans perte de temps.
               Mise en place du matériel, protection des zones sensibles, organisation
               méthodique du travail sur le véhicule.
             </p>
           </div>
           <div class="step">
             <div class="step-number">4</div>
-            <div class="step-title">Travail de detailing</div>
-            <p>
+              Nettoyage et/ou polissage selon le pack choisi, avec techniques adaptées
+              à chaque surface pour un rendu net et homogène.
               Nettoyage ou polissage selon le pack choisi, avec produits et techniques
               adaptés à chaque surface pour un résultat clinique.
             </p>
           </div>
           <div class="step">
             <div class="step-number">5</div>
-            <div class="step-title">Contrôle & finitions</div>
-            <p>
+              Inspection visuelle complète, retouches si nécessaire,
+              puis présentation du résultat final avec photos avant/après si prévu.
               Inspection visuelle complète, retouches si nécessaire, photos éventuelles
               avant/après et présentation du résultat.
             </p>
           </div>
           <div class="step">
             <div class="step-number">6</div>
-            <div class="step-title">Suivi & avis</div>
-            <p>
+              Conseils d’entretien simples pour prolonger le résultat, puis lien d’avis Google
+              pour retour d’expérience transparent.
               Conseils d’entretien pour garder le résultat dans le temps et envoi d’un lien
               pour laisser un avis Google après la prestation.
             </p>
@@ -1845,7 +2172,7 @@
       <div class="container">
         <h2>Demandez votre devis personnalisé</h2>
         <p class="section-intro">
-          Décrivez votre véhicule et la prestation souhaitée : vous recevez un devis clair, détaillé et adapté,
+          Décrivez votre véhicule et votre objectif: vous recevez un devis clair, structuré et adapté,
           généralement sous 24h.
         </p>
 
@@ -1855,9 +2182,9 @@
             <p><strong>Téléphone :</strong> <a href="tel:0656751197">06 56 75 11 97</a></p>
             <p><strong>Email :</strong> <a href="mailto:primedetailcaen@gmail.com">primedetailcaen@gmail.com</a></p>
             <p><strong>Zone d’intervention :</strong> Caen et alentours.</p>
-            <p style="margin-top:8px;">
-              Indiquez le modèle, l’année, l’état global (intérieur / extérieur) et, si possible, quelques photos :
-              cela permet d’ajuster parfaitement le devis.
+            <p>
+              Indiquez le modèle, l’année, l’état global (intérieur / extérieur) et, si possible, quelques photos.
+              Plus les infos sont précises, plus le devis est juste dès le premier échange.
             </p>
           </div>
 
@@ -1894,10 +2221,10 @@
               <textarea id="message" placeholder="Précisez l’état actuel (propre, sale, très sale), présence de poils d’animaux, taches, etc." required></textarea>
             </div>
 
-            <button type="submit" class="btn-primary" id="contact-submit">Obtenir mes options de contact</button>
-            <p id="contact-form-status" style="margin-top:10px;font-size:0.92rem;color:#6b7280;"></p>
-            <div id="contact-actions" style="display:none;gap:10px;flex-wrap:wrap;margin-top:12px;">
-              <a id="contact-whatsapp" class="btn-primary" href="#" target="_blank" rel="noopener">Envoyer ma demande sur WhatsApp</a>
+            <button type="submit" class="btn-primary" id="contact-submit">Recevoir mes options de contact</button>
+            <p id="contact-form-status" class="contact-form-status"></p>
+            <div id="contact-actions" class="contact-actions">
+              <a id="contact-whatsapp" class="btn-primary" href="#" target="_blank" rel="noopener">Envoyer ma demande pré-remplie sur WhatsApp</a>
               <a id="contact-call" class="btn-primary" href="tel:0656751197">Appeler 06 56 75 11 97</a>
             </div>
           </form>
@@ -1908,8 +2235,8 @@
 
   <footer>
     <div class="container">
-      Prime Detail – Detailing auto premium à domicile autour de Caen.  
-      Site vitrine sans collecte automatique de données. <a href="mentions-legales.html">Mentions légales</a>.
+      Prime Detail - Detailing auto premium à domicile autour de Caen.  
+      Site vitrine sans collecte automatique de données personnelles. <a href="mentions-legales.html">Mentions légales</a>.
     </div>
   </footer>
 
