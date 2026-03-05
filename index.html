@@ -1965,6 +1965,9 @@
       var packPremium = quiz ? quiz.querySelector('.pack-premium') : null;
       var processStepsEl = document.getElementById('process-steps');
       var terrainOnlyPriceEl = document.getElementById('terrain-only-price');
+      var ctaButtonEl = quiz ? quiz.querySelector('.btn-gold') : null;
+      var ctaHelperEl = quiz ? quiz.querySelector('.cta-helper') : null;
+      var ctaSubnoteEl = quiz ? quiz.querySelector('.cta-subnote') : null;
       var prestationSelect = document.getElementById('prestation');
       var messageField = document.getElementById('message');
       var memoryStore = { vehicle: null, ext: null };
@@ -2022,6 +2025,24 @@
         ]
       };
 
+      var ctaVariants = [
+        {
+          button: '📱 RDV certifié maintenant',
+          helper: 'Créneaux limités cette semaine. Réservez maintenant pour bloquer votre passage.',
+          subnote: 'Réponse rapide par appel ou WhatsApp au <strong>06 56 75 11 97</strong>.'
+        },
+        {
+          button: '📲 Obtenir mon devis express',
+          helper: 'Recevez une estimation claire en 24h, adaptée à votre véhicule.',
+          subnote: 'Appelez directement le <strong>06 56 75 11 97</strong> pour une réponse immédiate.'
+        },
+        {
+          button: '✅ Bloquer mon créneau cette semaine',
+          helper: 'Les disponibilités partent vite. Vérifions ensemble le meilleur timing.',
+          subnote: 'Contact rapide par appel ou WhatsApp au <strong>06 56 75 11 97</strong>.'
+        }
+      ];
+
       function showStep(stepKey) {
         steps.forEach(function (stepElement) {
           var isCurrent = stepElement.getAttribute('data-step') === String(stepKey);
@@ -2074,6 +2095,52 @@
         try {
           sessionStorage.removeItem(key);
         } catch (error) {
+        }
+      }
+
+      function getCtaVariant() {
+        var key = 'quiz_cta_variant';
+        var raw = null;
+        var index = 0;
+
+        try {
+          raw = sessionStorage.getItem(key);
+        } catch (error) {
+          raw = null;
+        }
+
+        if (raw !== null) {
+          index = parseInt(raw, 10);
+          if (!isNaN(index) && index >= 0 && index < ctaVariants.length) {
+            return ctaVariants[index];
+          }
+        }
+
+        index = Math.floor(Math.random() * ctaVariants.length);
+        try {
+          sessionStorage.setItem(key, String(index));
+        } catch (error) {
+        }
+
+        return ctaVariants[index] || ctaVariants[0];
+      }
+
+      function applyCtaVariant() {
+        var variant = getCtaVariant();
+        if (!variant) {
+          return;
+        }
+
+        if (ctaButtonEl) {
+          ctaButtonEl.textContent = variant.button;
+        }
+
+        if (ctaHelperEl) {
+          ctaHelperEl.textContent = variant.helper;
+        }
+
+        if (ctaSubnoteEl) {
+          ctaSubnoteEl.innerHTML = variant.subnote;
         }
       }
 
@@ -2192,6 +2259,7 @@
       });
 
       showStep('1');
+      applyCtaVariant();
       updateResult();
       updateProgress();
     })();
@@ -2222,6 +2290,29 @@
         return labels[value] || value || 'Non précisé';
       }
 
+      function getQuizCtaVariantLabel() {
+        var raw = null;
+        var index = 0;
+        var labels = ['A', 'B', 'C'];
+
+        try {
+          raw = sessionStorage.getItem('quiz_cta_variant');
+        } catch (error) {
+          raw = null;
+        }
+
+        if (raw === null) {
+          return 'Non défini';
+        }
+
+        index = parseInt(raw, 10);
+        if (isNaN(index) || index < 0 || index >= labels.length) {
+          return 'Non défini';
+        }
+
+        return labels[index];
+      }
+
       contactForm.addEventListener('submit', function (event) {
         event.preventDefault();
 
@@ -2232,6 +2323,7 @@
         var prestationValue = prestationEl ? prestationEl.value : '';
         var prestationLabel = getPrestationLabel(prestationValue);
         var message = getFieldValue('message');
+        var ctaVariantLabel = getQuizCtaVariantLabel();
 
         if (!nom || !vehicule || !message) {
           if (actionsEl) {
@@ -2251,6 +2343,7 @@
           '- Ville : ' + (ville || 'Non précisée'),
           '- Véhicule : ' + vehicule,
           '- Prestation souhaitée : ' + prestationLabel,
+          '- CTA Quiz : ' + ctaVariantLabel,
           '',
           'Détails :',
           message,

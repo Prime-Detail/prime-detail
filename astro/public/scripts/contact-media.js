@@ -24,6 +24,29 @@
     return labels[value] || value || 'Non précisé';
   }
 
+  function getQuizCtaVariantLabel() {
+    var raw = null;
+    var index = 0;
+    var labels = ['A', 'B', 'C'];
+
+    try {
+      raw = sessionStorage.getItem('quiz_cta_variant');
+    } catch (error) {
+      raw = null;
+    }
+
+    if (raw === null) {
+      return 'Non défini';
+    }
+
+    index = parseInt(raw, 10);
+    if (isNaN(index) || index < 0 || index >= labels.length) {
+      return 'Non défini';
+    }
+
+    return labels[index];
+  }
+
   contactForm.addEventListener('submit', function (event) {
     event.preventDefault();
 
@@ -34,6 +57,7 @@
     var prestationValue = prestationEl ? prestationEl.value : '';
     var prestationLabel = getPrestationLabel(prestationValue);
     var message = getFieldValue('message');
+    var ctaVariantLabel = getQuizCtaVariantLabel();
 
     if (!nom || !vehicule) {
       if (actionsEl) {
@@ -53,6 +77,7 @@
       '- Ville : ' + (ville || 'Non précisée'),
       '- Véhicule : ' + vehicule,
       '- Prestation souhaitée : ' + prestationLabel,
+      '- CTA Quiz : ' + ctaVariantLabel,
       '',
       'Détails :',
       (message || 'Non précisés'),
