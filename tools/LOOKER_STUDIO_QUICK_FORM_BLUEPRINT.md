@@ -85,6 +85,12 @@ Metriques:
 - lead_coherence_fixed
 - Coherence Fix Rate
 
+Bloc supplementaire (polissage):
+
+- Scorecard: `polish_diagnostic_cta_clicked`
+- Breakdown: `polish_level`
+- KPI: `Polish Diagnostic Rate` (filtre events polish)
+
 ## Champs calcules recommandes
 
 Dans la source Looker Studio, creer:
@@ -113,12 +119,17 @@ Dans la source Looker Studio, creer:
 - Formula:
   - `CASE WHEN event_name = "lead_coherence_fixed" THEN 1 ELSE 0 END`
 
+  7. `is_polish_diagnostic`
+  - Formula:
+    - `CASE WHEN event_name = "polish_diagnostic_cta_clicked" THEN 1 ELSE 0 END`
+
 Ratios (champs calcules):
 
 - `Modal Open Rate` = `SUM(is_modal_open) / SUM(is_continue)`
 - `WhatsApp Rate` = `SUM(is_whatsapp) / SUM(is_modal_open)`
 - `Form Continue Rate` = `SUM(is_form_continue) / SUM(is_modal_open)`
 - `Coherence Fix Rate` = `SUM(is_coherence_fixed) / SUM(is_coherence_issue)`
+- `Polish Diagnostic Rate` = `SUM(is_polish_diagnostic) / SUM(is_modal_open)`
 
 ## Filtres de page
 
@@ -138,6 +149,7 @@ Filtre events utiles (optionnel):
   - `tarif_quick_form_contact_clicked`
   - `lead_coherence_issue_detected`
   - `lead_coherence_fixed`
+  - `polish_diagnostic_cta_clicked`
 
 ## Regle de decision A/B
 

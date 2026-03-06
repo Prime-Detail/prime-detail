@@ -9,12 +9,14 @@ Objectif: suivre la performance du mini formulaire de la section tarifs et compa
 - `tarif_quick_form_modal_opened`
 - `tarif_quick_form_whatsapp_clicked`
 - `tarif_quick_form_contact_clicked`
+- `polish_diagnostic_cta_clicked`
 
 ## Parametres utiles
 
 - `quick_form_variant` (A/B)
 - `prestation_type`
 - `cta_variant`
+- `polish_level`
 
 ## 1) Creer les dimensions personnalisees
 
@@ -28,6 +30,7 @@ GA4 > Admin > Custom definitions > Create custom dimension:
 
 - `Prestation Type` -> `prestation_type`
 - `CTA Variant` -> `cta_variant`
+- `Polish Level` -> `polish_level`
 
 ## 2) Marquer les events importants
 
@@ -37,6 +40,7 @@ GA4 > Admin > Events:
 - marquer en Key event (conversion) au moins:
   - `tarif_quick_form_whatsapp_clicked`
   - `tarif_quick_form_contact_clicked`
+  - `polish_diagnostic_cta_clicked`
 
 ## 3) Exploration recommandee (Funnel)
 
@@ -61,6 +65,7 @@ Periode:
 - `Modal Open Rate` = `modal_opened / continue_clicked`
 - `WhatsApp Rate` = `whatsapp_clicked / modal_opened`
 - `Form Continue Rate` = `contact_clicked / modal_opened`
+- `Polish Diagnostic Rate` = `polish_diagnostic_cta_clicked / quiz_estimate_viewed` (filtre polish uniquement)
 
 Lecture business:
 

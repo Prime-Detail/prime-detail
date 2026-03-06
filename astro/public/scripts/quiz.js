@@ -40,6 +40,9 @@
     ex_base: { citadine: 79, berline: 89, suv: 99 },
     ex_standard: { citadine: 119, berline: 129, suv: 139 },
     ex_premium: { citadine: 229, berline: 249, suv: 269 },
+    polish_one_step: { citadine: 189, berline: 209, suv: 229 },
+    polish_two_step: { citadine: 299, berline: 329, suv: 359 },
+    polish_ceramic_prep: { citadine: 399, berline: 439, suv: 489 },
     base: { citadine: 49, berline: 54, suv: 59 },
     standard: { citadine: 89, berline: 99, suv: 109 },
     premium: { citadine: 199, berline: 224, suv: 249 }
@@ -50,6 +53,9 @@
     ex_base: 'Extérieur seul BASE',
     ex_standard: 'Extérieur seul STANDARD',
     ex_premium: 'Extérieur seul PREMIUM',
+    polish_one_step: 'Polissage one-step',
+    polish_two_step: 'Polissage 2 étapes',
+    polish_ceramic_prep: 'Préparation céramique',
     base: 'BASE Brillance',
     standard: 'STANDARD Protection',
     premium: 'PREMIUM Céramique'
@@ -75,6 +81,21 @@
       'Pack STANDARD extérieur inclus',
       'Clay bar + polish extérieur de finition',
       'Protection extérieure longue durée'
+    ],
+    polish_one_step: [
+      'Diagnostic visuel et préparation vernis',
+      'Correction légère des micro-rayures',
+      'Gain de brillance immédiat'
+    ],
+    polish_two_step: [
+      'Étape coupe contrôlée',
+      'Étape finition haute clarté',
+      'Rendu visuel premium validé'
+    ],
+    polish_ceramic_prep: [
+      'Décontamination approfondie',
+      'Correction peinture multi-zones',
+      'Préparation technique avant protection'
     ],
     base: [
       'Nettoyage intérieur complet',
@@ -146,9 +167,15 @@
     var packExBase = quiz ? quiz.querySelector('.pack-ex-base') : null;
     var packExStandard = quiz ? quiz.querySelector('.pack-ex-standard') : null;
     var packExPremium = quiz ? quiz.querySelector('.pack-ex-premium') : null;
+    var packPolishOne = quiz ? quiz.querySelector('.pack-polish-one') : null;
+    var packPolishTwo = quiz ? quiz.querySelector('.pack-polish-two') : null;
+    var packPolishCeramic = quiz ? quiz.querySelector('.pack-polish-ceramic') : null;
     var packExBaseTitleEl = document.getElementById('pack-ex-base-title');
     var packExStandardTitleEl = document.getElementById('pack-ex-standard-title');
     var packExPremiumTitleEl = document.getElementById('pack-ex-premium-title');
+    var packPolishOneTitleEl = document.getElementById('pack-polish-one-title');
+    var packPolishTwoTitleEl = document.getElementById('pack-polish-two-title');
+    var packPolishCeramicTitleEl = document.getElementById('pack-polish-ceramic-title');
     var interieurProEl = quiz ? quiz.querySelector('.interieur-pro') : null;
     var interiorProtocolEl = document.getElementById('interior-protocol');
     var processStepsEl = document.getElementById('process-steps');
@@ -158,6 +185,7 @@
     var ctaButtonEl = quiz ? quiz.querySelector('.btn-gold') : null;
     var ctaHelperEl = quiz ? quiz.querySelector('.cta-helper') : null;
     var ctaSubnoteEl = quiz ? quiz.querySelector('.cta-subnote') : null;
+    var polishDiagnosticNoteEl = document.getElementById('polish-diagnostic-note');
     var quickFormEl = document.getElementById('tarif-quick-form');
     var quickIntroEl = document.getElementById('tarif-quick-intro');
     var quickSubmitEl = document.getElementById('tarif-qf-submit');
@@ -197,6 +225,7 @@
       '1': 25,
       '2': 50,
       'exterior-level': 62,
+      'polish-level': 62,
       '3': 75,
       '4': 100,
       'terrain': 100
@@ -436,8 +465,9 @@
     var veh = getVehicle();
     var ext = getExt();
     var isExteriorOnlyMode = ext.indexOf('ex_') === 0;
+    var isPolishMode = ext.indexOf('polish_') === 0;
     var normalizedExt = isExteriorOnlyMode ? ext.replace('ex_', '') : ext;
-    var intPrix = isExteriorOnlyMode ? 0 : (interiorPrices[veh] || interiorPrices.citadine);
+    var intPrix = (isExteriorOnlyMode || isPolishMode) ? 0 : (interiorPrices[veh] || interiorPrices.citadine);
     var extPrix = (exteriorPrices[ext] && exteriorPrices[ext][veh]) || 0;
     var total = intPrix + extPrix;
     var variantData = getCtaVariantData();
@@ -447,6 +477,9 @@
     var exBasePrice = (exteriorPrices.ex_base && exteriorPrices.ex_base[veh]) || 0;
     var exStandardPrice = (exteriorPrices.ex_standard && exteriorPrices.ex_standard[veh]) || 0;
     var exPremiumPrice = (exteriorPrices.ex_premium && exteriorPrices.ex_premium[veh]) || 0;
+    var polishOnePrice = (exteriorPrices.polish_one_step && exteriorPrices.polish_one_step[veh]) || 0;
+    var polishTwoPrice = (exteriorPrices.polish_two_step && exteriorPrices.polish_two_step[veh]) || 0;
+    var polishCeramicPrice = (exteriorPrices.polish_ceramic_prep && exteriorPrices.polish_ceramic_prep[veh]) || 0;
 
     vehicleNameEl.textContent = vehicleNames[veh] || 'Citadine';
     totalEl.textContent = total + '€';
@@ -469,13 +502,26 @@
     if (packExPremiumTitleEl) {
       packExPremiumTitleEl.textContent = '🌤️ PREMIUM Extérieur seul (' + exPremiumPrice + '€)';
     }
+    if (packPolishOneTitleEl) {
+      packPolishOneTitleEl.textContent = '🌀 Polissage one-step certifié (' + polishOnePrice + '€)';
+    }
+    if (packPolishTwoTitleEl) {
+      packPolishTwoTitleEl.textContent = '🌀 Polissage 2 étapes certifié (' + polishTwoPrice + '€)';
+    }
+    if (packPolishCeramicTitleEl) {
+      packPolishCeramicTitleEl.textContent = '🌀 Préparation céramique certifiée (' + polishCeramicPrice + '€)';
+    }
 
     if (exteriorOnlyHintEl) {
-      exteriorOnlyHintEl.style.display = isExteriorOnlyMode ? 'block' : 'none';
+      exteriorOnlyHintEl.style.display = (isExteriorOnlyMode || isPolishMode) ? 'block' : 'none';
     }
 
     if (interiorOnlyHintEl) {
       interiorOnlyHintEl.style.display = ext === 'none' ? 'block' : 'none';
+    }
+
+    if (polishDiagnosticNoteEl) {
+      polishDiagnosticNoteEl.hidden = !isPolishMode;
     }
 
     if (packDesc) {
@@ -497,20 +543,29 @@
       if (packExPremium) {
         packExPremium.classList.toggle('active', isExteriorOnlyMode && normalizedExt === 'premium');
       }
+      if (packPolishOne) {
+        packPolishOne.classList.toggle('active', isPolishMode && ext === 'polish_one_step');
+      }
+      if (packPolishTwo) {
+        packPolishTwo.classList.toggle('active', isPolishMode && ext === 'polish_two_step');
+      }
+      if (packPolishCeramic) {
+        packPolishCeramic.classList.toggle('active', isPolishMode && ext === 'polish_ceramic_prep');
+      }
       if (packNoneNote) {
         packNoneNote.style.display = ext === 'none' ? 'block' : 'none';
       }
       if (packExteriorNote) {
-        packExteriorNote.style.display = isExteriorOnlyMode ? 'block' : 'none';
+        packExteriorNote.style.display = (isExteriorOnlyMode || isPolishMode) ? 'block' : 'none';
       }
     }
 
     if (interieurProEl) {
-      interieurProEl.style.display = isExteriorOnlyMode ? 'none' : 'block';
+      interieurProEl.style.display = (isExteriorOnlyMode || isPolishMode) ? 'none' : 'block';
     }
 
     if (interiorProtocolEl) {
-      interiorProtocolEl.style.display = isExteriorOnlyMode ? 'none' : 'block';
+      interiorProtocolEl.style.display = (isExteriorOnlyMode || isPolishMode) ? 'none' : 'block';
     }
 
     processStepsEl.innerHTML = '';
@@ -525,7 +580,7 @@
     if (quickFormEl) {
       quickFormEl.hidden = !quizState.isFinalized;
       if (quickServiceEl) {
-        quickServiceEl.value = ext === 'none' ? 'interieur' : (isExteriorOnlyMode ? 'carrosserie' : 'pack');
+        quickServiceEl.value = ext === 'none' ? 'interieur' : (isPolishMode ? (ext === 'polish_ceramic_prep' ? 'prepa_ceramique' : ext) : (isExteriorOnlyMode ? 'carrosserie' : 'pack'));
       }
       if (quickMessageEl && (quickMessageEl.value === '' || quickMessageEl.value.indexOf('Estimation quiz : ') === 0)) {
         quickMessageEl.value = 'Estimation quiz : ' + total + '€ | Véhicule : ' + (vehicleNames[veh] || 'Citadine') +
@@ -537,7 +592,19 @@
     }
 
     if (prestationSelect) {
-      prestationSelect.value = ext === 'none' ? 'interieur' : (isExteriorOnlyMode ? 'carrosserie' : 'pack');
+      prestationSelect.value = ext === 'none' ? 'interieur' : (isPolishMode ? (ext === 'polish_ceramic_prep' ? 'prepa_ceramique' : ext) : (isExteriorOnlyMode ? 'carrosserie' : 'pack'));
+    }
+
+    if (ctaButtonEl && ctaHelperEl && ctaSubnoteEl) {
+      if (isPolishMode) {
+        ctaButtonEl.textContent = '🧪 Demander mon diagnostic vernis';
+        ctaHelperEl.textContent = 'Analyse rapide pour confirmer le bon niveau de correction avant intervention.';
+        ctaSubnoteEl.innerHTML = 'Envoyez 2-3 photos sur WhatsApp au <strong>06 56 75 11 97</strong> pour un cadrage rapide.';
+      } else if (variantData && variantData.variant) {
+        ctaButtonEl.textContent = variantData.variant.button;
+        ctaHelperEl.textContent = variantData.variant.helper;
+        ctaSubnoteEl.innerHTML = variantData.variant.subnote;
+      }
     }
 
     if (messageField) {
@@ -627,6 +694,17 @@
   if (quizCta) {
     quizCta.addEventListener('click', function () {
       var variantData = getCtaVariantData();
+      var currentExt = getExt();
+      var isPolishMode = currentExt.indexOf('polish_') === 0;
+
+      if (isPolishMode) {
+        trackEvent('polish_diagnostic_cta_clicked', {
+          polish_level: currentExt,
+          vehicle_type: getVehicle(),
+          cta_variant: variantData.label
+        });
+      }
+
       trackEvent('quiz_primary_cta_clicked', {
         cta_variant: variantData.label,
         destination: 'phone_call'
