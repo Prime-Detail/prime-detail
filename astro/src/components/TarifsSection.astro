@@ -37,6 +37,10 @@
             🌤️ <strong>Extérieur seul</strong>
             <small>Choisir un niveau BASE / STANDARD / PREMIUM</small>
           </div>
+          <div class="card" data-next="polish-level">
+            🌀 <strong>Polissage certifié</strong>
+            <small>Choisir un niveau de correction peinture</small>
+          </div>
           <div class="card" data-next="3" data-ext="base">
             ✨ <strong>BASE Brillance</strong>
             <small>HP + Shampoing + Jantes + Pneus<br />30 min</small>
@@ -68,6 +72,24 @@
           <div class="card" data-next="3" data-ext="ex_premium">
             💎 <strong>PREMIUM Extérieur</strong>
             <small>Standard + clay + polish + protection longue durée</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="step" data-step="polish-level">
+        <h3>Polissage certifié: quel niveau ?</h3>
+        <div class="cards-grid">
+          <div class="card" data-next="3" data-ext="polish_one_step">
+            ✨ <strong>One-step</strong>
+            <small>Brillance rapide, défauts légers</small>
+          </div>
+          <div class="card" data-next="3" data-ext="polish_two_step">
+            🛡️ <strong>2 étapes</strong>
+            <small>Coupe + finition pour défauts marqués</small>
+          </div>
+          <div class="card" data-next="3" data-ext="polish_ceramic_prep">
+            💎 <strong>Prépa céramique</strong>
+            <small>Correction + préparation avant protection durable</small>
           </div>
         </div>
       </div>
@@ -164,6 +186,42 @@
                 <li>Rendu showroom validé en fin de prestation</li>
               </ul>
             </div>
+
+            <div class="pack-polish-one">
+              <h4 id="pack-polish-one-title">🌀 Polissage one-step certifié</h4>
+              <p><strong>Gain esthétique rapide</strong> pour raviver brillance et profondeur.</p>
+              <ul>
+                <li>Diagnostic visuel du vernis</li>
+                <li>Correction légère ciblée des micro-rayures</li>
+                <li>Uniformisation de la brillance carrosserie</li>
+                <li>Finition propre et essuyage technique</li>
+                <li>Contrôle résultat sous lumière</li>
+              </ul>
+            </div>
+
+            <div class="pack-polish-two">
+              <h4 id="pack-polish-two-title">🌀 Polissage 2 étapes certifié</h4>
+              <p><strong>Correction plus poussée</strong> pour défauts visuels plus marqués.</p>
+              <ul>
+                <li>Étape coupe pour réduire les défauts</li>
+                <li>Étape finition pour clarté et reflets</li>
+                <li>Travail zone par zone avec contrôle régulier</li>
+                <li>Nettoyage final de sécurité vernis</li>
+                <li>Validation du résultat final avec le client</li>
+              </ul>
+            </div>
+
+            <div class="pack-polish-ceramic">
+              <h4 id="pack-polish-ceramic-title">🌀 Préparation céramique certifiée</h4>
+              <p><strong>Base optimisée</strong> avant protection longue durée.</p>
+              <ul>
+                <li>Décontamination approfondie</li>
+                <li>Correction peinture selon état réel</li>
+                <li>Finition haute clarté de surface</li>
+                <li>Préparation technique avant couche de protection</li>
+                <li>Surface prête pour rendu premium durable</li>
+              </ul>
+            </div>
           </div>
 
           <div id="interior-protocol" class="interior-protocol">
@@ -240,6 +298,9 @@
               <option value="interieur">Nettoyage interieur</option>
               <option value="pack">Pack interieur + exterieur</option>
               <option value="carrosserie">Renovation carrosserie / polissage</option>
+              <option value="polish_one_step">Polissage one-step (brillance rapide)</option>
+              <option value="polish_two_step">Polissage 2 étapes (coupe + finition)</option>
+              <option value="prepa_ceramique">Préparation céramique (correction + préparation)</option>
               <option value="entretien">Forfait entretien</option>
             </select>
           </label>

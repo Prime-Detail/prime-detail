@@ -907,7 +907,10 @@
     .quiz-finition .pack-premium,
     .quiz-finition .pack-ex-base,
     .quiz-finition .pack-ex-standard,
-    .quiz-finition .pack-ex-premium {
+    .quiz-finition .pack-ex-premium,
+    .quiz-finition .pack-polish-one,
+    .quiz-finition .pack-polish-two,
+    .quiz-finition .pack-polish-ceramic {
       display: none;
       background: linear-gradient(180deg, #f9fcff 0%, #edf5fb 100%);
       border: 1px solid rgba(31, 111, 133, 0.2);
@@ -922,7 +925,10 @@
     .quiz-finition .pack-premium.active,
     .quiz-finition .pack-ex-base.active,
     .quiz-finition .pack-ex-standard.active,
-    .quiz-finition .pack-ex-premium.active {
+    .quiz-finition .pack-ex-premium.active,
+    .quiz-finition .pack-polish-one.active,
+    .quiz-finition .pack-polish-two.active,
+    .quiz-finition .pack-polish-ceramic.active {
       display: block;
       border-color: rgba(31, 111, 133, 0.4);
       box-shadow: 0 14px 26px rgba(19, 72, 90, 0.13);
@@ -1453,6 +1459,25 @@
       font-size: 0.84rem;
       color: #1f4e37;
       font-weight: 700;
+    }
+
+    .service-boundaries-columns {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .service-boundaries-columns h4 {
+      margin: 0 0 6px;
+      font-size: 0.92rem;
+      color: #123a4d;
+    }
+
+    @media (max-width: 760px) {
+      .service-boundaries-columns {
+        grid-template-columns: 1fr;
+      }
     }
 
     body.tarif-modal-open {
@@ -2236,6 +2261,33 @@
               <li>Mesure d'attentes réaliste: ce qui est corrigeable, ce qui ne l'est pas</li>
             </ul>
           </div>
+
+          <div class="card service-boundaries">
+            <h3>Ce que je corrige / Ce qui nécessite carrosserie-peinture</h3>
+            <p>
+              Transparence totale avant devis: l'objectif est un résultat net et réaliste, sans sur-promesse.
+            </p>
+            <div class="service-boundaries-columns">
+              <div>
+                <h4>Je corrige généralement</h4>
+                <ul>
+                  <li>Micro-rayures de lavage et voile terne</li>
+                  <li>Oxydation légère à modérée</li>
+                  <li>Perte de brillance et manque de profondeur</li>
+                  <li>Traces superficielles sur vernis sain</li>
+                </ul>
+              </div>
+              <div>
+                <h4>Oriente vers carrosserie-peinture</h4>
+                <ul>
+                  <li>Vernis percé ou peinture manquante</li>
+                  <li>Rayures profondes jusqu'à la couche couleur</li>
+                  <li>Impacts, enfoncements, fissures</li>
+                  <li>Défauts structurels ou reprise peinture lourde</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -2280,6 +2332,10 @@
                 🌤️ <strong>Extérieur seul</strong>
                 <small>Choisir un niveau BASE / STANDARD / PREMIUM</small>
               </div>
+              <div class="card" data-next="polish-level">
+                🌀 <strong>Polissage certifié</strong>
+                <small>Choisir un niveau de correction peinture</small>
+              </div>
               <div class="card" data-next="3" data-ext="base">
                 ✨ <strong>BASE Brillance</strong>
                 <small>HP + Shampoing + Jantes + Pneus<br />30 min</small>
@@ -2311,6 +2367,24 @@
               <div class="card" data-next="3" data-ext="ex_premium">
                 💎 <strong>PREMIUM Extérieur</strong>
                 <small>Standard + clay + polish + protection longue durée</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="step" data-step="polish-level">
+            <h3>Polissage certifié: quel niveau ?</h3>
+            <div class="cards-grid">
+              <div class="card" data-next="3" data-ext="polish_one_step">
+                ✨ <strong>One-step</strong>
+                <small>Brillance rapide, défauts légers</small>
+              </div>
+              <div class="card" data-next="3" data-ext="polish_two_step">
+                🛡️ <strong>2 étapes</strong>
+                <small>Coupe + finition pour défauts marqués</small>
+              </div>
+              <div class="card" data-next="3" data-ext="polish_ceramic_prep">
+                💎 <strong>Prépa céramique</strong>
+                <small>Correction + préparation avant protection durable</small>
               </div>
             </div>
           </div>
@@ -2411,6 +2485,42 @@
                     <li>Rendu showroom validé en fin de prestation</li>
                   </ul>
                 </div>
+
+                <div class="pack-polish-one">
+                  <h4 id="pack-polish-one-title">🌀 Polissage one-step certifié</h4>
+                  <p><strong>Gain esthétique rapide</strong> pour raviver brillance et profondeur.</p>
+                  <ul>
+                    <li>Diagnostic visuel du vernis</li>
+                    <li>Correction légère ciblée des micro-rayures</li>
+                    <li>Uniformisation de la brillance carrosserie</li>
+                    <li>Finition propre et essuyage technique</li>
+                    <li>Contrôle résultat sous lumière</li>
+                  </ul>
+                </div>
+
+                <div class="pack-polish-two">
+                  <h4 id="pack-polish-two-title">🌀 Polissage 2 étapes certifié</h4>
+                  <p><strong>Correction plus poussée</strong> pour défauts visuels plus marqués.</p>
+                  <ul>
+                    <li>Étape coupe pour réduire les défauts</li>
+                    <li>Étape finition pour clarté et reflets</li>
+                    <li>Travail zone par zone avec contrôle régulier</li>
+                    <li>Nettoyage final de sécurité vernis</li>
+                    <li>Validation du résultat final avec le client</li>
+                  </ul>
+                </div>
+
+                <div class="pack-polish-ceramic">
+                  <h4 id="pack-polish-ceramic-title">🌀 Préparation céramique certifiée</h4>
+                  <p><strong>Base optimisée</strong> avant protection longue durée.</p>
+                  <ul>
+                    <li>Décontamination approfondie</li>
+                    <li>Correction peinture selon état réel</li>
+                    <li>Finition haute clarté de surface</li>
+                    <li>Préparation technique avant couche de protection</li>
+                    <li>Surface prête pour rendu premium durable</li>
+                  </ul>
+                </div>
               </div>
 
               <div id="interior-protocol" class="interior-protocol">
@@ -2487,6 +2597,9 @@
                   <option value="interieur">Nettoyage interieur</option>
                   <option value="pack">Pack interieur + exterieur</option>
                   <option value="carrosserie">Renovation carrosserie / polissage</option>
+                  <option value="polish_one_step">Polissage one-step (brillance rapide)</option>
+                  <option value="polish_two_step">Polissage 2 étapes (coupe + finition)</option>
+                  <option value="prepa_ceramique">Préparation céramique (correction + préparation)</option>
                   <option value="entretien">Forfait entretien</option>
                 </select>
               </label>
