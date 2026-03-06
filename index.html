@@ -2335,7 +2335,7 @@
           </div>
 
           <div class="step" data-step="2">
-            <h3>Extérieur ?</h3>
+            <h3>Quelle prestation souhaitez-vous ?</h3>
             <div class="cards-grid">
               <div class="card" data-next="3" data-ext="none">
                 ❌ <strong>Intérieur seul</strong>
@@ -2585,9 +2585,9 @@
           </div>
 
           <div class="step alt-terrain" data-step="terrain">
-            <h3>⚠️ Extérieur Impossible</h3>
-            <p>Terrain privé obligatoire (rue interdit)</p>
-            <div class="prix-gros">Intérieur <strong id="terrain-only-price">120€</strong></div>
+            <h3 id="terrain-title">⚠️ Extérieur impossible</h3>
+            <p id="terrain-note">Terrain privé obligatoire (rue interdite).</p>
+            <div class="prix-gros"><span id="terrain-price-label">Intérieur possible</span> <strong id="terrain-only-price">120€</strong></div>
             <a href="tel:0656751197" class="book-btn">Intérieur OK ? RDV</a>
             <button type="button" class="restart-btn" data-restart="quiz">↺ Recommencer le quiz</button>
           </div>
@@ -2617,6 +2617,7 @@
                   <option value="polish_one_step">Polissage one-step (brillance rapide)</option>
                   <option value="polish_two_step">Polissage 2 étapes (coupe + finition)</option>
                   <option value="prepa_ceramique">Préparation céramique (correction + préparation)</option>
+                  <option value="renovation_optiques">Rénovation optiques + protection UV</option>
                   <option value="entretien">Forfait entretien</option>
                 </select>
               </label>
@@ -2879,6 +2880,9 @@
       var interiorProtocolEl = document.getElementById('interior-protocol');
       var processStepsEl = document.getElementById('process-steps');
       var terrainOnlyPriceEl = document.getElementById('terrain-only-price');
+      var terrainTitleEl = document.getElementById('terrain-title');
+      var terrainNoteEl = document.getElementById('terrain-note');
+      var terrainPriceLabelEl = document.getElementById('terrain-price-label');
       var exteriorOnlyHintEl = document.getElementById('exterior-only-hint');
       var interiorOnlyHintEl = document.getElementById('interior-only-hint');
       var ctaButtonEl = quiz ? quiz.querySelector('.btn-gold') : null;
@@ -3328,11 +3332,11 @@
         }
 
         if (exteriorOnlyHintEl) {
-          exteriorOnlyHintEl.style.display = (isExteriorOnlyMode || isPolishMode) ? 'block' : 'none';
+          exteriorOnlyHintEl.hidden = !(isExteriorOnlyMode || isPolishMode);
         }
 
         if (interiorOnlyHintEl) {
-          interiorOnlyHintEl.style.display = ext === 'none' ? 'block' : 'none';
+          interiorOnlyHintEl.hidden = ext !== 'none';
         }
 
         if (polishDiagnosticNoteEl) {
@@ -3371,7 +3375,7 @@
             packNoneNote.style.display = ext === 'none' ? 'block' : 'none';
           }
           if (packExteriorNote) {
-            packExteriorNote.style.display = (isExteriorOnlyMode || isPolishMode) ? 'block' : 'none';
+            packExteriorNote.hidden = !(isExteriorOnlyMode || isPolishMode);
           }
         }
 
@@ -3389,7 +3393,43 @@
         });
 
         if (terrainOnlyPriceEl) {
-          terrainOnlyPriceEl.textContent = intPrix + '€';
+          if (isPolishMode) {
+            terrainOnlyPriceEl.textContent = 'Sur étude';
+          } else if (isExteriorOnlyMode) {
+            terrainOnlyPriceEl.textContent = 'Impossible en rue';
+          } else {
+            terrainOnlyPriceEl.textContent = intPrix + '€';
+          }
+        }
+
+        if (terrainTitleEl) {
+          if (isPolishMode) {
+            terrainTitleEl.textContent = '⚠️ Polissage impossible sans terrain privé';
+          } else if (isExteriorOnlyMode) {
+            terrainTitleEl.textContent = '⚠️ Extérieur impossible sans terrain privé';
+          } else {
+            terrainTitleEl.textContent = '⚠️ Extérieur impossible';
+          }
+        }
+
+        if (terrainNoteEl) {
+          if (isPolishMode) {
+            terrainNoteEl.textContent = 'Le polissage nécessite un emplacement privé sécurisé. En rue, on peut faire un diagnostic photo.';
+          } else if (isExteriorOnlyMode) {
+            terrainNoteEl.textContent = 'Intervention extérieure impossible sur voie publique. Terrain privé obligatoire.';
+          } else {
+            terrainNoteEl.textContent = 'Terrain privé obligatoire (rue interdite).';
+          }
+        }
+
+        if (terrainPriceLabelEl) {
+          if (isPolishMode) {
+            terrainPriceLabelEl.textContent = 'Diagnostic à distance';
+          } else if (isExteriorOnlyMode) {
+            terrainPriceLabelEl.textContent = 'Intervention extérieure';
+          } else {
+            terrainPriceLabelEl.textContent = 'Intérieur possible';
+          }
         }
 
         if (quickFormEl) {
@@ -3513,6 +3553,7 @@
           var index = ctaVariants.indexOf(variant);
           var currentExt = getExt();
           var isPolishMode = currentExt.indexOf('polish_') === 0;
+          var destination = isPolishMode ? 'diagnostic_polish' : 'phone_call';
 
           if (isPolishMode) {
             trackEvent('polish_diagnostic_cta_clicked', {
@@ -3524,7 +3565,7 @@
 
           trackEvent('quiz_primary_cta_clicked', {
             cta_variant: String.fromCharCode(65 + Math.max(index, 0)),
-            destination: 'phone_call'
+            destination: destination
           });
         });
       }

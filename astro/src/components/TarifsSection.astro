@@ -27,7 +27,7 @@
       </div>
 
       <div class="step" data-step="2">
-        <h3>Extérieur ?</h3>
+        <h3>Quelle prestation souhaitez-vous ?</h3>
         <div class="cards-grid">
           <div class="card" data-next="3" data-ext="none">
             ❌ <strong>Intérieur seul</strong>
@@ -273,9 +273,9 @@
       </div>
 
       <div class="step alt-terrain" data-step="terrain">
-        <h3>⚠️ Extérieur Impossible</h3>
-        <p>Terrain privé obligatoire (rue interdit)</p>
-        <div class="prix-gros">Intérieur <strong id="terrain-only-price">120€</strong></div>
+        <h3 id="terrain-title">⚠️ Extérieur impossible</h3>
+        <p id="terrain-note">Terrain privé obligatoire (rue interdite).</p>
+        <div class="prix-gros"><span id="terrain-price-label">Intérieur possible</span> <strong id="terrain-only-price">120€</strong></div>
         <a href="tel:0656751197" class="book-btn">Intérieur OK ? RDV</a>
         <button type="button" class="restart-btn" data-restart="quiz">↺ Recommencer le quiz</button>
       </div>
@@ -305,6 +305,7 @@
               <option value="polish_one_step">Polissage one-step (brillance rapide)</option>
               <option value="polish_two_step">Polissage 2 étapes (coupe + finition)</option>
               <option value="prepa_ceramique">Préparation céramique (correction + préparation)</option>
+              <option value="renovation_optiques">Rénovation optiques + protection UV</option>
               <option value="entretien">Forfait entretien</option>
             </select>
           </label>

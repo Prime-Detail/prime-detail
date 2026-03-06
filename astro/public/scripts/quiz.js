@@ -180,6 +180,9 @@
     var interiorProtocolEl = document.getElementById('interior-protocol');
     var processStepsEl = document.getElementById('process-steps');
     var terrainOnlyPriceEl = document.getElementById('terrain-only-price');
+    var terrainTitleEl = document.getElementById('terrain-title');
+    var terrainNoteEl = document.getElementById('terrain-note');
+    var terrainPriceLabelEl = document.getElementById('terrain-price-label');
     var exteriorOnlyHintEl = document.getElementById('exterior-only-hint');
     var interiorOnlyHintEl = document.getElementById('interior-only-hint');
     var ctaButtonEl = quiz ? quiz.querySelector('.btn-gold') : null;
@@ -513,11 +516,11 @@
     }
 
     if (exteriorOnlyHintEl) {
-      exteriorOnlyHintEl.style.display = (isExteriorOnlyMode || isPolishMode) ? 'block' : 'none';
+      exteriorOnlyHintEl.hidden = !(isExteriorOnlyMode || isPolishMode);
     }
 
     if (interiorOnlyHintEl) {
-      interiorOnlyHintEl.style.display = ext === 'none' ? 'block' : 'none';
+      interiorOnlyHintEl.hidden = ext !== 'none';
     }
 
     if (polishDiagnosticNoteEl) {
@@ -556,7 +559,7 @@
         packNoneNote.style.display = ext === 'none' ? 'block' : 'none';
       }
       if (packExteriorNote) {
-        packExteriorNote.style.display = (isExteriorOnlyMode || isPolishMode) ? 'block' : 'none';
+        packExteriorNote.hidden = !(isExteriorOnlyMode || isPolishMode);
       }
     }
 
@@ -574,7 +577,43 @@
     });
 
     if (terrainOnlyPriceEl) {
-      terrainOnlyPriceEl.textContent = intPrix + '€';
+      if (isPolishMode) {
+        terrainOnlyPriceEl.textContent = 'Sur étude';
+      } else if (isExteriorOnlyMode) {
+        terrainOnlyPriceEl.textContent = 'Impossible en rue';
+      } else {
+        terrainOnlyPriceEl.textContent = intPrix + '€';
+      }
+    }
+
+    if (terrainTitleEl) {
+      if (isPolishMode) {
+        terrainTitleEl.textContent = '⚠️ Polissage impossible sans terrain privé';
+      } else if (isExteriorOnlyMode) {
+        terrainTitleEl.textContent = '⚠️ Extérieur impossible sans terrain privé';
+      } else {
+        terrainTitleEl.textContent = '⚠️ Extérieur impossible';
+      }
+    }
+
+    if (terrainNoteEl) {
+      if (isPolishMode) {
+        terrainNoteEl.textContent = 'Le polissage nécessite un emplacement privé sécurisé. En rue, on peut faire un diagnostic photo.';
+      } else if (isExteriorOnlyMode) {
+        terrainNoteEl.textContent = 'Intervention extérieure impossible sur voie publique. Terrain privé obligatoire.';
+      } else {
+        terrainNoteEl.textContent = 'Terrain privé obligatoire (rue interdite).';
+      }
+    }
+
+    if (terrainPriceLabelEl) {
+      if (isPolishMode) {
+        terrainPriceLabelEl.textContent = 'Diagnostic à distance';
+      } else if (isExteriorOnlyMode) {
+        terrainPriceLabelEl.textContent = 'Intervention extérieure';
+      } else {
+        terrainPriceLabelEl.textContent = 'Intérieur possible';
+      }
     }
 
     if (quickFormEl) {
@@ -696,6 +735,7 @@
       var variantData = getCtaVariantData();
       var currentExt = getExt();
       var isPolishMode = currentExt.indexOf('polish_') === 0;
+      var destination = isPolishMode ? 'diagnostic_polish' : 'phone_call';
 
       if (isPolishMode) {
         trackEvent('polish_diagnostic_cta_clicked', {
@@ -707,7 +747,7 @@
 
       trackEvent('quiz_primary_cta_clicked', {
         cta_variant: variantData.label,
-        destination: 'phone_call'
+        destination: destination
       });
     });
   }
