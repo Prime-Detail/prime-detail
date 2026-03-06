@@ -41,6 +41,10 @@
     var labels = {
       interieur: 'Nettoyage intérieur',
       carrosserie: 'Rénovation carrosserie / polissage',
+      polish_one_step: 'Polissage one-step (brillance rapide)',
+      polish_two_step: 'Polissage 2 étapes (coupe + finition)',
+      prepa_ceramique: 'Préparation céramique (correction + préparation)',
+      renovation_optiques: 'Rénovation optiques + protection UV',
       pack: 'Pack intérieur + extérieur',
       entretien: 'Forfait entretien'
     };
@@ -119,6 +123,8 @@
   }
 
   function getQuizContextMismatchMessage(prestationValue, quizContext) {
+    var exteriorServiceValues = ['pack', 'carrosserie', 'polish_one_step', 'polish_two_step', 'prepa_ceramique', 'renovation_optiques'];
+
     if (!quizContext || !quizContext.finalized) {
       return '';
     }
@@ -129,6 +135,10 @@
 
     if (prestationValue === 'pack' && quizContext.exterior === 'none') {
       return 'Votre quiz correspond a un interieur seul. Choisissez "Nettoyage interieur" ou modifiez votre quiz.';
+    }
+
+    if (exteriorServiceValues.indexOf(prestationValue) !== -1 && quizContext.exterior === 'none') {
+      return 'Votre quiz correspond a un interieur seul. Choisissez "Nettoyage interieur" ou relancez le quiz avec un niveau exterieur.';
     }
 
     return '';

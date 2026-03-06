@@ -2177,9 +2177,9 @@
       <div class="container">
         <h2>Services de detailing proposés</h2>
         <p class="section-intro">
-          Prime Detail se concentre sur deux axes: la remise à niveau des intérieurs et la rénovation
-          esthétique carrosserie. Chaque prestation est réalisée à la main, avec un niveau de finition
-          supérieur à un lavage classique.
+          Prime Detail propose des prestations intérieures, extérieures et une offre polissage avancée
+          appuyée par certification machine. Chaque intervention commence par un diagnostic visuel pour
+          orienter la bonne correction, sans promesse irréaliste.
         </p>
 
         <div class="grid">
@@ -2220,6 +2220,20 @@
               <li>Intérieur complet + rénovation extérieure coordonnée</li>
               <li>Formules confort, détail ou premium</li>
               <li>Devis ajusté au véhicule et à l’usage</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Correction peinture certifiée (polisseuse)</h3>
+            <p>
+              Offre plus poussée pour corriger les défauts visuels, raviver la profondeur et préparer une
+              protection durable. Niveau choisi après contrôle de l'état réel du vernis.
+            </p>
+            <ul>
+              <li>One-step: amélioration visuelle rapide (voile, micro-rayures légères)</li>
+              <li>Deux étapes: coupe + finition pour défauts plus marqués</li>
+              <li>Préparation céramique: correction + base prête à protéger</li>
+              <li>Mesure d'attentes réaliste: ce qui est corrigeable, ce qui ne l'est pas</li>
             </ul>
           </div>
         </div>
@@ -2614,6 +2628,10 @@
                 <select id="prestation">
                   <option value="interieur">Nettoyage intérieur</option>
                   <option value="carrosserie">Rénovation carrosserie / polissage</option>
+                  <option value="polish_one_step">Polissage one-step (brillance rapide)</option>
+                  <option value="polish_two_step">Polissage 2 étapes (coupe + finition)</option>
+                  <option value="prepa_ceramique">Préparation céramique (correction + préparation)</option>
+                  <option value="renovation_optiques">Rénovation optiques + protection UV</option>
                   <option value="pack">Pack intérieur + extérieur</option>
                   <option value="entretien">Forfait entretien</option>
                 </select>
@@ -3499,6 +3517,10 @@
         var labels = {
           interieur: 'Nettoyage intérieur',
           carrosserie: 'Rénovation carrosserie / polissage',
+          polish_one_step: 'Polissage one-step (brillance rapide)',
+          polish_two_step: 'Polissage 2 étapes (coupe + finition)',
+          prepa_ceramique: 'Préparation céramique (correction + préparation)',
+          renovation_optiques: 'Rénovation optiques + protection UV',
           pack: 'Pack intérieur + extérieur',
           entretien: 'Forfait entretien'
         };
@@ -3577,6 +3599,8 @@
       }
 
       function getQuizContextMismatchMessage(prestationValue, quizContext) {
+        var exteriorServiceValues = ['pack', 'carrosserie', 'polish_one_step', 'polish_two_step', 'prepa_ceramique', 'renovation_optiques'];
+
         if (!quizContext || !quizContext.finalized) {
           return '';
         }
@@ -3587,6 +3611,10 @@
 
         if (prestationValue === 'pack' && quizContext.exterior === 'none') {
           return 'Votre quiz correspond a un interieur seul. Choisissez "Nettoyage interieur" ou modifiez votre quiz.';
+        }
+
+        if (exteriorServiceValues.indexOf(prestationValue) !== -1 && quizContext.exterior === 'none') {
+          return 'Votre quiz correspond a un interieur seul. Choisissez "Nettoyage interieur" ou relancez le quiz avec un niveau exterieur.';
         }
 
         return '';
