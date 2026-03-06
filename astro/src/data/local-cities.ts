@@ -1,5 +1,7 @@
 export const AREA_SERVED_CITIES = [
   'Caen',
+  'Rots',
+  'Authie',
   'Ifs',
   'Hérouville-Saint-Clair',
   'Mondeville',
@@ -18,10 +20,13 @@ export const AREA_SERVED_CITIES = [
   'Biéville-Beuville',
   'Saint-Contest',
   'Mathieu',
+  'Saint-Germain-la-Blanche-Herbe',
   'Deauville'
 ] as const;
 
 export const LOCAL_CITY_PAGES = [
+  { slug: 'rots', name: 'Rots' },
+  { slug: 'authie', name: 'Authie' },
   { slug: 'ifs', name: 'Ifs' },
   { slug: 'herouville-saint-clair', name: 'Hérouville-Saint-Clair' },
   { slug: 'mondeville', name: 'Mondeville' },
@@ -39,5 +44,6 @@ export const LOCAL_CITY_PAGES = [
   { slug: 'benouville', name: 'Bénouville' },
   { slug: 'bieville-beuville', name: 'Biéville-Beuville' },
   { slug: 'saint-contest', name: 'Saint-Contest' },
-  { slug: 'mathieu', name: 'Mathieu' }
+  { slug: 'mathieu', name: 'Mathieu' },
+  { slug: 'saint-germain-la-blanche-herbe', name: 'Saint-Germain-la-Blanche-Herbe' }
 ] as const;
