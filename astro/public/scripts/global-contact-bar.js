@@ -2,6 +2,7 @@
   var barEl = document.querySelector('.global-mobile-contact-bar');
   var isNearContact = false;
   var isModalOpen = false;
+  var refreshTimer = null;
 
   function setBarVisibility(isVisible) {
     if (!barEl) {
@@ -13,6 +14,17 @@
 
   function refreshBarVisibility() {
     setBarVisibility(!isNearContact && !isModalOpen);
+  }
+
+  function scheduleRefreshBarVisibility() {
+    if (refreshTimer !== null) {
+      clearTimeout(refreshTimer);
+    }
+
+    refreshTimer = setTimeout(function () {
+      refreshTimer = null;
+      refreshBarVisibility();
+    }, 300);
   }
 
   function trackEvent(eventName, params) {
@@ -61,7 +73,7 @@
         return entry.isIntersecting;
       });
 
-      refreshBarVisibility();
+      scheduleRefreshBarVisibility();
     }, {
       root: null,
       threshold: 0.15
@@ -81,7 +93,7 @@
     var quickModalEl = document.getElementById('tarif-qf-modal');
 
     isModalOpen = computeModalOpenState();
-    refreshBarVisibility();
+    scheduleRefreshBarVisibility();
 
     if (typeof window.MutationObserver === 'undefined') {
       return;
@@ -89,7 +101,7 @@
 
     var refreshFromMutation = function () {
       isModalOpen = computeModalOpenState();
-      refreshBarVisibility();
+      scheduleRefreshBarVisibility();
     };
 
     if (document.body) {
