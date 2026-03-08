@@ -1696,6 +1696,70 @@ button[type=submit]:hover {
 	display: none;
 }
 
+.global-mobile-contact-bar {
+	display: none;
+}
+
+@media (max-width: 768px) {
+	body {
+		padding-bottom: calc(98px + env(safe-area-inset-bottom));
+	}
+
+	.global-mobile-contact-bar {
+		position: fixed;
+		left: 12px;
+		right: 12px;
+		bottom: calc(10px + env(safe-area-inset-bottom));
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 10px;
+		z-index: 1200;
+		opacity: 1;
+		transform: translateY(0);
+		transition: opacity 0.25s ease, transform 0.25s ease;
+	}
+
+	.global-mobile-contact-bar.is-hidden {
+		opacity: 0;
+		transform: translateY(16px);
+		pointer-events: none;
+	}
+
+	.global-mobile-contact-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 50px;
+		padding: 10px 12px;
+		border-radius: 12px;
+		text-decoration: none;
+		font-weight: 700;
+		font-size: 0.92rem;
+		line-height: 1.2;
+		box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+		transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+	}
+
+	.global-mobile-contact-btn:hover,
+	.global-mobile-contact-btn:focus-visible {
+		transform: translateY(-1px);
+		filter: brightness(1.03);
+		box-shadow: 0 14px 28px rgba(0, 0, 0, 0.22);
+	}
+
+	.global-mobile-contact-btn.call {
+		background: linear-gradient(135deg, #f5d060 0%, #f0c64b 100%);
+		color: #111827;
+		border: 1px solid rgba(245, 208, 96, 0.8);
+	}
+
+	.global-mobile-contact-btn.whatsapp {
+		background: linear-gradient(135deg, #23c266 0%, #18a854 100%);
+		color: #ffffff;
+		border: 1px solid rgba(24, 168, 84, 0.85);
+	}
+}
+
 /* Bouton WhatsApp Flottant */
 /* WhatsApp flottant retiré */
 

@@ -159,5 +159,26 @@ const schemaGraph = {
   </head>
   <body>
     <slot />
+    <div class="global-mobile-contact-bar" aria-label="Actions de contact rapides">
+      <a
+        id="global-mobile-call"
+        class="global-mobile-contact-btn call"
+        href="tel:0656751197"
+        aria-label="Appeler Prime Detail"
+      >
+        Appeler maintenant
+      </a>
+      <a
+        id="global-mobile-whatsapp"
+        class="global-mobile-contact-btn whatsapp"
+        href="https://wa.me/33656751197"
+        target="_blank"
+        rel="noopener"
+        aria-label="Envoyer un message WhatsApp a Prime Detail"
+      >
+        Message WhatsApp
+      </a>
+    </div>
+    <script src={`${base}scripts/global-contact-bar.js`} defer></script>
   </body>
 </html>
