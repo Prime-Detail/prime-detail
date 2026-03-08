@@ -133,3 +133,33 @@ Option rapide:
 2. Verifier tendance 7 jours
 3. Comparer A/B sur `WhatsApp Rate`
 4. Si chute > 10%, verifier dernier changement de copy
+
+## 11) Checklist GA4 live (5 clics)
+
+1. Ouvrir le site avec:
+- `?ga_test=1&ga_debug=1`
+
+2. Dans GA4:
+- `Admin` > `DebugView`
+
+3. Faire un flux quick form complet:
+- Ouvrir le quiz
+- Remplir le quick form
+- Ouvrir la modal
+- Cliquer WhatsApp ou Continuer vers formulaire
+
+4. Verifier ces events dans DebugView:
+- `tarif_quick_form_continue_clicked`
+- `tarif_quick_form_modal_opened`
+- `tarif_quick_form_whatsapp_clicked`
+- `tarif_quick_form_contact_clicked`
+
+5. Ouvrir un event et controler les parametres:
+- `quick_form_variant` (doit etre `A` ou `B`)
+- `prestation_type` present sur les events quick form
+- `source = tarif_modal` pour les clics modal
+
+Si rien ne remonte en DebugView:
+- Verifier que tu es sur une page qui charge `quiz.js` (`index`)
+- Verifier l'ID GA4 `G-FJBK0MCYPQ`
+- Recharger sans bloqueur pub et retester
