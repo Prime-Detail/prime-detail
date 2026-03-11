@@ -11,6 +11,34 @@ export function getStaticPaths() {
 
 const { cityName, citySlug } = Astro.props as { cityName: string; citySlug: string };
 const base = import.meta.env.BASE_URL;
+
+const faqItems = [
+  {
+    q: `Intervenez-vous a domicile a ${cityName} ?`,
+    a: `Oui, Prime Detail intervient a domicile a ${cityName} et dans les communes voisines selon disponibilites et planning.`
+  },
+  {
+    q: `Quel delai pour recevoir un devis a ${cityName} ?`,
+    a: 'Un devis est generalement propose sous 24h apres analyse des informations du vehicule et du besoin.'
+  },
+  {
+    q: 'Quelle est la meilleure option entre interieur seul et pack complet ?',
+    a: 'Le nettoyage interieur seul est adapte si l habitacle est prioritaire. Le pack complet est preferable pour valoriser interieur et exterieur ensemble.'
+  }
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.a
+    }
+  }))
+};
 ---
 <BaseLayout
   title={`Detailing auto à ${cityName} : intérieur, polissage, packs premium | Prime Detail`}
@@ -59,7 +87,33 @@ const base = import.meta.env.BASE_URL;
           <a href={`${base}#contact`}>Demandez un devis</a>
           ou consultez les <a href={`${base}#tarifs`}>tarifs indicatifs</a>.
         </p>
+        <p>
+          Contact direct:
+          <a href="tel:0656751197">Appeler 06 56 75 11 97</a>
+          ou
+          <a href="https://wa.me/33656751197" target="_blank" rel="noopener">envoyer un message WhatsApp</a>.
+        </p>
+        <p>
+          Voir aussi:
+          <a href={`${base}detailing-auto-autour-caen`}>toutes les villes desservies autour de Caen</a>.
+        </p>
+      </div>
+    </section>
+
+    <section id="faq-detailing-local">
+      <div class="container">
+        <h2>FAQ - Detailing auto a {cityName}</h2>
+        <div class="grid">
+          {faqItems.map((item) => (
+            <article class="card">
+              <h3>{item.q}</h3>
+              <p>{item.a}</p>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
 </BaseLayout>
