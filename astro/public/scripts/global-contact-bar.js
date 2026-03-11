@@ -29,6 +29,8 @@
 
   function trackEvent(eventName, params) {
     var payload = params || {};
+    var eventId = payload.event_id || (eventName + '_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10));
+    payload.event_id = eventId;
 
     try {
       window.dataLayer = window.dataLayer || [];
@@ -45,10 +47,19 @@
 
     try {
       if (typeof window.fbq === 'function' && (eventName === 'contact_call_clicked' || eventName === 'contact_whatsapp_clicked')) {
-        window.fbq('trackCustom', eventName, payload);
+        window.fbq('trackCustom', eventName, payload, { eventID: eventId });
 
         if (eventName === 'contact_call_clicked' || eventName === 'contact_whatsapp_clicked') {
-          window.fbq('track', 'Contact', payload);
+          window.fbq('track', 'Contact', payload, { eventID: eventId });
+        }
+
+        if (typeof window.__metaCapiSend === 'function') {
+          window.__metaCapiSend({
+            eventName: eventName,
+            standardEventName: 'Contact',
+            eventId: eventId,
+            payload: payload
+          });
         }
       }
     } catch (error) {

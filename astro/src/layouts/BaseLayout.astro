@@ -7,6 +7,7 @@ const sourcePath = path.resolve(process.cwd(), '..', 'index.html');
 const cssPath = path.resolve(process.cwd(), '..', 'styles.css');
 const GA_MEASUREMENT_ID = 'G-FJBK0MCYPQ';
 const META_PIXEL_ID = '1610178900345647';
+const META_CAPI_ENDPOINT = import.meta.env.PUBLIC_META_CAPI_ENDPOINT || '';
 
 const raw = fs.readFileSync(sourcePath, 'utf-8');
 const styleMatch = raw.match(/<style>([\s\S]*?)<\/style>/i);
@@ -147,6 +148,47 @@ const schemaGraph = {
       'https://connect.facebook.net/en_US/fbevents.js');
       fbq('init', META_PIXEL_ID);
       fbq('track', 'PageView');
+    </script>
+
+    <script is:inline define:vars={{ META_CAPI_ENDPOINT }}>
+      window.__META_CAPI_ENDPOINT__ = META_CAPI_ENDPOINT;
+    </script>
+    <script is:inline>
+      window.__metaCapiSend = function (eventData) {
+        var endpoint = window.__META_CAPI_ENDPOINT__ || '';
+        if (!endpoint || !eventData) {
+          return;
+        }
+
+        var payload = {
+          event_name: eventData.eventName,
+          standard_event_name: eventData.standardEventName || '',
+          event_id: eventData.eventId || '',
+          event_source_url: window.location.href,
+          event_time: Math.floor(Date.now() / 1000),
+          custom_data: eventData.payload || {}
+        };
+
+        try {
+          if (typeof navigator !== 'undefined' && typeof navigator.sendBeacon === 'function') {
+            var blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
+            if (navigator.sendBeacon(endpoint, blob)) {
+              return;
+            }
+          }
+        } catch (error) {
+        }
+
+        try {
+          fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+            keepalive: true
+          });
+        } catch (error) {
+        }
+      };
     </script>
 
     <script type="application/ld+json" set:html={JSON.stringify(schemaGraph)}></script>

@@ -8,6 +8,9 @@
 
   function trackEvent(eventName, params) {
     var payload = params || {};
+    var eventId = payload.event_id || (eventName + '_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10));
+    var standardEventName = '';
+    payload.event_id = eventId;
 
     try {
       window.dataLayer = window.dataLayer || [];
@@ -28,14 +31,25 @@
         eventName === 'tarif_quick_form_contact_clicked' ||
         eventName === 'quiz_primary_cta_clicked'
       )) {
-        window.fbq('trackCustom', eventName, payload);
+        window.fbq('trackCustom', eventName, payload, { eventID: eventId });
 
         if (eventName === 'tarif_quick_form_contact_clicked') {
-          window.fbq('track', 'Lead', payload);
+          standardEventName = 'Lead';
+          window.fbq('track', 'Lead', payload, { eventID: eventId });
         }
 
         if (eventName === 'tarif_quick_form_whatsapp_clicked' || eventName === 'quiz_primary_cta_clicked') {
-          window.fbq('track', 'Contact', payload);
+          standardEventName = 'Contact';
+          window.fbq('track', 'Contact', payload, { eventID: eventId });
+        }
+
+        if (typeof window.__metaCapiSend === 'function') {
+          window.__metaCapiSend({
+            eventName: eventName,
+            standardEventName: standardEventName,
+            eventId: eventId,
+            payload: payload
+          });
         }
       }
     } catch (error) {
