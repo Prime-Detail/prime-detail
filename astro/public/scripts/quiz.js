@@ -21,6 +21,25 @@
       }
     } catch (error) {
     }
+
+    try {
+      if (typeof window.fbq === 'function' && (
+        eventName === 'tarif_quick_form_whatsapp_clicked' ||
+        eventName === 'tarif_quick_form_contact_clicked' ||
+        eventName === 'quiz_primary_cta_clicked'
+      )) {
+        window.fbq('trackCustom', eventName, payload);
+
+        if (eventName === 'tarif_quick_form_contact_clicked') {
+          window.fbq('track', 'Lead', payload);
+        }
+
+        if (eventName === 'tarif_quick_form_whatsapp_clicked' || eventName === 'quiz_primary_cta_clicked') {
+          window.fbq('track', 'Contact', payload);
+        }
+      }
+    } catch (error) {
+    }
   }
 
   var interiorPrices = {

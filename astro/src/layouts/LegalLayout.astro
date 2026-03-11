@@ -5,6 +5,7 @@ import path from 'node:path';
 const cssPath = path.resolve(process.cwd(), '..', 'styles.css');
 const legalCss = fs.readFileSync(cssPath, 'utf-8');
 const base = import.meta.env.BASE_URL;
+const META_PIXEL_ID = '1610178900345647';
 ---
 <html lang="fr">
   <head>
@@ -31,9 +32,30 @@ const base = import.meta.env.BASE_URL;
     <link rel="icon" type="image/png" sizes="32x32" href={`${base}assets/images/logo/logo2.png`} />
     <link rel="shortcut icon" href={`${base}assets/images/logo/logo2.png`} />
     <link rel="apple-touch-icon" href={`${base}assets/images/logo/logo2.png`} />
+    <script is:inline define:vars={{ META_PIXEL_ID }}>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', META_PIXEL_ID);
+      fbq('track', 'PageView');
+    </script>
     <style set:html={legalCss}></style>
   </head>
   <body>
+    <noscript>
+      <img
+        height="1"
+        width="1"
+        style="display:none"
+        src={`https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`}
+        alt=""
+      />
+    </noscript>
     <slot />
   </body>
 </html>

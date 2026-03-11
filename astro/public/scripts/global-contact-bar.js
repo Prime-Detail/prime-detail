@@ -42,6 +42,17 @@
       }
     } catch (error) {
     }
+
+    try {
+      if (typeof window.fbq === 'function' && (eventName === 'contact_call_clicked' || eventName === 'contact_whatsapp_clicked')) {
+        window.fbq('trackCustom', eventName, payload);
+
+        if (eventName === 'contact_call_clicked' || eventName === 'contact_whatsapp_clicked') {
+          window.fbq('track', 'Contact', payload);
+        }
+      }
+    } catch (error) {
+    }
   }
 
   function bindContactTracking(id, eventName, channel) {

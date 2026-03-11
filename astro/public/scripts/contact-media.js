@@ -14,6 +14,25 @@
       }
     } catch (error) {
     }
+
+    try {
+      if (typeof window.fbq === 'function' && (
+        eventName === 'contact_call_clicked' ||
+        eventName === 'contact_whatsapp_clicked' ||
+        eventName === 'contact_form_valid_submit'
+      )) {
+        window.fbq('trackCustom', eventName, payload);
+
+        if (eventName === 'contact_form_valid_submit') {
+          window.fbq('track', 'Lead', payload);
+        }
+
+        if (eventName === 'contact_call_clicked' || eventName === 'contact_whatsapp_clicked') {
+          window.fbq('track', 'Contact', payload);
+        }
+      }
+    } catch (error) {
+    }
   }
 
   var contactForm = document.getElementById('contact-form');
