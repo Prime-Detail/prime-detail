@@ -194,12 +194,6 @@
       }
 
       if (mismatchWarningVisible) {
-        trackEvent('contact_quiz_mismatch_warning_resolved', {
-          prestation_type: prestationValue || 'unknown',
-          quiz_exterior_pack: (quizContext && quizContext.exterior) || 'unknown',
-          cta_variant: ctaVariantLabel || getQuizCtaVariantLabel()
-        });
-
         trackEvent('lead_coherence_fixed', {
           prestation_type: prestationValue || 'unknown',
           quiz_exterior_pack: (quizContext && quizContext.exterior) || 'unknown',
@@ -223,12 +217,6 @@
 
     if (!mismatchWarningTracked) {
       mismatchWarningTracked = true;
-      trackEvent('contact_quiz_mismatch_warning_shown', {
-        prestation_type: prestationValue || 'unknown',
-        quiz_exterior_pack: quizContext.exterior || 'unknown',
-        cta_variant: ctaVariantLabel || getQuizCtaVariantLabel()
-      });
-
       trackEvent('lead_coherence_issue_detected', {
         prestation_type: prestationValue || 'unknown',
         quiz_exterior_pack: quizContext.exterior || 'unknown',
