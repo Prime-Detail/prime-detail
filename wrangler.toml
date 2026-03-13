@@ -1,0 +1,3 @@
+name = "prime-detail-ai-worker-health"
+main = "tools/ai-worker-health.js"
+compatibility_date = "2026-03-13"
