@@ -1,19 +1,19 @@
 ---
-import fs from 'node:fs';
-import path from 'node:path';
 import { AREA_SERVED_CITIES } from '../data/local-cities';
 
-const sourcePath = path.resolve(process.cwd(), '..', 'index.html');
-const cssPath = path.resolve(process.cwd(), '..', 'styles.css');
 const GA_MEASUREMENT_ID = 'G-FJBK0MCYPQ';
 const META_PIXEL_ID = '1189334119528421';
 const META_CAPI_ENDPOINT = import.meta.env.PUBLIC_META_CAPI_ENDPOINT || '';
-
-const raw = fs.readFileSync(sourcePath, 'utf-8');
-const styleMatch = raw.match(/<style>([\s\S]*?)<\/style>/i);
-const fallbackCss = fs.readFileSync(cssPath, 'utf-8');
-const siteCss = styleMatch ? styleMatch[1] : fallbackCss;
 const base = import.meta.env.BASE_URL;
+// Utilise uniquement le CSS du projet (styles.css) comme fallback
+import fs from 'node:fs';
+const cssPath = path.resolve(process.cwd(), '..', 'styles.css');
+let siteCss = '';
+try {
+  siteCss = fs.readFileSync(cssPath, 'utf-8');
+} catch (e) {
+  siteCss = '';
+}
 
 interface Props {
   title?: string;
