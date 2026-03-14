@@ -1,7 +1,41 @@
 <section id="tarifs" class="quiz-finition">
   <div class="container">
     <div class="quiz" id="tarif-quiz">
-        <p class="section-intro" style="margin-bottom: 18px; color: #1a4f63; font-size: 1.04em; font-weight: 500;">Répondez à ces quelques questions pour obtenir un tarif personnalisé en moins de 30 secondes. Sélectionnez simplement votre type de véhicule, la prestation souhaitée et laissez-vous guider.</p>
+        <div class="tarif-steps-help">
+          <p id="tarif-help-step-1" style="margin-bottom: 18px; color: #1a4f63; font-size: 1.04em; font-weight: 500;">Commencez par choisir le type de véhicule à traiter (citadine, berline, SUV). Cela permet d’adapter le tarif à la taille réelle.</p>
+          <p id="tarif-help-step-2" style="display:none; margin-bottom: 18px; color: #1a4f63; font-size: 1.04em; font-weight: 500;">Sélectionnez la prestation souhaitée (intérieur, extérieur, polissage, pack). Vous pouvez comparer les options pour voir ce qui correspond le mieux à votre besoin.</p>
+          <p id="tarif-help-step-3" style="display:none; margin-bottom: 18px; color: #1a4f63; font-size: 1.04em; font-weight: 500;">Indiquez si le véhicule sera stationné sur un terrain privé (allée, garage). Cela permet de valider la faisabilité de l’intervention à domicile.</p>
+          <p id="tarif-help-step-4" style="display:none; margin-bottom: 18px; color: #1a4f63; font-size: 1.04em; font-weight: 500;">Voici votre estimation personnalisée. Vous pouvez réserver ou demander plus d’infos en bas de page.</p>
+        </div>
+        <script is:inline>
+          // Affiche l'aide correspondant à l'étape active
+          function updateTarifStepHelp(step) {
+            for (let i = 1; i <= 4; i++) {
+              const el = document.getElementById('tarif-help-step-' + i);
+              if (el) el.style.display = (i === step) ? '' : 'none';
+            }
+          }
+          // Hook sur le quiz pour détecter l'étape
+          document.addEventListener('DOMContentLoaded', function() {
+            const quiz = document.getElementById('tarif-quiz');
+            if (!quiz) return;
+            const observer = new MutationObserver(() => {
+              const activeStep = quiz.querySelector('.step.active');
+              if (!activeStep) return;
+              let stepNum = 1;
+              if (activeStep.hasAttribute('data-step')) {
+                const ds = activeStep.getAttribute('data-step');
+                if (ds === '2') stepNum = 2;
+                else if (ds === '3' || ds === 'exterior-level' || ds === 'polish-level') stepNum = 3;
+                else if (ds === '4' || ds === 'result') stepNum = 4;
+              }
+              updateTarifStepHelp(stepNum);
+            });
+            observer.observe(quiz, { subtree: true, attributes: true, attributeFilter: ['class'] });
+            // Initial
+            updateTarifStepHelp(1);
+          });
+        </script>
       <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
       <div class="quiz-proof" aria-label="Points forts Prime Detail">
         <span>+50 avis Google</span>
@@ -266,14 +300,6 @@
           </div>
 
           <p class="cta-helper">Créneaux limités cette semaine. Réservez maintenant pour bloquer votre passage.</p>
-          <div style="display: flex; flex-direction: column; gap: 10px; margin: 18px 0 0 0;">
-            <a href="tel:0656751197" class="btn-primary" style="background: #1fa363; color: #fff; font-size: 1.15em; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 0; border-radius: 12px; box-shadow: 0 2px 8px #1fa36333;">
-              <span style="font-size:1.25em;">📞</span> <span>Appeler maintenant</span>
-            </a>
-            <a href="https://wa.me/33656751197" class="btn-primary" style="background: #25d366; color: #fff; font-size: 1.15em; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 0; border-radius: 12px; box-shadow: 0 2px 8px #25d36633;" target="_blank" rel="noopener">
-              <span style="font-size:1.25em;">💬</span> <span>Message WhatsApp</span>
-            </a>
-          </div>
           <p id="polish-diagnostic-note" class="polish-diagnostic-note" hidden>Diagnostic vernis offert: échange rapide + photos pour orienter le bon niveau de correction.</p>
           <p class="cta-subnote">Réponse rapide par appel ou WhatsApp au <strong>06 56 75 11 97</strong>.</p>
         </div>
@@ -284,14 +310,6 @@
         <h3 id="terrain-title">⚠️ Extérieur impossible</h3>
         <p id="terrain-note">Terrain privé obligatoire (rue interdite).</p>
         <div class="prix-gros"><span id="terrain-price-label">Intérieur possible</span> <strong id="terrain-only-price">120€</strong></div>
-        <div style="display: flex; flex-direction: column; gap: 10px; margin: 18px 0 0 0;">
-          <a href="tel:0656751197" class="btn-primary" style="background: #1fa363; color: #fff; font-size: 1.15em; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 0; border-radius: 12px; box-shadow: 0 2px 8px #1fa36333;">
-            <span style="font-size:1.25em;">📞</span> <span>Appeler maintenant</span>
-          </a>
-          <a href="https://wa.me/33656751197" class="btn-primary" style="background: #25d366; color: #fff; font-size: 1.15em; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 0; border-radius: 12px; box-shadow: 0 2px 8px #25d36633;" target="_blank" rel="noopener">
-            <span style="font-size:1.25em;">💬</span> <span>Message WhatsApp</span>
-          </a>
-        </div>
         <button type="button" class="restart-btn" data-restart="quiz">↺ Recommencer le quiz</button>
       </div>
 
