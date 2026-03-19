@@ -40,15 +40,7 @@ wrangler deploy
 Dans ton environnement build Astro, definir:
  `PUBLIC_META_CAPI_ENDPOINT=https://...workers.dev`
 
-## 4) Verifier la deduplication
-
-Le front envoie:
-
-- Pixel browser avec `eventID`
-- CAPI serveur avec le meme `event_id`
-
-Meta deduplique automatiquement les doublons.
-
+## 4) 
 
 ## 5) Test en 2 minutes
 
