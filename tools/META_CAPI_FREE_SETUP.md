@@ -61,15 +61,15 @@ Test HTTP direct du Worker:
 
 ```bash
 curl -X POST "https://<ton-worker>.workers.dev" \
-	-H "Content-Type: application/json" \
-	-d '{
-		"event_name":"contact_whatsapp_clicked",
-		"standard_event_name":"Contact",
-		"event_id":"manual_test_001",
-		"event_source_url":"https://prime-detail.github.io/prime-detail/",
-		"event_time": 1730000000,
-		"custom_data": {"source":"manual_test"}
-	}'
+  -H "Content-Type: application/json" \
+  -d '{
+    "event_name":"contact_whatsapp_clicked",
+    "standard_event_name":"Contact",
+    "event_id":"manual_test_001",
+    "event_source_url":"https://prime-detail.github.io/prime-detail/",
+    "event_time": 1730000000,
+    "custom_data": {"source":"manual_test"}
+  }'
 ```
 
 ## 6) Notes RGPD
