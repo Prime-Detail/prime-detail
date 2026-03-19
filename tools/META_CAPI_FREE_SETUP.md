@@ -40,7 +40,7 @@ wrangler deploy
 Dans ton environnement build Astro, definir:
  `PUBLIC_META_CAPI_ENDPOINT=https://...workers.dev`
 
-## 4)
+##
 ## 5) Test en 2 minutes
 
 1. Ouvrir Meta Events Manager > Test Events
