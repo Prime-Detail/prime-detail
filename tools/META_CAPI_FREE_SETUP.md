@@ -10,6 +10,7 @@ Le front envoie maintenant un payload CAPI optionnel vers `window.__META_CAPI_EN
 Variable publique à définir pour Astro :
 
 - `PUBLIC_META_CAPI_ENDPOINT`
+  
 - Exemple : `https://prime-detail-meta-capi.<ton-subdomain>.workers.dev`
 
 ## 2) Créer le Worker (gratuit)
@@ -42,9 +43,8 @@ Dans ton environnement build Astro, définir :
 ## 4) Vérifier la déduplication
 
 Le front envoie :
-- Pixel browser avec `eventID`
-- CAPI serveur avec le même `event_id`
 
+Meta déduplique automatiquement les doublons.
 Meta déduplique automatiquement les doublons.
 
 ## 5) Test en 2 minutes
