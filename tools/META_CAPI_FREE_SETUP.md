@@ -7,6 +7,7 @@ Objectif: envoyer les memes conversions a Meta cote serveur (CAPI) en plus du Pi
 Le front envoie maintenant un payload CAPI optionnel vers `window.__META_CAPI_ENDPOINT__`.
 
 Variable publique a definir pour Astro:
+
 - `PUBLIC_META_CAPI_ENDPOINT`
 
 Exemple:
