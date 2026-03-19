@@ -1,32 +1,29 @@
-# Meta CAPI gratuit (Cloudflare Worker) - Setup rapide
 
-Objectif: envoyer les memes conversions a Meta cote serveur (CAPI) en plus du Pixel navigateur.
+# Meta CAPI gratuit (Cloudflare Worker) – Setup rapide
 
-## 1) Ce qui est deja en place dans le site
+Objectif : envoyer les mêmes conversions à Meta côté serveur (CAPI) en plus du Pixel navigateur.
+
+## 1) Ce qui est déjà en place dans le site
 
 Le front envoie maintenant un payload CAPI optionnel vers `window.__META_CAPI_ENDPOINT__`.
 
-Variable publique a definir pour Astro:
-Exemple:
-Exemple:
+Variable publique à définir pour Astro :
 
-- `https://prime-detail-meta-capi.<ton-subdomain>.workers.dev`
+- `PUBLIC_META_CAPI_ENDPOINT`
+- Exemple : `https://prime-detail-meta-capi.<ton-subdomain>.workers.dev`
 
-## 2) Creer le Worker (gratuit)
+## 2) Créer le Worker (gratuit)
 
-1. Creer un compte Cloudflare (plan gratuit)
-2. Creer un Worker
+1. Créer un compte Cloudflare (plan gratuit)
+2. Créer un Worker
 3. Coller le code de `tools/meta-capi-cloudflare-worker.js`
+4. Ajouter les secrets Worker :
+   - `META_PIXEL_ID` = `1189334119528421`
+   - `META_ACCESS_TOKEN` = token CAPI Meta
+   - `CORS_ORIGIN` = URL de ton site (ex : `https://prime-detail.github.io`)
+   - `META_TEST_EVENT_CODE` = optionnel (utile pendant les tests)
 
-4. Ajouter les secrets Worker:
-
-
-- `META_PIXEL_ID` = `1189334119528421`
-- `META_ACCESS_TOKEN` = token CAPI Meta
-- `CORS_ORIGIN` = URL de ton site (ex: `https://prime-detail.github.io`)
-- `META_TEST_EVENT_CODE` = optionnel (utile pendant les tests)
-
-Commandes utiles avec Wrangler:
+Commandes utiles avec Wrangler :
 
 ```bash
 wrangler secret put META_PIXEL_ID
@@ -35,12 +32,12 @@ wrangler secret put CORS_ORIGIN
 wrangler secret put META_TEST_EVENT_CODE
 wrangler deploy
 ```
+
 ## 3) Ajouter la variable front
 
-Dans ton environnement build Astro, definir:
- `PUBLIC_META_CAPI_ENDPOINT=https://...workers.dev`
+Dans ton environnement build Astro, définir :
 
-
+- `PUBLIC_META_CAPI_ENDPOINT=https://...workers.dev`
 
 ## 4) Vérifier la déduplication
 
@@ -73,11 +70,10 @@ curl -X POST "https://<ton-worker>.workers.dev" \
   }'
 ```
 
-## 6) Variables cote Astro
+## 6) Variables côté Astro
 
-Dans l environnement de build Astro, definir:
-
+Dans l'environnement de build Astro, définir :
 
 - `PUBLIC_META_CAPI_ENDPOINT=https://<ton-worker>.workers.dev`
 
-Sans cette variable, le site continue a envoyer le Pixel browser uniquement (fallback propre).
+Sans cette variable, le site continue à envoyer le Pixel browser uniquement (fallback propre).
