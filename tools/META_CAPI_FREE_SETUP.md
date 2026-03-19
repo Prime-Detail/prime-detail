@@ -10,6 +10,7 @@ Variable publique a definir pour Astro:
 
 
 Exemple:
+
 - `https://prime-detail-meta-capi.<ton-subdomain>.workers.dev`
 
 ## 2) Creer le Worker (gratuit)
@@ -19,6 +20,7 @@ Exemple:
 3. Coller le code de `tools/meta-capi-cloudflare-worker.js`
 
 4. Ajouter les secrets Worker:
+
 
 - `META_PIXEL_ID` = `1189334119528421`
 - `META_ACCESS_TOKEN` = token CAPI Meta
@@ -39,11 +41,13 @@ wrangler deploy
 
 Dans ton environnement build Astro, definir:
 
+
 - `PUBLIC_META_CAPI_ENDPOINT=https://...workers.dev`
 
 ## 4) Verifier la deduplication
 
 Le front envoie:
+
 - Pixel browser avec `eventID`
 - CAPI serveur avec le meme `event_id`
 
@@ -75,12 +79,14 @@ curl -X POST "https://<ton-worker>.workers.dev" \
 
 ## 6) Notes RGPD
 
+
 - Conserver une base legale/consentement adapte pour tracking marketing.
 - Mettre a jour la politique de confidentialite si besoin.
 
 ## 7) Variables cote Astro
 
 Dans l environnement de build Astro, definir:
+
 
 - `PUBLIC_META_CAPI_ENDPOINT=https://<ton-worker>.workers.dev`
 
