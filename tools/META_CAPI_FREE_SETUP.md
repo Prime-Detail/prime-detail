@@ -17,7 +17,9 @@ Exemple:
 1. Creer un compte Cloudflare (plan gratuit)
 2. Creer un Worker
 3. Coller le code de `tools/meta-capi-cloudflare-worker.js`
+
 4. Ajouter les secrets Worker:
+
 - `META_PIXEL_ID` = `1189334119528421`
 - `META_ACCESS_TOKEN` = token CAPI Meta
 - `CORS_ORIGIN` = URL de ton site (ex: `https://prime-detail.github.io`)
