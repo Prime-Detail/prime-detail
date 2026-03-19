@@ -7,8 +7,7 @@ Objectif: envoyer les memes conversions a Meta cote serveur (CAPI) en plus du Pi
 Le front envoie maintenant un payload CAPI optionnel vers `window.__META_CAPI_ENDPOINT__`.
 
 Variable publique a definir pour Astro:
-
-
+Exemple:
 Exemple:
 
 - `https://prime-detail-meta-capi.<ton-subdomain>.workers.dev`
@@ -77,10 +76,8 @@ curl -X POST "https://<ton-worker>.workers.dev" \
   }'
 ```
 
-## 6) Notes RGPD
-
-
-- Conserver une base legale/consentement adapte pour tracking marketing.
+  - `PUBLIC_META_CAPI_ENDPOINT=https://...workers.dev`
+ - Conserver une base legale/consentement adapte pour tracking marketing.
 - Mettre a jour la politique de confidentialite si besoin.
 
 ## 7) Variables cote Astro
