@@ -40,16 +40,25 @@ wrangler deploy
 Dans ton environnement build Astro, definir:
  `PUBLIC_META_CAPI_ENDPOINT=https://...workers.dev`
 
-##
+
+
+## 4) Vérifier la déduplication
+
+Le front envoie :
+- Pixel browser avec `eventID`
+- CAPI serveur avec le même `event_id`
+
+Meta déduplique automatiquement les doublons.
+
 ## 5) Test en 2 minutes
 
 1. Ouvrir Meta Events Manager > Test Events
 2. Ouvrir le site sans bloqueur pub
 3. Cliquer Appeler / WhatsApp / envoyer formulaire
-4. Verifier reception browser + server
-5. Verifier qu il n y a pas de double conversion en reporting
+4. Vérifier réception browser + server
+5. Vérifier qu'il n'y a pas de double conversion en reporting
 
-Test HTTP direct du Worker:
+Test HTTP direct du Worker :
 
 ```bash
 curl -X POST "https://<ton-worker>.workers.dev" \
@@ -64,11 +73,7 @@ curl -X POST "https://<ton-worker>.workers.dev" \
   }'
 ```
 
-  - `PUBLIC_META_CAPI_ENDPOINT=https://...workers.dev`
- - Conserver une base legale/consentement adapte pour tracking marketing.
-- Mettre a jour la politique de confidentialite si besoin.
-
-## 7) Variables cote Astro
+## 6) Variables cote Astro
 
 Dans l environnement de build Astro, definir:
 
