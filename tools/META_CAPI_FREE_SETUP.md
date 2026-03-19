@@ -8,7 +8,6 @@ Le front envoie maintenant un payload CAPI optionnel vers `window.__META_CAPI_EN
 
 Variable publique a definir pour Astro:
 
-- `PUBLIC_META_CAPI_ENDPOINT`
 
 Exemple:
 - `https://prime-detail-meta-capi.<ton-subdomain>.workers.dev`
@@ -39,6 +38,7 @@ wrangler deploy
 ## 3) Ajouter la variable front
 
 Dans ton environnement build Astro, definir:
+
 - `PUBLIC_META_CAPI_ENDPOINT=https://...workers.dev`
 
 ## 4) Verifier la deduplication
@@ -48,6 +48,7 @@ Le front envoie:
 - CAPI serveur avec le meme `event_id`
 
 Meta deduplique automatiquement les doublons.
+
 
 ## 5) Test en 2 minutes
 
