@@ -35,13 +35,10 @@ wrangler secret put CORS_ORIGIN
 wrangler secret put META_TEST_EVENT_CODE
 wrangler deploy
 ```
-
 ## 3) Ajouter la variable front
 
 Dans ton environnement build Astro, definir:
-
-
-- `PUBLIC_META_CAPI_ENDPOINT=https://...workers.dev`
+ `PUBLIC_META_CAPI_ENDPOINT=https://...workers.dev`
 
 ## 4) Verifier la deduplication
 
