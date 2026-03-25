@@ -1,4 +1,3 @@
-
 # Meta CAPI gratuit (Cloudflare Worker) – Setup rapide
 
 Objectif : envoyer les mêmes conversions à Meta côté serveur (CAPI) en plus du Pixel navigateur.
