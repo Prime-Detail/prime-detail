@@ -1,3 +1,4 @@
+ 
 # primedetail
 Site web de Prime Detail — Nettoyage automobile premium à domicile à Caen. Présente les services, les tarifs, et permet de réserver en ligne.
 
@@ -33,23 +34,11 @@ Secrets GitHub à configurer dans le dépôt:
 
 Exécution manuelle locale:
 
-```bash
-GOOGLE_PLACES_API_KEY="votre_cle_api" node tools/fetch-google-reviews.mjs
-```
 
 ## Assets & Logos
 
-Les images sont organisées dans `assets/images/...`. Utilisez des formats optimisés (WebP/PNG) et des dimensions adaptées.
-
-### Ajouter le logo et générer variantes
-- Placez votre fichier source dans `assets/images/logo/logo.png`.
-- Générez automatiquement les variantes et favicons avec le script:
-
-```bash
 ./tools/generate-logo-assets.sh assets/images/logo/logo.png
 ```
-
-- Commitez et poussez:
 
 ```bash
 git add assets/images/logo/*.png assets/images/logo/*.webp assets/images/logo/*.svg
@@ -64,14 +53,11 @@ Utilisez le script simple ci-dessous pour vérifier la disponibilité du logo vi
 
 ```bash
 ./tools/test-logo.sh 3
-```
-
 Le script tente une requête HEAD (`curl -I`) et ouvre l’URL si `$BROWSER` est défini.
 
 ### Générer des vidéos mobiles ultra-compatibles
 Pour améliorer la lecture vidéo sur Android/iPhone (anciens appareils inclus), générez des versions H.264 Baseline:
 
-```bash
 chmod +x ./tools/transcode-mobile-video.sh
 ./tools/transcode-mobile-video.sh
 ```
@@ -102,8 +88,6 @@ python3 -m http.server 4173
 
 Dans un autre terminal:
 
-```bash
-./tools/run-lighthouse-mobile.sh
 ```
 
 Vous obtiendrez:
@@ -135,7 +119,5 @@ bash ./tools/pre-push-check.sh
 ```
 
 Optionnel: définir un seuil personnalisé en MB (par défaut: `50`):
-
-```bash
 bash ./tools/pre-push-check.sh 25
 ```
