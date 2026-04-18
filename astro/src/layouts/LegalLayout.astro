@@ -5,7 +5,9 @@ import path from 'node:path';
 const cssPath = path.resolve(process.cwd(), '..', 'styles.css');
 const legalCss = fs.readFileSync(cssPath, 'utf-8');
 const base = import.meta.env.BASE_URL;
+const GA_MEASUREMENT_ID = 'G-FJBK0MCYPQ';
 const META_PIXEL_ID = '1189334119528421';
+const META_CAPI_ENDPOINT = import.meta.env.PUBLIC_META_CAPI_ENDPOINT || '';
 ---
 <html lang="fr">
   <head>
@@ -17,9 +19,9 @@ const META_PIXEL_ID = '1189334119528421';
     <meta name="theme-color" content="#2185a0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="canonical" href="https://prime-detail.github.io/prime-detail/mentions-legales.html" />
+    <link rel="canonical" href="https://prime-detail.github.io/prime-detail/mentions-legales" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://prime-detail.github.io/prime-detail/mentions-legales.html" />
+    <meta property="og:url" content="https://prime-detail.github.io/prime-detail/mentions-legales" />
     <meta property="og:title" content="Mentions légales – Prime Detail" />
     <meta property="og:description" content="Informations légales de Prime Detail : éditeur, données personnelles, cookies et responsabilité." />
     <meta property="og:image" content="https://prime-detail.github.io/prime-detail/assets/images/gallery/apres.jpeg" />
@@ -32,30 +34,21 @@ const META_PIXEL_ID = '1189334119528421';
     <link rel="icon" type="image/png" sizes="32x32" href={`${base}assets/images/logo/logo2.png`} />
     <link rel="shortcut icon" href={`${base}assets/images/logo/logo2.png`} />
     <link rel="apple-touch-icon" href={`${base}assets/images/logo/logo2.png`} />
-    <script is:inline define:vars={{ META_PIXEL_ID }}>
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', META_PIXEL_ID);
-      fbq('track', 'PageView');
+    <script is:inline define:vars={{ base }}>
+      window.__BASE_URL__ = base;
+    </script>
+    <script is:inline define:vars={{ GA_MEASUREMENT_ID, META_PIXEL_ID, META_CAPI_ENDPOINT }}>
+      window.__PD_TRACKING_CONFIG__ = {
+        gaMeasurementId: GA_MEASUREMENT_ID,
+        metaPixelId: META_PIXEL_ID,
+        metaCapiEndpoint: META_CAPI_ENDPOINT
+      };
+      window.__META_CAPI_ENDPOINT__ = META_CAPI_ENDPOINT;
     </script>
     <style set:html={legalCss}></style>
   </head>
   <body>
-    <noscript>
-      <img
-        height="1"
-        width="1"
-        style="display:none"
-        src={`https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`}
-        alt=""
-      />
-    </noscript>
     <slot />
+    <script src={`${base}scripts/consent-manager.js`} defer></script>
   </body>
 </html>

@@ -7,11 +7,17 @@ const paths = [...staticPaths, ...cityPaths];
 
 export const GET: APIRoute = ({ site }) => {
   const baseSite = site?.toString() ?? 'https://prime-detail.github.io/prime-detail/';
+  const now = new Date().toISOString();
 
   const urls = paths
     .map((path) => {
       const loc = new URL(path, baseSite).toString();
-      return `<url><loc>${loc}</loc></url>`;
+      const isHome = path === '';
+      const isLegal = path === 'mentions-legales';
+      const priority = isHome ? '1.0' : (isLegal ? '0.3' : '0.8');
+      const changefreq = isHome ? 'weekly' : (isLegal ? 'yearly' : 'monthly');
+
+      return `<url><loc>${loc}</loc><lastmod>${now}</lastmod><changefreq>${changefreq}</changefreq><priority>${priority}</priority></url>`;
     })
     .join('');
 

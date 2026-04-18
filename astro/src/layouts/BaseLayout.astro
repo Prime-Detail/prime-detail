@@ -1,5 +1,6 @@
 ---
 import { AREA_SERVED_CITIES } from '../data/local-cities';
+import path from 'node:path';
 
 const GA_MEASUREMENT_ID = 'G-FJBK0MCYPQ';
 const META_PIXEL_ID = '1189334119528421';
@@ -113,44 +114,16 @@ const schemaGraph = {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
 
-    <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
-    <script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      window.gtag = window.gtag || gtag;
-      gtag('js', new Date());
-
-      var search = window.location && window.location.search ? window.location.search : '';
-      var gaDebug = search.indexOf('ga_debug=1') !== -1;
-      var gaTest = search.indexOf('ga_test=1') !== -1;
-
-      gtag('config', GA_MEASUREMENT_ID, {
-        debug_mode: gaDebug
-      });
-
-      if (gaTest) {
-        gtag('event', 'ga_test_ping', {
-          debug_mode: true,
-          non_interaction: true,
-          page_location: window.location.href
-        });
-      }
+    <script is:inline define:vars={{ base }}>
+      window.__BASE_URL__ = base;
     </script>
 
-    <script is:inline define:vars={{ META_PIXEL_ID }}>
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', META_PIXEL_ID);
-      fbq('track', 'PageView');
-    </script>
-
-    <script is:inline define:vars={{ META_CAPI_ENDPOINT }}>
+    <script is:inline define:vars={{ GA_MEASUREMENT_ID, META_PIXEL_ID, META_CAPI_ENDPOINT }}>
+      window.__PD_TRACKING_CONFIG__ = {
+        gaMeasurementId: GA_MEASUREMENT_ID,
+        metaPixelId: META_PIXEL_ID,
+        metaCapiEndpoint: META_CAPI_ENDPOINT
+      };
       window.__META_CAPI_ENDPOINT__ = META_CAPI_ENDPOINT;
     </script>
     <script is:inline>
@@ -214,15 +187,6 @@ const schemaGraph = {
     </style>
   </head>
   <body>
-    <noscript>
-      <img
-        height="1"
-        width="1"
-        style="display:none"
-        src={`https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`}
-        alt=""
-      />
-    </noscript>
     <slot />
     <div class="global-mobile-contact-bar" aria-label="Actions de contact rapides">
       <a
@@ -247,5 +211,6 @@ const schemaGraph = {
       </a>
     </div>
     <script src={`${base}scripts/global-contact-bar.js`} defer></script>
+    <script src={`${base}scripts/consent-manager.js`} defer></script>
   </body>
 </html>
