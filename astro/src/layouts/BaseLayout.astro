@@ -1,5 +1,6 @@
 ---
 import { AREA_SERVED_CITIES } from '../data/local-cities';
+import reviewsData from '../data/google-reviews.json';
 import path from 'node:path';
 
 const GA_MEASUREMENT_ID = 'G-FJBK0MCYPQ';
@@ -44,26 +45,72 @@ function absoluteUrl(relativeOrPath: string) {
 const canonicalUrl = canonicalPath ? absoluteUrl(canonicalPath) : (Astro.url?.href || siteUrl.toString());
 const ogImageUrl = absoluteUrl(ogImagePath);
 const robotsContent = noindex ? 'noindex, nofollow' : 'index, follow';
+const hasAggregateRating = typeof reviewsData.rating === 'number' && typeof reviewsData.userRatingCount === 'number' && reviewsData.userRatingCount > 0;
+
+const serviceDefinitions = [
+  {
+    id: 'service-interieur',
+    name: 'Nettoyage interieur automobile',
+    description: 'Remise a niveau complete de l habitacle : sieges, moquettes, plastiques, vitres interieures et zones difficiles d acces.'
+  },
+  {
+    id: 'service-polissage',
+    name: 'Polissage carrosserie',
+    description: 'Correction esthetique de la carrosserie avec attenuation des defauts visuels legers et protection adaptee.'
+  },
+  {
+    id: 'service-pack',
+    name: 'Pack detailing interieur + exterieur',
+    description: 'Prestation complete interieur et exterieur pour valoriser le vehicule dans son ensemble.'
+  }
+];
 
 const schemaGraph = {
   '@context': 'https://schema.org',
   '@graph': [
     {
+      '@type': 'Organization',
+      '@id': `${siteUrl.toString()}#organization`,
+      name: 'Prime Detail',
+      url: siteUrl.toString(),
+      logo: absoluteUrl('assets/images/logo/logo2.png'),
+      email: 'primedetailcaen@gmail.com',
+      telephone: '+33656751197',
+      sameAs: [
+        'https://wa.me/33656751197',
+        reviewsData.googleMapsUri || siteUrl.toString()
+      ]
+    },
+    {
       '@type': 'WebSite',
       '@id': `${siteUrl.toString()}#website`,
       url: siteUrl.toString(),
       name: 'Prime Detail',
+      publisher: { '@id': `${siteUrl.toString()}#organization` },
       inLanguage: 'fr-FR'
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${canonicalUrl}#webpage`,
+      url: canonicalUrl,
+      name: title,
+      description,
+      inLanguage: 'fr-FR',
+      isPartOf: { '@id': `${siteUrl.toString()}#website` },
+      about: { '@id': `${siteUrl.toString()}#localbusiness` }
     },
     {
       '@type': 'LocalBusiness',
       '@id': `${siteUrl.toString()}#localbusiness`,
       name: 'Prime Detail',
       url: siteUrl.toString(),
+      parentOrganization: { '@id': `${siteUrl.toString()}#organization` },
       image: ogImageUrl,
       telephone: '+33656751197',
       email: 'primedetailcaen@gmail.com',
       priceRange: '€€',
+      hasMap: reviewsData.googleMapsUri || undefined,
+      serviceArea: AREA_SERVED_CITIES.map((city) => ({ '@type': 'City', name: city })),
       areaServed: AREA_SERVED_CITIES.map((city) => ({ '@type': 'City', name: city })),
       address: {
         '@type': 'PostalAddress',
@@ -73,18 +120,35 @@ const schemaGraph = {
       },
       sameAs: [
         'https://wa.me/33656751197',
-        siteUrl.toString()
+        reviewsData.googleMapsUri || siteUrl.toString()
       ],
+      ...(hasAggregateRating
+        ? {
+            aggregateRating: {
+              '@type': 'AggregateRating',
+              ratingValue: reviewsData.rating,
+              reviewCount: reviewsData.userRatingCount
+            }
+          }
+        : {}),
       hasOfferCatalog: {
         '@type': 'OfferCatalog',
         name: 'Prestations detailing',
-        itemListElement: [
-          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Nettoyage intérieur automobile' } },
-          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Rénovation carrosserie et polissage' } },
-          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Pack intérieur + extérieur' } }
-        ]
+        itemListElement: serviceDefinitions.map((service, index) => ({
+          '@type': 'Offer',
+          position: index + 1,
+          itemOffered: { '@id': `${siteUrl.toString()}#${service.id}` }
+        }))
       }
-    }
+    },
+    ...serviceDefinitions.map((service) => ({
+      '@type': 'Service',
+      '@id': `${siteUrl.toString()}#${service.id}`,
+      name: service.name,
+      description: service.description,
+      provider: { '@id': `${siteUrl.toString()}#localbusiness` },
+      areaServed: AREA_SERVED_CITIES.map((city) => ({ '@type': 'City', name: city }))
+    }))
   ]
 };
 ---
