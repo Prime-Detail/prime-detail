@@ -196,21 +196,15 @@ const faqSchema = {
             </a>
           </span>
         </p>
-        <p>
-          Voir aussi:
-          <a href={`${base}detailing-auto-autour-caen`}>Toutes les villes desservies autour de Caen (20 km)</a>.
-        </p>
-
-        {relatedCities.length > 0 ? (
-          <div>
-            <p>Pages voisines utiles :</p>
-            <ul>
-              {relatedCities.map((city) => (
-                <li><a href={`${base}detailing-auto/${city.slug}`}>Detailing auto à {city.name}</a></li>
-              ))}
-            </ul>
-          </div>
-        ) : null}
+        <div>
+          <p>Liens locaux utiles :</p>
+          <ul>
+            <li><a href={`${base}detailing-auto-autour-caen`}>Toutes les villes desservies autour de Caen (20 km)</a></li>
+            {relatedCities.map((city) => (
+              <li><a href={`${base}detailing-auto/${city.slug}`}>Detailing auto à {city.name}</a></li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
 
