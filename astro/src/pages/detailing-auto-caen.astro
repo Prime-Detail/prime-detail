@@ -57,6 +57,53 @@ const breadcrumbSchema = {
     }
   ]
 };
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Detailing auto a domicile a Caen',
+  serviceType: 'Nettoyage interieur, polissage carrosserie, packs detailing',
+  areaServed: {
+    '@type': 'City',
+    name: 'Caen'
+  },
+  provider: {
+    '@type': 'LocalBusiness',
+    name: 'Prime Detail',
+    telephone: '+33656751197',
+    email: 'primedetailcaen@gmail.com'
+  },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Prestations detailing Caen',
+    itemListElement: [
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Nettoyage interieur complet'
+        },
+        availability: 'https://schema.org/InStock'
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Polissage carrosserie'
+        },
+        availability: 'https://schema.org/InStock'
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Pack interieur + exterieur'
+        },
+        availability: 'https://schema.org/InStock'
+      }
+    ]
+  }
+};
 ---
 <BaseLayout
   title="Detailing auto à Caen : intérieur, polissage, packs premium | Prime Detail"
@@ -166,6 +213,7 @@ const breadcrumbSchema = {
 
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)}></script>
 </BaseLayout>
 
 <style>
