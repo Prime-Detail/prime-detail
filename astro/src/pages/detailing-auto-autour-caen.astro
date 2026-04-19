@@ -30,6 +30,25 @@ const faqSchema = {
     }
   }))
 };
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Accueil',
+      item: `${Astro.site?.toString() || 'https://prime-detail.github.io/prime-detail/'}${base}`
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Detailing auto autour de Caen',
+      item: `${Astro.site?.toString() || 'https://prime-detail.github.io/prime-detail/'}${base}detailing-auto-autour-caen`
+    }
+  ]
+};
 ---
 <BaseLayout
   title="Detailing auto autour de Caen (20 km) | Prime Detail"
@@ -60,7 +79,7 @@ const faqSchema = {
             </ul>
           </article>
 
-          <article class="card" style="grid-column: span 2;">
+          <article class="card card-wide">
             <h3>Autres villes autour de Caen</h3>
             <ul>
               {LOCAL_CITY_PAGES.map((city) => (
@@ -108,4 +127,17 @@ const faqSchema = {
   </main>
 
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
 </BaseLayout>
+
+<style>
+  .card-wide {
+    grid-column: span 2;
+  }
+
+  @media (max-width: 900px) {
+    .card-wide {
+      grid-column: span 1;
+    }
+  }
+</style>

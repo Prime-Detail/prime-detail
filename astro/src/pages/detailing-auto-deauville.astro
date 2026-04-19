@@ -1,6 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import reviewsData from '../data/google-reviews.json';
 const base = import.meta.env.BASE_URL;
+const reviewCount = typeof reviewsData.userRatingCount === 'number' ? reviewsData.userRatingCount : 0;
+const averageRating = typeof reviewsData.rating === 'number' ? reviewsData.rating : null;
 
 const faqItems = [
   {
@@ -28,6 +31,31 @@ const faqSchema = {
       text: item.a
     }
   }))
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Accueil',
+      item: `${Astro.site?.toString() || 'https://prime-detail.github.io/prime-detail/'}${base}`
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Detailing autour de Caen',
+      item: `${Astro.site?.toString() || 'https://prime-detail.github.io/prime-detail/'}${base}detailing-auto-autour-caen`
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: 'Detailing auto a Deauville',
+      item: `${Astro.site?.toString() || 'https://prime-detail.github.io/prime-detail/'}${base}detailing-auto-deauville`
+    }
+  ]
 };
 ---
 <BaseLayout
@@ -68,6 +96,30 @@ const faqSchema = {
 
     <section>
       <div class="container">
+        <h2>Pourquoi les clients de Deauville nous choisissent</h2>
+        <div class="grid">
+          <article class="card">
+            <h3>Service adapte au contexte local</h3>
+            <p>Intervention a domicile avec organisation claire selon planning, acces et conditions meteo.</p>
+          </article>
+          <article class="card">
+            <h3>Preuves clients verifiables</h3>
+            <p>
+              {averageRating ? `Note moyenne ${averageRating.toFixed(1)} / 5` : 'Plus de 50 avis clients'}
+              {' '}
+              et {reviewCount > 0 ? `${reviewCount} avis Google` : 'des retours clients reguliers'}.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Devis rapide et structure</h3>
+            <p>Estimation claire en 24h avec recommandations selon etat de carrosserie et habitacle.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
         <h2>Zone d’intervention autour de Deauville</h2>
         <p class="section-intro">
           Interventions possibles à Deauville et communes voisines selon planning, avec déplacement à domicile.
@@ -79,12 +131,12 @@ const faqSchema = {
         </p>
         <p>
           Contact direct :
-          <span style="display: flex; flex-direction: column; gap: 8px; margin: 10px 0; max-width: 320px;">
-            <a href="tel:0656751197" style="background: #1fa363; color: #fff; font-size: 1.08em; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 0; border-radius: 12px; box-shadow: 0 2px 8px #1fa36333; text-decoration: none;">
-              <span style="font-size:1.18em;">📞</span> <span>Appeler maintenant</span>
+          <span class="local-contact-actions">
+            <a href="tel:0656751197" class="local-contact-btn local-contact-call">
+              <span class="local-contact-emoji">📞</span> <span>Appeler maintenant</span>
             </a>
-            <a href="https://wa.me/33656751197" target="_blank" rel="noopener" style="background: #25d366; color: #fff; font-size: 1.08em; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 0; border-radius: 12px; box-shadow: 0 2px 8px #25d36633; text-decoration: none;">
-              <span style="font-size:1.18em;">💬</span> <span>Message WhatsApp</span>
+            <a href="https://wa.me/33656751197" target="_blank" rel="noopener" class="local-contact-btn local-contact-whatsapp">
+              <span class="local-contact-emoji">💬</span> <span>Message WhatsApp</span>
             </a>
           </span>
         </p>
@@ -107,4 +159,42 @@ const faqSchema = {
   </main>
 
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
 </BaseLayout>
+
+<style>
+  .local-contact-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 10px 0;
+    max-width: 320px;
+  }
+
+  .local-contact-btn {
+    color: #fff;
+    font-size: 1.08em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 0;
+    border-radius: 12px;
+    text-decoration: none;
+  }
+
+  .local-contact-call {
+    background: #1fa363;
+    box-shadow: 0 2px 8px #1fa36333;
+  }
+
+  .local-contact-whatsapp {
+    background: #25d366;
+    box-shadow: 0 2px 8px #25d36633;
+  }
+
+  .local-contact-emoji {
+    font-size: 1.18em;
+  }
+</style>
