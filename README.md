@@ -139,3 +139,10 @@ Optionnel: définir un seuil personnalisé en MB (par défaut: `50`):
 ```bash
 bash ./tools/pre-push-check.sh 25
 ```
+
+## SEO opérationnel (2026)
+
+Deux guides prêts à l'emploi sont disponibles:
+
+- `tools/SEARCH_CONSOLE_SUBMISSION_CHECKLIST_2026.md` : checklist de soumission Search Console (J0 / J+7 / J+30)
+- `tools/SEO_MONTHLY_PLAYBOOK_2026.md` : routine SEO mensuelle (diagnostic, optimisation, contenu, autorité)
